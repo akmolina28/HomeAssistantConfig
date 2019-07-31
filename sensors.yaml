@@ -144,3 +144,7 @@
       friendly_name: 'Laundry Room Temperature'
       value_template: '{{ states.sensor.temperature_6.state | float + 2.5 }}'
       unit_of_measurement: 'degrees'
+
+    anybody_home:
+      friendly_name: 'Anybody Home'
+      value_template: '{{ states("person.andrew") == "home" or  states("person.kaitlyn") == "home" }}'

@@ -30,3 +30,18 @@
   entities:
   - light.driveway_light_1
   - light.driveway_light_2
+- platform: group
+  name: Interior Lights
+  entities:
+  - light.couch_lamp
+  - light.love_seat_lamp
+  - light.living_room_ambience_1
+  - light.living_room_ambience_2
+  - light.guest_room_lamp_1
+  - light.guest_room_lamp_2
+  - light.kp_bedside
+  - light.andrew_bedside
+  - light.man_cave
+  - light.man_cave_dimmable
+  - light.laundry_room_light_1
+  - light.laundry_room_light_2

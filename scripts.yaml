@@ -42,33 +42,106 @@ all_lights_off:
     data:
       entity_id: switch.ikea_outlet_1 #patio-lights
 
-away_mode:
-  alias: Away Mode
+turn_off_interior_lights:
+  alias: Turn Off Interior Lights
   sequence:
   - service: light.turn_off
     data:
-      entity_id: group.all_lights
+      entity_id: light.interior_lights
   - service: switch.turn_off
     data:
-      entity_id: switch.power_outlet_1
-  - service: switch.turn_off
-    data:
-      entity_id: switch.power_outlet_2
-  - service: switch.turn_off
-    data:
-      entity_id: switch.ikea_outlet_1 #patio-lights
-  - service: climate.set_away_mode
-    data:
-      entity_id: climate.thermostat
-      away_mode: on
-  # turn on air filter
+      entity_id:
+      - group.interior_light_switches
+
+turn_on_air_purifier:
+  alias: Turn On Air Purifier
+  sequence:
   - service: switch.turn_on
     data:
       entity_id: switch.ikea_outlet_2
+      
+turn_off_air_purifier:
+  alias: Turn Off Air Purifier
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.ikea_outlet_2
+
+turn_on_patio_lights:
+  alias: Turn On Patio Lights
+  sequence:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.ikea_outlet_2
+
+turn_off_patio_lights:
+  alias: Turn Off Patio Lights
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.ikea_outlet_2
+
+set_climate_away_mode:
+  alias: Set Climate Away Mode
+  sequence:
+  - service: climate.set_preset_mode
+    data:
+      entity_id: climate.thermostat
+      preset_mode: away
+
+resume_climate_schedule:
+  alias: Resume Climate Schedule
+  sequence:
+  - service: climate.ecobee_resume_program
+    data:
+      entity_id: climate.thermostat
+      resume_all: true
+
+turn_off_media_players:
+  alias: Turn Off Media Players
+  sequence:
   - service: media_player.turn_off
     entity_id:
     - media_player.living_room_tv_2
     - media_player.living_room_receiver
+
+set_automation_mode_away:
+  alias: Away Mode
+  sequence:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: away
+  - service: script.turn_off_interior_lights
+  - service: script.turn_on_air_purifier
+  - service: script.set_climate_away_mode
+  - service: script.turn_off_media_players
+
+set_automation_mode_home:
+  alias: Home Mode
+  sequence:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: home
+  - service: switch.turn_on
+    data:
+      entity_id: group.kitchen_cabinet_lights
+  - service: script.turn_off_air_purifier
+  - service: script.resume_climate_schedule
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sun.sun
+      state: below_horizon
+    - condition: numeric_state
+      entity_id: sensor.lightlevel_21
+      below: '100'
+  - service: light.turn_on
+    data:
+      entity_id: light.living_room_lights
+      brightness: '255'
+  - service: script.turn_on_patio_lights
 
 home_arrival:
   alias: Home Arrival

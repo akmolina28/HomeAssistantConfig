@@ -419,15 +419,6 @@
   - data:
       entity_id: switch.power_outlet_2
     service: switch.turn_on
-- id: '1563034593483'
-  alias: Home Arrival - GPS
-  trigger:
-  - entity_id: device_tracker.akmolina28_andrewsphone
-    platform: state
-    to: home
-  condition: []
-  action:
-  - service: script.home_arrival
 - id: '1563135794189'
   alias: Air Filter - Auto On Timer
   trigger:
@@ -469,23 +460,6 @@
   - data:
       entity_id: switch.ikea_outlet_2
     service: switch.turn_off
-- id: '1563140395615'
-  alias: Home Arrival - Door Open
-  trigger:
-  - entity_id: binary_sensor.openclose_2
-    from: 'off'
-    platform: state
-    to: 'on'
-  - entity_id: binary_sensor.openclose_12
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - condition: state
-    entity_id: sensor.thermostat_away_mode
-    state: 'on'
-  action:
-  - service: script.home_arrival
 - id: '1963110345676'
   alias: iSuck Large Clean Complete
   trigger:
@@ -968,7 +942,6 @@
   - data:
       entity_id: input_boolean.isuck_dust_bin_full
     service: input_boolean.turn_off
-    
 - id: '1562542432169'
   alias: iSuck Brush Boolean Turns Off - Dismiss Notification
   trigger:
@@ -993,12 +966,11 @@
     data:
       data:
         tag: isuck-dust-bin-full
-
 - id: '1562542432171'
   alias: Chore Reminder - Vacuum Cleaning Due Notification
   trigger:
   - platform: time
-    at: '08:00:00'
+    at: 08:00:00
   - platform: time
     at: '16:00:00'
   condition:
@@ -1028,12 +1000,12 @@
   condition:
   - condition: state
     entity_id: vacuum.isuck
-    state: 'docked'
+    state: docked
   action:
   - data:
       entity_id: vacuum.isuck
     service: vacuum.start
-  
+
 - id: '1562542432173'
   alias: Vacuum Cleaning Starts - Dismiss Notifications
   trigger:
@@ -1045,3 +1017,73 @@
       data:
         tag: isuck-cleaning-due
     service: notify.html5_dismiss
+
+- id: '1562511452199'
+  alias: Nobody Home [Not in guest mode or vacation mode] - Away Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    to: 'False'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation"] }}'
+  action:
+  - data:
+      message: Nobody is home
+      title: Activing Away Mode
+      data:
+        url: dev
+        actions:
+        - action: automation_mode_home
+          title: Cancel
+        tag: nobody-is-home
+    service: notify.html5_notifications
+    
+- id: '1562511452199'
+  alias: Nobody Home - Away Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'True'
+    to: 'False'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
+  action:
+  - data:
+      message: Nobody is home
+      title: Activing Away Mode
+      data:
+        url: dev
+        actions:
+        - action: automation_mode_home
+          title: Cancel
+        tag: nobody-is-home
+    service: notify.html5_notifications
+  - service: script.set_automation_mode_away
+
+- id: '1563142439956'
+  alias: Nobody Home Notification Action Clicked - Home Mode
+  trigger:
+  - event_data:
+      action: automation_mode_home
+    event_type: html5_notification.clicked
+    platform: event
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: script.set_automation_mode_home
+
+- id: '1562511452200'
+  alias: Anybody Home - Home Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'False'
+    to: 'True'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: script.set_automation_mode_home

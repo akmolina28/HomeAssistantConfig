@@ -103,10 +103,6 @@ views:
           type: entities
           title: Power Manager
           show_header_toggle: false
-        
-        type: entities
-        entities:
-        - input_select.house_mode
 
       # - type: weather-forecast
       #   entity: weather.dark_sky
@@ -537,13 +533,11 @@ views:
         name: Home
         tap_action: 
           action: call-service
-          service: input_select.select_option
-          service_data:
-            entity_id: input_select.automation_mode
-            option: home
+          service: script.set_automation_mode_home
         styles:
           card:
             - height: 75px
+        lock: true
             
       - type: "custom:button-card"
         icon: mdi:exit-run
@@ -554,13 +548,11 @@ views:
         name: Away
         tap_action: 
           action: call-service
-          service: input_select.select_option
-          service_data:
-            entity_id: input_select.automation_mode
-            option: away
+          service: script.set_automation_mode_away
         styles:
           card:
             - height: 75px
+        lock: true
             
       - type: "custom:button-card"
         icon: mdi:weather-night
@@ -578,6 +570,7 @@ views:
         styles:
           card:
             - height: 75px
+        lock: true
             
       - type: "custom:button-card"
         icon: mdi:beach
@@ -595,6 +588,7 @@ views:
         styles:
           card:
             - height: 75px
+        lock: true
             
       - type: "custom:button-card"
         icon: mdi:human-male-male
@@ -612,6 +606,8 @@ views:
         styles:
           card:
             - height: 75px
+        lock: true
+
             
     
     
