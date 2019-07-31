@@ -1,0 +1,192 @@
+lights_bright_up:
+  alias: Lights Brightness Up
+  sequence:
+  - service: light.turn_on
+    data_template:
+      entity_id: "{{ entity_id }}"
+      brightness: >
+        {% set n = (state_attr(entity_id, "brightness") | int) + 50 %}
+        {% if n > 254 %}
+          254
+        {% else %}
+          {{ n }}
+        {% endif %}
+
+lights_bright_down:
+  alias: Lights Brightness Down
+  sequence:
+  - service: light.turn_on
+    data_template:
+      entity_id: "{{ entity_id }}"
+      brightness: >
+        {% set n = state_attr(entity_id, 'brightness') | int - 50 %}
+        {% if n < 4 %}
+          4
+        {% else %}
+          {{ n }}
+        {% endif %}
+
+all_lights_off:
+  alias: All Lights Off
+  sequence:
+  - service: light.turn_off
+    data:
+      entity_id: group.all_lights
+  - service: switch.turn_off
+    data:
+      entity_id: switch.power_outlet_1
+  - service: switch.turn_off
+    data:
+      entity_id: switch.power_outlet_2
+  - service: switch.turn_off
+    data:
+      entity_id: switch.ikea_outlet_1 #patio-lights
+
+away_mode:
+  alias: Away Mode
+  sequence:
+  - service: light.turn_off
+    data:
+      entity_id: group.all_lights
+  - service: switch.turn_off
+    data:
+      entity_id: switch.power_outlet_1
+  - service: switch.turn_off
+    data:
+      entity_id: switch.power_outlet_2
+  - service: switch.turn_off
+    data:
+      entity_id: switch.ikea_outlet_1 #patio-lights
+  - service: climate.set_away_mode
+    data:
+      entity_id: climate.thermostat
+      away_mode: on
+  # turn on air filter
+  - service: switch.turn_on
+    data:
+      entity_id: switch.ikea_outlet_2
+  - service: media_player.turn_off
+    entity_id:
+    - media_player.living_room_tv_2
+    - media_player.living_room_receiver
+
+home_arrival:
+  alias: Home Arrival
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.laundry_room_lights
+      brightness: '255'
+  - service: climate.set_away_mode
+    data:
+      entity_id: climate.thermostat
+      away_mode: off
+  - service: switch.turn_off
+    data:
+      entity_id: switch.ikea_outlet_2
+  - service: switch.turn_on
+    data:
+      entity_id:
+      - switch.power_outlet_1
+      - switch.power_outlet_2
+
+goodnight:
+  alias: Goodnight
+  sequence:
+  # Turn off light bulbs
+  - service: light.turn_off
+    data:
+      entity_id:
+      - light.laundry_room_lights
+      - light.living_room_lights
+      - light.man_cave_lights
+      - light.master_bedroom_lights
+      - light.guest_room_lights
+  # Turn off light switches
+  - service: switch.turn_off
+    data:
+      entity_id:
+      - switch.ikea_outlet_1
+      - switch.power_outlet_1
+      - switch.power_outlet_2
+  # Turn on air filter
+  - service: switch.turn_on
+    data:
+      entity_id:
+      - switch.ikea_outlet_2
+  - service: media_player.turn_off
+    entity_id:
+    - media_player.living_room_tv_2
+    - media_player.living_room_receiver
+  
+good_morning:
+  alias: Good Morning
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id:
+      - light.couch_lamp
+  - service: switch.turn_on
+    data:
+      entity_id:
+      - switch.power_outlet_1
+      - switch.power_outlet_2
+  - service: switch.turn_off
+    data:
+      entity_id:
+      - switch.ikea_outlet_2
+
+fast_enable_flux_living_room:
+  alias: Fast Enable Living Room Flux
+  sequence:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.living_room_fluxer_fast
+  - delay:
+      seconds: 2
+  - service: switch.turn_off
+    data:
+      entity_id: switch.living_room_fluxer_fast
+  - service: switch.turn_on
+    data:
+      entity_id: switch.living_room_fluxer
+
+hass_restart:
+  alias: Restart Home Assistant
+  sequence:
+  - service: homeassistant.restart
+
+living_room_on:
+  alias: Living Room On
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: light.living_room_lights
+  - service: media_player.turn_on
+    data:
+      entity_id:
+      - media_player.living_room_tv_2
+      - media_player.living_room_receiver
+
+work_mode:
+  alias: Work Mode
+  sequence:
+  - service: light.turn_off
+    entity_id:
+    - light.master_bedroom_lights
+    - light.living_room_lights
+    - light.guest_room_lights
+    - light.laundry_room_lights
+    - light.driveway_lights
+  - service: switch.turn_off
+    entity_id:
+    - switch.power_outlet_1
+    - switch.power_outlet_2
+    - switch.ikea_outlet_1
+
+foobar:
+  sequence:
+  - service: automation.trigger
+    entity_id:
+    - automation.isuck_large_clean_complete
+    - automation.isuck_medium_clean_complete

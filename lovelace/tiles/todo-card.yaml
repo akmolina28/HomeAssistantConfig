@@ -1,0 +1,38 @@
+type: entity-filter
+entities:
+  - entity: input_boolean.take_recycling_out
+    name: Recycling
+    hold_action:
+      action: toggle
+  - entity: input_boolean.take_garbage_out
+    name: Garbage
+    hold_action:
+      action: toggle
+  - entity: input_boolean.chewie_wet_food
+    name: Wet Food
+    hold_action:
+      action: toggle
+  - entity: input_boolean.chewie_water
+    name: Change Water
+    hold_action:
+      action: toggle
+  - entity: input_boolean.chewie_litter
+    name: Scoop Poops
+    hold_action:
+      action: toggle
+  - entity: input_boolean.isuck_dust_bin_full
+    name: Empty Dust Bin
+    hold_action:
+      action: toggle
+  - entity: input_boolean.isuck_brush_dirty
+    name: Clean Brush
+    hold_action:
+      action: toggle
+show_empty: false
+state_filter:
+  - "on"
+card:
+  type: glance
+  title: To Do
+  show_state: false
+  columns: 3

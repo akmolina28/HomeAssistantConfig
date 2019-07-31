@@ -1,0 +1,95 @@
+title: Light Control
+icon: mdi:lightbulb-on-outline
+path: light-control
+panel: false
+cards:
+- type: entities
+  title: Master Bedroom
+  show_header_toggle: false
+  entities:
+  - entity: light.master_bedroom_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Lights
+    icon: mdi:bed-empty
+    toggle: true
+  - type: divider
+  - entity: light.kp_bedside
+    type: light
+    name: KP
+    icon: mdi:lamp
+  - entity: light.andrew_bedside
+    type: light
+    name: Andrew
+    icon: mdi:lamp
+- type: entities
+  title: Living Room
+  show_header_toggle: false
+  entities:
+  - entity: "light.living_room_lights"
+    type: "custom:slider-entity-row"
+    min: 5
+    toggle: true
+    name: Lights
+    icon: mdi:sofa
+  - type: switch
+    entity: switch.living_room_fluxer
+    name: Flux
+    icon: mdi:brightness-4
+  - type: divider
+  - type: switch
+    entity: switch.ikea_outlet_1
+    name: Patio Lights
+    icon: mdi:home-variant
+- type: entities
+  title: Kitchen
+  show_header_toggle: false
+  entities:
+  - entity: group.kitchen_cabinet_lights
+    type: switch
+    icon: mdi:light-switch
+- type: entities
+  title: Guest Bedroom
+  show_header_toggle: false
+  entities:
+  - entity: light.guest_room_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Lights
+    icon: mdi:bed-empty
+    toggle: true
+- type: entities
+  title: Man-cave
+  show_header_toggle: false
+  entities:
+  - entity: light.man_cave_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Lights
+    toggle: true
+    icon: mdi:guitar-electric
+  - entity: switch.man_cave_fluxer
+    type: switch
+    name: Flux
+    icon: mdi:brightness-4
+- type: entities
+  title: Exterior Lights
+  entities:
+  - entity: switch.ikea_outlet_1
+    type: switch
+    name: Patio Lights
+    icon: mdi:home-variant
+  - entity: light.driveway_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Driveway
+    toggle: true
+    icon: mdi:garage
+- type: "custom:button-card"
+  entity: switch.all_lights_off
+  icon: mdi:power
+  color: '#FC2B36'
+  name: All Lights Off
+  styles:
+    card:
+      - height: 100px

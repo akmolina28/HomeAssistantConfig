@@ -1,0 +1,17 @@
+all_device_trackers:
+  name: All Devices
+  entities:
+    - device_tracker.akmolina28_andrewsphone
+    - device_tracker.iphone
+all_lights_actual:
+  name: All Lights
+  entities:
+    - group.all_lights
+    - switch.power_outlet_1
+    - switch.power_outlet_2
+    - switch.ikea_outlet_1
+kitchen_cabinet_lights:
+  name: Kitchen Cabinet Lights
+  entities:
+    - switch.power_outlet_1
+    - switch.power_outlet_2

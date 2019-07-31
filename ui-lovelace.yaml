@@ -1,0 +1,641 @@
+title: Casa Molina
+# Include external resources
+resources:
+  - url: /local/kiosk.js
+    type: js
+  - url: /local/roborock.js
+    type: js
+  - url: /local/slider-entity-row.js
+    type: module
+  - url: /local/button-card.js
+    type: module
+  - url: /local/card-mod.js?v=1.0.1
+    type: module
+  - url: /local/simple-thermostat.js?v=1.0.0.0.13
+    type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.5.0
+    type: module
+  - url: /local/custom.css
+    type: css
+  - url: /local/mini-media-player-bundle.js?v=1.2.2
+    type: module
+  # - url: /local/card-tools.js?track=true
+  #   type: js
+  - url: /local/markdown-mod.js?v=1.0.0.0
+    type: module
+
+views:
+  - !include /config/lovelace/views/mobile-light-control.yaml
+  
+  # - title: Air Control
+  #   icon: mdi:air-conditioner
+  #   path: air
+  #   panel: false
+  #   cards:
+  #   - type: "custom:simple-thermostat"
+  #     entity: climate.thermostat
+  #     step_size: 1
+  #     sensors:
+  #     - entity: sensor.man_cave_temperature
+  #     - entity: sensor.thermostat_temperature
+  #     - entity: sensor.master_bedroom_temperature
+
+  - title: Home
+    icon: mdi:home-assistant
+    path: home-control
+    panel: false
+    cards:
+      # - type: entity-filter
+      #   entities:
+      #     - entity: device_tracker.akmolina28_andrewsphone
+      #       name: Andrew
+      #     - entity: device_tracker.iphone
+      #       name: Kaitlyn
+      #   state_filter:
+      #     - home
+      #   card:
+      #     type: glance
+      #     title: People at Home
+      #     show_state: false
+      #     style: |
+      #       .card-header {
+      #         padding: 0 0 0 5px;
+      #       }
+      - type: glance
+        entities:
+          # - entity: sensor.thermostat_temperature
+          #   name: Inside
+          # - entity: sensor.temperature_20
+          #   name: Outside
+          #   icon: mdi:thermometer
+          # - entity: sensor.front_door_open_close
+          #   name: Front Door
+          - entity: binary_sensor.google
+            name: Internet
+          - entity: sensor.garage_open_close
+            name: Garage
+      - !include /config/lovelace/tiles/todo-card.yaml
+
+      - type: entity-filter
+        entities:
+        - light.living_room_lights
+        - light.master_bedroom_lights
+        - light.guest_bedroom_lights
+        - light.man_cave_lights
+        - light.laundry_room_lights
+        - entity: group.kitchen_cabinet_lights
+          type: switch
+          icon: mdi:lightbulb
+          name: Kitchen Lights
+        - entity: switch.ikea_outlet_1
+          type: switch
+          icon: mdi:lightbulb
+          name: Patio Lights
+        - light.driveway_lights
+        - entity: switch.ikea_outlet_2
+          type: switch
+          icon: mdi:air-purifier
+          name: Air Purifier
+        state_filter:
+        - "on"
+        show_empty: false
+        card:
+          type: entities
+          title: Power Manager
+          show_header_toggle: false
+        
+        type: entities
+        entities:
+        - input_select.house_mode
+
+      # - type: weather-forecast
+      #   entity: weather.dark_sky
+      # - type: glance
+      #   entities:
+      #   - entity: sensor.air_filter_history_24
+      #     name: Air Filter
+      #   - entity: sensor.vacuum_hours_since_last_clean
+      #     name: Vacuum
+      #     hold_action:
+      #       action: call-service
+      #       service: vacuum.start
+      #       service_data:
+      #         entity_id: vacuum.isuck
+        # title: 'Air Health'
+        # show_state: false
+      # - type: "custom:mini-graph-card"
+      #   name: Indoor Temperature
+      #   entities:
+      #   - entity: sensor.thermostat_temperature
+      #     name: Thermostat
+      #   - entity: sensor.man_cave_temperature
+      #     name: Man Cave
+      #   - entity: sensor.master_bedroom_temperature
+      #     name: Master Bedroom
+      # - type: "custom:mini-graph-card"
+      #   entities:
+      #   - sensor.lightlevel_21
+      - type: horizontal-stack
+        cards:
+        - type: "custom:button-card"
+          entity: script.goodnight
+          service: script.goodnight
+          icon: mdi:weather-night
+          name: Goodnight
+          styles:
+            card:
+              - height: 75px
+        - type: "custom:button-card"
+          entity: script.away_mode
+          service: script.away_mode
+          icon: mdi:car
+          name: Away       
+          # color: '#FC2B36'
+          styles:
+            card:
+              - height: 75px
+        - type: "custom:button-card"
+          entity: script.hass_restart
+          service: script.hass_restart
+          icon: mdi:restart
+          name: Reboot
+          styles:
+            card:
+              - height: 75px
+
+  # - title: Light Control
+  #   icon: mdi:lightbulb-on-outline
+  #   path: light-control
+  #   panel: false
+  #   cards:
+  #   - type: entities
+  #     show_header_toggle: false
+  #     entities:
+  #     - entity: light.living_room_lights
+  #       type: "custom:slider-entity-row"
+  #       toggle: true
+  #       name: Living Room
+  #     - type: divider
+  #     - entity: light.couch_lamp
+  #       type: "custom:slider-entity-row"
+  #       toggle: true
+  #       name: Couch Lamp
+  #     - entity: light.love_seat_lamp
+  #       type: "custom:slider-entity-row"
+  #       toggle: true
+  #       name: Love Seat Lamp
+  #     - entity: light.living_room_ambience_1
+  #       type: "custom:slider-entity-row"
+  #       toggle: true
+  #       name: Ambience
+  #     - entity: light.living_room_ambience_2
+  #       type: "custom:slider-entity-row"
+  #       toggle: true
+  #       name: Ambience
+  #   - type: entities
+  #     title: Master Bedroom
+  #     show_header_toggle: false
+  #     entities:
+  #     - entity: light.master_bedroom_lights
+  #       type: "custom:slider-entity-row"
+  #       name: Master Bedroom Lights
+  #       toggle: true
+  #     - type: divider
+  #     - entity: light.kp_bedside
+  #       type: "custom:slider-entity-row"
+  #       name: KP Bed-side
+  #       toggle: true
+  #     - entity: light.andrew_bedside
+  #       type: "custom:slider-entity-row"
+  #       name: Andrew Bed-side
+  #       toggle: true
+  #   - type: entities
+  #     # title: Guest Bedroom
+  #     show_header_toggle: false
+  #     entities:
+  #     - entity: light.guest_room_lights
+  #       type: "custom:slider-entity-row"
+  #       name: Guest Room Lights
+  #       toggle: true
+  #     - type: divider
+  #     - entity: light.guest_room_lamp_1
+  #       type: "custom:slider-entity-row"
+  #       name: Lamp
+  #       toggle: true
+  #     - entity: light.guest_room_lamp_2
+  #       type: "custom:slider-entity-row"
+  #       name: Lamp
+  #       toggle: true
+  #   - type: entities
+  #     # title: Man-cave
+  #     show_header_toggle: false
+  #     entities:
+  #     - entity: light.man_cave_lights
+  #       type: "custom:slider-entity-row"
+  #       name: Man Cave Lights Lights
+  #       toggle: true
+  #     - type: divider
+  #     - entity: light.man_cave
+  #       type: "custom:slider-entity-row"
+  #       name: Hue Lamp
+  #       toggle: true
+  #     - entity: light.man_cave_dimmable
+  #       type: "custom:slider-entity-row"
+  #       name: Lamp
+  #       toggle: true
+  #   - type: entities
+  #     title: Kitchen Lights
+  #     entities:
+  #     - entity: switch.power_outlet_1
+  #       name: Under Cabinet
+  #     - entity: switch.power_outlet_2
+  #       name: Under Cabinet
+  #   - type: entities
+  #     # title: Laundry Room
+  #     entities:
+  #     - entity: light.laundry_room_lights
+  #       type: "custom:slider-entity-row"
+  #       name: Laundry Room
+  #       toggle: true
+  #   - type: entities
+  #     title: Exterior Lights
+  #     entities:
+  #     - entity: switch.ikea_outlet_1
+  #       type: switch
+  #       name: Patio Lights
+  #     - entity: light.driveway_lights
+  #       type: "custom:slider-entity-row"
+  #       name: Driveway Lights
+  #       toggle: true
+  #   - type: "custom:button-card"
+  #     entity: switch.all_lights_off
+  #     icon: mdi:power
+  #     color: '#FC2B36'
+  #     name: All Lights Off
+  #     styles:
+  #       card:
+  #         - height: 100px
+  - title: Media
+    icon: mdi:television-classic
+    path: media
+    cards:
+    - type: media-control
+      entity: media_player.living_room_tv_2
+    - type: media-control
+      entity: media_player.living_room_receiver
+    - type: media-control
+      entity: media_player.living_room_tv
+    - type: media-control
+      entity: media_player.guest_room_tv
+    - type: media-control
+      entity: media_player.garage_tv
+
+  - title: Sensors
+    # icon: mdi:home-assistant
+    path: sensors
+    # panel: true
+    cards:
+    - type: "custom:mini-graph-card"
+      entities:
+      - sensor.lightlevel_21
+    - type: "custom:mini-graph-card"
+      entities:
+      - entity: sensor.temperature_20
+        name: Front Porch
+      - entity: sensor.temperature_13
+        name: Garage
+      name: Outdoor Temperature
+    - type: "custom:mini-graph-card"
+      entities:
+      - entity: sensor.thermostat_temperature
+        name: Thermostat
+      - entity: sensor.man_cave_temperature
+        name: Man Cave (EB)
+      - entity: sensor.master_bedroom_temperature
+        name: Master Bedroom (EB)
+      - entity: sensor.temperature_6_calibrated
+        name: Laundry Room (hue)
+      name: Indoor Temperature
+    - type: entities
+      entities:
+      - sensor.door_sensor_diff
+    # - type: glance
+    #   entities:
+    #   - entity:  sensor.ecobee_man_cave_sensor_diff
+    #     name: "Ecobee Sensor (Man Cave)"
+    #   - entity:  sensor.ecobee_bedroom_sensor_diff
+    #     name: "Ecobee Sensor (Master Bedroom)"
+    #   - entity: sensor.ecobee_hue_sensor_diff
+    #     name: "Hue Sensor (Laundry Room)"
+    # - type: history-graph
+    #   entities:
+    #   - entity:  sensor.ecobee_man_cave_sensor_diff
+    #     name: "Ecobee Sensor (Man Cave)"
+    #   - entity:  sensor.ecobee_bedroom_sensor_diff
+    #     name: "Ecobee Sensor (Master Bedroom)"
+    #   - entity: sensor.ecobee_hue_sensor_diff
+    #     name: "Hue Sensor (Laundry Room)"
+    #   hours_to_show: 1
+    # - type: glance
+    #   entities:
+    #   - entity: sensor.man_cave_temperature
+    #     name: "Ecobee Sensor (Man Cave)"
+    #   - entity: sensor.master_bedroom_temperature
+    #     name: "Ecobee Sensor (Master Bedroom)"
+    #   - entity: sensor.thermostat_temperature
+    #     name: "Ecobee Sensor (Thermostat)"
+    #   - entity: sensor.temperature_6
+    #     name: "Hue Sensor (Laundry Room)"
+    # - type: history-graph
+    #   entities:
+    #   - entity: sensor.man_cave_temperature
+    #     name: "Ecobee Sensor (Man Cave)"
+    #   - entity: sensor.master_bedroom_temperature
+    #     name: "Ecobee Sensor (Master Bedroom)"
+    #   - entity: sensor.thermostat_temperature
+    #     name: "Ecobee Sensor (Thermostat)"
+    #   - entity: sensor.temperature_6
+    #     name: "Hue Sensor (Laundry Room)"
+    #   hours_to_show: 1
+
+  - title: Man Cave
+    path: man-cave
+    icon: mdi:guitar-electric
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: entities
+        title: Man Cave
+        show_header_toggle: false
+        entities:
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.man_cave_lights
+          name: Lights
+        - type: divider
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.man_cave
+          icon: mdi:floor-lamp
+          name: Floor Lamp
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.man_cave_dimmable
+          icon: mdi:lamp
+          name: Lamp
+        - type: divider
+        - type: switch
+          entity: switch.man_cave_fluxer
+          name: Flux
+          icon: mdi:brightness-4
+        - type: divider
+        - type: sensor
+          entity: sensor.man_cave_temperature
+          name: Ecobee Sensor
+        style: |
+          .card-header {
+            padding-bottom: 5px;
+          }
+      - !include /config/lovelace/tiles/simple-thermostat-card.yaml
+    - type: vertical-stack
+      cards:
+      - type: glance
+        entities:
+        - entity: binary_sensor.desktop_pc
+        - entity: binary_sensor.mini_pc
+        - entity: binary_sensor.work_laptop
+        - entity: binary_sensor.diskstation
+        - entity: binary_sensor.google
+          name: Internet
+        show_state: false
+      - !include /config/lovelace/tiles/todo-card.yaml
+      - type: glance
+        entities:
+        - type: script
+          entity: script.work_mode
+          icon: mdi:keyboard-variant
+          name: Work Mode
+          # styles:
+          #   card:
+          #   - height: 100px
+        - type: "custom:button-card"
+          entity: script.away_mode
+          icon: mdi:car
+          name: Away
+          # color: '#FC2B36'
+          # styles:
+          #   card:
+          #     - height: 100px
+        show_state: false
+
+  - title: Vacuum
+    path: vacuum
+    icon: mdi:robot-vacuum
+    cards:
+    
+    # - type: entities
+    #   entities:
+    #   - sensor.vacuum_cleaning_due
+    #   - input_datetime.isuck_last_clean_time
+    - type: entities
+      entities:
+        - sensor.vacuum_cleaning_due
+        - input_boolean.isuck_brush_dirty
+        - input_boolean.isuck_dust_bin_full
+        - script.foobar
+        
+
+    - type: vertical-stack
+      cards:
+      - type: markdown
+        title: Vacuum Status Report
+        content: >
+          [[ if(sensor.vacuum_cleaning_due != "not_due", ### <ha-icon style='color:var(--secondary-text-color)' icon='mdi:alert-circle-outline'></ha-icon> <font color=#b58e31>Cleaning is due!</font>, "") ]]
+
+          [[ if(sensor.vacuum_cleaning_due != "not_due", ***, "") ]]
+
+          <ha-icon icon='mdi:robot-vacuum'></ha-icon> **Vacuum Status:** [[ vacuum.isuck ]]
+
+
+          [[ if(vacuum.isuck == "docked", if(sensor.vacuum_cleaning_due == "overdue", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, if(sensor.vacuum_cleaning_due == "due", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>)), <ha-icon icon='mdi:clock-outline'></ha-icon>) ]]
+          **Clean Status:** [[ if(vacuum.isuck == "docked", if(sensor.vacuum_cleaning_due == "overdue", "Cleaning overdue!", if(sensor.vacuum_cleaning_due == "due", "cleaning due", "House is clean")), "in progress...") ]]
+
+          [[ if(input_boolean.isuck_dust_bin_full == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
+          **Dust Bin Status:** [[ if(input_boolean.isuck_dust_bin_full == "on", "Full", "Empty") ]]
+          
+          [[ if(input_boolean.isuck_brush_dirty == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
+          **Brush Head Status:** [[ if(input_boolean.isuck_brush_dirty == "on", "Dirty", "Clean") ]]
+      # - type: entities
+      #   show_header_toggle: false
+      #   title: iSuck Robot Vacuum
+      #   entities:
+      # - type: entity-filter
+      #   entities:
+      #   - entity: input_boolean.isuck_dust_bin_full
+      #     name: Empty Dust Bin
+      #     icon: mdi:trash-can
+      #     hold_action:
+      #       action: toggle
+      #   - entity: input_boolean.isuck_brush_dirty
+      #     name: Clean Brush
+      #     icon: mdi:broom
+      #     hold_action:
+      #       action: toggle
+      #   show_empty: false
+      #   state_filter:
+      #     - "on"
+      #   card:
+      #     type: glance
+      #     title: Reminders
+      #     show_state: false
+
+
+      - type: horizontal-stack
+        cards:
+
+        - type: conditional
+          conditions:
+          - entity: input_boolean.isuck_dust_bin_full
+            state: 'on'
+          card:
+            type: "custom:button-card"
+            name: Empty Dust Bin
+            entity: input_boolean.isuck_dust_bin_full
+            service: input_boolean.turn_off
+            color:
+              icon: '#FFFFFF'
+            styles: 
+              card:
+              - height: 100px
+
+        - type: conditional
+          conditions:
+          - entity: input_boolean.isuck_brush_dirty
+            state: 'on'
+          card:
+            type: "custom:button-card"
+            name: Clean Brush
+            entity: input_boolean.isuck_brush_dirty
+            service: input_boolean.turn_off
+            color:
+              icon: '#FFFFFF'
+            styles: 
+              card:
+              - height: 100px
+
+        - type: conditional
+          conditions:
+          - entity: vacuum.isuck
+            state: docked
+          card:
+            type: "custom:button-card"
+            name: Start Cleanup
+            entity: vacuum.isuck
+            service: vacuum.start
+            icon: mdi:robot-vacuum
+            styles:
+              card:
+              - height: 100px
+    
+  - title: Living Room
+    path: living-room
+    icon: mdi:sofa
+    panel: true
+    cards:
+    - type: horizontal-stack
+      cards:
+      - type: vertical-stack #############COLUMN 1
+        cards:
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: light.living_room_lights
+            type: "custom:slider-entity-row"
+            toggle: true
+            name: Living Room
+          - type: divider
+          - entity: light.couch_lamp
+            type: "custom:slider-entity-row"
+            toggle: true
+            name: Couch Lamp
+          - entity: light.love_seat_lamp
+            type: "custom:slider-entity-row"
+            toggle: true
+            name: Love Seat Lamp
+          - entity: light.living_room_ambience_1
+            type: "custom:slider-entity-row"
+            toggle: true
+            name: Ambience
+          - entity: light.living_room_ambience_2
+            type: "custom:slider-entity-row"
+            toggle: true
+            name: Ambience
+          - type: divider
+          - entity: switch.living_room_fluxer
+            type: switch
+            icon: mdi:brightness-4
+            name: Flux
+          - type: divider
+          - type: "custom:simple-thermostat"
+            name: false
+            entity: climate.thermostat
+            step_size: 1
+            modes:
+              cool:
+                include: false
+              auxHeatOnly:
+                include: false
+              heat:
+                include:
+                  false
+              auto:
+                include:
+                  false
+              "off":
+                include:
+                  false
+      - type: vertical-stack #############COLUMN 2
+        cards:
+        - type: horizontal-stack
+          cards:
+          - type: "custom:button-card"
+            entity: switch.ikea_outlet_2
+            service: switch.toggle
+            icon: mdi:air-filter
+            name: Air Purifier
+            styles:
+              card:
+              - height: 75px
+          - type: "custom:button-card"
+            entity: script.living_room_on
+            service: script.living_room_on
+            icon: mdi:power
+            name: Turn Room On
+            styles:
+              card:
+              - height: 75px
+        # - type: horizontal-stack
+          # cards:
+        - type: "custom:mini-media-player"
+          service: media_player.toggle
+          icon: mdi:television
+          entity: media_player.living_room_tv_2
+        - type: "custom:mini-media-player"
+          entity: media_player.living_room_receiver
+          icon: mdi:set-top-box
+        - type: "custom:mini-media-player"
+          entity: media_player.portable_speaker
+          icon: mdi:speaker-wireless
+
+
+    
+    
+      
+    # - type: "custom:button-card"
+    #   entity: switch.ikea_outlet_2
+    #   service: switch.toggle
+    #   icon: mdi:air-filter
+    #   name: Air Purifier
+    #   styles:
+    #     card:
+    #       - height: 75px

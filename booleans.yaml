@@ -1,0 +1,31 @@
+take_recycling_out:
+    name: Take Out Recycling
+    icon: mdi:recycle
+
+take_garbage_out:
+    name: Take Out Garbage
+    icon: mdi:trash-can
+
+chewie_wet_food:
+    name: Feed Wet Food
+    icon: mdi:cat
+
+chewie_water:
+    name: Change Water
+    icon: mdi:water
+
+chewie_litter:
+    name: Scoop Poops
+    icon: mdi:poop
+
+isuck_dust_bin_full:
+    name: iSuck Dust Bin
+    icon: mdi:trash-can
+
+isuck_brush_dirty:
+    name: iSuck Brush
+    icon: mdi:broom
+
+away_mode:
+    name: Away Mode
+    icon: mdi:exit-run

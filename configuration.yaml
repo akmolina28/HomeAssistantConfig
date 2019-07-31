@@ -1,0 +1,141 @@
+default_config:
+
+system_log:
+  
+lovelace:
+  mode: yaml
+
+homeassistant:
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: imperial
+  time_zone: America/Chicago
+  name: Home
+  customize: !include customize.yaml
+
+binary_sensor:
+- platform: ping
+  host: google.com
+  count: 2
+  scan_interval: 30
+  name: google
+- platform: ping
+  host: 192.168.1.22
+  count: 2
+  scan_interval: 30
+  name: Work Laptop
+- platform: ping
+  host: 192.168.1.23
+  count: 2
+  scan_interval: 30
+  name: Desktop PC
+- platform: ping
+  host: 192.168.1.100
+  count: 2
+  scan_interval: 30
+  name: Diskstation
+- platform: ping
+  host: 192.168.1.31
+  count: 2
+  scan_interval: 30
+  name: Mini PC
+
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    username: !secret router_username
+    password: !secret router_password
+
+customizer:
+  custom_ui: local
+
+http:
+  base_url: !secret http_base_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+notify:
+  - platform: html5
+    name: HTML5 Notifications
+    vapid_pub_key: !secret notify_html5_vapid_public_key
+    vapid_prv_key: !secret notify_html5_vapid_private_key
+    vapid_email: !secret email_address
+
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+media_player:
+  - platform: braviatv_psk
+    host: 192.168.1.20
+    psk: 3813
+    mac: 0C:96:E6:A6:67:B3
+    amp: True
+    android: True
+    name: Living Room TV
+  - platform: denonavr
+    host: 192.168.1.15
+    name: Living Room Receiver
+    show_all_sources: true
+
+input_datetime: !include datetimes.yaml
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.99.133
+    token: !secret xiaomi_vacuum_token
+    name: iSuck
+
+light: !include lights.yaml
+
+ecobee:
+    api_key: !secret ecobee_api_key
+
+switch: !include switches.yaml
+
+frontend:
+  themes: !include themes.yaml
+  
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+sensor: !include sensors.yaml
+
+input_number: !include numbers.yaml
+
+input_boolean: !include booleans.yaml
+
+weather:
+- platform: darksky
+  api_key: !secret darksky_api_key
+
+api:
+
+alexa:
+  smart_home:
+
+zone:
+- name: !secret grocery_store_1_name
+  latitude: !secret grocery_store_1_latitude
+  longitude: !secret grocery_store_1_longitude
+  icon: mdi:store
+- name: !secret wholesale_store_1_name
+  latitude: !secret wholesale_store_1_latitude
+  longitude: !secret wholesale_store_1_longitude
+  icon: mdi:store
+
+input_select:
+  automation_mode:
+    name: Automation Mode
+    icon: mdi:home-assistant
+    options:
+      - home
+      - sleep
+      - away
+      - guest
+      - vacation

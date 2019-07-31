@@ -1,0 +1,146 @@
+- platform: history_stats
+  name: air_filter_history_24
+  entity_id: switch.ikea_outlet_2
+  state: 'on'
+  type: time
+  end: '{{ now() }}'
+  duration: '24:00:00'
+
+- platform: time_date
+  display_options:
+    - 'time'
+    - 'date'
+    - 'date_time'
+    - 'date_time_iso'
+    - 'time_date'
+    - 'time_utc'
+    - 'beat'
+  
+- platform: template
+  sensors:
+    thermostat_weather_temp:
+      friendly_name: 'Thermostat Outdoor Temp'
+      unit_of_measurement: '°F'
+      value_template: "{{ state_attr('weather.thermostat', 'temperature') }}"
+    front_door_open_close:
+      friendly_name: 'Front Door Open/Close'
+      value_template: >
+        {% if is_state('binary_sensor.openclose_2', 'on') %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+      icon_template: >
+        {% if is_state('binary_sensor.openclose_2', 'on') %}
+          mdi:door-open
+        {% else %}
+          mdi:door
+        {% endif %}
+    garage_open_close:
+      friendly_name: 'Garage Open/Close'
+      value_template: >
+        {% if is_state('binary_sensor.openclose_12', 'on') %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+      icon_template: >
+        {% if is_state('binary_sensor.openclose_12', 'on') %}
+          mdi:garage-open
+        {% else %}
+          mdi:garage
+        {% endif %}
+    man_cave_door_open_close:
+      friendly_name: 'Man Cave Door Open/Close'
+      value_template: >
+        {% if is_state('binary_sensor.openclose_15', 'on') %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+      icon_template: >
+        {% if is_state('binary_sensor.openclose_15', 'on') %}
+          mdi:door-open
+        {% else %}
+          mdi:door
+        {% endif %}
+        
+    recycling_collection_offset_reached:
+      friendly_name: 'Recycling Collection Offset Reached'
+      value_template: >
+        {% if (states.calendar.sanitation_service_schedule_recycling.attributes.offset_reached) %}
+          on
+        {% else %}
+          off
+        {% endif %}
+
+    garbage_collection_offset_reached:
+      friendly_name: 'Garbage Collection Offset Reached'
+      value_template: >
+        {% if (states.calendar.sanitation_service_schedule_garbage.attributes.offset_reached) %}
+          on
+        {% else %}
+          off
+        {% endif %}
+    
+    hue_sensor_diff:
+      friendly_name: 'Hue Sensor Diff'
+      value_template: '{{(states.sensor.temperature_6.state | float) - (states.sensor.man_cave_temperature.state | float)}}'
+      unit_of_measurement: 'degrees'
+    
+    door_sensor_diff:
+      friendly_name: 'Door Sensor Diff'
+      value_template: '{{(states.sensor.temperature_16.state | float) - (states.sensor.man_cave_temperature.state | float)}}'
+      unit_of_measurement: 'degrees'
+    
+    air_filter_status_green:
+      friendly_name: Air Filter - Green
+      value_template: '{{ (states.sensor.air_filter_history_24.state | float) > 8 }}'
+        
+    air_filter_status_yellow:
+      friendly_name: Air Filter - Green
+      value_template: '{{ (states.sensor.air_filter_history_24.state | float) > 0 and (states.sensor.air_filter_history_24.state | float) <= 4 }}'
+    
+    air_filter_status_red:
+      friendly_name: Air Filter - Red
+      value_template: '{{ (states.sensor.air_filter_history_24.state | float) <= 0 }}'
+
+    thermostat_away_mode:
+      friendly_name: Thermostat Away Mode
+      value_template: '{{ states.climate.thermostat.attributes.away_mode }}'
+
+    vacuum_hours_since_last_clean:
+      friendly_name: Last Vacuum Cleaning
+      value_template: >
+        {% set now = as_timestamp(states("sensor.date_time_iso")) | float %}
+        {% set then = as_timestamp(states("input_datetime.isuck_last_clean_time")) | float %}
+        {{ ((now - then) / 3600) | round(0) }}
+      unit_of_measurement: 'hours'
+
+    vacuum_cleaning_due:
+      friendly_name: Vacuum Cleaning Due
+      value_template: >
+        {% if (states("vacuum.isuck") != 'docked') %}
+          not_due
+        {% else %}
+        
+          {% set now = as_timestamp(states("sensor.date_time_iso")) | float %}
+          {% set then = as_timestamp(states("input_datetime.isuck_last_clean_time")) | float %}
+          {% set hours_since_last_clean = ((now - then) / 3600) | round(0) %}
+          {% if (hours_since_last_clean < 48) %}
+            not_due
+          {% elif (hours_since_last_clean < 96) %}
+            due
+          {% else %}
+            overdue
+          {% endif %}
+
+        {% endif %}
+    living_room_lights_brightness:
+      friendly_name: Living Room Lights Brightness
+      value_template: '{{ states.light.living_room_lights.brightness }}'
+
+    temperature_6_calibrated:
+      friendly_name: 'Laundry Room Temperature'
+      value_template: '{{ states.sensor.temperature_6.state | float + 2.5 }}'
+      unit_of_measurement: 'degrees'
