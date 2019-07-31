@@ -1,0 +1,83 @@
+title: Vacuum
+path: vacuum
+icon: mdi:robot-vacuum
+cards:
+
+- type: entities
+  entities:
+    - sensor.vacuum_cleaning_due
+    - input_boolean.isuck_brush_dirty
+    - input_boolean.isuck_dust_bin_full
+    - script.foobar
+    
+
+- type: vertical-stack
+  cards:
+  - type: markdown
+    title: Vacuum Status Report
+    content: >
+
+      [[ if(sensor.vacuum_cleaning_due != "not_due", ### <ha-icon style='color:var(--secondary-text-color)' icon='mdi:alert-circle-outline'></ha-icon> <font color=#b58e31>Cleaning is due!</font>, "") ]]
+
+      [[ if(sensor.vacuum_cleaning_due != "not_due", ***, "") ]]
+
+      <ha-icon icon='mdi:robot-vacuum'></ha-icon> **Vacuum Status:** [[ vacuum.isuck ]]
+
+
+      [[ if(vacuum.isuck == "docked", if(sensor.vacuum_cleaning_due == "overdue", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, if(sensor.vacuum_cleaning_due == "due", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>)), <ha-icon icon='mdi:clock-outline'></ha-icon>) ]]
+      **Clean Status:** [[ if(vacuum.isuck == "docked", if(sensor.vacuum_cleaning_due == "overdue", "Cleaning overdue!", if(sensor.vacuum_cleaning_due == "due", "cleaning due", "House is clean")), "in progress...") ]]
+
+      [[ if(input_boolean.isuck_dust_bin_full == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
+      **Dust Bin Status:** [[ if(input_boolean.isuck_dust_bin_full == "on", "Full", "Empty") ]]
+      
+      [[ if(input_boolean.isuck_brush_dirty == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
+      **Brush Head Status:** [[ if(input_boolean.isuck_brush_dirty == "on", "Dirty", "Clean") ]]
+
+
+
+- type: horizontal-stack
+  cards:
+
+  - type: conditional
+    conditions:
+    - entity: input_boolean.isuck_dust_bin_full
+      state: 'on'
+    card:
+      type: "custom:button-card"
+      name: Empty Dust Bin
+      entity: input_boolean.isuck_dust_bin_full
+      service: input_boolean.turn_off
+      color:
+        icon: '#FFFFFF'
+      styles: 
+        card:
+        - height: 100px
+
+  - type: conditional
+    conditions:
+    - entity: input_boolean.isuck_brush_dirty
+      state: 'on'
+    card:
+      type: "custom:button-card"
+      name: Clean Brush
+      entity: input_boolean.isuck_brush_dirty
+      service: input_boolean.turn_off
+      color:
+        icon: '#FFFFFF'
+      styles: 
+        card:
+        - height: 100px
+
+  - type: conditional
+    conditions:
+    - entity: vacuum.isuck
+      state: docked
+    card:
+      type: "custom:button-card"
+      name: Start Cleanup
+      entity: vacuum.isuck
+      service: vacuum.start
+      icon: mdi:robot-vacuum
+      styles:
+        card:
+        - height: 100px
