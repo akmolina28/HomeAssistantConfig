@@ -1,0 +1,175 @@
+- alias: Andrew Enters Shopping Zone - Push Notification
+  trigger:
+  - entity_id: person.andrew
+    platform: state
+    to: Publix (9th Ave)
+  - entity_id: person.andrew
+    platform: state
+    to: Sam's Club
+  condition: []
+  action:
+  - data_template:
+      message: Andrew is at {{ states("person.andrew") }}. Do you need anything?
+    service: notify.html5_notifications
+
+- alias: iSuck Brush Boolean Turns On - Push Notification
+  trigger:
+  - entity_id: input_boolean.isuck_brush_dirty
+    platform: state
+    from: 'off'
+    to: 'on'
+  action:
+  - data:
+      title: iSuck Brush Dirty
+      message: iSuck brush is dirty. Clean it before next cleanup.
+      data:
+        url: /lovelace/vacuum
+        actions:
+        - action: complete_isuck_brush_dirty
+          title: Mark Complete
+        tag: isuck-brush-dirty
+    service: notify.html5_notifications
+
+- alias: iSuck Brush Boolean Notification Complete Event - Turn Off Boolean
+  trigger:
+  - event_data:
+      action: complete_isuck_brush_dirty
+    event_type: html5_notification.clicked
+    platform: event
+  action:
+  - data:
+      entity_id: input_boolean.isuck_brush_dirty
+    service: input_boolean.turn_off
+
+- alias: iSuck Dust Bin Boolean Turns On - Push Notification
+  trigger:
+  - entity_id: input_boolean.isuck_dust_bin_full
+    platform: state
+    from: 'off'
+    to: 'on'
+  action:
+  - data:
+      title: iSuck Dust Bin Full
+      message: iSuck dust bin is full. Empty it before next cleanup.
+      data:
+        url: /lovelace/vacuum
+        actions:
+        - action: complete_isuck_dust_bin
+          title: Mark Complete
+        tag: isuck-dust-bin-full
+    service: notify.html5_notifications
+
+- alias: iSuck Dust Bin Boolean Notification Complete Event - Turn Off Boolean
+  trigger:
+  - event_data:
+      action: complete_isuck_dust_bin
+    event_type: html5_notification.clicked
+    platform: event
+  action:
+  - data:
+      entity_id: input_boolean.isuck_dust_bin_full
+    service: input_boolean.turn_off
+
+- id: '1562542432169'
+  alias: iSuck Brush Boolean Turns Off - Dismiss Notification
+  trigger:
+  - platform: state
+    entity_id: input_boolean.isuck_brush_dirty
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.html5_dismiss
+    data:
+      data:
+        tag: isuck-brush-dirty
+
+- alias: iSuck Dust Bin Boolean Turns Off - Dismiss Notification
+  trigger:
+  - platform: state
+    entity_id: input_boolean.isuck_dust_bin_full
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.html5_dismiss
+    data:
+      data:
+        tag: isuck-dust-bin-full
+
+- alias: Chore Reminder - Vacuum Cleaning Due Notification
+  trigger:
+  - platform: time
+    at: 08:00:00
+  - platform: time
+    at: '16:00:00'
+  condition:
+  - condition: template
+    value_template: '{{ states("sensor.vacuum_cleaning_due") != "not_due"}}'
+  - condition: state
+    entity_id: person.andrew
+    state: home
+  action:
+  - service: notify.html5_notifications
+    data:
+      title: iSuck Cleaning Due Today
+      message: The house is due for a cleaning today.
+      data:
+        url: /lovelace/vacuum
+        icon: /local/images/icons/roborock-icon.jpg
+        actions:
+        - action: start_isuck_cleaning
+          title: Start Cleaning
+        tag: isuck-cleaning-due
+
+- alias: Vacuum Cleaning Due Notification Complete Event - Start Cleaning
+  trigger:
+  - event_data:
+      action: start_isuck_cleaning
+    event_type: html5_notification.clicked
+    platform: event
+  condition:
+  - condition: state
+    entity_id: vacuum.isuck
+    state: docked
+  action:
+  - data:
+      entity_id: vacuum.isuck
+    service: vacuum.start
+
+- id: '1562542432173'
+  alias: Vacuum Cleaning Starts - Dismiss Notifications
+  trigger:
+  - entity_id: vacuum.isuck
+    platform: state
+    to: cleaning
+  action:
+  - data:
+      data:
+        tag: isuck-cleaning-due
+    service: notify.html5_dismiss
+
+- alias: Close Garage Door Reminder Notification
+  trigger:
+  - at: '22:00:00'
+    platform: time
+  condition:
+  - condition: state
+    entity_id: binary_sensor.openclose_12
+    state: 'on'
+  action:
+  - data:
+      message: Garage Door left open!
+    service: notify.html5_notifications
+
+# - alias: Front Door Motion Notification
+#   trigger:
+#   - entity_id: binary_sensor.presence_19
+#     from: 'off'
+#     platform: state
+#     to: 'on'
+#   condition: []
+#   action:
+#   - data:
+#       message: Motion detected at Front Door
+#       data:
+#         tag: front-door-motion
+#     service: notify.html5_notifications

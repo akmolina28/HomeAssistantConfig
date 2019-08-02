@@ -1,0 +1,184 @@
+- alias: Front Door Multi Sensor - Turn Inside Lights On
+  trigger:
+  - below: '100'
+    entity_id: sensor.lightlevel_21
+    for:
+      minutes: 5
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: group.all_device_trackers
+    state: home
+  - condition: time
+    after: '16:00:00'
+    before: '23:59:00'
+  action:
+  - data:
+      entity_id: light.living_room_lights
+    service: light.turn_on
+  - data:
+      entity_id: switch.ikea_outlet_1
+    service: switch.turn_on
+  - data:
+      entity_id: switch.power_outlet_1
+    service: switch.turn_on
+  - data:
+      entity_id: switch.power_outlet_2
+    service: switch.turn_on
+
+- alias: Laundry Room Motion
+  trigger:
+  - entity_id: binary_sensor.presence_5
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: 04:00:00
+    before: '22:00:00'
+    condition: time
+  action:
+  - data:
+      brightness: '255'
+      entity_id: ' light.laundry_room_lights'
+      transition: 2
+    service: light.turn_on
+- alias: Laundry Room Motion (Late Night)
+  trigger:
+  - entity_id: binary_sensor.presence_5
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - after: '22:00:00'
+    before: 04:00:00
+    condition: time
+  action:
+  - data:
+      brightness: '63'
+      entity_id: ' light.laundry_room_light_1'
+      transition: 2
+    service: light.turn_on
+
+- alias: Laundry Room No-Motion
+  trigger:
+  - entity_id: binary_sensor.presence_5
+    for:
+      minutes: 1
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      brightness: '0'
+      entity_id: ' light.laundry_room_lights'
+      transition: '5'
+    service: light.turn_on
+
+- alias: Startup Init Theme
+  trigger:
+  - event: start
+    platform: homeassistant
+  action:
+  - data:
+      name: slate
+    service: frontend.set_theme
+
+
+  # alias: Lights Auto-off
+  # trigger:
+  #   platform: time
+  #   at: 00:00:00
+  # action:
+  # - service: switch.turn_off
+  #   data:
+  #     entity_id: switch.power_outlet_1
+  # - service: switch.turn_off
+  #   data:
+  #     entity_id: switch.power_outlet_2
+  # - service: switch.turn_off
+  #   data:
+  #     entity_id: switch.ikea_outlet_1
+  # - service: light.turn_off
+  #   data:
+  #     entity_id: light.living_room_lights
+  # - service: light.turn_off
+  #   data:
+  #     entity_id: light.man_cave_lights
+
+
+
+
+
+
+- alias: Good Morning
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition:
+  - condition: state
+    entity_id: group.all_device_trackers
+    state: home
+  action:
+  - service: script.good_morning
+
+- alias: Kaitlyn's iPhone Home - Set Thermostat Cool Temp
+  trigger:
+  - platform: state
+    entity_id: device_tracker.iphone
+    from: not_home
+    to: home
+  condition:
+  - condition: template
+    value_template: '{{ states("climate.thermostat") == "cool" and state_attr("climate.thermostat",
+      "temperature") > 76 }}'
+  action:
+  - service: climate.set_temperature
+    data:
+      entity_id: climate.thermostat
+      temperature: 76
+    
+- alias: Nobody Home - Away Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'True'
+    to: 'False'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
+  action:
+  - data:
+      message: Nobody is home
+      title: Activing Away Mode
+      data:
+        url: dev
+        actions:
+        - action: automation_mode_home
+          title: Cancel
+        tag: nobody-is-home
+    service: notify.html5_notifications
+  - service: script.set_automation_mode_away
+
+- alias: Nobody Home Notification Action Clicked - Home Mode
+  trigger:
+  - event_data:
+      action: automation_mode_home
+    event_type: html5_notification.clicked
+    platform: event
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: script.set_automation_mode_home
+
+- alias: Anybody Home - Home Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'False'
+    to: 'True'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: script.set_automation_mode_home

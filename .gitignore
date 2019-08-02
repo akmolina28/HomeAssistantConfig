@@ -5,6 +5,8 @@
 !.gitignore
 !lovelace/
 !lovelace/*
+!automation/
+!automation/*
 
 !*.yaml
 

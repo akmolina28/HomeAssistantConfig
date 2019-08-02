@@ -61,8 +61,8 @@ views:
       #       .card-header {
       #         padding: 0 0 0 5px;
       #       }
-      - type: glance
-        entities:
+      # - type: glance
+      #   entities:
           # - entity: sensor.thermostat_temperature
           #   name: Inside
           # - entity: sensor.temperature_20
@@ -70,10 +70,11 @@ views:
           #   icon: mdi:thermometer
           # - entity: sensor.front_door_open_close
           #   name: Front Door
-          - entity: binary_sensor.google
-            name: Internet
-          - entity: sensor.garage_open_close
-            name: Garage
+      #     - entity: binary_sensor.google
+      #       name: Internet
+      #     - entity: sensor.garage_open_close
+      #       name: Garage
+      - !include /config/lovelace/tiles/automation-mode-card.yaml
       - !include /config/lovelace/tiles/todo-card.yaml
 
       - type: entity-filter
@@ -131,33 +132,6 @@ views:
       # - type: "custom:mini-graph-card"
       #   entities:
       #   - sensor.lightlevel_21
-      - type: horizontal-stack
-        cards:
-        - type: "custom:button-card"
-          entity: script.goodnight
-          service: script.goodnight
-          icon: mdi:weather-night
-          name: Goodnight
-          styles:
-            card:
-              - height: 75px
-        - type: "custom:button-card"
-          entity: script.away_mode
-          service: script.away_mode
-          icon: mdi:car
-          name: Away       
-          # color: '#FC2B36'
-          styles:
-            card:
-              - height: 75px
-        - type: "custom:button-card"
-          entity: script.hass_restart
-          service: script.hass_restart
-          icon: mdi:restart
-          name: Reboot
-          styles:
-            card:
-              - height: 75px
 
   # - title: Light Control
   #   icon: mdi:lightbulb-on-outline

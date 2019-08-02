@@ -1,0 +1,79 @@
+- alias: Deconz Event 1000 - Master Bedroom Lights On
+  trigger:
+  - event_data:
+      event: 1000
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom_lights
+    service: light.turn_on
+
+- alias: Deconz event 4000 - Master Bedroom Lights Off
+  trigger:
+  - event_data:
+      event: 4000
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom_lights
+    service: light.turn_off
+
+- alias: Deconz Event 2000 - Master Bedroom Brightness Increase
+  trigger:
+  - event_data:
+      event: 2000
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom_lights
+    service: script.lights_bright_up
+
+- alias: Deconz Event 2001 - Master Bedroom Brightness Max
+  trigger:
+  - event_data:
+      event: 2001
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom_lights
+      brightness: '255'
+    service: light.turn_on
+
+- alias: Deconz Event 3000 - Master Bedroom Brightness Decrease
+  trigger:
+  - event_data:
+      event: 3000
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom_lights
+    service: script.lights_bright_down
+
+- alias: Deconz Event 3001 - Master Bedroom Brightness Min
+  trigger:
+  - event_data:
+      event: 3001
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.master_bedroom_lights
+      brightness: '1'
+    service: light.turn_on

@@ -1,0 +1,128 @@
+- alias: Morning Lights On
+  trigger:
+  - at: 04:00:00
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: switch.power_outlet_1
+    service: switch.turn_on
+  - data:
+      entity_id: switch.power_outlet_2
+    service: switch.turn_on
+
+- alias: Kitchen Cabinet Lights - Off Sync
+  trigger:
+  - entity_id: switch.power_outlet_1
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.power_outlet_2
+    service: switch.turn_off
+
+- alias: Sunrise - Exterior Lights Off
+  trigger:
+  - entity_id: sun.sun
+    from: below_horizon
+    platform: state
+    to: above_horizon
+  condition: []
+  action:
+  - data:
+      entity_id: light.driveway_lights
+    service: light.turn_off
+
+- alias: Front Door Multisensor - Turn on Driveway Lights
+  trigger:
+  - below: '10'
+    entity_id: sensor.lightlevel_21
+    for: 00:05:00
+    platform: numeric_state
+  condition:
+  - condition: time
+    after: '16:00:00'
+    before: '23:59:00'
+  action:
+  - data:
+      brightness: '255'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: 10:00PM [Garage Closed] - Dim Driveway Lights
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.openclose_12
+    state: 'off'
+  action:
+  - data:
+      brightness: '1'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: Garage Open [After 10:00PM] - Brighten Driveway Lights
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_12
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.driveway_lights
+    state: 'on'
+  - condition: time
+    after: '22:00:00'
+    before: 08:00:00
+  action:
+  - data:
+      brightness: '255'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: Garage Close [After 10:00PM] - Dim Driveway Lights
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_12
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: light.driveway_lights
+    state: 'on'
+  - condition: time
+    after: '22:00:00'
+    before: 08:00:00
+  action:
+  - data:
+      brightness: '1'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: Man Cave Door Open [workday morning] - Turn On Man Cave Lights
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_15
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: 04:00:00
+    before: '10:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.man_cave_lights
+  - service: switch.turn_on
+    data:
+      entity_id: switch.man_cave_fluxer

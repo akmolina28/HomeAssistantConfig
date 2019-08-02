@@ -1,0 +1,40 @@
+- alias: Air Purifier - Auto On Timer
+  trigger:
+  - below: '0.01'
+    entity_id: sensor.air_filter_history_24
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: media_player.living_room_receiver
+    state: 'off'
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_2
+    service: switch.turn_on
+
+- alias: Air Purifier - Auto Off Timer
+  trigger:
+  - above: '11.99'
+    entity_id: sensor.air_filter_history_24
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_2
+    service: switch.turn_off
+
+- alias: Air Purifier - Auto Off Trigger
+  trigger:
+  - entity_id: media_player.living_room_receiver
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: media_player.living_room_tv_2
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_2
+    service: switch.turn_off
