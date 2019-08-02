@@ -1,0 +1,48 @@
+type: horizontal-stack
+cards:
+
+- type: conditional
+  conditions:
+  - entity: input_boolean.isuck_dust_bin_full
+    state: 'on'
+  card:
+    type: "custom:button-card"
+    name: Empty Dust Bin
+    entity: input_boolean.isuck_dust_bin_full
+    service: input_boolean.turn_off
+    color_type: icon
+    color: var(--primary-text-color)
+    styles: 
+      card:
+      - height: 100px
+
+- type: conditional
+  conditions:
+  - entity: input_boolean.isuck_brush_dirty
+    state: 'on'
+  card:
+    type: "custom:button-card"
+    name: Clean Brush
+    entity: input_boolean.isuck_brush_dirty
+    service: input_boolean.turn_off
+    color_type: icon
+    color: var(--primary-text-color)
+    styles: 
+      card:
+      - height: 100px
+
+- type: conditional
+  conditions:
+  - entity: vacuum.isuck
+    state: docked
+  card:
+    type: "custom:button-card"
+    name: Start Cleanup
+    entity: vacuum.isuck
+    service: vacuum.start
+    color_type: icon
+    color: var(--primary-text-color)
+    icon: mdi:robot-vacuum
+    styles:
+      card:
+      - height: 100px

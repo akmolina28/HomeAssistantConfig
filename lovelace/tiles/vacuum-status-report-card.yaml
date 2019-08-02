@@ -1,8 +1,6 @@
-type: vertical-stack
-cards:
-- type: markdown
-  title: Vacuum Status Report
-  content: >
+type: markdown
+title: Vacuum Status Report
+content: >
 
     [[ if(sensor.vacuum_cleaning_due != "not_due", ### <ha-icon style='color:var(--secondary-text-color)' icon='mdi:alert-circle-outline'></ha-icon> <font color=#b58e31>Cleaning is due!</font>, "") ]]
 
@@ -16,6 +14,6 @@ cards:
 
     [[ if(input_boolean.isuck_dust_bin_full == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
     **Dust Bin Status:** [[ if(input_boolean.isuck_dust_bin_full == "on", "Full", "Empty") ]]
-    
+
     [[ if(input_boolean.isuck_brush_dirty == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
     **Brush Head Status:** [[ if(input_boolean.isuck_brush_dirty == "on", "Dirty", "Clean") ]]
