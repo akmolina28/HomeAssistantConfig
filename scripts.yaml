@@ -143,6 +143,16 @@ set_automation_mode_home:
       brightness: '255'
   - service: script.turn_on_patio_lights
 
+set_automation_mode_sleep:
+  alias: Sleep Mode
+  sequence:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: sleep
+  - service: script.turn_on_air_purifier
+  - service: script.turn_off_interior_lights
+
 home_arrival:
   alias: Home Arrival
   sequence:

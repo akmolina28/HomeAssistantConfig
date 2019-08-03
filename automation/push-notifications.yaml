@@ -70,8 +70,7 @@
       entity_id: input_boolean.isuck_dust_bin_full
     service: input_boolean.turn_off
 
-- id: '1562542432169'
-  alias: iSuck Brush Boolean Turns Off - Dismiss Notification
+- alias: iSuck Brush Boolean Turns Off - Dismiss Notification
   trigger:
   - platform: state
     entity_id: input_boolean.isuck_brush_dirty
