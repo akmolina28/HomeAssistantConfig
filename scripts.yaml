@@ -178,7 +178,7 @@ automation_mode_transition_away_to_home:
   - condition: or
     conditions:
     - condition: state
-      entity_id: sun
+      entity_id: sun.sun
       state: below_horizon
     - condition: numeric_state
       entity_id: sensor.lightlevel_21
@@ -203,7 +203,7 @@ set_automation_mode:
         {% if (new_mode == "home") %}
           {% if (previous_mode == "sleep") %}
             script.automation_mode_transition_sleep_to_home
-          {% elif (previous_mode == "away" %}
+          {% elif (previous_mode == "away") %}
             script.automation_mode_transition_away_to_home
           {% else %}
             script.automation_mode_transition_other

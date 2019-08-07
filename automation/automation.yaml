@@ -132,8 +132,7 @@
     to: home
   condition:
   - condition: template
-    value_template: '{{ states("climate.thermostat") == "cool" and state_attr("climate.thermostat",
-      "temperature") > 76 }}'
+    value_template: '{{ states("climate.thermostat") == "cool" and state_attr("climate.thermostat", "temperature") > 76 }}'
   action:
   - service: climate.set_temperature
     data:
