@@ -42,6 +42,17 @@ all_lights_off:
     data:
       entity_id: switch.ikea_outlet_1 #patio-lights
 
+turn_on_living_room_lights:
+  alias: Turn On Living Room Lights
+  sequence:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.living_room_fluxer
+  - service: light.turn_on
+    data:
+      entity_id: light.living_room_lights
+      brightness: '255'
+
 turn_off_interior_lights:
   alias: Turn Off Interior Lights
   sequence:
@@ -52,6 +63,13 @@ turn_off_interior_lights:
     data:
       entity_id:
       - group.interior_light_switches
+
+turn_on_interior_lights:
+  alias: Turn On Interior Lights
+  sequence:
+  - service: script.turn_on_living_room_lights
+  - service: script.turn_on_kitchen_lights
+  - service: script.turn_on_patio_lights
 
 turn_on_air_purifier:
   alias: Turn On Air Purifier
@@ -149,6 +167,25 @@ automation_mode_transition_sleep_to_home:
     - fri
   - service: script.turn_on_entry_way_lights
 
+automation_mode_transition_away_to_home:
+  alias: Away Mode to Home Mode
+  sequence:
+  # Turn off noisy fan, resume A/C schedule
+  - service: script.turn_off_air_purifier
+  - service: script.resume_climate_schedule
+
+  # if it's dark out, turn on some lights
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sun
+      state: below_horizon
+    - condition: numeric_state
+      entity_id: sensor.lightlevel_21
+      below: '100'
+  - service: script.turn_on_interior_lights
+
+
 automation_mode_transition_other:
   alias: Other Mode to Other Mode
   sequence:
@@ -166,6 +203,8 @@ set_automation_mode:
         {% if (new_mode == "home") %}
           {% if (previous_mode == "sleep") %}
             script.automation_mode_transition_sleep_to_home
+          {% elif (previous_mode == "away" %}
+            script.automation_mode_transition_away_to_home
           {% else %}
             script.automation_mode_transition_other
           {% endif %}
