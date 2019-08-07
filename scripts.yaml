@@ -185,14 +185,19 @@ automation_mode_transition_away_to_home:
       below: '100'
   - service: script.turn_on_interior_lights
 
+automation_mode_transition_other_to_away:
+  alias: Other Mode to Away Mode
+  sequence:
+  - service: script.set_climate_away_mode
+  - service: script.turn_on_air_purifier
+  - service: script.turn_off_interior_lights
 
-automation_mode_transition_other:
+automation_mode_transition_other_to_other:
   alias: Other Mode to Other Mode
   sequence:
   - service: notify.html5_notifications
     data:
       message: 'automation_mode_transition_other'
-
 
 set_automation_mode:
   alias: Set Automation Mode
@@ -206,10 +211,12 @@ set_automation_mode:
           {% elif (previous_mode == "away") %}
             script.automation_mode_transition_away_to_home
           {% else %}
-            script.automation_mode_transition_other
+            script.automation_mode_transition_other_to_other
           {% endif %}
+        {% elif (new_mode == "away") %}
+          script.automation_mode_transition_other_to_away
         {% else %}
-          script.automation_mode_transition_other
+          script.automation_mode_transition_other_to_other
         {% endif %}
 
       # message: 'Mode changed from {{ previous_mode }} to {{ new_mode }}'
