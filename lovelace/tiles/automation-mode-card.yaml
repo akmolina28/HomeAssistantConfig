@@ -9,7 +9,10 @@ cards:
   name: Home
   tap_action: 
     action: call-service
-    service: script.set_automation_mode_home
+    service: input_select.select_option
+    service_data:
+      entity_id: input_select.automation_mode
+      option: home
   styles:
     card:
       - height: 75px
@@ -24,7 +27,10 @@ cards:
   name: Away
   tap_action: 
     action: call-service
-    service: script.set_automation_mode_away
+    service: input_select.select_option
+    service_data:
+      entity_id: input_select.automation_mode
+      option: away
   styles:
     card:
       - height: 75px

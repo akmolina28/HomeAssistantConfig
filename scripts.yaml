@@ -105,119 +105,108 @@ turn_off_media_players:
     - media_player.living_room_tv_2
     - media_player.living_room_receiver
 
-set_automation_mode_away:
-  alias: Away Mode
+turn_on_kitchen_lights:
+  alias: Turn On Kitchen Lights
   sequence:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: away
-  - service: script.turn_off_interior_lights
-  - service: script.turn_on_air_purifier
-  - service: script.set_climate_away_mode
-  - service: script.turn_off_media_players
-
-set_automation_mode_home:
-  alias: Home Mode
-  sequence:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: home
   - service: switch.turn_on
-    data:
-      entity_id: group.kitchen_cabinet_lights
-  - service: script.turn_off_air_purifier
-  - service: script.resume_climate_schedule
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: sun.sun
-      state: below_horizon
-    - condition: numeric_state
-      entity_id: sensor.lightlevel_21
-      below: '100'
-  - service: light.turn_on
-    data:
-      entity_id: light.living_room_lights
-      brightness: '255'
-  - service: script.turn_on_patio_lights
+    entity_id:
+    - switch.power_outlet_1
+    - switch.power_outlet_2
 
-set_automation_mode_sleep:
-  alias: Sleep Mode
-  sequence:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: sleep
-  - service: script.turn_on_air_purifier
-  - service: script.turn_off_interior_lights
-
-home_arrival:
-  alias: Home Arrival
+turn_on_entry_way_lights:
+  alias: Turn On Entry Way Lights
   sequence:
   - service: light.turn_on
     data:
       entity_id: light.laundry_room_lights
       brightness: '255'
-  - service: climate.set_away_mode
-    data:
-      entity_id: climate.thermostat
-      away_mode: off
-  - service: switch.turn_off
-    data:
-      entity_id: switch.ikea_outlet_2
-  - service: switch.turn_on
-    data:
-      entity_id:
-      - switch.power_outlet_1
-      - switch.power_outlet_2
 
-goodnight:
-  alias: Goodnight
+automation_mode_transition_sleep_to_home:
+  alias: Sleep Mode to Home Mode
   sequence:
-  # Turn off light bulbs
-  - service: light.turn_off
-    data:
-      entity_id:
-      - light.laundry_room_lights
-      - light.living_room_lights
-      - light.man_cave_lights
-      - light.master_bedroom_lights
-      - light.guest_room_lights
-  # Turn off light switches
-  - service: switch.turn_off
-    data:
-      entity_id:
-      - switch.ikea_outlet_1
-      - switch.power_outlet_1
-      - switch.power_outlet_2
-  # Turn on air filter
-  - service: switch.turn_on
-    data:
-      entity_id:
-      - switch.ikea_outlet_2
-  - service: media_player.turn_off
-    entity_id:
-    - media_player.living_room_tv_2
-    - media_player.living_room_receiver
+  - service: script.turn_off_air_purifier
   
-good_morning:
-  alias: Good Morning
-  sequence:
+  # if it's early in the morning, turn some lights on
+  - condition: time
+    after: '04:00:00'
+    before: '08:00:00'
+  - service: script.turn_on_kitchen_lights
   - service: light.turn_on
     data:
-      entity_id:
-      - light.couch_lamp
-  - service: switch.turn_on
-    data:
-      entity_id:
-      - switch.power_outlet_1
-      - switch.power_outlet_2
+      entity_id: light.living_room_lights
+      brightness: '255'
   - service: switch.turn_off
     data:
-      entity_id:
-      - switch.ikea_outlet_2
+      entity_id: switch.living_room_fluxer
+
+  # if it's also a weekday, turn on some more lights
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - service: script.turn_on_entry_way_lights
+
+automation_mode_transition_other:
+  alias: Other Mode to Other Mode
+  sequence:
+  - service: notify.html5_notifications
+    data:
+      message: 'automation_mode_transition_other'
+
+
+set_automation_mode:
+  alias: Set Automation Mode
+  sequence:
+  - service: script.turn_on
+    data_template:
+      entity_id: >
+        {% if (new_mode == "home") %}
+          {% if (previous_mode == "sleep") %}
+            script.automation_mode_transition_sleep_to_home
+          {% else %}
+            script.automation_mode_transition_other
+          {% endif %}
+        {% else %}
+          script.automation_mode_transition_other
+        {% endif %}
+
+      # message: 'Mode changed from {{ previous_mode }} to {{ new_mode }}'
+
+# set_automation_mode_home:
+#   alias: Home Mode
+#   sequence:
+  
+  # - service: switch.turn_on
+  #   data:
+  #     entity_id: group.kitchen_cabinet_lights
+  # - service: script.turn_off_air_purifier
+  # - service: script.resume_climate_schedule
+  # - condition: or
+  #   conditions:
+  #   - condition: state
+  #     entity_id: sun.sun
+  #     state: below_horizon
+  #   - condition: numeric_state
+  #     entity_id: sensor.lightlevel_21
+  #     below: '100'
+  # - service: light.turn_on
+  #   data:
+  #     entity_id: light.living_room_lights
+  #     brightness: '255'
+  # - service: script.turn_on_patio_lights
+
+# set_automation_mode_sleep:
+#   alias: Sleep Mode
+#   sequence:
+#   - service: input_select.select_option
+#     data:
+#       entity_id: input_select.automation_mode
+#       option: sleep
+#   - service: script.turn_on_air_purifier
+#   - service: script.turn_off_interior_lights
 
 fast_enable_flux_living_room:
   alias: Fast Enable Living Room Flux

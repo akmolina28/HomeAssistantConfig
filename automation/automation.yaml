@@ -1,4 +1,3 @@
-
 - alias: Laundry Room Motion
   trigger:
   - entity_id: binary_sensor.presence_5
@@ -36,7 +35,7 @@
   trigger:
   - entity_id: binary_sensor.presence_5
     for:
-      minutes: 1
+      minutes: 5
     platform: state
     to: 'off'
   condition: []
@@ -56,6 +55,37 @@
       name: slate
     service: frontend.set_theme
 
+- alias: Bedroom Motion - Home Mode
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.master_bedroom_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: '04:00:00'
+    before: '08:00:00'
+  - condition: state
+    entity_id: input_select.automation_mode
+    state: sleep
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: home
+
+- alias: Change Automation Mode
+  trigger:
+  - platform: state
+    entity_id: input_select.automation_mode
+  action:
+  - service: script.set_automation_mode
+    data_template:
+      new_mode: '{{ trigger.to_state.state }}'
+      previous_mode: '{{ trigger.from_state.state }}'
+  
+  
+    
 
   # alias: Lights Auto-off
   # trigger:
@@ -83,16 +113,16 @@
 
 
 
-- alias: Good Morning
-  trigger:
-  - platform: time
-    at: 06:00:00
-  condition:
-  - condition: state
-    entity_id: group.all_device_trackers
-    state: home
-  action:
-  - service: script.good_morning
+# - alias: Good Morning
+#   trigger:
+#   - platform: time
+#     at: 06:00:00
+#   condition:
+#   - condition: state
+#     entity_id: group.all_device_trackers
+#     state: home
+#   action:
+#   - service: script.good_morning
 
 - alias: Kaitlyn's iPhone Home - Set Thermostat Cool Temp
   trigger:
@@ -110,48 +140,48 @@
       entity_id: climate.thermostat
       temperature: 76
     
-- alias: Nobody Home - Away Mode
-  trigger:
-  - entity_id: sensor.anybody_home
-    platform: state
-    from: 'True'
-    to: 'False'
-  condition:
-    condition: template
-    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
-  action:
-  - data:
-      message: Nobody is home
-      title: Activing Away Mode
-      data:
-        url: dev
-        actions:
-        - action: automation_mode_home
-          title: Cancel
-        tag: nobody-is-home
-    service: notify.html5_notifications
-  - service: script.set_automation_mode_away
+# - alias: Nobody Home - Away Mode
+#   trigger:
+#   - entity_id: sensor.anybody_home
+#     platform: state
+#     from: 'True'
+#     to: 'False'
+#   condition:
+#     condition: template
+#     value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
+#   action:
+#   - data:
+#       message: Nobody is home
+#       title: Activing Away Mode
+#       data:
+#         url: dev
+#         actions:
+#         - action: automation_mode_home
+#           title: Cancel
+#         tag: nobody-is-home
+#     service: notify.html5_notifications
+#   - service: script.set_automation_mode_away
 
-- alias: Nobody Home Notification Action Clicked - Home Mode
-  trigger:
-  - event_data:
-      action: automation_mode_home
-    event_type: html5_notification.clicked
-    platform: event
-  condition:
-    condition: template
-    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
-  action:
-  - service: script.set_automation_mode_home
+# - alias: Nobody Home Notification Action Clicked - Home Mode
+#   trigger:
+#   - event_data:
+#       action: automation_mode_home
+#     event_type: html5_notification.clicked
+#     platform: event
+#   condition:
+#     condition: template
+#     value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+#   action:
+#   - service: script.set_automation_mode_home
 
-- alias: Anybody Home - Home Mode
-  trigger:
-  - entity_id: sensor.anybody_home
-    platform: state
-    from: 'False'
-    to: 'True'
-  condition:
-    condition: template
-    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
-  action:
-  - service: script.set_automation_mode_home
+# - alias: Anybody Home - Home Mode
+#   trigger:
+#   - entity_id: sensor.anybody_home
+#     platform: state
+#     from: 'False'
+#     to: 'True'
+#   condition:
+#     condition: template
+#     value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+#   action:
+#   - service: script.set_automation_mode_home

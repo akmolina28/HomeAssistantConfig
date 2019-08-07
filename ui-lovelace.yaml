@@ -27,19 +27,6 @@ resources:
 views:
   - !include /config/lovelace/views/mobile-light-control.yaml
   
-  # - title: Air Control
-  #   icon: mdi:air-conditioner
-  #   path: air
-  #   panel: false
-  #   cards:
-  #   - type: "custom:simple-thermostat"
-  #     entity: climate.thermostat
-  #     step_size: 1
-  #     sensors:
-  #     - entity: sensor.man_cave_temperature
-  #     - entity: sensor.thermostat_temperature
-  #     - entity: sensor.master_bedroom_temperature
-
   - title: Home
     icon: mdi:home-assistant
     path: home-control
@@ -74,6 +61,11 @@ views:
       #       name: Internet
       #     - entity: sensor.garage_open_close
       #       name: Garage
+      - type: history-graph
+        hours_to_show: 36
+        title: Automation Mode
+        entities:
+        - input_select.automation_mode
       - !include /config/lovelace/tiles/automation-mode-card.yaml
       - !include /config/lovelace/tiles/todo-card.yaml
 
