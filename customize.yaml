@@ -36,14 +36,6 @@ sensor.air_filter_history_24:
       return 'var(--status-color-success)';;
     icon: mdi:air-filter
 
-sensor.vacuum_hours_since_last_clean:
-  templates:
-    icon_color: >
-      if (state > 96) return 'var(--status-color-alert)';
-      if (state > 48) return 'var(--status-color-warning)';
-      return 'var(--status-color-success)';
-    icon: mdi:robot-vacuum
-
 binary_sensor.desktop_pc:
   templates:
     icon_color: >

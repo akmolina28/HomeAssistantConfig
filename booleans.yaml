@@ -6,14 +6,6 @@ take_garbage_out:
     name: Take Out Garbage
     icon: mdi:trash-can
 
-isuck_dust_bin_full:
-    name: iSuck Dust Bin
-    icon: mdi:trash-can
-
-isuck_brush_dirty:
-    name: iSuck Brush
-    icon: mdi:broom
-
 tasker_phone_orientation:
     name: Phone Orientation (Tasker)
     icon: mdi:cellphone-android

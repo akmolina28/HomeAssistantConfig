@@ -8,13 +8,13 @@
 
 - platform: time_date
   display_options:
-    - 'time'
-    - 'date'
-    - 'date_time'
-    - 'date_time_iso'
-    - 'time_date'
-    - 'time_utc'
-    - 'beat'
+  - 'time'
+  - 'date'
+  - 'date_time'
+  - 'date_time_iso'
+  - 'time_date'
+  - 'time_utc'
+  - 'beat'
   
 - platform: template
   sensors:
@@ -109,33 +109,7 @@
       friendly_name: Thermostat Away Mode
       value_template: '{{ states.climate.thermostat.attributes.away_mode }}'
 
-    vacuum_hours_since_last_clean:
-      friendly_name: Last Vacuum Cleaning
-      value_template: >
-        {% set now = as_timestamp(states("sensor.date_time_iso")) | float %}
-        {% set then = as_timestamp(states("input_datetime.isuck_last_clean_time")) | float %}
-        {{ ((now - then) / 3600) | round(0) }}
-      unit_of_measurement: 'hours'
-
-    vacuum_cleaning_due:
-      friendly_name: Vacuum Cleaning Due
-      value_template: >
-        {% if (states("vacuum.isuck") != 'docked') %}
-          not_due
-        {% else %}
-        
-          {% set now = as_timestamp(states("sensor.date_time_iso")) | float %}
-          {% set then = as_timestamp(states("input_datetime.isuck_last_clean_time")) | float %}
-          {% set hours_since_last_clean = ((now - then) / 3600) | round(0) %}
-          {% if (hours_since_last_clean < 48) %}
-            not_due
-          {% elif (hours_since_last_clean < 96) %}
-            due
-          {% else %}
-            overdue
-          {% endif %}
-
-        {% endif %}
+    
     living_room_lights_brightness:
       friendly_name: Living Room Lights Brightness
       value_template: '{{ states.light.living_room_lights.brightness }}'

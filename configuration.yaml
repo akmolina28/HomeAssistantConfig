@@ -85,12 +85,6 @@ media_player:
 
 input_datetime: !include datetimes.yaml
 
-vacuum:
-  - platform: xiaomi_miio
-    host: 192.168.99.133
-    token: !secret xiaomi_vacuum_token
-    name: iSuck
-
 light: !include lights.yaml
 
 ecobee:
