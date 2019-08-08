@@ -1,11 +1,3 @@
-take_recycling_out:
-    name: Take Out Recycling
-    icon: mdi:recycle
-
-take_garbage_out:
-    name: Take Out Garbage
-    icon: mdi:trash-can
-
 tasker_phone_orientation:
     name: Phone Orientation (Tasker)
     icon: mdi:cellphone-android

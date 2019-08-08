@@ -16,15 +16,6 @@ group.kitchen_cabinet_lights:
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
 
-input_boolean.take_recycling_out:
-  icon_color: '#22C476'
-  icon: mdi:recycle
-
-# input_boolean.take_garbage_out:
-#   icon: mdi:trash-can
-
-
-
 switch.all_lights_off:
   icon_color: '#FC2B36'
 

@@ -64,24 +64,6 @@
         {% else %}
           mdi:door
         {% endif %}
-        
-    recycling_collection_offset_reached:
-      friendly_name: 'Recycling Collection Offset Reached'
-      value_template: >
-        {% if (states.calendar.sanitation_service_schedule_recycling.attributes.offset_reached) %}
-          on
-        {% else %}
-          off
-        {% endif %}
-
-    garbage_collection_offset_reached:
-      friendly_name: 'Garbage Collection Offset Reached'
-      value_template: >
-        {% if (states.calendar.sanitation_service_schedule_garbage.attributes.offset_reached) %}
-          on
-        {% else %}
-          off
-        {% endif %}
     
     hue_sensor_diff:
       friendly_name: 'Hue Sensor Diff'

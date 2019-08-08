@@ -1,3 +1,40 @@
+input_boolean:
+  take_recycling_out:
+    name: Take Out Recycling
+    icon: mdi:recycle
+
+take_garbage_out:
+    name: Take Out Garbage
+    icon: mdi:trash-can
+
+homeassistant:
+  customize:
+    input_boolean.take_recycling_out:
+      icon_color: '#22C476'
+      icon: mdi:recycle
+
+sensor:
+- platform: template
+  sensors:
+    recycling_collection_offset_reached:
+      friendly_name: 'Recycling Collection Offset Reached'
+      value_template: >
+        {% if (states.calendar.sanitation_service_schedule_recycling.attributes.offset_reached) %}
+          on
+        {% else %}
+          off
+        {% endif %}
+
+    garbage_collection_offset_reached:
+      friendly_name: 'Garbage Collection Offset Reached'
+      value_template: >
+        {% if (states.calendar.sanitation_service_schedule_garbage.attributes.offset_reached) %}
+          on
+        {% else %}
+          off
+        {% endif %}
+
+automation:
 - alias: Reminders.Recycling.EventTrigger
   trigger:
   - entity_id: sensor.recycling_collection_offset_reached
