@@ -93,7 +93,7 @@ vacuum:
 light: !include lights.yaml
 
 ecobee:
-    api_key: !secret ecobee_api_key
+  api_key: !secret ecobee_api_key
 
 switch: !include switches.yaml
 

@@ -29,3 +29,7 @@ isuck_brush_dirty:
 away_mode:
     name: Away Mode
     icon: mdi:exit-run
+
+tasker_phone_orientation:
+    name: Phone Orientation (Tasker)
+    icon: mdi:cellphone-android
