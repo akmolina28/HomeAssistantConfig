@@ -139,48 +139,57 @@
       entity_id: climate.thermostat
       temperature: 76
     
-# - alias: Nobody Home - Away Mode
-#   trigger:
-#   - entity_id: sensor.anybody_home
-#     platform: state
-#     from: 'True'
-#     to: 'False'
-#   condition:
-#     condition: template
-#     value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
-#   action:
-#   - data:
-#       message: Nobody is home
-#       title: Activing Away Mode
-#       data:
-#         url: dev
-#         actions:
-#         - action: automation_mode_home
-#           title: Cancel
-#         tag: nobody-is-home
-#     service: notify.html5_notifications
-#   - service: script.set_automation_mode_away
+- alias: Nobody Home - Away Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'True'
+    to: 'False'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
+  action:
+  - data:
+      message: Home assistant detected that nobody is home.
+      title: Activing Away Mode
+      data:
+        url: dev
+        actions:
+        - action: automation_mode_home
+          title: Cancel
+        tag: nobody-is-home
+    service: notify.html5_notifications
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: away
 
-# - alias: Nobody Home Notification Action Clicked - Home Mode
-#   trigger:
-#   - event_data:
-#       action: automation_mode_home
-#     event_type: html5_notification.clicked
-#     platform: event
-#   condition:
-#     condition: template
-#     value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
-#   action:
-#   - service: script.set_automation_mode_home
+- alias: Nobody Home Notification Action Clicked - Home Mode
+  trigger:
+  - event_data:
+      action: automation_mode_home
+    event_type: html5_notification.clicked
+    platform: event
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: home
 
-# - alias: Anybody Home - Home Mode
-#   trigger:
-#   - entity_id: sensor.anybody_home
-#     platform: state
-#     from: 'False'
-#     to: 'True'
-#   condition:
-#     condition: template
-#     value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
-#   action:
-#   - service: script.set_automation_mode_home
+- alias: Anybody Home - Home Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'False'
+    to: 'True'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: home
