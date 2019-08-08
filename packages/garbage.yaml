@@ -3,9 +3,9 @@ input_boolean:
     name: Take Out Recycling
     icon: mdi:recycle
 
-take_garbage_out:
-    name: Take Out Garbage
-    icon: mdi:trash-can
+  take_garbage_out:
+      name: Take Out Garbage
+      icon: mdi:trash-can
 
 homeassistant:
   customize:
