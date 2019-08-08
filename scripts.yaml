@@ -139,85 +139,9 @@ turn_on_entry_way_lights:
       entity_id: light.laundry_room_lights
       brightness: '255'
 
-automation_mode_transition_sleep_to_home:
-  alias: Sleep Mode to Home Mode
-  sequence:
-  - service: script.turn_off_air_purifier
-  
-  # if it's early in the morning, turn some lights on
-  - condition: time
-    after: '04:00:00'
-    before: '08:00:00'
-  - service: script.turn_on_kitchen_lights
-  - service: light.turn_on
-    data:
-      entity_id: light.living_room_lights
-      brightness: '255'
-  - service: switch.turn_off
-    data:
-      entity_id: switch.living_room_fluxer
 
-  # if it's also a weekday, turn on some more lights
-  - condition: time
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  - service: script.turn_on_entry_way_lights
 
-automation_mode_transition_away_to_home:
-  alias: Away Mode to Home Mode
-  sequence:
-  # Turn off noisy fan, resume A/C schedule
-  - service: script.turn_off_air_purifier
-  - service: script.resume_climate_schedule
 
-  # if it's dark out, turn on some lights
-  - condition: or
-    conditions:
-    - condition: state
-      entity_id: sun.sun
-      state: below_horizon
-    - condition: numeric_state
-      entity_id: sensor.lightlevel_21
-      below: '100'
-  - service: script.turn_on_interior_lights
-
-automation_mode_transition_other_to_away:
-  alias: Other Mode to Away Mode
-  sequence:
-  - service: script.set_climate_away_mode
-  - service: script.turn_on_air_purifier
-  - service: script.turn_off_interior_lights
-
-automation_mode_transition_other_to_other:
-  alias: Other Mode to Other Mode
-  sequence:
-  - service: notify.html5_notifications
-    data:
-      message: 'automation_mode_transition_other'
-
-set_automation_mode:
-  alias: Set Automation Mode
-  sequence:
-  - service: script.turn_on
-    data_template:
-      entity_id: >
-        {% if (new_mode == "home") %}
-          {% if (previous_mode == "sleep") %}
-            script.automation_mode_transition_sleep_to_home
-          {% elif (previous_mode == "away") %}
-            script.automation_mode_transition_away_to_home
-          {% else %}
-            script.automation_mode_transition_other_to_other
-          {% endif %}
-        {% elif (new_mode == "away") %}
-          script.automation_mode_transition_other_to_away
-        {% else %}
-          script.automation_mode_transition_other_to_other
-        {% endif %}
 
       # message: 'Mode changed from {{ previous_mode }} to {{ new_mode }}'
 

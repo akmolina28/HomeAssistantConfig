@@ -4,9 +4,11 @@
 
 !.gitignore
 !lovelace/
-!lovelace/*
+!lovelace/*.yaml
 !automation/
-!automation/*
+!automation/*.yaml
+!packages/
+!packages/*.yaml
 
 !*.yaml
 

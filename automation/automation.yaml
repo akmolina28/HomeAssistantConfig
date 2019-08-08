@@ -94,16 +94,6 @@
     data:
       entity_id: input_select.automation_mode
       option: sleep
-
-- alias: Change Automation Mode
-  trigger:
-  - platform: state
-    entity_id: input_select.automation_mode
-  action:
-  - service: script.set_automation_mode
-    data_template:
-      new_mode: '{{ trigger.to_state.state }}'
-      previous_mode: '{{ trigger.from_state.state }}'
   
   
     

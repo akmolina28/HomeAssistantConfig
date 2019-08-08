@@ -13,6 +13,7 @@ homeassistant:
   time_zone: America/Chicago
   name: Home
   customize: !include customize.yaml
+  packages:  !include_dir_named packages
 
 binary_sensor:
 - platform: ping
@@ -129,13 +130,3 @@ zone:
   longitude: !secret wholesale_store_1_longitude
   icon: mdi:store
 
-input_select:
-  automation_mode:
-    name: Automation Mode
-    icon: mdi:home-assistant
-    options:
-      - home
-      - sleep
-      - away
-      - guest
-      - vacation
