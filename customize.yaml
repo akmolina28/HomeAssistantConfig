@@ -23,17 +23,7 @@ input_boolean.take_recycling_out:
 # input_boolean.take_garbage_out:
 #   icon: mdi:trash-can
 
-input_boolean.chewie_wet_food:
-  icon_color: '#b58e31'
-  icon: mdi:cat
 
-input_boolean.chewie_water:
-  icon_color: '#2980b9'
-  icon: mdi:water
-
-input_boolean.chewie_litter:
-  icon_color: '#C76F00'
-  icon: mdi:emoticon-poop
 
 switch.all_lights_off:
   icon_color: '#FC2B36'

@@ -1,0 +1,61 @@
+###################################################################
+#
+# Cat
+# ---
+#
+#   This package contains configuration for automating cat chores.
+#
+# Features
+# --------
+# 
+#  * Boolean flags based on google calendar turn on automatically
+#    when chores are due
+#  * Currently tracks when it's time for wet food, fresh water,
+#    and poop scooping
+#
+###################################################################
+
+input_boolean:
+  chewie_wet_food:
+      name: Feed Wet Food
+      icon: mdi:cat
+
+  chewie_water:
+      name: Change Water
+      icon: mdi:water
+
+  chewie_litter:
+      name: Scoop Poops
+      icon: mdi:poop
+
+homeassistant:
+  customize:
+    input_boolean.chewie_wet_food:
+      icon_color: '#b58e31'
+      icon: mdi:cat
+
+    input_boolean.chewie_water:
+      icon_color: '#2980b9'
+      icon: mdi:water
+
+    input_boolean.chewie_litter:
+      icon_color: '#C76F00'
+      icon: mdi:emoticon-poop
+
+automation:
+- alias: Chores.Reminders.WetFoodNight
+  trigger:
+  - entity_id: calendar.cat_chores_wet_food_night
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.chewie_wet_food
+    service: input_boolean.turn_on
+  - data:
+      entity_id: input_boolean.chewie_water
+    service: input_boolean.turn_on
+  - data:
+      entity_id: input_boolean.chewie_litter
+    service: input_boolean.turn_on
