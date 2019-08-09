@@ -65,16 +65,6 @@
           mdi:door
         {% endif %}
     
-    hue_sensor_diff:
-      friendly_name: 'Hue Sensor Diff'
-      value_template: '{{(states.sensor.temperature_6.state | float) - (states.sensor.man_cave_temperature.state | float)}}'
-      unit_of_measurement: 'degrees'
-    
-    door_sensor_diff:
-      friendly_name: 'Door Sensor Diff'
-      value_template: '{{(states.sensor.temperature_16.state | float) - (states.sensor.man_cave_temperature.state | float)}}'
-      unit_of_measurement: 'degrees'
-    
     air_filter_status_green:
       friendly_name: Air Filter - Green
       value_template: '{{ (states.sensor.air_filter_history_24.state | float) > 8 }}'
@@ -90,11 +80,6 @@
     thermostat_away_mode:
       friendly_name: Thermostat Away Mode
       value_template: '{{ states.climate.thermostat.attributes.away_mode }}'
-
-    
-    living_room_lights_brightness:
-      friendly_name: Living Room Lights Brightness
-      value_template: '{{ states.light.living_room_lights.brightness }}'
 
     temperature_6_calibrated:
       friendly_name: 'Laundry Room Temperature'

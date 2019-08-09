@@ -1,5 +1,0 @@
-living_room_lights_brightness:
-  name: Living Room Lights Brightness
-  min: 1
-  max: 255
-  step: 1

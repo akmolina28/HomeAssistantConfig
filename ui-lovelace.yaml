@@ -278,47 +278,14 @@ views:
       - entity: sensor.temperature_6_calibrated
         name: Laundry Room (hue)
       name: Indoor Temperature
-    - type: entities
-      entities:
-      - sensor.door_sensor_diff
-    # - type: glance
+      
+    # - type: entities
     #   entities:
-    #   - entity:  sensor.ecobee_man_cave_sensor_diff
-    #     name: "Ecobee Sensor (Man Cave)"
-    #   - entity:  sensor.ecobee_bedroom_sensor_diff
-    #     name: "Ecobee Sensor (Master Bedroom)"
-    #   - entity: sensor.ecobee_hue_sensor_diff
-    #     name: "Hue Sensor (Laundry Room)"
-    # - type: history-graph
-    #   entities:
-    #   - entity:  sensor.ecobee_man_cave_sensor_diff
-    #     name: "Ecobee Sensor (Man Cave)"
-    #   - entity:  sensor.ecobee_bedroom_sensor_diff
-    #     name: "Ecobee Sensor (Master Bedroom)"
-    #   - entity: sensor.ecobee_hue_sensor_diff
-    #     name: "Hue Sensor (Laundry Room)"
-    #   hours_to_show: 1
-    # - type: glance
-    #   entities:
-    #   - entity: sensor.man_cave_temperature
-    #     name: "Ecobee Sensor (Man Cave)"
-    #   - entity: sensor.master_bedroom_temperature
-    #     name: "Ecobee Sensor (Master Bedroom)"
-    #   - entity: sensor.thermostat_temperature
-    #     name: "Ecobee Sensor (Thermostat)"
-    #   - entity: sensor.temperature_6
-    #     name: "Hue Sensor (Laundry Room)"
-    # - type: history-graph
-    #   entities:
-    #   - entity: sensor.man_cave_temperature
-    #     name: "Ecobee Sensor (Man Cave)"
-    #   - entity: sensor.master_bedroom_temperature
-    #     name: "Ecobee Sensor (Master Bedroom)"
-    #   - entity: sensor.thermostat_temperature
-    #     name: "Ecobee Sensor (Thermostat)"
-    #   - entity: sensor.temperature_6
-    #     name: "Hue Sensor (Laundry Room)"
-    #   hours_to_show: 1
+    #     - type: cast
+    #       name: Sensors
+    #       # The path of the view (or number)
+    #       view: sensors
+    #       hide_if_unavailable: true
 
   - title: Man Cave
     path: man-cave
