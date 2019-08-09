@@ -103,8 +103,6 @@ sensor: !include sensors.yaml
 
 input_number: !include numbers.yaml
 
-input_boolean: !include booleans.yaml
-
 weather:
 - platform: darksky
   api_key: !secret darksky_api_key
