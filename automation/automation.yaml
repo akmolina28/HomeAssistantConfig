@@ -5,7 +5,7 @@
     platform: state
     to: 'on'
   condition:
-  - after: 04:00:00
+  - after: '04:00:00'
     before: '22:00:00'
     condition: time
   action:
@@ -22,7 +22,7 @@
     to: 'on'
   condition:
   - after: '22:00:00'
-    before: 04:00:00
+    before: '04:00:00'
     condition: time
   action:
   - data:
