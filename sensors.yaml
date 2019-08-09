@@ -1,11 +1,3 @@
-- platform: history_stats
-  name: air_filter_history_24
-  entity_id: switch.ikea_outlet_2
-  state: 'on'
-  type: time
-  end: '{{ now() }}'
-  duration: '24:00:00'
-
 - platform: time_date
   display_options:
   - 'time'
@@ -64,22 +56,6 @@
         {% else %}
           mdi:door
         {% endif %}
-    
-    air_filter_status_green:
-      friendly_name: Air Filter - Green
-      value_template: '{{ (states.sensor.air_filter_history_24.state | float) > 8 }}'
-        
-    air_filter_status_yellow:
-      friendly_name: Air Filter - Green
-      value_template: '{{ (states.sensor.air_filter_history_24.state | float) > 0 and (states.sensor.air_filter_history_24.state | float) <= 4 }}'
-    
-    air_filter_status_red:
-      friendly_name: Air Filter - Red
-      value_template: '{{ (states.sensor.air_filter_history_24.state | float) <= 0 }}'
-
-    thermostat_away_mode:
-      friendly_name: Thermostat Away Mode
-      value_template: '{{ states.climate.thermostat.attributes.away_mode }}'
 
     temperature_6_calibrated:
       friendly_name: 'Laundry Room Temperature'

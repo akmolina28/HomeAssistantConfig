@@ -101,7 +101,7 @@ views:
       #   entity: weather.dark_sky
       # - type: glance
       #   entities:
-      #   - entity: sensor.air_filter_history_24
+      #   - entity: sensor.air_purifier_history_24
       #     name: Air Filter
       #   - entity: sensor.vacuum_hours_since_last_clean
       #     name: Vacuum

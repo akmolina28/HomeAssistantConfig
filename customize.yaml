@@ -19,14 +19,6 @@ group.kitchen_cabinet_lights:
 switch.all_lights_off:
   icon_color: '#FC2B36'
 
-sensor.air_filter_history_24:
-  templates:
-    icon_color: >
-      if (state <= 0) return 'var(--status-color-alert)';
-      if (state < 4) return 'var(--status-color-warning)';
-      return 'var(--status-color-success)';;
-    icon: mdi:air-filter
-
 binary_sensor.desktop_pc:
   templates:
     icon_color: >

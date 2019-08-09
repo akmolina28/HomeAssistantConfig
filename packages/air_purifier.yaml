@@ -1,0 +1,89 @@
+###################################################################
+#
+# Air Purifier
+# ---
+#
+#   This package contains configuration for automating air
+#   purifiers.
+#
+# Features
+# --------
+# 
+#  * Helper scripts to turn purifiers off/on
+#  * Automatically kick on purifier if it hasn't run in a while
+#  * Automatically turn off purifier if it has run for a long time
+#  * Track the date when the purifier was changed
+#
+###################################################################
+
+input_datetime:
+  air_purifier_filter_changed:
+    name: Air Filter - Filter Changed
+    has_date: true
+
+sensor:
+  # Track how many hours the filter has run in the past 24 hours
+- platform: history_stats
+  name: air_purifier_history_24
+  entity_id: switch.ikea_outlet_2
+  state: 'on'
+  type: time
+  end: '{{ now() }}'
+  duration: '24:00:00'
+
+script:
+  turn_on_air_purifier:
+    alias: Turn On Air Purifier
+    sequence:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.ikea_outlet_2
+        
+  turn_off_air_purifier:
+    alias: Turn Off Air Purifier
+    sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.ikea_outlet_2
+
+automation:
+- alias: Air Purifier - Auto On Timer
+  trigger:
+  - below: '0.01'
+    entity_id: sensor.air_purifier_history_24
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: media_player.living_room_receiver
+    state: 'off'
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_2
+    service: switch.turn_on
+
+- alias: Air Purifier - Auto Off Timer
+  trigger:
+  - above: '11.99'
+    entity_id: sensor.air_purifier_history_24
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_2
+    service: switch.turn_off
+
+- alias: Air Purifier - Auto Off Trigger
+  trigger:
+  - entity_id: media_player.living_room_receiver
+    from: 'off'
+    platform: state
+    to: 'on'
+  - entity_id: media_player.living_room_tv_2
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_2
+    service: switch.turn_off

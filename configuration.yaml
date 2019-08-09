@@ -83,8 +83,6 @@ media_player:
     name: Living Room Receiver
     show_all_sources: true
 
-input_datetime: !include datetimes.yaml
-
 light: !include lights.yaml
 
 ecobee:
