@@ -165,9 +165,9 @@ automation:
     state: home
   action:
   - service: notify.html5_notifications
-    data:
+    data_template:
       title: iSuck Cleaning Due Today
-      message: The house is due for a cleaning today.
+      message: The house is due for a cleaning today. The last cleaning was {{ states("sensor.vacuum_hours_since_last_clean") }} hours ago.
       data:
         url: /lovelace/vacuum
         icon: /local/images/icons/roborock-icon.jpg
