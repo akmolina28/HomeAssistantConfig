@@ -14,6 +14,7 @@
       entity_id: ' light.laundry_room_lights'
       transition: 2
     service: light.turn_on
+
 - alias: Laundry Room Motion (Late Night)
   trigger:
   - entity_id: binary_sensor.presence_5

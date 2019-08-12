@@ -1,0 +1,331 @@
+###################################################################
+#
+# Lights
+# ------
+#
+#   This package contains configuration for lighting automation.
+#
+# Features
+# --------
+# 
+#  * Define light groups (creates single light entities)
+#  * Sync kitchen cabinet lights
+#  * 
+#
+###################################################################
+
+
+light:
+- platform: group
+  name: Living Room Lights
+  entities:
+    - light.couch_lamp
+    - light.love_seat_lamp
+    - light.living_room_ambience_1
+    - light.living_room_ambience_2
+- platform: group
+  name: Guest Room Lights
+  entities:
+    - light.guest_room_lamp_1
+    - light.guest_room_lamp_2
+- platform: group
+  name: Master Bedroom Lights
+  entities:
+    - light.kp_bedside
+    - light.andrew_bedside
+- platform: group
+  name: Man-cave Lights
+  entities:
+    - light.man_cave
+    - light.man_cave_dimmable
+- platform: group
+  name: Laundry Room Lights
+  entities:
+    - light.laundry_room_light_1
+    - light.laundry_room_light_2
+- platform: group
+  name: Driveway Lights
+  entities:
+  - light.driveway_light_1
+  - light.driveway_light_2
+- platform: group
+  name: Interior Lights
+  entities:
+  - light.couch_lamp
+  - light.love_seat_lamp
+  - light.living_room_ambience_1
+  - light.living_room_ambience_2
+  - light.guest_room_lamp_1
+  - light.guest_room_lamp_2
+  - light.kp_bedside
+  - light.andrew_bedside
+  - light.man_cave
+  - light.man_cave_dimmable
+  - light.laundry_room_light_1
+  - light.laundry_room_light_2
+
+automation:
+- alias: Kitchen Cabinet Lights - Off Sync
+  trigger:
+  - entity_id: switch.power_outlet_1
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.power_outlet_2
+    service: switch.turn_off
+
+- alias: Kitchen Cabinet Lights - On Sync
+  trigger:
+  - entity_id: switch.power_outlet_1
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: switch.power_outlet_2
+    service: switch.turn_on
+
+- alias: Sunrise - Exterior Lights Off
+  trigger:
+  - entity_id: sun.sun
+    from: below_horizon
+    platform: state
+    to: above_horizon
+  condition: []
+  action:
+  - data:
+      entity_id: light.driveway_lights
+    service: light.turn_off
+
+- alias: Front Door Multisensor - Turn on Driveway Lights
+  trigger:
+  - below: '10'
+    entity_id: sensor.lightlevel_21
+    for: 00:05:00
+    platform: numeric_state
+  condition:
+  - condition: time
+    after: '16:00:00'
+    before: '23:59:00'
+  action:
+  - data:
+      brightness: '255'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: 10:00PM [Garage Closed] - Dim Driveway Lights
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition:
+  - condition: state
+    entity_id: binary_sensor.openclose_12
+    state: 'off'
+  action:
+  - data:
+      brightness: '1'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: Garage Open [After 10:00PM] - Brighten Driveway Lights
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_12
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: light.driveway_lights
+    state: 'on'
+  - condition: time
+    after: '22:00:00'
+    before: 08:00:00
+  action:
+  - data:
+      brightness: '255'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: Garage Close [After 10:00PM] - Dim Driveway Lights
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_12
+    from: 'on'
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: light.driveway_lights
+    state: 'on'
+  - condition: time
+    after: '22:00:00'
+    before: 08:00:00
+  action:
+  - data:
+      brightness: '1'
+      entity_id: light.driveway_lights
+    service: light.turn_on
+
+- alias: Man Cave Door Open [workday morning] - Turn On Man Cave Lights
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_15
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: time
+    after: 04:00:00
+    before: '10:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.man_cave_lights
+  - service: switch.turn_on
+    data:
+      entity_id: switch.man_cave_fluxer
+
+- alias: Front Door Multi Sensor - Turn Inside Lights On
+  trigger:
+  - below: '100'
+    entity_id: sensor.lightlevel_21
+    for:
+      minutes: 5
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: group.all_device_trackers
+    state: home
+  - condition: time
+    after: '16:00:00'
+    before: '23:59:00'
+  action:
+  - data:
+      entity_id: switch.living_room_fluxer
+    service: switch.turn_off
+  - data:
+      entity_id: light.living_room_lights
+      brightness: '255'
+    service: light.turn_on
+  - data:
+      entity_id: switch.ikea_outlet_1
+    service: switch.turn_on
+  - data:
+      entity_id: switch.power_outlet_1
+    service: switch.turn_on
+  - data:
+      entity_id: switch.power_outlet_2
+    service: switch.turn_on
+
+script:
+  lights_bright_up:
+    alias: Lights Brightness Up
+    sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: >
+          {% set n = (state_attr(entity_id, "brightness") | int) + 50 %}
+          {% if n > 254 %}
+          254
+          {% else %}
+          {{ n }}
+          {% endif %}
+
+  lights_bright_down:
+    alias: Lights Brightness Down
+    sequence:
+    - service: light.turn_on
+      data_template:
+        entity_id: "{{ entity_id }}"
+        brightness: >
+          {% set n = state_attr(entity_id, 'brightness') | int - 50 %}
+          {% if n < 4 %}
+          4
+          {% else %}
+          {{ n }}
+          {% endif %}
+
+  all_lights_off:
+    alias: All Lights Off
+    sequence:
+    - service: light.turn_off
+      data:
+        entity_id: group.all_lights
+    - service: switch.turn_off
+      data:
+        entity_id: switch.power_outlet_1
+    - service: switch.turn_off
+      data:
+        entity_id: switch.power_outlet_2
+    - service: switch.turn_off
+      data:
+        entity_id: switch.ikea_outlet_1
+  
+  turn_on_living_room_lights:
+    alias: Turn On Living Room Lights
+    sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.living_room_fluxer
+    - service: light.turn_on
+      data:
+        entity_id: light.living_room_lights
+        brightness: '255'
+
+  turn_off_interior_lights:
+    alias: Turn Off Interior Lights
+    sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.interior_lights
+    - service: switch.turn_off
+      data:
+        entity_id:
+        - group.interior_light_switches
+
+  turn_on_interior_lights:
+    alias: Turn On Interior Lights
+    sequence:
+    - service: script.turn_on_living_room_lights
+    - service: script.turn_on_kitchen_lights
+    - service: script.turn_on_patio_lights
+
+  turn_on_patio_lights:
+    alias: Turn On Patio Lights
+    sequence:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.ikea_outlet_2
+
+  turn_off_patio_lights:
+    alias: Turn Off Patio Lights
+    sequence:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.ikea_outlet_2
+  
+  
+  turn_on_kitchen_lights:
+    alias: Turn On Kitchen Lights
+    sequence:
+    - service: switch.turn_on
+      entity_id:
+      - switch.power_outlet_1
+      - switch.power_outlet_2
+
+  turn_on_entry_way_lights:
+    alias: Turn On Entry Way Lights
+    sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.laundry_room_lights
+        brightness: '255'

@@ -16,9 +16,6 @@ group.kitchen_cabinet_lights:
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
 
-switch.all_lights_off:
-  icon_color: '#FC2B36'
-
 binary_sensor.desktop_pc:
   templates:
     icon_color: >
