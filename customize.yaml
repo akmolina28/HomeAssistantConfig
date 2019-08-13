@@ -1,8 +1,21 @@
-sensor.garage_open_close:
+binary_sensor.openclose_12:
   templates:
     icon_color: >
-      if (state === 'Open') return 'var(--primary-text-color)';
-      else return 'var(--secondary-text-color)';
+      if (state == "off") return 'var(--primary-text-color)';
+      else if (states("sun.sun") == "above_horizon") return 'var(--secondary-text-color)';
+      else return 'var(--status-color-alert)';
+    icon: >
+      if (state == "on") return "mdi:garage-open";
+      else return "mdi:garage";
+
+binary_sensor.google:
+  templates:
+    icon_color: >
+      if (state == "off") return 'var(--status-color-alert)';
+      else return 'var(--primary-text-color)';
+    icon: >
+      if (state == "on") return "mdi:check-network";
+      else return "mdi:close-network";
 
 sensor.front_door_open_close:
   templates:

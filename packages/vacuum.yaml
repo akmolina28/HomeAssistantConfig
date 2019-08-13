@@ -36,6 +36,10 @@ input_boolean:
   isuck_brush_dirty:
     name: iSuck Brush
     icon: mdi:broom
+  
+  isuck_cleaning_due:
+    name: iSuck Cleaning Due
+    icon: mdi:robot-vacuum
 
 sensor:
 - platform: template
@@ -236,3 +240,13 @@ automation:
   - service: input_boolean.turn_on
     data:
       entity_id: input_boolean.isuck_dust_bin_full
+
+- alias: Vacuum Cleaning Due - Set Boolean
+  trigger:
+    platform: state
+    entity_id: sensor.vacuum_cleaning_due
+    from: 'not_due'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.isuck_cleaning_due

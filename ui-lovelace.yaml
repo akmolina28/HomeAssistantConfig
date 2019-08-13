@@ -27,216 +27,66 @@ resources:
 views:
   - !include /config/lovelace/views/mobile-light-control.yaml
   
-  - title: Home
-    icon: mdi:home-assistant
-    path: home-control
+  - title: Dashboard
+    icon: mdi:view-dashboard-variant
+    path: dashboard
     panel: false
     cards:
-      # - type: entity-filter
-      #   entities:
-      #     - entity: device_tracker.akmolina28_andrewsphone
-      #       name: Andrew
-      #     - entity: device_tracker.iphone
-      #       name: Kaitlyn
-      #   state_filter:
-      #     - home
-      #   card:
-      #     type: glance
-      #     title: People at Home
-      #     show_state: false
-      #     style: |
-      #       .card-header {
-      #         padding: 0 0 0 5px;
-      #       }
-      # - type: glance
-      #   entities:
-          # - entity: sensor.thermostat_temperature
-          #   name: Inside
-          # - entity: sensor.temperature_20
-          #   name: Outside
-          #   icon: mdi:thermometer
-          # - entity: sensor.front_door_open_close
-          #   name: Front Door
-      #     - entity: binary_sensor.google
-      #       name: Internet
-      #     - entity: sensor.garage_open_close
-      #       name: Garage
-      - type: history-graph
-        hours_to_show: 36
-        title: Automation Mode
-        entities:
-        - input_select.automation_mode
-      - !include /config/lovelace/tiles/automation-mode-card.yaml
-      - !include /config/lovelace/tiles/todo-card.yaml
+    # - type: horizontal-stack
+      # cards:
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+          - type: entities
+            entities:
+            - entity: binary_sensor.openclose_12
+              name: Garage
+            - entity: binary_sensor.google
+              name: Internet
+            - entity: sensor.temperature_20
+              name: Outside Temp
+            - entity: person.andrew
+            style: |
+              ha-card>div {
+                padding-top: 8px!important;
+                padding-bottom: 8px!important;
+              }
+          - !include /config/lovelace/tiles/simpler-thermostat-card.yaml
+        - !include /config/lovelace/tiles/automation-mode-card.yaml
+        - !include /config/lovelace/tiles/todo-card.yaml
+      - type: vertical-stack
+        cards:
 
-      - type: entity-filter
-        entities:
-        - light.living_room_lights
-        - light.master_bedroom_lights
-        - light.guest_bedroom_lights
-        - light.man_cave_lights
-        - light.laundry_room_lights
-        - entity: group.kitchen_cabinet_lights
-          type: switch
-          icon: mdi:lightbulb
-          name: Kitchen Lights
-        - entity: switch.ikea_outlet_1
-          type: switch
-          icon: mdi:lightbulb
-          name: Patio Lights
-        - light.driveway_lights
-        - entity: switch.ikea_outlet_2
-          type: switch
-          icon: mdi:air-purifier
-          name: Air Purifier
-        state_filter:
-        - "on"
-        show_empty: false
-        card:
-          type: entities
-          title: Power Manager
-          show_header_toggle: false
+        - type: entity-filter
+          entities:
+          - light.living_room_lights
+          - light.master_bedroom_lights
+          - light.guest_bedroom_lights
+          - light.man_cave_lights
+          - light.laundry_room_lights
+          - entity: group.kitchen_cabinet_lights
+            type: switch
+            icon: mdi:lightbulb
+            name: Kitchen Lights
+          - entity: switch.ikea_outlet_1
+            type: switch
+            icon: mdi:lightbulb
+            name: Patio Lights
+          - light.driveway_lights
+          - entity: switch.ikea_outlet_2
+            type: switch
+            icon: mdi:air-purifier
+            name: Air Purifier
+          state_filter:
+          - "on"
+          show_empty: false
+          card:
+            type: entities
+            title: Power Manager
+            show_header_toggle: false
 
-      # - type: weather-forecast
-      #   entity: weather.dark_sky
-      # - type: glance
-      #   entities:
-      #   - entity: sensor.air_purifier_history_24
-      #     name: Air Filter
-      #   - entity: sensor.vacuum_hours_since_last_clean
-      #     name: Vacuum
-      #     hold_action:
-      #       action: call-service
-      #       service: vacuum.start
-      #       service_data:
-      #         entity_id: vacuum.isuck
-        # title: 'Air Health'
-        # show_state: false
-      # - type: "custom:mini-graph-card"
-      #   name: Indoor Temperature
-      #   entities:
-      #   - entity: sensor.thermostat_temperature
-      #     name: Thermostat
-      #   - entity: sensor.man_cave_temperature
-      #     name: Man Cave
-      #   - entity: sensor.master_bedroom_temperature
-      #     name: Master Bedroom
-      # - type: "custom:mini-graph-card"
-      #   entities:
-      #   - sensor.lightlevel_21
 
-  # - title: Light Control
-  #   icon: mdi:lightbulb-on-outline
-  #   path: light-control
-  #   panel: false
-  #   cards:
-  #   - type: entities
-  #     show_header_toggle: false
-  #     entities:
-  #     - entity: light.living_room_lights
-  #       type: "custom:slider-entity-row"
-  #       toggle: true
-  #       name: Living Room
-  #     - type: divider
-  #     - entity: light.couch_lamp
-  #       type: "custom:slider-entity-row"
-  #       toggle: true
-  #       name: Couch Lamp
-  #     - entity: light.love_seat_lamp
-  #       type: "custom:slider-entity-row"
-  #       toggle: true
-  #       name: Love Seat Lamp
-  #     - entity: light.living_room_ambience_1
-  #       type: "custom:slider-entity-row"
-  #       toggle: true
-  #       name: Ambience
-  #     - entity: light.living_room_ambience_2
-  #       type: "custom:slider-entity-row"
-  #       toggle: true
-  #       name: Ambience
-  #   - type: entities
-  #     title: Master Bedroom
-  #     show_header_toggle: false
-  #     entities:
-  #     - entity: light.master_bedroom_lights
-  #       type: "custom:slider-entity-row"
-  #       name: Master Bedroom Lights
-  #       toggle: true
-  #     - type: divider
-  #     - entity: light.kp_bedside
-  #       type: "custom:slider-entity-row"
-  #       name: KP Bed-side
-  #       toggle: true
-  #     - entity: light.andrew_bedside
-  #       type: "custom:slider-entity-row"
-  #       name: Andrew Bed-side
-  #       toggle: true
-  #   - type: entities
-  #     # title: Guest Bedroom
-  #     show_header_toggle: false
-  #     entities:
-  #     - entity: light.guest_room_lights
-  #       type: "custom:slider-entity-row"
-  #       name: Guest Room Lights
-  #       toggle: true
-  #     - type: divider
-  #     - entity: light.guest_room_lamp_1
-  #       type: "custom:slider-entity-row"
-  #       name: Lamp
-  #       toggle: true
-  #     - entity: light.guest_room_lamp_2
-  #       type: "custom:slider-entity-row"
-  #       name: Lamp
-  #       toggle: true
-  #   - type: entities
-  #     # title: Man-cave
-  #     show_header_toggle: false
-  #     entities:
-  #     - entity: light.man_cave_lights
-  #       type: "custom:slider-entity-row"
-  #       name: Man Cave Lights Lights
-  #       toggle: true
-  #     - type: divider
-  #     - entity: light.man_cave
-  #       type: "custom:slider-entity-row"
-  #       name: Hue Lamp
-  #       toggle: true
-  #     - entity: light.man_cave_dimmable
-  #       type: "custom:slider-entity-row"
-  #       name: Lamp
-  #       toggle: true
-  #   - type: entities
-  #     title: Kitchen Lights
-  #     entities:
-  #     - entity: switch.power_outlet_1
-  #       name: Under Cabinet
-  #     - entity: switch.power_outlet_2
-  #       name: Under Cabinet
-  #   - type: entities
-  #     # title: Laundry Room
-  #     entities:
-  #     - entity: light.laundry_room_lights
-  #       type: "custom:slider-entity-row"
-  #       name: Laundry Room
-  #       toggle: true
-  #   - type: entities
-  #     title: Exterior Lights
-  #     entities:
-  #     - entity: switch.ikea_outlet_1
-  #       type: switch
-  #       name: Patio Lights
-  #     - entity: light.driveway_lights
-  #       type: "custom:slider-entity-row"
-  #       name: Driveway Lights
-  #       toggle: true
-  #   - type: "custom:button-card"
-  #     entity: switch.all_lights_off
-  #     icon: mdi:power
-  #     color: '#FC2B36'
-  #     name: All Lights Off
-  #     styles:
-  #       card:
-  #         - height: 100px
   - title: Media
     icon: mdi:television-classic
     path: media
@@ -457,7 +307,16 @@ views:
       - input_select.automation_mode
     - !include /config/lovelace/tiles/automation-mode-card.yaml
 
-            
+  - title: Automation
+    path: automation
+    icon: mdi:arrow-decision-auto
+    cards:
+    - type: history-graph
+      hours_to_show: 36
+      title: Automation Mode
+      entities:
+      - input_select.automation_mode
+    - !include /config/lovelace/tiles/automation-mode-card.yaml
     
     
       
