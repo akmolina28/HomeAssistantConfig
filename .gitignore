@@ -5,6 +5,10 @@
 !.gitignore
 !lovelace/
 !lovelace/*.yaml
+!lovelace/tiles/
+!lovelace/tiles/*.yaml
+!lovelace/views/
+!lovelace/views/*.yaml
 !automation/
 !automation/*.yaml
 !packages/
