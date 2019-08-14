@@ -1,13 +1,3 @@
-binary_sensor.openclose_12:
-  templates:
-    icon_color: >
-      if (state == "off") return 'var(--primary-text-color)';
-      else if (states("sun.sun") == "above_horizon") return 'var(--secondary-text-color)';
-      else return 'var(--status-color-alert)';
-    icon: >
-      if (state == "on") return "mdi:garage-open";
-      else return "mdi:garage";
-
 binary_sensor.google:
   templates:
     icon_color: >
@@ -16,12 +6,6 @@ binary_sensor.google:
     icon: >
       if (state == "on") return "mdi:check-network";
       else return "mdi:close-network";
-
-sensor.front_door_open_close:
-  templates:
-    icon_color: >
-      if (state === 'Open') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
 
 group.kitchen_cabinet_lights:
   templates:
@@ -56,12 +40,6 @@ binary_sensor.mini_pc:
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
     icon: mdi:desktop-tower
-
-sensor.man_cave_door_open_close:
-  templates:
-    icon_color: >
-      if (state === 'Open') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
 
 device_tracker.akmolina28_andrewsphone:
   entity_picture: /local/images/people/andrew2.png
