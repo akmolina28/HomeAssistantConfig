@@ -1,0 +1,108 @@
+
+- alias: Man Cave Dimmer Switch On (keydown)
+  trigger:
+  - event_data:
+      event: 1000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+    service: light.turn_on
+
+- alias: Man Cave Dimmer Switch On (hold)
+  trigger:
+  - event_data:
+      event: 1001
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+    service: light.turn_on
+  - data:
+      entity_id: switch.man_cave_fluxer
+    service: switch.turn_on
+
+- alias: Man Cave Dimmer Switch Off (keydown)
+  trigger:
+  - event_data:
+      event: 4000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+    service: light.turn_off
+
+- alias: Man Cave Dimmer Switch BrightUp (press)
+  trigger:
+  - event_data:
+      event: 2000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+    service: script.lights_bright_up
+  - data:
+      entity_id: switch.man_cave_fluxer
+    service: switch.turn_off
+
+- alias: Man Cave Dimmer Switch BrightUp (hold)
+  trigger:
+  - event_data:
+      event: 2001
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+      brightness: '255'
+    service: light.turn_on
+  - data:
+      entity_id: switch.man_cave_fluxer
+    service: switch.turn_off
+
+- alias: Man Cave Dimmer Switch BrightDown (press)
+  trigger:
+  - event_data:
+      event: 3000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+    service: script.lights_bright_down
+  - data:
+      entity_id: switch.man_cave_fluxer
+    service: switch.turn_off
+
+- alias: Man Cave Dimmer Switch BrightDown (hold)
+  trigger:
+  - event_data:
+      event: 3001
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: light.man_cave_lights
+      brightness: '3'
+    service: light.turn_on
+  - data:
+      entity_id: switch.man_cave_fluxer
+    service: switch.turn_off

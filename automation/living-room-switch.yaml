@@ -22,9 +22,8 @@
   condition: []
   action:
   - data:
-      entity_id: light.living_room_lights
-      brightness: '254'
-    service: light.turn_on
+      entity_id: switch.ikea_outlet_1
+    service: switch.turn_on
 
 - alias: Living Room Dimmer Switch Off (keydown)
   trigger:
@@ -38,6 +37,19 @@
   - data:
       entity_id: light.living_room_lights
     service: light.turn_off
+
+- alias: Living Room Dimmer Switch Off (hold)
+  trigger:
+  - event_data:
+      event: 4001
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: switch.ikea_outlet_1
+    service: switch.turn_off
 
 - alias: Living Room Dimmer Switch BrightUp (press)
   trigger:
