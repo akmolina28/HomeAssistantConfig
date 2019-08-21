@@ -1,18 +1,4 @@
-set_climate_away_mode:
-  alias: Set Climate Away Mode
-  sequence:
-  - service: climate.set_preset_mode
-    data:
-      entity_id: climate.thermostat
-      preset_mode: away
 
-resume_climate_schedule:
-  alias: Resume Climate Schedule
-  sequence:
-  - service: climate.ecobee_resume_program
-    data:
-      entity_id: climate.thermostat
-      resume_all: true
 
 turn_off_media_players:
   alias: Turn Off Media Players
