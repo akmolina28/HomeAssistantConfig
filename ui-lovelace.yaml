@@ -164,7 +164,7 @@ views:
           name: Lamp
         - type: divider
         - type: switch
-          entity: switch.man_cave_fluxer
+          entity: switch.man_cave_fluxer_fast
           name: Flux
           icon: mdi:brightness-4
         - type: divider
