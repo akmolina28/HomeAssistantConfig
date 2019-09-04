@@ -86,4 +86,4 @@ automation:
       entity_id: light.man_cave_lights
   - service: switch.turn_on
     data:
-      entity_id: switch.man_cave_fluxer
+      entity_id: switch.man_cave_fluxer_fast
