@@ -43,10 +43,11 @@ binary_sensor:
   name: Mini PC
 
 device_tracker:
-  - platform: ddwrt
-    host: 192.168.1.1
-    username: !secret router_username
-    password: !secret router_password
+- platform: netgear
+  host: 192.168.1.1
+  port: 5000
+  username: !secret router_username
+  password: !secret router_password
 
 customizer:
   custom_ui: local
