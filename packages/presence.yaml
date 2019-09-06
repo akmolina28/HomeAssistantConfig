@@ -1,0 +1,6 @@
+sensor:
+  platform: template
+  sensors:
+    anybody_home:
+      friendly_name: 'Anybody Home'
+      value_template: '{{ states("person.andrew") == "home" or states("person.kaitlyn") == "home" }}'

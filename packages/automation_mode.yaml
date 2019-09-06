@@ -94,13 +94,13 @@ script:
       after: '04:00:00'
       before: '08:00:00'
     - service: script.turn_on_kitchen_lights
+    - service: switch.turn_off
+      data:
+        entity_id: switch.living_room_fluxer
     - service: light.turn_on
       data:
         entity_id: light.living_room_lights
         brightness: '255'
-    - service: switch.turn_off
-      data:
-        entity_id: switch.living_room_fluxer
 
     # if it's also a weekday, turn on some more lights
     - condition: time

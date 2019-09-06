@@ -163,6 +163,37 @@ automation:
       entity_id: switch.power_outlet_2
     service: switch.turn_on
 
+# When kaitlyn leaves for work on weekday mornings, turn lights off
+- alias: Kaitlyn Leaves For Work - Turn Lights Off
+  trigger:
+  - platform: state
+    entity_id: person.kaitlyn
+    to: not_home
+    for: '00:05:00'
+  condition:
+  - condition: time
+    after: '04:00:00'
+    before: '10:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  - condition: state
+    entity_id: person.andrew
+    state: home
+  - condition: template
+    value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
+  action:
+  - service: light.turn_off
+    data:
+      entity_id: light.living_room_lights
+  - service: light.turn_off
+    data:
+      entity_id: light.master_bedroom_lights
+  - service: script.turn_off_kitchen_lights
+
 script:
   lights_bright_up:
     alias: Lights Brightness Up
@@ -256,6 +287,14 @@ script:
     alias: Turn On Kitchen Lights
     sequence:
     - service: switch.turn_on
+      entity_id:
+      - switch.power_outlet_1
+      - switch.power_outlet_2
+
+  turn_off_kitchen_lights:
+    alias: Turn On Kitchen Lights
+    sequence:
+    - service: switch.turn_off
       entity_id:
       - switch.power_outlet_1
       - switch.power_outlet_2
