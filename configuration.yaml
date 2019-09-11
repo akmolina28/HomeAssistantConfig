@@ -115,9 +115,3 @@ zone:
   icon: mdi:store
 
 python_script:
-
-rest_command:
-  tasker_garage_opened:
-    url: !secret rest_url_tasker_garage_open
-  tasker_kaitlyn_home:
-    url: !secret rest_url_tasker_kaitlyn_home
