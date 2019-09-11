@@ -88,7 +88,7 @@ automation:
     data:
       entity_id: switch.man_cave_fluxer_fast
 
-- alias: Garage Door Open - Tasker Notification
+- alias: Garage Door Open Alerts
   trigger:
   - platform: state
     entity_id: binary_sensor.openclose_12
