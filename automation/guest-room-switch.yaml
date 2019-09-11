@@ -35,6 +35,19 @@
   condition: []
   action:
   - data:
+      entity_id: light.guest_room_lamp_2
+    service: light.turn_off
+
+- alias: Guest Room Dimmer Switch Off (hold)
+  trigger:
+  - event_data:
+      event: 4001
+      id: guest_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - data:
       entity_id: light.guest_room_lights
     service: light.turn_off
 
@@ -90,4 +103,4 @@
     service: light.turn_on
     data:
       entity_id: light.guest_room_lights
-      brightness: 4
+      brightness: 1
