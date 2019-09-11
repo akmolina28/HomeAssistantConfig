@@ -87,3 +87,12 @@ automation:
   - service: switch.turn_on
     data:
       entity_id: switch.man_cave_fluxer_fast
+
+- alias: Garage Door Open - Tasker Notification
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.openclose_12
+    from: 'off'
+    to: 'on'
+  action:
+  - service: rest_command.tasker_garage_opened

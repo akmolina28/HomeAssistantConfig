@@ -4,3 +4,16 @@ sensor:
     anybody_home:
       friendly_name: 'Anybody Home'
       value_template: '{{ states("person.andrew") == "home" or states("person.kaitlyn") == "home" }}'
+
+automation:
+  alias: 'Kaitlyn Arrives Home - Tasker Notification'
+  trigger:
+    platform: state
+    entity_id: person.kaitlyn
+    to: home
+  condition:
+    condition: state
+    entity_id: person.andrew
+    state: home
+  action:
+    service: rest_command.tasker_kaitlyn_home
