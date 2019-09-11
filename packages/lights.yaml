@@ -306,3 +306,38 @@ script:
       data:
         entity_id: light.laundry_room_lights
         brightness: '255'
+  
+  man_cave_alert:
+    alias: Man Cave Alert
+    sequence:
+    - service: light.toggle
+      data:
+        entity_id: light.man_cave
+    - delay:
+        seconds: 1
+    - service: light.toggle
+      data:
+        entity_id: light.man_cave
+    - delay:
+        seconds: 1
+    - service: light.toggle
+      data:
+        entity_id: light.man_cave
+    - delay:
+        seconds: 1
+    - service: light.toggle
+      data:
+        entity_id: light.man_cave
+    - delay:
+        seconds: 1
+    - service: light.toggle
+      data:
+        entity_id: light.man_cave
+    - delay:
+        seconds: 1
+    - service: light.toggle
+      data:
+        entity_id: light.man_cave
+
+
+      

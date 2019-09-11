@@ -96,3 +96,4 @@ automation:
     to: 'on'
   action:
   - service: rest_command.tasker_garage_opened
+  - service: script.man_cave_alert
