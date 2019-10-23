@@ -62,9 +62,9 @@ sensor:
           {% set now = as_timestamp(states("sensor.date_time_iso")) | float %}
           {% set then = as_timestamp(states("input_datetime.isuck_last_clean_time")) | float %}
           {% set hours_since_last_clean = ((now - then) / 3600) | round(0) %}
-          {% if (hours_since_last_clean < 48) %}
+          {% if (hours_since_last_clean < 96) %}
             not_due
-          {% elif (hours_since_last_clean < 96) %}
+          {% elif (hours_since_last_clean < 144) %}
             due
           {% else %}
             overdue
