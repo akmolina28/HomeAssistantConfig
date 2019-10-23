@@ -294,10 +294,14 @@ views:
   - title: Dev
     path: dev
     cards:
+    - type: picture-entity
+      entity: camera.front_door
+      camera_image: camera.front_door
     - type: entities
       entities:
-      - input_select.automation_mode
-    - !include /config/lovelace/tiles/automation-mode-card.yaml
+      - binary_sensor.skybell_front_door_button
+      - binary_sensor.skybell_front_door_motion
+
 
   - title: Automation
     path: automation
