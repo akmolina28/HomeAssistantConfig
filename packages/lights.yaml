@@ -21,13 +21,12 @@ light:
   entities:
     - light.couch_lamp
     - light.love_seat_lamp
-    - light.living_room_ambience_1
-    - light.living_room_ambience_2
 - platform: group
   name: Guest Room Lights
   entities:
     - light.guest_room_lamp_1
     - light.guest_room_lamp_2
+    - light.guest_room_ambience
 - platform: group
   name: Master Bedroom Lights
   entities:
@@ -37,6 +36,7 @@ light:
   name: Man-cave Lights
   entities:
     - light.man_cave
+    - light.man_cave_ambience
     - light.man_cave_dimmable
 - platform: group
   name: Laundry Room Lights
@@ -53,8 +53,8 @@ light:
   entities:
   - light.couch_lamp
   - light.love_seat_lamp
-  - light.living_room_ambience_1
-  - light.living_room_ambience_2
+  - light.man_cave_ambience
+  - light.guest_room_ambience
   - light.guest_room_lamp_1
   - light.guest_room_lamp_2
   - light.kp_bedside

@@ -159,7 +159,7 @@ views:
           name: Floor Lamp
         - type: "custom:slider-entity-row"
           toggle: true
-          entity: light.man_cave_dimmable
+          entity: light.man_cave_ambience
           icon: mdi:lamp
           name: Lamp
         - type: divider
@@ -234,14 +234,6 @@ views:
             type: "custom:slider-entity-row"
             toggle: true
             name: Love Seat Lamp
-          - entity: light.living_room_ambience_1
-            type: "custom:slider-entity-row"
-            toggle: true
-            name: Ambience
-          - entity: light.living_room_ambience_2
-            type: "custom:slider-entity-row"
-            toggle: true
-            name: Ambience
           - type: divider
           - entity: switch.living_room_fluxer
             type: switch

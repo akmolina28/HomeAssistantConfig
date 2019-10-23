@@ -19,8 +19,6 @@ switch:
 - platform: flux
   lights:
   - light.couch_lamp
-  - light.living_room_ambience_1
-  - light.living_room_ambience_2
   - light.love_seat_lamp
   name: Living Room Fluxer
   start_colortemp: 6500
@@ -30,8 +28,6 @@ switch:
 - platform: flux
   lights:
   - light.couch_lamp
-  - light.living_room_ambience_1
-  - light.living_room_ambience_2
   - light.love_seat_lamp
   name: Living Room Fluxer Fast
   transition: 1
