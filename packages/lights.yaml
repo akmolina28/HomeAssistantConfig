@@ -339,5 +339,48 @@ script:
       data:
         entity_id: light.man_cave
 
-
-      
+  man_cave_bright_mode:
+    alias: Man Cave Bright Mode
+    sequence:
+    - service: light.turn_on
+      data:
+       entity_id: light.man_cave
+       brightness: '255'
+       color_temp: '255'
+    - service: light.turn_on
+      data:
+        entity_id: light.man_cave_dimmable
+        brightness: '255'
+    - service: light.turn_on
+      data:
+        entity_id: light.man_cave_ambience
+        brightness: '255'
+  
+  man_cave_reading_mode:
+    alias: Man Cave Reading Mode
+    sequence:
+    - service: light.turn_off
+      data:
+       entity_id: light.man_cave
+    - service: light.turn_on
+      data:
+        entity_id: light.man_cave_dimmable
+        brightness: '255'
+    - service: light.turn_on
+      data:
+        entity_id: light.man_cave_ambience
+        brightness: '2'
+  
+  man_cave_night_mode:
+    alias: Man Cave Night Mode
+    sequence:
+    - service: light.turn_off
+      data:
+       entity_id: light.man_cave
+    - service: light.turn_off
+      data:
+        entity_id: light.man_cave_dimmable
+    - service: light.turn_on
+      data:
+        entity_id: light.man_cave_ambience
+        brightness: '2'

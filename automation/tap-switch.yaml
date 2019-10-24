@@ -39,15 +39,7 @@
     platform: event
   condition: []
   action:
-  - data:
-      brightness: '74'
-      color_temp: '500'
-      entity_id: light.man_cave
-    service: light.turn_on
-  - data:
-      brightness: '1'
-      entity_id: light.man_cave_dimmable
-    service: light.turn_on
+  - service: script.man_cave_night_mode
 
 - alias: Tap Switch 1 - III
   trigger:
@@ -58,15 +50,8 @@
     platform: event
   condition: []
   action:
-  - data:
-      brightness: '170'
-      color_temp: '327'
-      entity_id: light.man_cave
-    service: light.turn_on
-  - data:
-      brightness: '100'
-      entity_id: light.man_cave_dimmable
-    service: light.turn_on
+  action:
+  - service: script.man_cave_reading_mode
 
 - alias: Tap Switch 1 - IIII
   trigger:
@@ -77,8 +62,4 @@
     platform: event
   condition: []
   action:
-  - data:
-      brightness: '255'
-      color_temp: '225'
-      entity_id: light.man_cave_lights
-    service: light.turn_on
+  - service: script.man_cave_bright_mode
