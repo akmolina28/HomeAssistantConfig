@@ -251,3 +251,19 @@ automation:
     service: input_boolean.turn_on
     data:
       entity_id: input_boolean.isuck_cleaning_due
+
+script:
+  vacuum_go_to_trash_can:
+    alias: Vacuum Go To Trash Can
+    sequence:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.isuck
+        command: app_goto_target
+        params: [34500, 22000]
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.isuck_dust_bin_full
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.isuck_brush_dirty
