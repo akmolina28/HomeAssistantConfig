@@ -11,5 +11,38 @@ binary_sensor:
 camera:
 - platform: skybell
   monitored_conditions:
-  # - avatar
+  - avatar
   - activity
+
+# Example configuration.yaml entry
+switch:
+- platform: skybell
+  monitored_conditions:
+  - do_not_disturb
+  - motion_sensor
+
+automation:
+
+- alias: 'Sunset - Enable Skybell Motion Sensor'
+  trigger:
+  - entity_id: sun.sun
+    platform: state
+    from: above_horizon
+    to: below_horizon
+  condition: []
+  action:
+  - data:
+      entity_id: switch.skybell_front_door_motion_sensor
+    service: switch.turn_on
+
+- alias: 'Sunrise - Disable Skybell Motion Sensor'
+  trigger:
+  - entity_id: sun.sun
+    platform: state
+    from: below_horizon
+    to: above_horizon
+  condition: []
+  action:
+  - data:
+      entity_id: switch.skybell_front_door_motion_sensor
+    service: switch.turn_off
