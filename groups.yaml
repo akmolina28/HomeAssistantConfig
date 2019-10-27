@@ -8,6 +8,7 @@ kitchen_lights:
   name: Kitchen Cabinet Lights
   entities:
     - switch.bar_lights
+    - switch.cabinet_lights
 
 great_room_lights:
   name: Great Room Lights

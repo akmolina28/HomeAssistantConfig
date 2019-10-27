@@ -23,14 +23,14 @@ cards:
     name: Andrew
     icon: mdi:lamp
 - type: entities
-  title: Living Room
+  title: Great Room
   show_header_toggle: false
   entities:
   - entity: "light.living_room_lights"
     type: "custom:slider-entity-row"
     min: 5
     toggle: true
-    name: Lights
+    name: Lamps
     icon: mdi:sofa
   - type: switch
     entity: switch.living_room_fluxer
@@ -38,15 +38,18 @@ cards:
     icon: mdi:brightness-4
   - type: divider
   - type: switch
-    entity: switch.ikea_outlet_1
-    name: Patio Lights
-    icon: mdi:home-variant
+    entity: switch.ikea_outlet_3
+    name: Ledge Lights
+    icon: mdi:weather-sunset-up
 - type: entities
   title: Kitchen
   show_header_toggle: false
   entities:
-  - entity: group.kitchen_lights
-    type: switch
+  - entity: switch.cabinet_lights
+    name: Cabinet Lights
+    icon: mdi:light-switch
+  - entity: switch.bar_lights
+    name: Bar Lights
     icon: mdi:light-switch
 - type: entities
   title: Guest Bedroom
