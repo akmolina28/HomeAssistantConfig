@@ -4,11 +4,17 @@ all_device_trackers:
     - device_tracker.akmolina28_andrewsphone
     - device_tracker.iphone
 
-kitchen_cabinet_lights:
+kitchen_lights:
   name: Kitchen Cabinet Lights
   entities:
-    - switch.power_outlet_1
-    - switch.power_outlet_2
+    - switch.bar_lights
+
+great_room_lights:
+  name: Great Room Lights
+  entities:
+  - switch.ikea_outlet_3
+  - light.couch_lamp
+  - light.love_seat_lamp
 
 interior_light_switches:
   name: Interior Light Switches

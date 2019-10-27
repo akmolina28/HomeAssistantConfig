@@ -7,7 +7,13 @@ binary_sensor.google:
       if (state == "on") return "mdi:check-network";
       else return "mdi:close-network";
 
-group.kitchen_cabinet_lights:
+group.kitchen_lights:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+group.great_room_lights:
   templates:
     icon_color: >
       if (state === 'on') return 'var(--secondary-text-color)';

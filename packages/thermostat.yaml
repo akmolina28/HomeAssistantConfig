@@ -13,7 +13,7 @@ script:
   resume_climate_schedule:
     alias: Resume Climate Schedule
     sequence:
-    - service: climate.ecobee_resume_program
+    - service: ecobee.resume_program
       data:
         entity_id: climate.thermostat
         resume_all: true

@@ -63,10 +63,15 @@ views:
           - light.guest_bedroom_lights
           - light.man_cave_lights
           - light.laundry_room_lights
-          - entity: group.kitchen_cabinet_lights
+          - entity: group.kitchen_lights
             type: switch
             icon: mdi:lightbulb
             name: Kitchen Lights
+          - entity: group.great_room_lights
+            type: mdi:lightbulb
+            name: Great Room Lights
+            type: switch
+            icon: mdi:sofa
           - entity: switch.ikea_outlet_1
             type: switch
             icon: mdi:lightbulb
@@ -222,16 +227,24 @@ views:
           - entity: light.living_room_lights
             type: "custom:slider-entity-row"
             toggle: true
-            name: Living Room
+            name: Living Room Lights
           - type: divider
-          - entity: light.couch_lamp
-            type: "custom:slider-entity-row"
-            toggle: true
-            name: Couch Lamp
           - entity: light.love_seat_lamp
             type: "custom:slider-entity-row"
             toggle: true
-            name: Love Seat Lamp
+            name: End Table Left
+            icon: mdi:lamp
+          - entity: light.couch_lamp
+            type: "custom:slider-entity-row"
+            toggle: true
+            name: End Table Right
+            icon: mdi:lamp
+          - entity: switch.ikea_outlet_3
+            name: Ledge Light
+            icon: mdi:weather-sunset-up
+          - entity: switch.bar_lights
+            name: Bar Lights
+            icon: mdi:light-switch
           - type: divider
           - entity: switch.living_room_fluxer
             type: switch

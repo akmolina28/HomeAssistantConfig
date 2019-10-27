@@ -45,7 +45,7 @@ cards:
   title: Kitchen
   show_header_toggle: false
   entities:
-  - entity: group.kitchen_cabinet_lights
+  - entity: group.kitchen_lights
     type: switch
     icon: mdi:light-switch
 - type: entities
