@@ -59,7 +59,7 @@
 - alias: Bedroom Motion - Home Mode
   trigger:
   - platform: state
-    entity_id: binary_sensor.master_bedroom_occupancy
+    entity_id: binary_sensor.bedroom_occupancy
     from: 'off'
     to: 'on'
   condition:
@@ -129,3 +129,17 @@
     data:
       entity_id: input_select.automation_mode
       option: home
+  
+- alias: Auto Sleep Mode
+  trigger:
+  - platform: time
+    at: '02:00:00'
+  condition:
+  - condition: state
+    entity_id: input_select.automation_mode
+    state: home
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: sleep

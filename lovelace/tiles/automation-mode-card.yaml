@@ -16,7 +16,8 @@ cards:
   styles:
     card:
       - height: 75px
-  lock: true
+  lock:
+    enabled: true
       
 - type: "custom:button-card"
   icon: mdi:exit-run
@@ -34,7 +35,8 @@ cards:
   styles:
     card:
       - height: 75px
-  lock: true
+  lock:
+    enabled: true
       
 - type: "custom:button-card"
   icon: mdi:weather-night
@@ -52,7 +54,8 @@ cards:
   styles:
     card:
       - height: 75px
-  lock: true
+  lock:
+    enabled: true
       
 - type: "custom:button-card"
   icon: mdi:beach
@@ -70,7 +73,8 @@ cards:
   styles:
     card:
       - height: 75px
-  lock: true
+  lock:
+    enabled: true
       
 - type: "custom:button-card"
   icon: mdi:human-male-male
@@ -88,4 +92,5 @@ cards:
   styles:
     card:
       - height: 75px
-  lock: true
+  lock:
+    enabled: true
