@@ -10,16 +10,16 @@ kitchen_lights:
     - switch.bar_lights
     - switch.cabinet_lights
 
-great_room_lights:
-  name: Great Room Lights
-  entities:
-  - switch.ikea_outlet_3
-  - light.couch_lamp
-  - light.love_seat_lamp
-
 interior_light_switches:
   name: Interior Light Switches
   entities:
-  - switch.power_outlet_1
-  - switch.power_outlet_2
-  - switch.ikea_outlet_1
+  - switch.ikea_outlet_3
+  - switch.bar_lights
+  - switch.cabinet_lights
+
+all_light_switches:
+  name: All Light Switchs
+  entities:
+  - switch.ikea_outlet_3
+  - switch.bar_lights
+  - switch.cabinet_lights

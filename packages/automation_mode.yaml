@@ -102,16 +102,6 @@ script:
         entity_id: light.living_room_lights
         brightness: '255'
 
-    # if it's also a weekday, turn on some more lights
-    - condition: time
-      weekday:
-      - mon
-      - tue
-      - wed
-      - thu
-      - fri
-    - service: script.turn_on_entry_way_lights
-
   automation_mode_transition_away_to_home:
     alias: Away Mode to Home Mode
     sequence:

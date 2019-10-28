@@ -58,29 +58,34 @@ views:
 
         - type: entity-filter
           entities:
-          - light.living_room_lights
-          - light.master_bedroom_lights
-          - light.guest_bedroom_lights
-          - light.man_cave_lights
-          - light.laundry_room_lights
           - entity: group.kitchen_lights
             type: switch
-            icon: mdi:lightbulb
+            icon: mdi:fridge
             name: Kitchen Lights
-          - entity: group.great_room_lights
-            type: mdi:lightbulb
-            name: Great Room Lights
-            type: switch
+          - entity: light.living_room_lights
+            type: light
             icon: mdi:sofa
-          - entity: switch.ikea_outlet_1
+            name: Living Room Lights
+          - entity: switch.ikea_outlet_3
             type: switch
-            icon: mdi:lightbulb
-            name: Patio Lights
-          - light.driveway_lights
+            icon: mdi:weather-sunset-up
+            name: Ledge Light
+          - entity: light.man_cave_lights
+            type: light
+            icon: mdi:guitar-electric
+            name: Man Cave Lights
+          - entity: light.guest_room_lights
+            type: light
+            icon: mdi:bed-empty
+            name: Guest Room Lights
           - entity: switch.ikea_outlet_2
             type: switch
             icon: mdi:air-purifier
             name: Air Purifier
+          - entity: light.master_bedroom_lights
+            type: light
+            icon: mdi:bed-empty
+            name: Master Bedroom Lights
           state_filter:
           - "on"
           show_empty: false

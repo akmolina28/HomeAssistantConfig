@@ -13,12 +13,6 @@ group.kitchen_lights:
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
 
-group.great_room_lights:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-
 binary_sensor.desktop_pc:
   templates:
     icon_color: >
