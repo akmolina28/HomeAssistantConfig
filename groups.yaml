@@ -5,7 +5,7 @@ all_device_trackers:
     - device_tracker.iphone
 
 kitchen_lights:
-  name: Kitchen Cabinet Lights
+  name: Kitchen Lights
   entities:
     - switch.bar_lights
     - switch.cabinet_lights

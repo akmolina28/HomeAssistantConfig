@@ -100,11 +100,11 @@ views:
     path: media
     cards:
     - type: media-control
-      entity: media_player.living_room_tv_2
+      entity: media_player.living_room_tv
     - type: media-control
       entity: media_player.living_room_receiver
     - type: media-control
-      entity: media_player.living_room_tv
+      entity: media_player.living_room_chromecast
     - type: media-control
       entity: media_player.guest_room_tv
     - type: media-control
@@ -299,7 +299,7 @@ views:
         - type: "custom:mini-media-player"
           service: media_player.toggle
           icon: mdi:television
-          entity: media_player.living_room_tv_2
+          entity: media_player.living_room_tv
         - type: "custom:mini-media-player"
           entity: media_player.living_room_receiver
           icon: mdi:set-top-box

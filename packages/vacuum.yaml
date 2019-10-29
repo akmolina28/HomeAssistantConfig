@@ -253,6 +253,41 @@ automation:
       entity_id: input_boolean.isuck_cleaning_due
 
 script:
+  vacuum_start_cleanup:
+    alias: Vacuum Start Cleanup
+    sequence:
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.isuck
+
+  vacuum_pause_cleanup:
+    alias: Vacuum Pause Cleanup
+    sequence:
+    - service: vacuum.pause
+      data:
+        entity_id: vacuum.isuck
+  
+  vacuum_resume_cleanup:
+    alias: Vacuum Resume Cleanup
+    sequence:
+    - service: vacuum.start_pause
+      data:
+        entity_id: vacuum.isuck
+
+  vacuum_stop_cleanup:
+    alias: Vacuum Stop Cleanup
+    sequence:
+    - service: vacuum.stop
+      data:
+        entity_id: vacuum.isuck
+    
+  vacuum_return_to_dock:
+    alias: Vacuum Return To Dock
+    sequence:
+    - service: vacuum.return_to_base
+      data:
+        entity_id: vacuum.isuck
+
   vacuum_go_to_trash_can:
     alias: Vacuum Go To Trash Can
     sequence:
