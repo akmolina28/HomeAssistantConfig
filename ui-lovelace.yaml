@@ -110,12 +110,12 @@ views:
         - type: divider
         - type: "custom:slider-entity-row"
           toggle: true
-          entity: light.ge_softwhite_103
+          entity: light.ge_softwhite_102
           name: Floor Lamp
           icon: mdi:floor-lamp
         - type: "custom:slider-entity-row"
           toggle: true
-          entity: light.ge_softwhite_102
+          entity: light.ge_softwhite_103
           name: Reading Lamp
           icon: mdi:lamp
         - type: divider
@@ -134,37 +134,20 @@ views:
           .card-header {
             padding-bottom: 5px;
           }
-      - !include /config/lovelace/tiles/simple-thermostat-card.yaml
     - type: vertical-stack
       cards:
-      - type: glance
-        entities:
-        - entity: binary_sensor.desktop_pc
-        - entity: binary_sensor.mini_pc
-        - entity: binary_sensor.work_laptop
-        - entity: binary_sensor.diskstation
-        - entity: binary_sensor.google
-          name: Internet
-        show_state: false
+      - !include /config/lovelace/tiles/simple-thermostat-card.yaml
+      # - type: glance
+      #   entities:
+      #   - entity: binary_sensor.desktop_pc
+      #   - entity: binary_sensor.mini_pc
+      #   - entity: binary_sensor.work_laptop
+      #   - entity: binary_sensor.diskstation
+      #   - entity: binary_sensor.google
+      #     name: Internet
+        # show_state: false
       - !include /config/lovelace/tiles/todo-card.yaml
-      - type: glance
-        entities:
-        - type: script
-          entity: script.work_mode
-          icon: mdi:keyboard-variant
-          name: Work Mode
-          # styles:
-          #   card:
-          #   - height: 100px
-        - type: "custom:button-card"
-          entity: script.away_mode
-          icon: mdi:car
-          name: Away
-          # color: '#FC2B36'
-          # styles:
-          #   card:
-          #     - height: 100px
-        show_state: false
+
     
   - title: Living Room
     path: living-room
