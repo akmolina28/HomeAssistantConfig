@@ -1,0 +1,80 @@
+alexa:
+  smart_home:
+    filter:
+      include_entities:
+      - group.kitchen_lights
+      - switch.bar_lights
+      - switch.cabinet_lights
+      - switch.ikea_outlet_3
+      - light.living_room_lights
+
+      - script.lighting_scene_common_area_full_brightness
+      - script.lighting_scene_common_area_off
+      - script.lighting_scene_common_area_dim
+
+      - cover.garage_door
+
+      - climate.thermostat
+
+      - script.vacuum_start_cleanup
+      - script.vacuum_pause_cleanup
+      - script.vacuum_resume_cleanup
+      - script.vacuum_stop_cleanup
+      - script.vacuum_return_to_dock
+      - script.vacuum_go_to_trash_can
+    entity_config:
+      group.kitchen_lights:
+        name: Kitchen Lights
+        description: All of the lights in the kitchen
+        display_categories: SWITCH
+      switch.bar_lights:
+        name: Bar Lights
+        description: Lighting over the bar in the kitchen
+        display_categories: SWITCH
+      switch.cabinet_lights:
+        name: Cabinet Lights
+        description: Lighting attached to the kitchen cabinets
+        display_categories: SWITCH
+      switch.ikea_outlet_3:
+        name: Ledge Lights
+        description: Ledge lighting in the great room
+        display_categories: SWITCH
+      light.living_room_lights:
+        name: Living Room Lights
+        description: Lighting in the living room area
+        display_categories: LIGHT
+      cover.garage_door:
+        name: Garage Door
+        description: Open or close the garage
+        display_categories: DOOR
+      climate.thermostat:
+        name: Thermostat
+        description: Set the desired temperature
+      script.vacuum_start_cleanup:
+        name: Script - Vacuum Start Cleanup
+        description: Start cleaning the house
+      script.vacuum_pause_cleanup:
+        name: Script - Vacuum Pause Cleanup in progress
+        description: Pause the cleanup in progress
+      script.vacuum_resume_cleanup:
+        name: Script - Vacuum Resume Cleanup in progress
+        description: Resume the cleanup in progress
+      script.vacuum_stop_cleanup:
+        name: Script - Vacuum Stop Cleanup
+        description: Stop the cleanup in progress
+      script.vacuum_return_to_dock:
+        name: Script - Vacuum Return to Dock
+        description: Go back to the dock
+      script.vacuum_go_to_trash_can:
+        name: Script - Vacuum Go To Trash Can
+        description: Send vacuum to the trash can
+      script.lighting_scene_common_area_full_brightness:
+        name: Lighting Scene - Common Area Full Brightness
+        description: Light up the common area
+      script.lighting_scene_common_area_off:
+        name: Lighting Scene - Common Area Off
+        description: Turn off the common area
+      script.lighting_scene_common_area_dim:
+        name: Lighint Scene - Common Area Dim
+        description: Dim the lights in the common area
+      

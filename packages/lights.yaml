@@ -393,6 +393,48 @@ script:
       data:
         entity_id: light.man_cave
 
+##################################
+## Lighting Scenes
+##
+## Useful for Alexa commands
+##
+##################################
+
+  lighting_scene_common_area_full_brightness:
+    alias: Lighting Scene - Common Area Full Brightness
+    sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.living_room_lights
+        brightness: '255'
+    - service: switch.turn_on
+      entity_id:
+      - group.kitchen_lights
+      - switch.ikea_outlet_3
+      
+  lighting_scene_common_area_off:
+    alias: Lighting Scene - Common Area Off
+    sequence:
+    - service: light.turn_off
+      data:
+        entity_id: light.living_room_lights
+    - service: switch.turn_off
+      entity_id:
+      - group.kitchen_lights
+      - switch.ikea_outlet_3
+
+  lighting_scene_common_area_dim:
+    alias: Lighting Scene - Common Area Dim
+    sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.living_room_lights
+        brightness: '100'
+    - service: switch.turn_on
+      entity_id: switch.ikea_outlet_3
+    - service: switch.turn_off
+      entity_id: group.kitchen_lights
+
   man_cave_bright_mode:
     alias: Man Cave Bright Mode
     sequence:
