@@ -86,7 +86,7 @@ automation:
       entity_id: light.man_cave_lights
   - service: switch.turn_on
     data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
 
 - alias: Garage Door Open Alerts
   trigger:

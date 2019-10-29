@@ -12,7 +12,7 @@
       entity_id: light.man_cave_lights
     service: light.turn_on
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_on
 
 - alias: Man Cave Dimmer Switch On (hold)
@@ -28,7 +28,7 @@
       entity_id: light.man_cave_lights
     service: light.turn_on
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_on
 
 - alias: Man Cave Dimmer Switch Off (keydown)
@@ -44,7 +44,7 @@
       entity_id: light.man_cave_lights
     service: light.turn_off
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_off
 
 - alias: Man Cave Dimmer Switch BrightUp (press)
@@ -60,7 +60,7 @@
       entity_id: light.man_cave_lights
     service: script.lights_bright_up
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_off
 
 - alias: Man Cave Dimmer Switch BrightUp (hold)
@@ -78,7 +78,7 @@
       kelvin: 6500
     service: light.turn_on
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_off
 
 - alias: Man Cave Dimmer Switch BrightDown (press)
@@ -94,7 +94,7 @@
       entity_id: light.man_cave_lights
     service: script.lights_bright_down
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_off
 
 - alias: Man Cave Dimmer Switch BrightDown (hold)
@@ -112,5 +112,5 @@
       kelvin: 1900
     service: light.turn_on
   - data:
-      entity_id: switch.man_cave_fluxer_fast
+      entity_id: switch.man_cave_fluxer
     service: switch.turn_off

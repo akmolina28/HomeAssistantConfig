@@ -94,57 +94,6 @@ views:
             title: Power Manager
             show_header_toggle: false
 
-
-  - title: Media
-    icon: mdi:television-classic
-    path: media
-    cards:
-    - type: media-control
-      entity: media_player.living_room_tv
-    - type: media-control
-      entity: media_player.living_room_receiver
-    - type: media-control
-      entity: media_player.living_room_chromecast
-    - type: media-control
-      entity: media_player.guest_room_tv
-    - type: media-control
-      entity: media_player.garage_tv
-
-  - title: Sensors
-    # icon: mdi:home-assistant
-    path: sensors
-    # panel: true
-    cards:
-    - type: "custom:mini-graph-card"
-      entities:
-      - sensor.lightlevel_21
-    - type: "custom:mini-graph-card"
-      entities:
-      - entity: sensor.temperature_20
-        name: Front Porch
-      - entity: sensor.temperature_13
-        name: Garage
-      name: Outdoor Temperature
-    - type: "custom:mini-graph-card"
-      entities:
-      - entity: sensor.thermostat_temperature
-        name: Thermostat
-      - entity: sensor.man_cave_temperature
-        name: Man Cave (EB)
-      - entity: sensor.master_bedroom_temperature
-        name: Master Bedroom (EB)
-      - entity: sensor.temperature_6_calibrated
-        name: Laundry Room (hue)
-      name: Indoor Temperature
-      
-    # - type: entities
-    #   entities:
-    #     - type: cast
-    #       name: Sensors
-    #       # The path of the view (or number)
-    #       view: sensors
-    #       hide_if_unavailable: true
-
   - title: Man Cave
     path: man-cave
     icon: mdi:guitar-electric
@@ -155,24 +104,26 @@ views:
         title: Man Cave
         show_header_toggle: false
         entities:
-        - type: "custom:slider-entity-row"
-          toggle: true
+        - type: entity
           entity: light.man_cave_lights
           name: Lights
         - type: divider
         - type: "custom:slider-entity-row"
           toggle: true
-          entity: light.man_cave
-          icon: mdi:floor-lamp
+          entity: light.ge_softwhite_103
           name: Floor Lamp
+          icon: mdi:floor-lamp
         - type: "custom:slider-entity-row"
           toggle: true
-          entity: light.man_cave_ambience
+          entity: light.ge_softwhite_102
+          name: Reading Lamp
           icon: mdi:lamp
-          name: Lamp
         - type: divider
+        - type: entity
+          entity: light.hue_color_a19_101
+          name: Ambience
         - type: switch
-          entity: switch.man_cave_fluxer_fast
+          entity: switch.man_cave_fluxer
           name: Flux
           icon: mdi:brightness-4
         - type: divider
@@ -214,8 +165,6 @@ views:
           #   card:
           #     - height: 100px
         show_state: false
-
-  - !include /config/lovelace/views/vacuum-control.yaml
     
   - title: Living Room
     path: living-room
@@ -307,17 +256,7 @@ views:
           entity: media_player.portable_speaker
           icon: mdi:speaker-wireless
 
-  - title: Dev
-    path: dev
-    cards:
-    - type: picture-entity
-      entity: camera.front_door
-      camera_image: camera.front_door
-    - type: entities
-      entities:
-      - binary_sensor.skybell_front_door_button
-      - binary_sensor.skybell_front_door_motion
-      - cover.garage_door
+  - !include /config/lovelace/views/vacuum-control.yaml
 
 
   - title: Automation
@@ -330,6 +269,18 @@ views:
       entities:
       - input_select.automation_mode
     - !include /config/lovelace/tiles/automation-mode-card.yaml
+  
+  - title: Dev
+    path: dev
+    cards:
+    - type: picture-entity
+      entity: camera.front_door
+      camera_image: camera.front_door
+    - type: entities
+      entities:
+      - binary_sensor.skybell_front_door_button
+      - binary_sensor.skybell_front_door_motion
+      - cover.garage_door
     
     
       

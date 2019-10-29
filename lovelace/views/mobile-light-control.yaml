@@ -71,7 +71,7 @@ cards:
     name: Lights
     toggle: true
     icon: mdi:guitar-electric
-  - entity: switch.man_cave_fluxer_fast
+  - entity: switch.man_cave_fluxer
     type: switch
     name: Flux
     icon: mdi:brightness-4

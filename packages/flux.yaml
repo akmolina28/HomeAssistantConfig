@@ -1,20 +1,11 @@
 switch:
-# - platform: flux
-#   lights:
-#   - light.man_cave_lights
-#   name: Man Cave Fluxer
-#   start_colortemp: 6500
-#   sunset_colortemp: 3400
-#   stop_colortemp: 1900
-
 - platform: flux
   lights:
-  - light.man_cave_lights
-  name: Man Cave Fluxer Fast
+  - light.hue_color_a19_101
+  name: Man Cave Fluxer
   start_colortemp: 6500
   sunset_colortemp: 3400
   stop_colortemp: 1900
-  transition: 1
 
 - platform: flux
   lights:

@@ -35,9 +35,9 @@ light:
 - platform: group
   name: Man-cave Lights
   entities:
-    - light.man_cave
-    - light.man_cave_ambience
-    - light.man_cave_dimmable
+    - light.hue_color_a19_101
+    - light.ge_softwhite_103
+    - light.ge_softwhite_102
 - platform: group
   name: Interior Lights
   entities:
@@ -366,32 +366,32 @@ script:
     sequence:
     - service: light.toggle
       data:
-        entity_id: light.man_cave
+        entity_id: light.ge_softwhite_102
     - delay:
         seconds: 1
     - service: light.toggle
       data:
-        entity_id: light.man_cave
+        entity_id: light.ge_softwhite_102
     - delay:
         seconds: 1
     - service: light.toggle
       data:
-        entity_id: light.man_cave
+        entity_id: light.ge_softwhite_102
     - delay:
         seconds: 1
     - service: light.toggle
       data:
-        entity_id: light.man_cave
+        entity_id: light.ge_softwhite_102
     - delay:
         seconds: 1
     - service: light.toggle
       data:
-        entity_id: light.man_cave
+        entity_id: light.ge_softwhite_102
     - delay:
         seconds: 1
     - service: light.toggle
       data:
-        entity_id: light.man_cave
+        entity_id: light.ge_softwhite_102
 
 ##################################
 ## Lighting Scenes
@@ -434,49 +434,3 @@ script:
       entity_id: switch.ikea_outlet_3
     - service: switch.turn_off
       entity_id: group.kitchen_lights
-
-  man_cave_bright_mode:
-    alias: Man Cave Bright Mode
-    sequence:
-    - service: light.turn_on
-      data:
-       entity_id: light.man_cave
-       brightness: '255'
-       color_temp: '255'
-    - service: light.turn_on
-      data:
-        entity_id: light.man_cave_dimmable
-        brightness: '255'
-    - service: light.turn_on
-      data:
-        entity_id: light.man_cave_ambience
-        brightness: '255'
-  
-  man_cave_reading_mode:
-    alias: Man Cave Reading Mode
-    sequence:
-    - service: light.turn_off
-      data:
-       entity_id: light.man_cave
-    - service: light.turn_on
-      data:
-        entity_id: light.man_cave_dimmable
-        brightness: '255'
-    - service: light.turn_on
-      data:
-        entity_id: light.man_cave_ambience
-        brightness: '2'
-  
-  man_cave_night_mode:
-    alias: Man Cave Night Mode
-    sequence:
-    - service: light.turn_off
-      data:
-       entity_id: light.man_cave
-    - service: light.turn_off
-      data:
-        entity_id: light.man_cave_dimmable
-    - service: light.turn_on
-      data:
-        entity_id: light.man_cave_ambience
-        brightness: '100'
