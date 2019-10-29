@@ -111,7 +111,7 @@ script:
       - condition: numeric_state
         entity_id: sensor.lightlevel_21
         below: '100'
-    - service: script.turn_on_interior_lights
+    - service: script.lighting_scene_common_area_full_brightness
 
   automation_mode_transition_other_to_away:
     alias: Other Mode to Away Mode
