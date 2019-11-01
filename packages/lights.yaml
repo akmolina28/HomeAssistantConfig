@@ -434,3 +434,15 @@ script:
       entity_id: switch.ikea_outlet_3
     - service: switch.turn_off
       entity_id: group.kitchen_lights
+  
+  lighting_scene_kitchen_lights_on:
+    alias: Lighting Scene - Kitchen Lights On
+    sequence:
+    - service: switch.turn_on
+      entity_id: group.kitchen_lights
+
+  lighting_scene_kitchen_lights_off:
+    alias: Lighting Scene - Kitchen Lights Off
+    sequence:
+    - service: switch.turn_off
+      entity_id: group.kitchen_lights

@@ -2,12 +2,13 @@ alexa:
   smart_home:
     filter:
       include_entities:
-      - group.kitchen_lights
       - switch.bar_lights
       - switch.cabinet_lights
       - switch.ikea_outlet_3
       - light.living_room_lights
 
+      - script.lighting_scene_kitchen_lights_on
+      - script.lighting_scene_kitchen_lights_off
       - script.lighting_scene_common_area_full_brightness
       - script.lighting_scene_common_area_off
       - script.lighting_scene_common_area_dim
@@ -23,10 +24,6 @@ alexa:
       - script.vacuum_return_to_dock
       - script.vacuum_go_to_trash_can
     entity_config:
-      group.kitchen_lights:
-        name: Kitchen Lights
-        description: All of the lights in the kitchen
-        display_categories: SWITCH
       switch.bar_lights:
         name: Bar Lights
         description: Lighting over the bar in the kitchen
@@ -38,7 +35,7 @@ alexa:
       switch.ikea_outlet_3:
         name: Ledge Lights
         description: Ledge lighting in the great room
-        display_categories: SWITCH
+        display_categories: SMARTPLUG
       light.living_room_lights:
         name: Living Room Lights
         description: Lighting in the living room area
@@ -50,31 +47,49 @@ alexa:
       climate.thermostat:
         name: Thermostat
         description: Set the desired temperature
+        display_categories: THERMOSTAT
       script.vacuum_start_cleanup:
         name: Script - Vacuum Start Cleanup
         description: Start cleaning the house
+        display_categories: ACTIVITY_TRIGGER
       script.vacuum_pause_cleanup:
         name: Script - Vacuum Pause Cleanup in progress
         description: Pause the cleanup in progress
+        display_categories: ACTIVITY_TRIGGER
       script.vacuum_resume_cleanup:
         name: Script - Vacuum Resume Cleanup in progress
         description: Resume the cleanup in progress
+        display_categories: ACTIVITY_TRIGGER
       script.vacuum_stop_cleanup:
         name: Script - Vacuum Stop Cleanup
         description: Stop the cleanup in progress
+        display_categories: ACTIVITY_TRIGGER
       script.vacuum_return_to_dock:
         name: Script - Vacuum Return to Dock
         description: Go back to the dock
+        display_categories: ACTIVITY_TRIGGER
       script.vacuum_go_to_trash_can:
         name: Script - Vacuum Go To Trash Can
         description: Send vacuum to the trash can
+        display_categories: ACTIVITY_TRIGGER
+      script.lighting_scene_kitchen_lights_on:
+        name: Lighting Scene - Kitchen Lights On
+        description: Turn on lights in the kitchen
+        display_categories: ACTIVITY_TRIGGER
+      script.lighting_scene_kitchen_lights_off:
+        name: Lighting Scene - Kitchen Lights Off
+        description: Turn off lights in the kitchen
+        display_categories: ACTIVITY_TRIGGER
       script.lighting_scene_common_area_full_brightness:
         name: Lighting Scene - Common Area Full Brightness
         description: Light up the common area
+        display_categories: ACTIVITY_TRIGGER
       script.lighting_scene_common_area_off:
         name: Lighting Scene - Common Area Off
         description: Turn off the common area
+        display_categories: ACTIVITY_TRIGGER
       script.lighting_scene_common_area_dim:
         name: Lighint Scene - Common Area Dim
         description: Dim the lights in the common area
+        display_categories: ACTIVITY_TRIGGER
       
