@@ -48,6 +48,8 @@ device_tracker:
   port: 5000
   username: !secret router_username
   password: !secret router_password
+  new_device_defaults:
+    track_new_devices: false
 
 customizer:
   custom_ui: local
