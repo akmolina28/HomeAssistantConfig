@@ -6,7 +6,6 @@ alexa:
       - switch.cabinet_lights
       - switch.ikea_outlet_3
       - light.living_room_lights
-
       - script.lighting_scene_kitchen_lights_on
       - script.lighting_scene_kitchen_lights_off
       - script.lighting_scene_common_area_full_brightness
@@ -89,7 +88,6 @@ alexa:
         description: Turn off the common area
         display_categories: ACTIVITY_TRIGGER
       script.lighting_scene_common_area_dim:
-        name: Lighint Scene - Common Area Dim
+        name: Lighting Scene - Common Area Dim
         description: Dim the lights in the common area
         display_categories: ACTIVITY_TRIGGER
-      
