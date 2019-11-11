@@ -2,7 +2,7 @@ automation:
 - alias: GFCI Connected Switch Unavailable - Dismiss Notification
   trigger:
   - platform: state
-    entity_id: switch.ikea_outlet_1
+    entity_id: switch.xiaomi_wifi_smart_plug_101
     from: 'unavailable'
   action:
   - service: notify.html5_dismiss
@@ -13,7 +13,7 @@ automation:
 - alias: GFCI Connected Switch Unavailable - Push Notification
   trigger:
   - platform: state
-    entity_id: switch.ikea_outlet_1
+    entity_id: switch.xiaomi_wifi_smart_plug_101
     to: 'unavailable'
   action:
   - service: notify.html5_notifications

@@ -1,51 +1,8 @@
-- alias: Laundry Room Motion
-  trigger:
-  - entity_id: binary_sensor.presence_5
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - after: '04:00:00'
-    before: '22:00:00'
-    condition: time
-  action:
-  - data:
-      brightness: '255'
-      entity_id: ' light.laundry_room_lights'
-      transition: 2
-    service: light.turn_on
 
-- alias: Laundry Room Motion (Late Night)
-  trigger:
-  - entity_id: binary_sensor.presence_5
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-  - after: '22:00:00'
-    before: '04:00:00'
-    condition: time
-  action:
-  - data:
-      brightness: '63'
-      entity_id: ' light.laundry_room_light_1'
-      transition: 2
-    service: light.turn_on
 
-- alias: Laundry Room No-Motion
-  trigger:
-  - entity_id: binary_sensor.presence_5
-    for:
-      minutes: 5
-    platform: state
-    to: 'off'
-  condition: []
-  action:
-  - data:
-      brightness: '0'
-      entity_id: ' light.laundry_room_lights'
-      transition: '5'
-    service: light.turn_on
+
+
+
 
 - alias: Startup Init Theme
   trigger:

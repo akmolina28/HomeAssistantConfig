@@ -1,1 +1,98 @@
 tplink:
+
+automation:
+- alias: Man Cave Dimmer Switch On (keydown)
+  trigger:
+  - event_data:
+      event: 1000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: light.turn_on
+    entity_id:
+    - light.ge_softwhite_102
+    - light.hue_color_a19_101
+  - service: switch.turn_on
+    entity_id:
+    - switch.man_cave_fluxer
+    - switch.ikea_smart_plug_101
+
+- alias: Man Cave Dimmer Switch On (hold)
+  trigger:
+  - event_data:
+      event: 1001
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: light.turn_on
+    entity_id:
+    - light.ge_softwhite_102
+    - light.ge_softwhite_103
+    - light.hue_color_a19_101
+  - service: switch.turn_on
+    entity_id:
+    - switch.man_cave_fluxer
+    - switch.ikea_smart_plug_101
+
+- alias: Man Cave Dimmer Switch Off (keydown)
+  trigger:
+  - event_data:
+      event: 4000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: light.turn_off
+    entity_id:
+    - light.ge_softwhite_102
+    - light.ge_softwhite_103
+  - service: switch.turn_off
+    entity_id:
+    - switch.ikea_smart_plug_101
+    
+- alias: Man Cave Dimmer Switch Off (hold)
+  trigger:
+  - event_data:
+      event: 4001
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: light.turn_off
+    entity_id:
+    - light.ge_softwhite_102
+    - light.ge_softwhite_103
+    - light.hue_color_a19_101
+  - service: switch.turn_off
+    entity_id:
+    - switch.ikea_smart_plug_101
+
+- alias: Man Cave Dimmer Switch BrightUp (press)
+  trigger:
+  - event_data:
+      event: 2000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: light.toggle
+    entity_id: light.ge_softwhite_102
+
+- alias: Man Cave Dimmer Switch BrightDown (press)
+  trigger:
+  - event_data:
+      event: 3000
+      id: man_cave_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: light.toggle
+    entity_id: light.ge_softwhite_103

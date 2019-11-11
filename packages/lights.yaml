@@ -352,14 +352,6 @@ script:
     - service: switch.turn_off
       entity_id:
       - group.kitchen_lights
-
-  turn_on_entry_way_lights:
-    alias: Turn On Entry Way Lights
-    sequence:
-    - service: light.turn_on
-      data:
-        entity_id: light.laundry_room_lights
-        brightness: '255'
   
   man_cave_alert:
     alias: Man Cave Alert
