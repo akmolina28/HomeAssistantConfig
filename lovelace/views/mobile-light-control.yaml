@@ -78,14 +78,19 @@ cards:
 - type: entities
   title: Exterior Lights
   entities:
-  - entity: switch.ikea_outlet_1
+  - entity: group.back_yard_lights
     type: switch
-    name: Patio Lights
-    icon: mdi:home-variant
-  - entity: light.driveway_lights
+    name: Back Yard Lights
+    icon: mdi:tree
+  - entity: light.ge_softwhite_104
     type: "custom:slider-entity-row"
     min: 5
-    name: Driveway
+    name: Patio
+    toggle: true
+  - entity: light.ge_softwhite_101
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Side Yard
     toggle: true
     icon: mdi:garage
 - type: "custom:button-card"
