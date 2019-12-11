@@ -50,7 +50,6 @@ device_tracker:
   password: !secret router_password
   new_device_defaults:
     track_new_devices: false
-  accesspoints: true
 
 customizer:
   custom_ui: local
