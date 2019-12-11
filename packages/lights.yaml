@@ -378,6 +378,20 @@ script:
     - service: light.toggle
       data:
         entity_id: light.ge_softwhite_102
+  
+  # Used when the motion sensor is triggered
+  man_cave_auto_lights:
+    alias: Man Cave Auto Lights
+    sequence:
+    - service: light.turn_on
+      entity_id: light.hue_color_a19_101
+    - service: switch.turn_on
+      entity_id: switch.man_cave_fluxer
+    - condition: state
+      entity_id: sun.sun
+      state: above_horizon
+    - service: switch.turn_on
+      entity_id: switch.ikea_smart_plug_101
 
 ##################################
 ## Lighting Scenes

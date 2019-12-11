@@ -5,9 +5,4 @@ automation:
     entity_id: binary_sensor.man_cave_motion_sensor_hue
     to: 'on'
   action:
-  - service: light.turn_on
-    entity_id: light.hue_color_a19_101
-  - service: switch.turn_on
-    entity_id: switch.man_cave_fluxer
-  - service: switch.turn_on
-    entity_id: switch.ikea_smart_plug_101
+  - service: script.man_cave_auto_lights
