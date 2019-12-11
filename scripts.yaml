@@ -39,18 +39,3 @@ living_room_on:
       entity_id:
       - media_player.living_room_tv
       - media_player.living_room_receiver
-
-work_mode:
-  alias: Work Mode
-  sequence:
-  - service: light.turn_off
-    entity_id:
-    - light.master_bedroom_lights
-    - light.living_room_lights
-    - light.guest_room_lights
-    - light.driveway_lights
-  - service: switch.turn_off
-    entity_id:
-    - switch.power_outlet_1
-    - switch.power_outlet_2
-    - switch.ikea_outlet_1

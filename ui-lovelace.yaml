@@ -86,6 +86,14 @@ views:
             type: light
             icon: mdi:bed-empty
             name: Master Bedroom Lights
+          - entity: group.back_yard_lights
+            type: switch
+            icon: mdi:tree
+            name: Back Yard Lights
+          - entity: light.ge_softwhite_101
+            name: Side Yard Light
+          - entity: light.ge_softwhite_104
+            name: Patio Light
           state_filter:
           - "on"
           show_empty: false
@@ -161,11 +169,6 @@ views:
         - type: entities
           show_header_toggle: false
           entities:
-          - entity: light.living_room_lights
-            type: "custom:slider-entity-row"
-            toggle: true
-            name: Living Room Lights
-          - type: divider
           - entity: light.love_seat_lamp
             type: "custom:slider-entity-row"
             toggle: true
@@ -176,6 +179,7 @@ views:
             toggle: true
             name: End Table Right
             icon: mdi:lamp
+          - entity: switch.xiaomi_wifi_smart_plug_101
           - entity: switch.ikea_outlet_3
             name: Ledge Light
             icon: mdi:weather-sunset-up

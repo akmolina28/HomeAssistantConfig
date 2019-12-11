@@ -1,19 +1,30 @@
-# - alias: Tap Switch 1 - I (off)
-#   trigger:
-#   - event_data:
-#       event: 34
-#       id: tap_switch_1
-#     event_type: deconz_event
-#     platform: event
-#   condition:
-#   - condition: state
-#     entity_id: light.man_cave_lights
-#     state: 'on'
-#   action:
-#   - data:
-#       entity_id: light.man_cave_lights
-#     service: light.turn_off
-    
+- alias: Tap Switch 1 - I (Turn On Lights)
+  trigger:
+  - event_data:
+      event: 34
+      id: tap_switch_1
+    event_type: deconz_event
+    platform: event
+  action:
+  - service: script.lighting_scene_common_area_full_brightness
+
+- alias: Tap Switch 1 - I (Home Mode)
+  trigger:
+  - event_data:
+      event: 34
+      id: tap_switch_1
+    event_type: deconz_event
+    platform: event
+  condition:
+  - condition: state
+    entity_id: input_select.automation_mode
+    state: 'away'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: home
+
 # - alias: Tap Switch 1 - I (on)
 #   trigger:
 #   - event_data:
@@ -30,16 +41,20 @@
 #       entity_id: light.man_cave_lights
 #     service: light.turn_on
 
-# - alias: Tap Switch 1 - II
-#   trigger:
-#   - event_data:
-#       event: 16
-#       id: tap_switch_1
-#     event_type: deconz_event
-#     platform: event
-#   condition: []
-#   action:
-#   - service: script.man_cave_night_mode
+- alias: Tap Switch 1 - II
+  trigger:
+  - event_data:
+      event: 16
+      id: tap_switch_1
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: away
+
 
 # - alias: Tap Switch 1 - III
 #   trigger:
@@ -53,13 +68,13 @@
 #   action:
 #   - service: script.man_cave_reading_mode
 
-# - alias: Tap Switch 1 - IIII
-#   trigger:
-#   - event_data:
-#       event: 18
-#       id: tap_switch_1
-#     event_type: deconz_event
-#     platform: event
-#   condition: []
-#   action:
-#   - service: script.man_cave_bright_mode
+- alias: Tap Switch 1 - IIII
+  trigger:
+  - event_data:
+      event: 18
+      id: tap_switch_1
+    event_type: deconz_event
+    platform: event
+  condition: []
+  action:
+  - service: script.lighting_scene_common_area_full_brightness

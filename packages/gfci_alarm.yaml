@@ -1,24 +1,24 @@
-automation:
-- alias: GFCI Connected Switch Unavailable - Dismiss Notification
-  trigger:
-  - platform: state
-    entity_id: switch.xiaomi_wifi_smart_plug_101
-    from: 'unavailable'
-  action:
-  - service: notify.html5_dismiss
-    data:
-      data:
-        tag: gfci-connected-switch-unavailable
+# automation:
+# - alias: GFCI Connected Switch Unavailable - Dismiss Notification
+#   trigger:
+#   - platform: state
+#     entity_id: switch.xiaomi_wifi_smart_plug_101
+#     from: 'unavailable'
+#   action:
+#   - service: notify.html5_dismiss
+#     data:
+#       data:
+#         tag: gfci-connected-switch-unavailable
 
-- alias: GFCI Connected Switch Unavailable - Push Notification
-  trigger:
-  - platform: state
-    entity_id: switch.xiaomi_wifi_smart_plug_101
-    to: 'unavailable'
-  action:
-  - service: notify.html5_notifications
-    data_template:
-      title: GFCI Alarm
-      message: GFCI connected switch is unavailable! Check the power and/or reset the circuit.
-      data:
-        tag: gfci-connected-switch-unavailable
+# - alias: GFCI Connected Switch Unavailable - Push Notification
+#   trigger:
+#   - platform: state
+#     entity_id: switch.xiaomi_wifi_smart_plug_101
+#     to: 'unavailable'
+#   action:
+#   - service: notify.html5_notifications
+#     data_template:
+#       title: GFCI Alarm
+#       message: GFCI connected switch is unavailable! Check the power and/or reset the circuit.
+#       data:
+#         tag: gfci-connected-switch-unavailable

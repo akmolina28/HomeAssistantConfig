@@ -397,6 +397,8 @@ script:
       entity_id:
       - group.kitchen_lights
       - switch.ikea_outlet_3
+      - switch.power_outlet_2
+      - switch.xiaomi_wifi_smart_plug_101
       
   lighting_scene_common_area_off:
     alias: Lighting Scene - Common Area Off
@@ -408,6 +410,8 @@ script:
       entity_id:
       - group.kitchen_lights
       - switch.ikea_outlet_3
+      - switch.power_outlet_2
+      - switch.xiaomi_wifi_smart_plug_101
 
   lighting_scene_common_area_dim:
     alias: Lighting Scene - Common Area Dim
@@ -417,7 +421,10 @@ script:
         entity_id: light.living_room_lights
         brightness: '100'
     - service: switch.turn_on
-      entity_id: switch.ikea_outlet_3
+      entity_id: 
+      - switch.ikea_outlet_3
+      - switch.power_outlet_2
+      - switch.xiaomi_wifi_smart_plug_101
     - service: switch.turn_off
       entity_id: group.kitchen_lights
   
@@ -438,11 +445,19 @@ script:
     sequence:
     - service: light.turn_on
       data:
-        entity_id: light.exterior_lights
+        entity_id:
+        - light.ge_softwhite_101
         brightness: '255'
+    - service: switch.turn_on
+      entity_id: group.back_yard_lights
 
   turn_off_exterior_lights:
-    alias: Lighting Scene - Exterior Lights On
+    alias: Lighting Scene - Exterior Lights Off
     sequence:
     - service: light.turn_off
-      entity_id: light.exterior_lights
+      data:
+        entity_id:
+        - light.ge_softwhite_101
+        - light.ge_softwhite_104
+    - service: switch.turn_off
+      entity_id: group.back_yard_lights

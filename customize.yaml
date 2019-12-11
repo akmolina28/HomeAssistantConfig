@@ -43,3 +43,10 @@ binary_sensor.mini_pc:
 
 device_tracker.akmolina28_andrewsphone:
   entity_picture: /local/images/people/andrew2.png
+
+switch.xiaomi_wifi_smart_plug_101:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'red';
+      else return 'var(--primary-text-color)';
+    icon: mdi:candycane

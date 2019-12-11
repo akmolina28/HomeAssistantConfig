@@ -32,6 +32,11 @@ cards:
     toggle: true
     name: Lamps
     icon: mdi:sofa
+  - entity: switch.power_outlet_2
+    name: TV Backlight
+    type: switch
+    icon: mdi:television
+  - entity: switch.xiaomi_wifi_smart_plug_101
   - type: switch
     entity: switch.living_room_fluxer
     name: Flux

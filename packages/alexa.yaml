@@ -5,6 +5,7 @@ alexa:
       - switch.bar_lights
       - switch.cabinet_lights
       - switch.ikea_outlet_3
+      - switch.xiaomi_wifi_smart_plug_101
       - light.living_room_lights
       - script.lighting_scene_kitchen_lights_on
       - script.lighting_scene_kitchen_lights_off
@@ -34,6 +35,10 @@ alexa:
       switch.ikea_outlet_3:
         name: Ledge Lights
         description: Ledge lighting in the great room
+        display_categories: SMARTPLUG
+      switch.xiaomi_wifi_smart_plug_101:
+        name: Christmas Tree
+        description: Christmas tree smart plug
         display_categories: SMARTPLUG
       light.living_room_lights:
         name: Living Room Lights

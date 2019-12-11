@@ -2,12 +2,10 @@
   host: 192.168.1.27
   token: !secret xiaomi_outlet_1_token
   name: Power Outlet 1
-  scan_interval: 10
 - platform: xiaomi_miio
   host: 192.168.1.29
   token: !secret xiaomi_outlet_2_token
   name: Power Outlet 2
-  scan_interval: 10
 
 - platform: template
   switches:
