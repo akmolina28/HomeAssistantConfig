@@ -5,6 +5,11 @@
       id: master_bedroom_dimmer_switch
     event_type: deconz_event
     platform: event
+  - event_data:
+      event: 1000
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
   condition: []
   action:
   - data:
@@ -16,6 +21,11 @@
   - event_data:
       event: 4000
       id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 4000
+      id: living_room_dimmer_switch
     event_type: deconz_event
     platform: event
   condition: []
@@ -31,6 +41,11 @@
       id: master_bedroom_dimmer_switch
     event_type: deconz_event
     platform: event
+  - event_data:
+      event: 2000
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
   condition: []
   action:
   - data:
@@ -42,6 +57,11 @@
   - event_data:
       event: 2001
       id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 2001
+      id: living_room_dimmer_switch
     event_type: deconz_event
     platform: event
   condition: []
@@ -58,6 +78,11 @@
       id: master_bedroom_dimmer_switch
     event_type: deconz_event
     platform: event
+  - event_data:
+      event: 3000
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
   condition: []
   action:
   - data:
@@ -71,9 +96,14 @@
       id: master_bedroom_dimmer_switch
     event_type: deconz_event
     platform: event
+  - event_data:
+      event: 3001
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
   condition: []
   action:
   - data:
       entity_id: light.master_bedroom_lights
-      brightness: '1'
+      brightness: '4'
     service: light.turn_on

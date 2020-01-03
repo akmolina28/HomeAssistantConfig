@@ -392,6 +392,28 @@ script:
       state: above_horizon
     - service: switch.turn_on
       entity_id: switch.ikea_smart_plug_101
+  
+  turn_on_exterior_lights:
+    alias: Lighting Scene - Exterior Lights On
+    sequence:
+    - service: light.turn_on
+      data:
+        entity_id:
+        - light.ge_softwhite_101
+        brightness: '255'
+    - service: switch.turn_on
+      entity_id: group.back_yard_lights
+
+  turn_off_exterior_lights:
+    alias: Lighting Scene - Exterior Lights Off
+    sequence:
+    - service: light.turn_off
+      data:
+        entity_id:
+        - light.ge_softwhite_101
+        - light.ge_softwhite_104
+    - service: switch.turn_off
+      entity_id: group.back_yard_lights
 
 ##################################
 ## Lighting Scenes
@@ -454,24 +476,12 @@ script:
     - service: switch.turn_off
       entity_id: group.kitchen_lights
   
-  turn_on_exterior_lights:
-    alias: Lighting Scene - Exterior Lights On
+  lighting_scene_sleep_mode:
+    alias: Lighting Scene - Home Sleep Mode
     sequence:
-    - service: light.turn_on
-      data:
-        entity_id:
-        - light.ge_softwhite_101
-        brightness: '255'
-    - service: switch.turn_on
-      entity_id: group.back_yard_lights
-
-  turn_off_exterior_lights:
-    alias: Lighting Scene - Exterior Lights Off
-    sequence:
-    - service: light.turn_off
-      data:
-        entity_id:
-        - light.ge_softwhite_101
-        - light.ge_softwhite_104
+    - service: script.turn_off_interior_lights
     - service: switch.turn_off
       entity_id: group.back_yard_lights
+    - service: light.turn_on
+      entity_id: light.ge_softwhite_104
+      brightness: '50'

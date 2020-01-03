@@ -18,6 +18,7 @@ interior_light_switches:
   - switch.cabinet_lights
   - switch.power_outlet_2
   - switch.xiaomi_wifi_smart_plug_101
+  - switch.ikea_smart_plug_101
 
 all_light_switches:
   name: All Light Switchs
@@ -27,3 +28,4 @@ all_light_switches:
   - switch.cabinet_lights
   - switch.power_outlet_2
   - switch.xiaomi_wifi_smart_plug_101
+  - switch.ikea_smart_plug_101

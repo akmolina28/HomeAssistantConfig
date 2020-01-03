@@ -123,7 +123,7 @@ script:
   automation_mode_transition_other_to_sleep:
     alias: Other Mode to Sleep Mode
     sequence:
-    - service: script.turn_off_interior_lights
+    - service: script.lighting_scene_sleep_mode
     - service: script.turn_on_air_purifier
     - service: script.turn_off_media_players
 
