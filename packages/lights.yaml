@@ -49,6 +49,7 @@ light:
   name: Exterior Lights
   entities:
   - light.ge_softwhite_101
+  - light.ge_softwhite_104
 
 input_select:
   wake_up_time:
@@ -483,5 +484,6 @@ script:
     - service: switch.turn_off
       entity_id: group.back_yard_lights
     - service: light.turn_on
-      entity_id: light.ge_softwhite_104
-      brightness: '50'
+      data:
+        entity_id: light.ge_softwhite_104
+        brightness: 50

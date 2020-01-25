@@ -7,7 +7,7 @@ resources:
     type: js
   - url: /local/slider-entity-row.js
     type: module
-  - url: /local/button-card.js?v=3.0.0
+  - url: /local/button-card.js?v=3.1.1
     type: module
   - url: /local/card-mod.js?v=1.0.1
     type: module
@@ -17,90 +17,104 @@ resources:
     type: module
   - url: /local/custom.css
     type: css
-  - url: /local/mini-media-player-bundle.js?v=1.2.2
+  - url: /local/mini-media-player-bundle.js?v=1.5.2
     type: module
   - url: /local/markdown-mod.js?v=1.0.0.0
     type: module
+  - url: /local/my-custom-card.js?v=0.0.0.12
+    type: js
+  - url: /local/content-card-example.js
+    type: js
+  - url: /local/darksky/dark-sky-weather-card.js?v=0.0.0.60
+    type: js
+  - url: /local/gators-mbk-tracker.js?v=1.0.1
+    type: js
 
 views:
   - !include /config/lovelace/views/mobile-light-control.yaml
+  - !include /config/lovelace/views/main-panel/tablet-view.yaml
+  - !include /config/lovelace/views/main-panel/mobile-view.yaml 
+  
+  # - title: Dashboard
+  #   icon: mdi:view-dashboard-variant
+  #   path: dashboard
+  #   panel: false
+  #   cards:
+  #   # - type: horizontal-stack
+  #     # cards:
+  #     - type: vertical-stack
+  #       cards:
+  #       - type: horizontal-stack
+  #         cards:
+  #         - type: entities
+  #           entities:
+  #           - entity: binary_sensor.openclose_12
+  #             name: Garage
+  #           - entity: binary_sensor.google
+  #             name: Internet
+  #           - entity: sensor.temperature_20
+  #             name: Outside Temp
+  #           - entity: person.andrew
+  #           style: |
+  #             ha-card>div {
+  #               padding-top: 8px!important;
+  #               padding-bottom: 8px!important;
+  #             }
+  #         - !include /config/lovelace/tiles/simpler-thermostat-card.yaml
+  #       - !include /config/lovelace/tiles/automation-mode-card.yaml
+  #       - !include /config/lovelace/tiles/todo-card.yaml
+  #     - type: vertical-stack
+  #       cards:
 
-  - title: Dashboard
-    icon: mdi:view-dashboard-variant
-    path: dashboard
-    panel: false
-    cards:
-    # - type: horizontal-stack
-      # cards:
-      - type: vertical-stack
-        cards:
-        - type: horizontal-stack
-          cards:
-          - type: entities
-            entities:
-            - entity: binary_sensor.openclose_12
-              name: Garage
-            - entity: binary_sensor.google
-              name: Internet
-            - entity: sensor.temperature_20
-              name: Outside Temp
-            - entity: person.andrew
-            style: |
-              ha-card>div {
-                padding-top: 8px!important;
-                padding-bottom: 8px!important;
-              }
-          - !include /config/lovelace/tiles/simpler-thermostat-card.yaml
-        - !include /config/lovelace/tiles/automation-mode-card.yaml
-        - !include /config/lovelace/tiles/todo-card.yaml
-      - type: vertical-stack
-        cards:
-
-        - type: entity-filter
-          entities:
-          - entity: group.kitchen_lights
-            type: switch
-            icon: mdi:fridge
-            name: Kitchen Lights
-          - entity: light.living_room_lights
-            type: light
-            icon: mdi:sofa
-            name: Living Room Lights
-          - entity: switch.ikea_outlet_3
-            type: switch
-            icon: mdi:weather-sunset-up
-            name: Ledge Light
-          - entity: light.man_cave_lights
-            type: light
-            icon: mdi:guitar-electric
-            name: Man Cave Lights
-          - entity: light.guest_room_lights
-            type: light
-            icon: mdi:bed-empty
-            name: Guest Room Lights
-          - entity: switch.ikea_outlet_2
-            type: switch
-            icon: mdi:air-purifier
-            name: Air Purifier
-          - entity: light.master_bedroom_lights
-            type: light
-            icon: mdi:bed-empty
-            name: Master Bedroom Lights
-          - entity: group.back_yard_lights
-            type: switch
-            icon: mdi:tree
-            name: Back Yard Lights
-          - entity: light.ge_softwhite_101
-            name: Side Yard Light
-          - entity: light.ge_softwhite_104
-            name: Patio Light
-          state_filter:
-          - "on"
-          show_empty: false
-          card:
-            type: entities
-            title: Power Manager
-            show_header_toggle: false
+  #       - type: entity-filter
+  #         entities:
+  #         - entity: media_player.living_room_tv
+  #           type: switch
+  #         - entity: media_player.living_room_receiver
+  #           type: switch
+  #         - entity: group.kitchen_lights
+  #           type: switch
+  #           icon: mdi:fridge
+  #           name: Kitchen Lights
+  #         - entity: light.living_room_lights
+  #           type: light
+  #           icon: mdi:sofa
+  #           name: Living Room Lights
+  #         - entity: switch.ikea_outlet_3
+  #           type: switch
+  #           icon: mdi:weather-sunset-up
+  #           name: Ledge Light
+  #         - entity: light.man_cave_lights
+  #           type: light
+  #           icon: mdi:guitar-electric
+  #           name: Man Cave Lights
+  #         - entity: light.guest_room_lights
+  #           type: light
+  #           icon: mdi:bed-empty
+  #           name: Guest Room Lights
+  #         - entity: switch.ikea_outlet_2
+  #           type: switch
+  #           icon: mdi:air-purifier
+  #           name: Air Purifier
+  #         - entity: light.master_bedroom_lights
+  #           type: light
+  #           icon: mdi:bed-empty
+  #           name: Master Bedroom Lights
+  #         - entity: group.back_yard_lights
+  #           type: switch
+  #           icon: mdi:tree
+  #           name: Back Yard Lights
+  #         - entity: light.ge_softwhite_101
+  #           name: Side Yard Light
+  #         - entity: light.ge_softwhite_104
+  #           name: Patio Light
+  #         state_filter:
+  #         - "on"
+  #         show_empty: false
+  #         card:
+  #           type: entities
+  #           title: Power Manager
+  #           show_header_toggle: false
 
   - title: Man Cave
     path: man-cave
@@ -256,26 +270,3 @@ views:
       entities:
       - input_select.automation_mode
     - !include /config/lovelace/tiles/automation-mode-card.yaml
-  
-  - title: Dev
-    path: dev
-    cards:
-    - type: picture-entity
-      entity: camera.front_door
-      camera_image: camera.front_door
-    - type: entities
-      entities:
-      - binary_sensor.skybell_front_door_button
-      - binary_sensor.skybell_front_door_motion
-      - cover.garage_door
-    
-    
-      
-    # - type: "custom:button-card"
-    #   entity: switch.ikea_outlet_2
-    #   service: switch.toggle
-    #   icon: mdi:air-filter
-    #   name: Air Purifier
-    #   styles:
-    #     card:
-    #       - height: 75px

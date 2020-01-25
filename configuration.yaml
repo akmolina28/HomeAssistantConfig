@@ -117,3 +117,46 @@ zone:
   icon: mdi:store
 
 python_script:
+
+google_assistant:
+  project_id: hass-integration-2f620
+  service_account: !include hass-integration-a8e1386e555c.json
+  report_state: true
+  expose_by_default: false
+  entity_config:
+    script.set_automation_mode_sleep:
+      name: Trigger Sleep Mode
+      expose: true
+    light.master_bedroom_lights:
+      name: Master Bedroom Lights
+      expose: true
+    switch.bar_lights:
+      name: Bar Lights
+      expose: true
+    switch.cabinet_lights:
+      name: Cabinet Lights
+      expose: true
+    light.living_room_lights:
+      name: Living Room Lights
+      expose: true
+    switch.power_outlet_2:
+      name: TV Backlight
+      expose: true
+    light.guest_room_lights:
+      name: Guest Room Lights
+      expose: true
+    group.back_yard_lights:
+      name: Back Yard Lights
+      expose: true
+    group.man_cave_lights:
+      name: Man-cave Lights
+      expose: true
+    switch.ikea_outlet_3:
+      name: Ledge Light
+      expose: true
+    light.ge_softwhite_104:
+      name: Patio Light
+      expose: true
+    light.ge_softwhite_101:
+      name: Side Yard Light
+      expose: true

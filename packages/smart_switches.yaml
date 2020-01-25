@@ -5,6 +5,7 @@ tplink:
   - host: 192.168.1.10
   strip:
   - host: 192.168.1.3
+  - host: 192.168.1.39
 
 group:
   back_yard_lights:
@@ -12,6 +13,8 @@ group:
     entities:
     - switch.back_yard_strand_lights
     - switch.back_yard_spot_light
+    - switch.back_yard_strand_lights_2
+    - switch.back_yard_swing_lights
 
 automation:
 - alias: Man Cave Dimmer Switch On (keydown)

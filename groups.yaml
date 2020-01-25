@@ -20,8 +20,22 @@ interior_light_switches:
   - switch.xiaomi_wifi_smart_plug_101
   - switch.ikea_smart_plug_101
 
+man_cave_lights:
+  name: Man-cave Lights
+  entities:
+  - light.hue_color_a19_101
+  - light.ge_softwhite_103
+  - light.ge_softwhite_102
+  - switch.ikea_smart_plug_101
+
+living_room_lights:
+  name: Living Room Lights
+  entities:
+  - light.living_room_lights
+  - switch.power_outlet_2
+
 all_light_switches:
-  name: All Light Switchs
+  name: All Light Switches
   entities:
   - switch.ikea_outlet_3
   - switch.bar_lights
@@ -29,3 +43,22 @@ all_light_switches:
   - switch.power_outlet_2
   - switch.xiaomi_wifi_smart_plug_101
   - switch.ikea_smart_plug_101
+
+master_bedroom_lights:
+  name: Master Bedroom Lights
+  entities:
+  - light.kp_bedside
+  - light.andrew_bedside
+
+guest_room_lights:
+  name: Guest Room Lights
+  entities:
+  - light.guest_room_lamp_1
+  - light.guest_room_lamp_2
+  - light.guest_room_ambience
+
+exterior_lights:
+  name: Exterior Lights
+  entities:
+  - light.ge_softwhite_101
+  - light.ge_softwhite_104

@@ -13,6 +13,7 @@ camera:
   monitored_conditions:
   - avatar
   - activity
+  activity_name: "Last Activity"
 
 # Example configuration.yaml entry
 switch:

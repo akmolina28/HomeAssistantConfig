@@ -134,6 +134,15 @@ script:
       data:
         message: 'automation_mode_transition_other'
 
+
+  set_automation_mode_sleep:
+    alias: Set Automation Mode - Sleep
+    sequence:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.automation_mode
+        option: sleep
+      
 ###############
 # Automations #
 ###############

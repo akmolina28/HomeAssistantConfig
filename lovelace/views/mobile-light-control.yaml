@@ -36,11 +36,6 @@ cards:
     name: TV Backlight
     type: switch
     icon: mdi:television
-  - entity: switch.xiaomi_wifi_smart_plug_101
-  - type: switch
-    entity: switch.living_room_fluxer
-    name: Flux
-    icon: mdi:brightness-4
   - type: divider
   - type: switch
     entity: switch.ikea_outlet_3
@@ -70,16 +65,11 @@ cards:
   title: Man-cave
   show_header_toggle: false
   entities:
-  - entity: light.man_cave_lights
-    type: "custom:slider-entity-row"
+  - entity: group.man_cave_lights
+    type: switch
     min: 5
     name: Lights
-    toggle: true
-    icon: mdi:guitar-electric
-  - entity: switch.man_cave_fluxer
-    type: switch
-    name: Flux
-    icon: mdi:brightness-4
+
 - type: entities
   title: Exterior Lights
   entities:
@@ -98,11 +88,11 @@ cards:
     name: Side Yard
     toggle: true
     icon: mdi:garage
-- type: "custom:button-card"
-  entity: switch.all_lights_off
-  icon: mdi:power
-  color: '#FC2B36'
-  name: All Lights Off
-  styles:
-    card:
-      - height: 100px
+# - type: "custom:button-card"
+#   entity: switch.all_lights_off
+#   icon: mdi:power
+#   color: '#FC2B36'
+#   name: All Lights Off
+#   styles:
+#     card:
+#       - height: 100px

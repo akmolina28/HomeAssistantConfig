@@ -41,12 +41,43 @@ binary_sensor.mini_pc:
       else return 'var(--primary-text-color)';
     icon: mdi:desktop-tower
 
-device_tracker.akmolina28_andrewsphone:
-  entity_picture: /local/images/people/andrew2.png
-
 switch.xiaomi_wifi_smart_plug_101:
   templates:
     icon_color: >
       if (state === 'on') return 'red';
       else return 'var(--primary-text-color)';
     icon: mdi:candycane
+
+media_player.living_room_tv:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+    icon: mdi:television
+
+media_player.living_room_receiver:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+    icon: mdi:set-top-box
+
+cover.garage_door:
+  templates:
+    icon_color: >
+      if (state === 'open') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+group.back_yard_lights:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+    icon: mdi:tree
+
+switch.ikea_outlet_2:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+    icon: mdi:air-purifier
