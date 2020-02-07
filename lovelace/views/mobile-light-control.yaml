@@ -32,7 +32,7 @@ cards:
     toggle: true
     name: Lamps
     icon: mdi:sofa
-  - entity: switch.power_outlet_2
+  - entity: light.flex_strip_105
     name: TV Backlight
     type: switch
     icon: mdi:television
@@ -51,6 +51,15 @@ cards:
   - entity: switch.bar_lights
     name: Bar Lights
     icon: mdi:light-switch
+  - entity: switch.kitchen_overhead_lights
+    name: Overhead Light
+    icon: mdi:ceiling-light
+  - entity: light.kitchen_table_lights
+    type: "custom:slider-entity-row"
+    name: Kitchen Table
+    icon: mdi:silverware-fork-knife
+    min: 3
+    toggle: true
 - type: entities
   title: Guest Bedroom
   show_header_toggle: false
@@ -61,6 +70,16 @@ cards:
     name: Lights
     icon: mdi:bed-empty
     toggle: true
+  - type: divider
+  - entity: light.guest_room_lamp_2
+    icon: mdi:lamp
+    name: Nightstand
+  - entity: light.guest_room_lamp_1
+    icon: mdi:floor-lamp
+    name: Lamp
+  - entity: light.flex_strip_103
+    icon: mdi:track-light
+    name: Ambience
 - type: entities
   title: Man-cave
   show_header_toggle: false

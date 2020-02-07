@@ -9,6 +9,8 @@ kitchen_lights:
   entities:
     - switch.bar_lights
     - switch.cabinet_lights
+    - switch.kitchen_overhead_lights
+    - light.kitchen_table_lights
 
 interior_light_switches:
   name: Interior Light Switches
@@ -16,23 +18,26 @@ interior_light_switches:
   - switch.ikea_outlet_3
   - switch.bar_lights
   - switch.cabinet_lights
-  - switch.power_outlet_2
+  - light.flex_strip_105
   - switch.xiaomi_wifi_smart_plug_101
   - switch.ikea_smart_plug_101
+  - switch.kitchen_overhead_lights
+  - light.kitchen_table_lights
 
 man_cave_lights:
   name: Man-cave Lights
   entities:
+  - light.flex_strip_101
+  - light.flex_strip_102
+  - light.flex_strip_106
   - light.hue_color_a19_101
-  - light.ge_softwhite_103
-  - light.ge_softwhite_102
   - switch.ikea_smart_plug_101
 
 living_room_lights:
   name: Living Room Lights
   entities:
   - light.living_room_lights
-  - switch.power_outlet_2
+  - light.flex_strip_105
 
 all_light_switches:
   name: All Light Switches
@@ -40,7 +45,7 @@ all_light_switches:
   - switch.ikea_outlet_3
   - switch.bar_lights
   - switch.cabinet_lights
-  - switch.power_outlet_2
+  - light.flex_strip_105
   - switch.xiaomi_wifi_smart_plug_101
   - switch.ikea_smart_plug_101
 
@@ -55,7 +60,7 @@ guest_room_lights:
   entities:
   - light.guest_room_lamp_1
   - light.guest_room_lamp_2
-  - light.guest_room_ambience
+  - light.flex_strip_103
 
 exterior_lights:
   name: Exterior Lights

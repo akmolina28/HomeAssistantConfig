@@ -123,6 +123,7 @@ google_assistant:
   service_account: !include hass-integration-a8e1386e555c.json
   report_state: true
   expose_by_default: false
+  secure_devices_pin: !secret secure_devices_pin
   entity_config:
     script.set_automation_mode_sleep:
       name: Trigger Sleep Mode
@@ -139,7 +140,7 @@ google_assistant:
     light.living_room_lights:
       name: Living Room Lights
       expose: true
-    switch.power_outlet_2:
+    light.flex_strip_105:
       name: TV Backlight
       expose: true
     light.guest_room_lights:
@@ -159,4 +160,13 @@ google_assistant:
       expose: true
     light.ge_softwhite_101:
       name: Side Yard Light
+      expose: true
+    cover.garage_door:
+      name: Garage Door
+      expose: true
+    light.kitchen_table_lights:
+      name: Kitchen Table Lights
+      expose: true
+    switch.kitchen_overhead_lights:
+      name: Kitchen Overhead Lights
       expose: true

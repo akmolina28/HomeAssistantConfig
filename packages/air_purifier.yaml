@@ -71,19 +71,3 @@ automation:
   - data:
       entity_id: switch.ikea_outlet_2
     service: switch.turn_off
-
-- alias: Air Purifier - Auto Off Trigger
-  trigger:
-  - entity_id: media_player.living_room_receiver
-    from: 'off'
-    platform: state
-    to: 'on'
-  - entity_id: media_player.living_room_tv
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition: []
-  action:
-  - data:
-      entity_id: switch.ikea_outlet_2
-    service: switch.turn_off

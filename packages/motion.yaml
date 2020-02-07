@@ -1,8 +1,44 @@
 automation:
-- alias: Man Cave Motion - Turn on Lights
+- alias: Turn On Man Cave Lights When Motion Detected
   trigger:
     platform: state
-    entity_id: binary_sensor.man_cave_motion_sensor_hue
+    entity_id: binary_sensor.hue_101_motion
     to: 'on'
   action:
-  - service: script.man_cave_auto_lights
+  - service: homeassistant.turn_on
+    entity_id: group.man_cave_lights
+  - service: automation.turn_off
+    entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+
+- alias: Turn Off Man Cave Lights and Turn On Automation When No Motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.hue_101_motion
+    to: 'off'
+    for:
+      minutes: 30
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.man_cave_lights
+  - service: automation.turn_on
+    entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+
+- alias: Turn On Laundry Room Lights When Motion Detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smartthings_100_motion
+    to: 'on'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.laundry_room_light
+
+- alias: Turn On Laundry Room Lights When Motion Detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.smartthings_100_motion
+    to: 'off'
+    for:
+      seconds: 30
+  action:
+  - service: switch.turn_off
+    entity_id: switch.laundry_room_light

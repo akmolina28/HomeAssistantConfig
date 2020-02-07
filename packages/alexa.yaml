@@ -4,6 +4,8 @@ alexa:
       include_entities:
       - switch.bar_lights
       - switch.cabinet_lights
+      - switch.kitchen_overhead_lights
+      - light.kitchen_table_lights
       - switch.ikea_outlet_3
       - switch.xiaomi_wifi_smart_plug_101
       - light.living_room_lights
@@ -12,6 +14,7 @@ alexa:
       - script.lighting_scene_common_area_full_brightness
       - script.lighting_scene_common_area_off
       - script.lighting_scene_common_area_dim
+      - script.lighting_scene_kitchen_lights_dim
 
       - cover.garage_door
 
@@ -32,6 +35,14 @@ alexa:
         name: Cabinet Lights
         description: Lighting attached to the kitchen cabinets
         display_categories: SWITCH
+      switch.kitchen_overhead_lights:
+        name: Kitchen Overhead Lights
+        description: Overhead light fixture in the kitchen
+        display_categories: SWITCH
+      light.kitchen_table_lights:
+        name: Kitchen Table Lights
+        description: Kitchen table light fixture
+        display_categories: LIGHT
       switch.ikea_outlet_3:
         name: Ledge Lights
         description: Ledge lighting in the great room
@@ -95,4 +106,8 @@ alexa:
       script.lighting_scene_common_area_dim:
         name: Lighting Scene - Common Area Dim
         description: Dim the lights in the common area
+        display_categories: ACTIVITY_TRIGGER
+      script.lighting_scene_kitchen_lights_dim:
+        name: Lighting Scene - Kitchen Lights Dim
+        description: Dim the lights in the kitchen
         display_categories: ACTIVITY_TRIGGER

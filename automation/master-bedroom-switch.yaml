@@ -69,6 +69,7 @@
   - data:
       entity_id: light.master_bedroom_lights
       brightness: '255'
+      kelvin: 3000
     service: light.turn_on
 
 - alias: Deconz Event 3000 - Master Bedroom Brightness Decrease
@@ -106,4 +107,5 @@
   - data:
       entity_id: light.master_bedroom_lights
       brightness: '4'
+      kelvin: 1900
     service: light.turn_on

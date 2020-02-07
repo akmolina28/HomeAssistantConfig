@@ -25,13 +25,14 @@ resources:
     type: js
   - url: /local/content-card-example.js
     type: js
-  - url: /local/darksky/dark-sky-weather-card.js?v=0.0.0.60
+  - url: /local/simple-dark-sky-card.js?v=1.0.0
     type: js
-  - url: /local/gators-mbk-tracker.js?v=1.0.1
+  - url: /local/gators-mbk-tracker.js?v=1.0.2
     type: js
 
 views:
   - !include /config/lovelace/views/mobile-light-control.yaml
+  - !include /config/lovelace/views/lighting-scenes/lighting-scenes.yaml
   - !include /config/lovelace/views/main-panel/tablet-view.yaml
   - !include /config/lovelace/views/main-panel/mobile-view.yaml 
   
@@ -142,8 +143,9 @@ views:
           icon: mdi:lamp
         - type: divider
         - type: entity
-          entity: light.hue_color_a19_101
+          entity: light.flex_strip_101
           name: Ambience
+          icon: mdi:led-strip
         - type: switch
           entity: switch.man_cave_fluxer
           name: Flux

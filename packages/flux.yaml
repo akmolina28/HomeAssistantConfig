@@ -1,11 +1,13 @@
 switch:
 - platform: flux
   lights:
-  - light.hue_color_a19_101
+  - light.flex_strip_101
   name: Man Cave Fluxer
   start_colortemp: 6500
   sunset_colortemp: 3400
   stop_colortemp: 1900
+  disable_brightness_adjust: true
+  mode: rgb
 
 - platform: flux
   lights:
