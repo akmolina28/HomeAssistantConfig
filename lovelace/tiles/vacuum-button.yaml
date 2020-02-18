@@ -1,0 +1,136 @@
+type: conditional
+conditions:
+- entity: input_boolean.isuck_dust_bin_full
+  state: 'off'
+card:
+  type: "custom:button-card"
+  name: >
+    [[[
+      return states["vacuum.isuck"].attributes.status;
+    ]]]
+  show_name: true
+  entity: vacuum.isuck
+  icon: mdi:robot-vacuum
+  color_type: card
+  show_state: false
+  show_label: true
+  tap_action:
+    action: more-info
+  state:
+  # Cleaning
+  - value: >
+      [[[
+        var status = states["vacuum.isuck"].attributes.status;
+        if (status == "Cleaning") {
+          return true;
+        }
+        else {
+          return false;
+        }
+      ]]]
+    operator: template
+    color: var(--primary-color)
+    label: >
+      [[[
+        var cleanedArea = states["vacuum.isuck"].attributes.cleaned_area;
+        var cleaningTime = states["vacuum.isuck"].attributes.cleaning_time;
+        return cleanedArea + "m²/" + cleaningTime + "min";
+      ]]]
+  # Error
+  - value: >
+      [[[
+        if (entity.state == "error") {
+          return true;
+        }
+        else {
+          return false;
+        }
+      ]]]
+    operator: template
+    color: var(--status-color-alert)
+    label:  >
+      [[[
+        return states["vacuum.isuck"].attributes.error;
+      ]]]
+  # Docked - Cleaning Due
+  - value: >
+      [[[
+        var cleaningDueState = states["sensor.vacuum_cleaning_due"].state;
+        if (entity.state == "docked" && cleaningDueState == "due") {
+          return true;
+        }
+        else {
+          return false;
+        }
+      ]]]
+    operator: template
+    name: Vacuum
+    color: var(--status-color-warning)
+    label: Cleaning Due!
+  # Docked - Cleaning Overdue
+  - value: >
+      [[[
+        var cleaningDueState = states["sensor.vacuum_cleaning_due"].state;
+        if (entity.state == "docked" && cleaningDueState == "overdue") {
+          return true;
+        }
+        else {
+          return false;
+        }
+      ]]]
+    operator: template
+    name: Vacuum
+    color: var(--status-color-warning)
+    label: Cleaning Overdue!
+  # Docked - Cleaning Not Due - charging
+  - value: >
+      [[[
+        var cleaningDueState = states["sensor.vacuum_cleaning_due"].state;
+        var batteryLevel = states["vacuum.isuck"].attributes.battery_level;
+        if (entity.state == "docked" && cleaningDueState == "not_due" && batteryLevel != "100") {
+          return true;
+        }
+        else {
+          return false;
+        }
+      ]]]
+    operator: template
+    color: var(--paper-card-background-color)
+    label: >
+      [[[
+        var batteryLevel = states["vacuum.isuck"].attributes.battery_level;
+        return batteryLevel + "% charged"
+      ]]]
+  # Docked - Cleaning Not Due - charged
+  - value: >
+      [[[
+        var cleaningDueState = states["sensor.vacuum_cleaning_due"].state;
+        var batteryLevel = states["vacuum.isuck"].attributes.battery_level;
+        if (entity.state == "docked" &&cleaningDueState == "not_due" && batteryLevel == "100") {
+          return true;
+        }
+        else {
+          return false;
+        }
+      ]]]
+    operator: template
+    name: Vacuum
+    color: var(--paper-card-background-color)
+    label: >
+      [[[
+        var lastClean = states["input_datetime.isuck_last_clean_time"].state;
+        var date = lastClean.substring(5, 10);
+        return "Last cleaned " + date;
+      ]]]
+  # Anything else (fallthrough case)
+  - value: >
+      [[[
+        return true;
+      ]]]
+    operator: template
+    color: var(--primary-color)
+    label: >
+      [[[
+        return states["vacuum.isuck"].attributes.status;
+      ]]]
+    name: Vacuum

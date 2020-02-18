@@ -5,6 +5,16 @@ system_log:
 lovelace:
   mode: yaml
 
+mobile_app:
+
+zwave:
+  usb_path: /dev/ttyACM1
+  network_key: !secret zwave_network_key
+
+discovery:
+  ignore:
+  - homekit
+
 homeassistant:
   latitude: !secret home_latitude
   longitude: !secret home_longitude
@@ -151,9 +161,6 @@ google_assistant:
       expose: true
     group.man_cave_lights:
       name: Man-cave Lights
-      expose: true
-    switch.ikea_outlet_3:
-      name: Ledge Light
       expose: true
     light.ge_softwhite_104:
       name: Patio Light

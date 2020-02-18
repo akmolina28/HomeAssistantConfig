@@ -6,7 +6,6 @@ alexa:
       - switch.cabinet_lights
       - switch.kitchen_overhead_lights
       - light.kitchen_table_lights
-      - switch.ikea_outlet_3
       - switch.xiaomi_wifi_smart_plug_101
       - light.living_room_lights
       - script.lighting_scene_kitchen_lights_on
@@ -15,6 +14,7 @@ alexa:
       - script.lighting_scene_common_area_off
       - script.lighting_scene_common_area_dim
       - script.lighting_scene_kitchen_lights_dim
+      - switch.ikea_outlet_2
 
       - cover.garage_door
 
@@ -26,6 +26,9 @@ alexa:
       - script.vacuum_stop_cleanup
       - script.vacuum_return_to_dock
       - script.vacuum_go_to_trash_can
+
+      - lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+      - lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
     entity_config:
       switch.bar_lights:
         name: Bar Lights
@@ -43,10 +46,6 @@ alexa:
         name: Kitchen Table Lights
         description: Kitchen table light fixture
         display_categories: LIGHT
-      switch.ikea_outlet_3:
-        name: Ledge Lights
-        description: Ledge lighting in the great room
-        display_categories: SMARTPLUG
       switch.xiaomi_wifi_smart_plug_101:
         name: Christmas Tree
         description: Christmas tree smart plug
@@ -111,3 +110,15 @@ alexa:
         name: Lighting Scene - Kitchen Lights Dim
         description: Dim the lights in the kitchen
         display_categories: ACTIVITY_TRIGGER
+      switch.ikea_outlet_2:
+        name: Air Purifier
+        description: Air purifier
+        display_categories: SMARTPLUG
+      lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked:
+        name: Front Door Lock
+        description: Front door deadbolt lock
+        display_categories: SMARTLOCK
+      lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked:
+        name: Garage Entrace Lock
+        description: Garage entrance door deadbolt lock
+        display_categories: SMARTLOCK

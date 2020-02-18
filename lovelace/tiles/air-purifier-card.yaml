@@ -1,0 +1,19 @@
+type: "custom:button-card"
+entity: switch.ikea_outlet_2
+color_type: card
+name: Purifier
+show_label: true
+state:
+- value: 'off'
+  color: 'var(--paper-card-background-color)'
+- value: 'on'
+  color: 'var(--primary-color)'
+tap_action:
+  action: toggle
+hold_action:
+  action: more-info
+label: >
+  [[[
+    var hours = states["sensor.air_purifier_history_24"].state;
+    return "Ran for " + hours + "hrs"
+  ]]]

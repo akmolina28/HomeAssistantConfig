@@ -4,9 +4,12 @@ automation:
     platform: state
     entity_id: binary_sensor.hue_101_motion
     to: 'on'
+  condition:
+  - condition: template
+    value_template: >
+      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
   action:
-  - service: homeassistant.turn_on
-    entity_id: group.man_cave_lights
+  - service: script.man_cave_auto_scene
   - service: automation.turn_off
     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
   - service: rest_command.fire_tablet_701_brightness
@@ -29,16 +32,47 @@ automation:
     data:
       brightness: 0
 
+- alias: Turn Off Kitchen Lights And Tablet Screen When No Motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.hue_100_motion
+    to: 'off'
+    for:
+      minutes: 30
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.kitchen_lights
+  - service: light.turn_off
+    entity_id: light.yoga_tablet_801_backlight
+
+- alias: Turn On Kitchen Tablet Screen When Motion Detected
+  trigger:
+    platform: state
+    entity_id: binary_sensor.hue_100_motion
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: >
+      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
+  action:
+  - service: light.turn_on
+    entity_id: light.yoga_tablet_801_backlight
+
+
 - alias: Turn On Laundry Room Lights When Motion Detected
   trigger:
     platform: state
     entity_id: binary_sensor.smartthings_100_motion
     to: 'on'
+  condition:
+  - condition: template
+    value_template: >
+      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
   action:
   - service: switch.turn_on
     entity_id: switch.laundry_room_light
 
-- alias: Turn On Laundry Room Lights When Motion Detected
+- alias: Turn Off Laundry Room Lights When No Motion
   trigger:
     platform: state
     entity_id: binary_sensor.smartthings_100_motion

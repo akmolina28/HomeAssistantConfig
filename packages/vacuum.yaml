@@ -89,7 +89,7 @@ automation:
         - action: complete_isuck_brush_dirty
           title: Mark Complete
         tag: isuck-brush-dirty
-    service: notify.html5_notifications
+    service: notify.mobile_app_sm_g973u
 
 - alias: iSuck Brush Boolean Notification Complete Event - Turn Off Boolean
   trigger:
@@ -116,9 +116,9 @@ automation:
         url: /lovelace/vacuum
         actions:
         - action: complete_isuck_dust_bin
-          title: Mark Complete
+          title: Empty Dust Bin
         tag: isuck-dust-bin-full
-    service: notify.html5_notifications
+    service: notify.mobile_app_sm_g973u
 
 - alias: iSuck Dust Bin Boolean Notification Complete Event - Turn Off Boolean
   trigger:
@@ -127,21 +127,7 @@ automation:
     event_type: html5_notification.clicked
     platform: event
   action:
-  - data:
-      entity_id: input_boolean.isuck_dust_bin_full
-    service: input_boolean.turn_off
-
-- alias: iSuck Brush Boolean Turns Off - Dismiss Notification
-  trigger:
-  - platform: state
-    entity_id: input_boolean.isuck_brush_dirty
-    from: 'on'
-    to: 'off'
-  action:
-  - service: notify.html5_dismiss
-    data:
-      data:
-        tag: isuck-brush-dirty
+  - service: script.vacuum_go_to_trash_can
 
 - alias: iSuck Dust Bin Boolean Turns Off - Dismiss Notification
   trigger:

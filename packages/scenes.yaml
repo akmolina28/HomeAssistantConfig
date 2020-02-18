@@ -1,0 +1,490 @@
+scene:
+- name: House Scene - Sleep
+  entities:
+    light.interior_lights:
+      state: off
+      transition: 5
+    group.interior_light_switches: off
+    group.back_yard_lights: off
+    light.ge_softwhite_101:
+      state: on
+      brightness: 50
+    light.ge_softwhite_104:
+      state: on
+      brightness: 50
+
+- name: Great Room Scene - Dinner Time
+  entities:
+    light.ledge_strips:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 5
+    switch.bar_lights: on
+    switch.cabinet_lights: on
+    light.flex_strip_105: off
+    light.couch_lamp: off
+    light.love_seat_lamp: off
+    light.kitchen_overhead_lights: off
+    light.kitchen_table_lights:
+      state: on
+      brightness: 120
+      transition: 5
+- name: Great Room Scene - Wake up
+  entities:
+    light.ledge_strips:
+      state: on
+      kelvin: 2700
+      brightness: 255
+      transition: 5
+    switch.bar_lights: off
+    switch.cabinet_lights: on
+    light.flex_strip_105: off
+    light.couch_lamp: off
+    light.love_seat_lamp: off
+    light.kitchen_overhead_lights: off
+    light.kitchen_table_lights: off
+
+- name: Great Room Scene - Wind Down
+  entities:
+    light.living_room_strips:
+      state: on
+      kelvin: 2000
+      brightness: 255
+      transition: 5
+    light.couch_lamp:
+      state: off
+      transition: 5
+    light.love_seat_lamp:
+      state: off
+      transition: 5
+    group.kitchen_lights: off
+- name: Great Room Scene - Bright
+  entities:
+    light.living_room_strips:
+      state: on
+      kelvin: 5000
+      brightness: 255
+      transition: 5
+    light.couch_lamp:
+      state: on
+      brightness: 255
+      transition: 5
+    light.love_seat_lamp:
+      state: on
+      brightness: 255
+      transition: 5
+    switch.bar_lights: on
+    switch.cabinet_lights: on
+    light.kitchen_table_lights:
+      state: on
+      brightness: 125
+      transition: 5
+- name: Great Room Scene - Warm White
+  entities:
+    light.living_room_strips:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 5
+    light.couch_lamp:
+      state: on
+      brightness: 127
+      transition: 5
+    light.love_seat_lamp:
+      state: on
+      brightness: 127
+      transition: 5
+- name: Great Room Scene - Night Light
+  entities:
+    light.flex_strip_105:
+      state: off
+      transition: 5
+    light.ledge_strips:
+      state: on
+      brightness: 120
+      hs_color: 
+      - 15.178
+      - 99.216
+      transition: 5
+    light.couch_lamp:
+      state: off
+      transition: 5
+    light.love_seat_lamp:
+      state: off
+      transition: 5
+    group.kitchen_lights: off
+
+- name: Great Room Scene - Sweet Tart
+  entities:
+    light.flex_strip_107:
+      state: on
+      hs_color: 
+      - 195.178
+      - 100
+      brightness: 255
+      transition: 5
+    light.flex_strip_108:
+      state: on
+      hs_color: 
+      - 195.178
+      - 100
+      brightness: 255
+      transition: 5
+    light.flex_strip_105:
+      state: on
+      hs_color:
+      - 314.824
+      - 100
+      brightness: 255
+      transition: 5
+    light.flex_strip_104:
+      state: on
+      hs_color:
+      - 314.824
+      - 100
+      brightness: 255
+      transition: 5
+
+- name: Man Cave Scene - Wake Up
+  entities:
+    light.flex_strip_101:
+      state: on
+      kelvin: 2000
+      brightness: 255
+      transition: 0
+    light.flex_strip_102:
+      state: on
+      kelvin: 2000
+      brightness: 255
+      transition: 0
+    light.flex_strip_106:
+      state: off
+      transition: 0
+    light.hue_color_a19_101:
+      state: off
+      transition: 0
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 75
+      transition: 5
+
+- name: Man Cave Scene - Warm White
+  entities:
+    light.flex_strip_101:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 0
+    light.flex_strip_102:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 0
+    light.flex_strip_106:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 0
+    light.hue_color_a19_101:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 0
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 150
+      transition: 5
+
+- name: Man Cave Scene - Focus
+  entities:
+    light.flex_strip_101:
+      state: on
+      kelvin: 6500
+      brightness: 255
+      transition: 0
+    light.flex_strip_102:
+      state: on
+      kelvin: 6500
+      brightness: 255
+      transition: 0
+    light.flex_strip_106:
+      state: on
+      kelvin: 6500
+      brightness: 255
+      transition: 0
+    light.hue_color_a19_101:
+      state: on
+      kelvin: 6500
+      brightness: 255
+      transition: 0
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 255
+      transition: 5
+
+- name: Man Cave Scene - Reading Mode
+  entities:
+    light.flex_strip_101:
+      state: on
+      kelvin: 2000
+      brightness: 100
+      transition: 0
+    light.flex_strip_102: 
+      state: off
+      transition: 0
+    light.flex_strip_106:
+      state: off
+      transition: 0
+    light.hue_color_a19_101:
+      transition: 0
+      state: on
+      kelvin: 2000
+      brightness: 255
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 75
+      transition: 5
+
+- name: Man Cave Scene - Sweet Tart
+  entities:
+    light.flex_strip_101:
+      state: on
+      hs_color: 
+      - 314.824
+      - 100
+      brightness: 255
+      transition: 0
+    light.hue_color_a19_101:
+      state: on
+      hs_color: 
+      - 314.824
+      - 100
+      brightness: 255
+      transition: 0
+    light.flex_strip_102:
+      state: on
+      hs_color: 
+      - 195.178
+      - 100
+      brightness: 255
+      transition: 0
+    light.flex_strip_106:
+      state: on
+      hs_color: 
+      - 195.178
+      - 100
+      brightness: 255
+      transition: 0
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 150
+      transition: 5
+
+- name: Man Cave Scene - Wind Down
+  entities:
+    light.flex_strip_101:
+      state: on
+      kelvin: 2000
+      brightness: 100
+      transition: 5
+    light.flex_strip_106:
+      state: on
+      kelvin: 2000
+      brightness: 255
+      transition: 0
+    light.flex_strip_102:
+      state: off
+      transition: 5
+    light.hue_color_a19_101:
+      state: off
+      transition: 5
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 75
+      transition: 5
+
+- name: Man Cave Scene - Off
+  entities:
+    light.man_cave_lights:
+      state: off
+      transition: 5
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 1
+      transition: 5
+
+automation:
+- alias: Man Cave Lights Disco Transition
+  initial_state: 'off'
+  trigger:
+    platform: time_pattern
+    seconds: '/5'
+  action:
+  - service: light.turn_on
+    data:
+      entity_id: light.fire_tablet_701_backlight
+      brightness: 150
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_101
+      brightness: 255
+      transition: 5
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_102
+      brightness: 255
+      transition: 5
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.hue_color_a19_101
+      brightness: 255
+      transition: 5
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_106
+      brightness: 255
+      transition: 5
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+
+- alias: Man Cave Lights Shuffle Transition
+  initial_state: 'off'
+  trigger:
+    platform: time_pattern
+    seconds: '/30'
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_101
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_102
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_106
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.hue_color_a19_101
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+
+- alias: Turn Off Man Cave Shuffle When Scene Activated
+  trigger:
+  - platform: event
+    event_type: call_service
+    event_data:
+      domain: scene
+      service: turn_on
+  condition:
+  - condition: template
+    value_template: >
+      {{ trigger.event.data.service_data.entity_id[:20] == "scene.man_cave_scene" }}
+  action:
+  - service: automation.turn_off
+    entity_id:
+    - automation.man_cave_lights_shuffle_transition
+    - automation.man_cave_lights_disco_transition
+
+- alias: Living Room Strips Shuffle Transition
+  initial_state: 'off'
+  trigger:
+    platform: time_pattern
+    seconds: '/30'
+  action:
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_104
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_107
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_108
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+  - service: light.turn_on
+    data_template:
+      entity_id: light.flex_strip_105
+      brightness: 255
+      transition: 30
+      hs_color:
+        - "{{ range(360)|random }}"
+        - "{{ range(80,101)|random }}"
+
+- alias: Turn Off Living Room Shuffle When Scene Activated
+  trigger:
+  - platform: event
+    event_type: call_service
+    event_data:
+      domain: scene
+      service: turn_on
+  condition:
+  - condition: template
+    value_template: >
+      {{ trigger.event.data.service_data.entity_id[:23] == "scene.great_room_scene_" }}
+  action:
+  - service: automation.turn_off
+    entity_id:
+    - automation.living_room_strips_shuffle_transition
+
+script:
+  man_cave_auto_scene:
+    alias: Man Cave Auto Scene
+    sequence:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {% set hr = now().hour %}
+          {% if hr >= 4 and hr < 8 %}
+            scene.man_cave_scene_wake_up
+          {% elif hr >= 8 and hr < 11 %}
+            scene.man_cave_scene_warm_white
+          {% elif hr >= 11 and hr < 16 %}
+            scene.man_cave_scene_focus
+          {% elif hr >= 16 and hr < 22 %}
+            scene.man_cave_scene_sweet_tart
+          {% elif hr >= 22 or hr < 4 %}
+            scene.man_cave_scene_wind_down
+          {% endif %}

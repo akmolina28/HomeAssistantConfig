@@ -93,7 +93,8 @@ script:
     - condition: time
       after: '04:00:00'
       before: '08:00:00'
-    - service: script.lighting_scene_wake_up
+    - service: scene.turn_on
+      entity_id: scene.great_room_scene_wake_up
 
   automation_mode_transition_away_to_home:
     alias: Away Mode to Home Mode

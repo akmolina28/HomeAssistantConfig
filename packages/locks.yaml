@@ -1,0 +1,27 @@
+script:
+  set_front_door_privacy_mode:
+    sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 7
+        parameter: 8
+        value: Privacy
+  set_garage_entrance_privacy_mode:
+    sequence:
+    - service: zwave.set_config_parameter
+      data:
+        node_id: 8
+        parameter: 8
+        value: Privacy
+  
+  doors_full_lockdown:
+    alias: Lock doors and disable keypad until door is manually unlocked
+    sequence:
+    - service: lock.lock
+      entity_id: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+    - service: lock.lock
+      entity_id: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+    - delay:
+        seconds: 10
+    - service: script.set_front_door_privacy_mode
+    - service: script.set_garage_entrance_privacy_mode

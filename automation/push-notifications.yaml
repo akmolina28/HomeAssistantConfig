@@ -2,10 +2,10 @@
   trigger:
   - entity_id: person.andrew
     platform: state
-    to: Publix (9th Ave)
+    to: !secret grocery_store_1_name
   - entity_id: person.andrew
     platform: state
-    to: Sam's Club
+    to: !secret wholesale_store_1_name
   condition: []
   action:
   - data_template:

@@ -43,6 +43,7 @@ light:
   name: Interior Lights
   entities:
   - light.living_room_lights
+  - light.living_room_strips
   - light.guest_room_lights
   - light.master_bedroom_lights
   - light.man_cave_lights
@@ -57,6 +58,49 @@ light:
   - light.flex_strip_101
   - light.flex_strip_102
   - light.flex_strip_106
+- platform: template
+  lights:
+    yoga_tablet_801_backlight:
+      friendly_name: Kitchen Tablet Backlight
+      value_template: '{{ states.sensor.yoga_tablet_801_kiosk_device_info.attributes["isScreenOn"] }}'
+      level_template: '{{ states.sensor.yoga_tablet_801_kiosk_device_info.attributes["screenBrightness"] }}'
+      turn_on:
+        service: rest_command.lenovo_tablet_801_kiosk_command
+        data:
+          cmd: screenOn
+      turn_off:
+        service: rest_command.lenovo_tablet_801_kiosk_command
+        data:
+          cmd: screenOff
+      set_level:
+        service: rest_command.lenovo_tablet_801_kiosk_command
+        data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'
+- platform: template
+  lights:
+    fire_tablet_701_backlight:
+      friendly_name: Man-cave Tablet Backlight
+      value_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["isScreenOn"] }}'
+      level_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["screenBrightness"] }}'
+      turn_on:
+        service: rest_command.fire_tablet_701_kiosk_command
+        data:
+          cmd: screenOn
+      turn_off:
+        service: rest_command.fire_tablet_701_kiosk_command
+        data:
+          cmd: screenOff
+      set_level:
+        service: rest_command.fire_tablet_701_kiosk_command
+        data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'
+
+
+
 
 automation:
 - alias: Sunrise - Exterior Lights Off
@@ -76,22 +120,6 @@ automation:
   condition: []
   action:
   - service: script.turn_on_exterior_lights
-
-- alias: Turn Ledge Light On When Dark Outside
-  trigger:
-  - below: '100'
-    entity_id: sensor.hue_100_lux
-    for:
-      minutes: 5
-    platform: numeric_state
-  condition:
-  - condition: template
-    value_template: >
-      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
-  action:
-  - data:
-      entity_id: switch.ikea_outlet_3
-    service: switch.turn_on
 
 # When kaitlyn leaves for work on weekday mornings, turn lights off
 - alias: Kaitlyn Leaves For Work - Turn Lights Off
@@ -288,7 +316,6 @@ script:
       - switch.cabinet_lights
       - switch.bar_lights
       - switch.kitchen_overhead_lights
-      - switch.ikea_outlet_3
       - light.flex_strip_105
       - switch.xiaomi_wifi_smart_plug_101
       
@@ -301,7 +328,6 @@ script:
       - group.living_room_lights
     - service: switch.turn_off
       entity_id:
-      - switch.ikea_outlet_3
       - light.flex_strip_105
       - switch.xiaomi_wifi_smart_plug_101
 
@@ -314,7 +340,6 @@ script:
         brightness: '100'
     - service: switch.turn_on
       entity_id: 
-      - switch.ikea_outlet_3
       - light.flex_strip_105
       - switch.xiaomi_wifi_smart_plug_101
     - service: homeassistant.turn_off
@@ -324,12 +349,14 @@ script:
   lighting_scene_kitchen_lights_on:
     alias: Lighting Scene - Kitchen Lights On
     sequence:
-    - service: homeassistant.turn_on
-      entity_id: group.kitchen_lights
+    - service: switch.turn_on
+      entity_id:
+      - switch.cabinet_lights
+      - switch.bar_lights
     - service: light.turn_on
       data:
         entity_id: light.kitchen_table_lights
-        brightness: '127'
+        brightness: '63'
 
   lighting_scene_kitchen_lights_dim:
     alias: Lighting Scene - Kitchen Lights Dim
@@ -361,12 +388,3 @@ script:
       data:
         entity_id: light.ge_softwhite_104
         brightness: 50
-  
-  lighting_scene_wake_up:
-    alias: Lighting Scene - Wake Up
-    sequence:
-    - service: switch.turn_on
-      entity_id:
-      - switch.cabinet_lights
-      - switch.ikea_outlet_3
-        
