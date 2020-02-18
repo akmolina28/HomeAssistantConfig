@@ -9,6 +9,9 @@ automation:
     entity_id: group.man_cave_lights
   - service: automation.turn_off
     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+  - service: rest_command.fire_tablet_701_brightness
+    data:
+      brightness: 255
 
 - alias: Turn Off Man Cave Lights and Turn On Automation When No Motion
   trigger:
@@ -22,6 +25,9 @@ automation:
     entity_id: group.man_cave_lights
   - service: automation.turn_on
     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+  - service: rest_command.fire_tablet_701_brightness
+    data:
+      brightness: 0
 
 - alias: Turn On Laundry Room Lights When Motion Detected
   trigger:

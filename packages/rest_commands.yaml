@@ -3,3 +3,5 @@ rest_command:
     url: !secret rest_url_tasker_garage_open
   tasker_kaitlyn_home:
     url: !secret rest_url_tasker_kaitlyn_home
+  fire_tablet_701_brightness:
+    url: !secret rest_url_fire_tablet_701_brightness
