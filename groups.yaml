@@ -15,14 +15,11 @@ kitchen_lights:
 interior_light_switches:
   name: Interior Light Switches
   entities:
-  - switch.ikea_outlet_3
   - switch.bar_lights
   - switch.cabinet_lights
-  - light.flex_strip_105
-  - switch.xiaomi_wifi_smart_plug_101
-  - switch.ikea_smart_plug_101
   - switch.kitchen_overhead_lights
   - light.kitchen_table_lights
+  - switch.laundry_room_light
 
 man_cave_lights:
   name: Man-cave Lights
@@ -42,7 +39,6 @@ living_room_lights:
 all_light_switches:
   name: All Light Switches
   entities:
-  - switch.ikea_outlet_3
   - switch.bar_lights
   - switch.cabinet_lights
   - light.flex_strip_105

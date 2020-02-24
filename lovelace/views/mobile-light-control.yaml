@@ -38,7 +38,7 @@ cards:
     icon: mdi:television
   - type: divider
   - type: switch
-    entity: switch.ikea_outlet_3
+    entity: light.ledge_strips
     name: Ledge Lights
     icon: mdi:weather-sunset-up
 - type: entities

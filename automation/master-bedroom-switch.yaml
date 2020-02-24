@@ -34,6 +34,46 @@
       entity_id: light.master_bedroom_lights
     service: light.turn_off
 
+- alias: Deconz event 4000 - Master Bedroom Lights Off (hold) - Sun Up
+  trigger:
+  - event_data:
+      event: 4001
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 4001
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: above_horizon
+  action:
+  - service: scene.turn_on
+    entity_id: scene.back_yard_scene_off
+
+- alias: Deconz event 4000 - Master Bedroom Lights Off (hold) - Sun Down
+  trigger:
+  - event_data:
+      event: 4001
+      id: master_bedroom_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  - event_data:
+      event: 4001
+      id: living_room_dimmer_switch
+    event_type: deconz_event
+    platform: event
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: below_horizon
+  action:
+  - service: scene.turn_on
+    entity_id: scene.back_yard_scene_sleep
+
 - alias: Deconz Event 2000 - Master Bedroom Brightness Increase
   trigger:
   - event_data:

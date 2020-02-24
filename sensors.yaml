@@ -8,8 +8,46 @@
   - 'time_utc'
   - 'beat'
 
+- platform: rest
+  name: Yoga Tablet 801 Kiosk Device Info
+  resource: !secret rest_url_yoga_tablet_801_kiosk_device_info
+  json_attributes:
+  - screenBrightness
+  - currentPage
+  - ip4
+  - mac
+  - isScreenOn
+  - batteryLevel
+  - deviceID
+  - maintenanceMode
+  - deviceManufacturer
+  - deviceModel
+  value_template: 'OK'
+
+- platform: rest
+  name: Fire Tablet 701 Kiosk Device Info
+  resource: !secret rest_url_fire_tablet_701_kiosk_device_info
+  json_attributes:
+  - screenBrightness
+  - currentPage
+  - ip4
+  - mac
+  - isScreenOn
+  - batteryLevel
+  - deviceID
+  - maintenanceMode
+  - deviceManufacturer
+  - deviceModel
+  value_template: 'OK'
+
 - platform: template
   sensors:
+    # yoga_tablet_801_screen_brightness:
+    #   friendly_name: 'Yoga Tablet 801 Screen Brightness'
+    #   value_template: '{{ states.sensor.yoga_tablet_kiosk_801_device_info.attributes["screenBrightness"] }}'
+    # yoga_tablet_801_screen_on:
+    #   friendly_name: 'Yoga Tablet 801 Screen On'
+    #   value_template: '{{ states.sensor.yoga_tablet_kiosk_801_device_info.attributes["isScreenOn"] }}'
     day_of_week:
       value_template: >
         {% if (now().weekday() == 0) %}
