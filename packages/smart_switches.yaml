@@ -34,6 +34,20 @@ light:
     name: Back Yard Swing Lights
     entity_id: switch.back_yard_swing_lights
 
+  - platform: switch
+    name: Kitchen Cabinet Lights
+    entity_id: switch.cabinet_lights
+  - platform: switch
+    name: Kitchen Bar Lights
+    entity_id: switch.bar_lights
+  - platform: switch
+    name: Kitchen Overhead Lights
+    entity_id: switch.kitchen_overhead_lights
+
+  - platform: switch
+    name: Laundry Room Light
+    entity_id: switch.laundry_room_light
+
 automation:
 - alias: Man Cave Dimmer Switch On (keydown)
   trigger:

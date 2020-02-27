@@ -33,7 +33,7 @@ living_room_on:
   sequence:
   - service: light.turn_on
     data:
-      entity_id: light.living_room_lights
+      entity_id: light.living_room_lamps
   - service: media_player.turn_on
     data:
       entity_id:

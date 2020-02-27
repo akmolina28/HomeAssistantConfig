@@ -24,3 +24,5 @@ state:
     ]]]
   operator: template
   color: var(--paper-card-background-color)
+tap_action:
+  action: more-info

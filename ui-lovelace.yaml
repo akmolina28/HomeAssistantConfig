@@ -4,14 +4,12 @@ custom_header:
   hide_tabs: devm
   footer_mode: true
   hide_unused: true
-  # hide_refresh: true
-  # hide_help: true
   hide_config: true
   exceptions:
   - conditions:
       user_agent: Mobile
     config:
-      show_tabs: light-control,devm
+      show_tabs: light-control,devm,lights
   - conditions:
 # Include external resources
 resources:
@@ -42,6 +40,8 @@ resources:
   - url: /local/gators-mbk-tracker.js?v=1.0.2
     type: js
   - url: /local/custom-header.js?v=1.3.2
+    type: module
+  - url: /local/fold-entity-row.js?v=0.106
     type: module
 
 views:
@@ -207,3 +207,149 @@ views:
       entities:
       - input_select.automation_mode
     - !include /config/lovelace/tiles/automation-mode-card.yaml
+  
+  - title: Lights
+    path: lights
+    icon: mdi:lightbulb
+    panel: false
+    cards:
+    - type: entities
+      title: Master Bedroom
+      show_header_toggle: false
+      entities:
+      - type: "custom:fold-entity-row"
+        head:
+          entity: light.master_bedroom_lights
+          icon: mdi:bed-empty
+          name: Lights
+        entities:
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.kp_bedside
+          icon: mdi:lamp
+          name: KP
+          min: 1
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.andrew_bedside
+          icon: mdi:lamp
+          name: Andrew
+          min: 1
+    - type: entities
+      title: Kitchen
+      show_header_toggle: false
+      entities:
+      - type: "custom:fold-entity-row"
+        head:
+          entity: light.kitchen_lights
+          name: Lights
+          icon: mdi:light-switch
+        entities:
+        - entity: light.kitchen_cabinet_lights
+          icon: mdi:light-switch
+        - entity: light.kitchen_bar_lights
+          icon: mdi:light-switch
+        - entity: light.kitchen_table_lights
+          icon: mdi:silverware-variant
+        - entity: light.kitchen_overhead_lights
+          icon: mdi:ceiling-light
+    - type: entities
+      title: Great Room
+      show_header_toggle: false
+      entities:
+      - type: light
+        name: Lamps
+        icon: mdi:lamp
+        entity: light.living_room_lamps
+      - type: "custom:fold-entity-row"
+        head: 
+          entity: light.great_room_strips
+          name: LEDs
+          icon: mdi:led-strip
+        entities:
+        - entity: light.flex_strip_105
+          icon: mdi:television
+          name: TV
+        - type: "custom:fold-entity-row"
+          head: 
+            entity: light.ledge_strips
+            icon: mdi:weather-sunset
+            name: Ledge
+          entities:
+          - icon: mdi:led-strip
+            name: 1
+            entity: light.flex_strip_104
+          - icon: mdi:led-strip
+            name: 2
+            entity: light.flex_strip_108
+          - icon: mdi:led-strip
+            name: 3
+            entity: light.flex_strip_107
+          - icon: mdi:led-strip
+            name: 4
+            entity: light.flex_strip_109
+          - icon: mdi:led-strip
+            name: 5
+            entity: light.flex_strip_110
+    - type: entities
+      title: Guest Bedroom
+      show_header_toggle: false
+      entities:
+      - type: "custom:fold-entity-row"
+        head:
+          entity: light.guest_room_lights
+          icon: mdi:bed-empty
+          name: Lights
+        entities:
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.guest_room_lamp_2
+          icon: mdi:lamp
+          name: Night Stand
+          min: 1
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.guest_room_lamp_1
+          icon: mdi:floor-lamp
+          name: Lamp
+          min: 1
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.flex_strip_103
+          icon: mdi:led-strip
+          name: Overhead
+          min: 1
+    - type: entities
+      title: Exterior
+      show_header_toggle: false
+      entities:
+      - type: "custom:fold-entity-row"
+        head:
+          entity: light.back_yard_lights
+          name: Back Yard Lights
+          icon: mdi:tree
+        entities:
+        - entity: light.back_yard_strand_lights
+          icon: mdi:tree
+        - entity: light.back_yard_strand_lights_2
+          icon: mdi:tree
+        - entity: light.back_yard_spot_light
+          icon: mdi:spotlight-beam
+        - entity: light.back_yard_swing_lights
+          icon: mdi:seat-legroom-extra
+      - type: "custom:fold-entity-row"
+        head:
+          entity: light.exterior_lights
+          name: Exterior
+          icon: mdi:wall
+        entities:
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.ge_softwhite_101
+          min: 1
+          icon: mdi:wall-sconce
+        - type: "custom:slider-entity-row"
+          toggle: true
+          entity: light.ge_softwhite_104
+          min: 1
+          icon: mdi:wall-sconce

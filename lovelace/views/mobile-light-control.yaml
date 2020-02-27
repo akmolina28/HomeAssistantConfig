@@ -26,7 +26,7 @@ cards:
   title: Great Room
   show_header_toggle: false
   entities:
-  - entity: "light.living_room_lights"
+  - entity: "light.living_room_lamps"
     type: "custom:slider-entity-row"
     min: 5
     toggle: true

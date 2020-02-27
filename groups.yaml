@@ -30,10 +30,10 @@ man_cave_lights:
   - light.hue_color_a19_101
   - switch.ikea_smart_plug_101
 
-living_room_lights:
+living_room_lamps:
   name: Living Room Lights
   entities:
-  - light.living_room_lights
+  - light.living_room_lamps
   - light.flex_strip_105
 
 all_light_switches:

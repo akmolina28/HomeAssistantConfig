@@ -1,0 +1,14 @@
+type: "custom:button-card"
+entity: media_player.portable_speaker
+icon: mdi:speaker
+color_type: card
+name: Portable Speaker
+state:
+- value: 'idle'
+  color: 'var(--paper-card-background-color)'
+- value: 'playing'
+  color: 'var(--primary-color)'
+tap_action:
+  action: toggle
+hold_action:
+  action: more-info

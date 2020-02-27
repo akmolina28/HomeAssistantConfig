@@ -47,7 +47,7 @@ scene:
 
 - name: Great Room Scene - Wind Down
   entities:
-    light.living_room_strips:
+    light.great_room_strips:
       state: on
       kelvin: 2000
       brightness: 255
@@ -61,7 +61,7 @@ scene:
     group.kitchen_lights: off
 - name: Great Room Scene - Bright
   entities:
-    light.living_room_strips:
+    light.great_room_strips:
       state: on
       kelvin: 5000
       brightness: 255
@@ -82,7 +82,7 @@ scene:
       transition: 5
 - name: Great Room Scene - Warm White
   entities:
-    light.living_room_strips:
+    light.great_room_strips:
       state: on
       kelvin: 3000
       brightness: 255

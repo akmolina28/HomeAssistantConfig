@@ -7,7 +7,7 @@ alexa:
       - switch.kitchen_overhead_lights
       - light.kitchen_table_lights
       - switch.xiaomi_wifi_smart_plug_101
-      - light.living_room_lights
+      - light.living_room_lamps
       - script.lighting_scene_kitchen_lights_on
       - script.lighting_scene_kitchen_lights_off
       - script.lighting_scene_common_area_full_brightness
@@ -50,7 +50,7 @@ alexa:
         name: Christmas Tree
         description: Christmas tree smart plug
         display_categories: SMARTPLUG
-      light.living_room_lights:
+      light.living_room_lamps:
         name: Living Room Lights
         description: Lighting in the living room area
         display_categories: LIGHT
