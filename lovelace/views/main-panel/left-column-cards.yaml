@@ -1,0 +1,98 @@
+type: vertical-stack
+cards:
+- !include /config/lovelace/tiles/todo-card-3.yaml
+- type: horizontal-stack
+  cards:
+  - !include /config/lovelace/tiles/thermostat-card-compact.yaml
+  - type: conditional
+    conditions:
+    - entity: input_boolean.isuck_dust_bin_full
+      state: 'on'
+    - entity: vacuum.isuck
+      state: docked
+    card:
+      type: "custom:button-card"
+      name: Dust Bin Full
+      icon: mdi:robot-vacuum
+      color_type: card
+      label: (tap to empty)
+      show_label: true
+      color: var(--status-color-warning)
+      tap_action:
+        action: call-service
+        service: script.vacuum_go_to_trash_can
+  - !include /config/lovelace/tiles/vacuum-button.yaml
+  - !include /config/lovelace/tiles/air-purifier-card.yaml
+- type: horizontal-stack
+  cards:
+  - !include /config/lovelace/tiles/living-room-tv-card.yaml
+  - !include /config/lovelace/tiles/living-room-receiver-card.yaml
+  - !include /config/lovelace/tiles/portable-speaker-card.yaml
+- type: horizontal-stack
+  cards:
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.kitchen_lights
+    name: Kitchen
+    icon: mdi:silverware-variant
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.ledge_strips
+    name: Ledge
+    icon: mdi:weather-sunset
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.living_room_lights
+    name: TV Room
+    icon: mdi:sofa
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.back_yard_lights
+    name: Back Yard
+    icon: mdi:tree
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.exterior_lights
+    name: Exterior
+    icon: mdi:alarm-light
+    hold_action:
+      action: more-info
+- type: horizontal-stack
+  cards:
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.master_bedroom_lights
+    name: Master BR
+    icon: mdi:bed-empty
+    hold_action:
+      action: more-info
+    lock:
+      enabled: true
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.guest_room_lights
+    name: Guest BR
+    icon: mdi:alpha-g-box
+    hold_action:
+      action: more-info
+    lock:
+      enabled: true
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.man_cave_lights
+    name: Man Cave
+    icon: mdi:guitar-electric
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: blank_card
+  - type: "custom:button-card"
+    color_type: blank_card

@@ -1,0 +1,96 @@
+type: vertical-stack
+cards:
+- type: "custom:gators-mbk-tracker"
+  entity: calendar.men_s_basketball_floridagators_com
+# - !include /config/lovelace/tiles/simple-thermostat-card.yaml
+# - !include /config/lovelace/tiles/todo-card-3.yaml
+- type: horizontal-stack
+  cards:
+  - !include /config/lovelace/tiles/garage-door-card.yaml
+  - type: "custom:button-card"
+    entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+    name: Front Door
+    show_label: true
+    show_state: true
+    color_type: card
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    label: >
+      [[[
+        if (!entity.attributes || !entity.attributes.lock_status) {
+          return "<br/>";
+        }
+        if (entity.attributes.lock_status == "Manually Locked by Touch function (lock and leave)") {
+          return "by Keypad";
+        }
+        if (entity.attributes.lock_status.substring(0, 20) == "Unlocked with Keypad") {
+          return "by Keypad";
+        }
+        if (entity.attributes.lock_status == "Manually Locked by Key Cylinder or Inside thumb turn") {
+          return "Manually";
+        }
+        if (entity.attributes.lock_status == "Manually Unlocked ") {
+          return "Manually";
+        }
+        if (entity.attributes.lock_status.substring(0, 12) == "Locked by RF") {
+          return "by Home Assistant";
+        }
+        if (entity.attributes.lock_status.substring(0, 14) == "Unlocked by RF") {
+          return "by Home Assistant";
+        }
+        return "";
+      ]]]
+    state:
+    - value: unlocked
+      color: var(--primary-color)
+    - value: locked
+      color: var(--paper-card-background-color)
+  - type: "custom:button-card"
+    entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+    name: Garage Entrance
+    show_label: true
+    show_state: true
+    color_type: card
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    label: >
+      [[[
+        if (!entity.attributes || !entity.attributes.lock_status) {
+          return "<br/>";
+        }
+        if (entity.attributes.lock_status == "Manually Locked by Touch function (lock and leave)") {
+          return "by Keypad";
+        }
+        if (entity.attributes.lock_status.substring(0, 20) == "Unlocked with Keypad") {
+          return "by Keypad";
+        }
+        if (entity.attributes.lock_status == "Manually Locked by Key Cylinder or Inside thumb turn") {
+          return "Manually";
+        }
+        if (entity.attributes.lock_status == "Manually Unlocked ") {
+          return "Manually";
+        }
+        if (entity.attributes.lock_status.substring(0, 12) == "Locked by RF") {
+          return "by Home Assistant";
+        }
+        if (entity.attributes.lock_status.substring(0, 14) == "Unlocked by RF") {
+          return "by Home Assistant";
+        }
+        return "";
+      ]]]
+    state:
+    - value: unlocked
+      color: var(--primary-color)
+    - value: locked
+      color: var(--paper-card-background-color)
+
+- type: horizontal-stack
+  cards:
+  - type: picture-entity
+    entity: camera.front_door_last_activity
+  - type: picture-entity
+    entity: camera.front_door_last_activity

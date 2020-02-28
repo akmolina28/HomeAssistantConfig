@@ -1,0 +1,38 @@
+automation:
+- alias: Turn On Heos Speaker When Garage Chromecast Plays
+  trigger:
+  - platform: state
+    entity_id: media_player.garage_tv
+    from: idle
+    to: playing
+  - platform: state
+    entity_id: media_player.garage_tv
+    from: 'off'
+    to: playing
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.portable_speaker
+      source: "Portable Speaker - AUX In"
+    service: media_player.select_source
+  - data:
+      entity_id: media_player.portable_speaker
+      volume_level: 0.5
+    service: media_player.volume_set
+  - data:
+      entity_id: media_player.garage_tv
+      volume_level: 0.5
+    service: media_player.volume_set
+
+- alias: Turn Off Heos Speaker When Garage Chromecast Turns Off
+  trigger:
+  - platform: state
+    entity_id: media_player.garage_tv
+    to: 'off'
+  condition:
+  - condition: template
+    value_template: '{{ state_attr("media_player.portable_speaker", "source") == "Portable Speaker - AUX In" }}'
+  action:
+  - data:
+      entity_id: media_player.portable_speaker
+    service: media_player.media_stop

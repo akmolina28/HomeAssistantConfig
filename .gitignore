@@ -1,20 +1,13 @@
 # Example .gitignore file for your config dir.
 # A * ensures that everything will be ignored.
-*
+/*
 
 !.gitignore
 !lovelace/
-!lovelace/*.yaml
-!lovelace/tiles/
-!lovelace/tiles/*.yaml
-!lovelace/views/
-!lovelace/views/*.yaml
 !automation/
-!automation/*.yaml
 !packages/
-!packages/*.yaml
 
-!*.yaml
+!/*.yaml
 
 # Ignore folders.
 .storage

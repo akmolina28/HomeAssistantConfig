@@ -1,0 +1,11 @@
+title: Main Panel
+path: devm
+icon: mdi:view-dashboard
+panel: true
+cards:
+- type: vertical-stack
+  cards:
+  - !include right-header-cards.yaml
+  - !include left-header-cards.yaml
+  - !include left-column-cards.yaml
+  - !include right-column-cards.yaml
