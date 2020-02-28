@@ -25,6 +25,9 @@ homeassistant:
   customize: !include customize.yaml
   packages:  !include_dir_named packages
 
+tplink:
+  discovery: false
+
 binary_sensor:
 - platform: ping
   host: google.com

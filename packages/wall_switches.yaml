@@ -1,0 +1,21 @@
+tplink:
+  switch:
+  - host: 192.168.1.5
+  - host: 192.168.1.10
+  - host: 192.168.1.46
+  - host: 192.168.1.28
+
+light:
+  - platform: switch
+    name: Kitchen Cabinet Lights
+    entity_id: switch.cabinet_lights
+  - platform: switch
+    name: Kitchen Bar Lights
+    entity_id: switch.bar_lights
+  - platform: switch
+    name: Kitchen Overhead Lights
+    entity_id: switch.kitchen_overhead_lights
+
+  - platform: switch
+    name: Laundry Room Light
+    entity_id: switch.laundry_room_light

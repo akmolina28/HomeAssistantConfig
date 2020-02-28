@@ -1,55 +1,8 @@
-- alias: Startup Init Theme
-  trigger:
-  - event: start
-    platform: homeassistant
-  action:
-  - data:
-      name: slate
-    service: frontend.set_theme
 
-- alias: Bedroom Motion - Home Mode
-  trigger:
-  - platform: state
-    entity_id: binary_sensor.bedroom_occupancy
-    from: 'off'
-    to: 'on'
-  condition:
-  - condition: time
-    after: '04:00:00'
-    before: '08:00:00'
-  - condition: state
-    entity_id: input_select.automation_mode
-    state: sleep
-  action:
-    service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: home
+
+
     
-- alias: Nobody Home - Away Mode
-  trigger:
-  - entity_id: sensor.anybody_home
-    platform: state
-    from: 'True'
-    to: 'False'
-  condition:
-    condition: template
-    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
-  action:
-  - data:
-      message: Home assistant detected that nobody is home.
-      title: Activing Away Mode
-      data:
-        url: dev
-        actions:
-        - action: automation_mode_home
-          title: Cancel
-        tag: nobody-is-home
-    service: notify.html5_notifications
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: away
+
 
 - alias: Nobody Home Notification Action Clicked - Home Mode
   trigger:
@@ -66,31 +19,5 @@
       entity_id: input_select.automation_mode
       option: home
 
-- alias: Anybody Home - Home Mode
-  trigger:
-  - entity_id: sensor.anybody_home
-    platform: state
-    from: 'False'
-    to: 'True'
-  condition:
-    condition: template
-    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: home
+
   
-- alias: Auto Sleep Mode
-  trigger:
-  - platform: time
-    at: '02:00:00'
-  condition:
-  - condition: state
-    entity_id: input_select.automation_mode
-    state: home
-  action:
-  - service: input_select.select_option
-    data:
-      entity_id: input_select.automation_mode
-      option: sleep

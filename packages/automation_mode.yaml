@@ -169,3 +169,16 @@ automation:
       data_template:
         new_mode: '{{ trigger.to_state.state }}'
         previous_mode: '{{ trigger.from_state.state }}'
+  - alias: Auto Sleep Mode
+    trigger:
+    - platform: time
+      at: '02:00:00'
+    condition:
+    - condition: state
+      entity_id: input_select.automation_mode
+      state: home
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.automation_mode
+        option: sleep

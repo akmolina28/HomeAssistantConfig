@@ -17,3 +17,43 @@ automation:
     state: home
   action:
     service: rest_command.tasker_kaitlyn_home
+
+- alias: Nobody Home - Away Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'True'
+    to: 'False'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "away"] }}'
+  action:
+  - data:
+      message: Home assistant detected that nobody is home.
+      title: Activing Away Mode
+      data:
+        url: dev
+        actions:
+        - action: automation_mode_home
+          title: Cancel
+        tag: nobody-is-home
+    service: notify.html5_notifications
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: away
+
+- alias: Anybody Home - Home Mode
+  trigger:
+  - entity_id: sensor.anybody_home
+    platform: state
+    from: 'False'
+    to: 'True'
+  condition:
+    condition: template
+    value_template: '{{ states("input_select.automation_mode") not in ["guest", "vacation", "home"] }}'
+  action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.automation_mode
+      option: home

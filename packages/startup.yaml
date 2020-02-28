@@ -1,0 +1,9 @@
+automation:
+- alias: Startup Init Theme
+  trigger:
+  - event: start
+    platform: homeassistant
+  action:
+  - data:
+      name: slate
+    service: frontend.set_theme
