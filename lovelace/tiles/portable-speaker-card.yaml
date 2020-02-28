@@ -9,6 +9,9 @@ state:
 - value: 'playing'
   color: 'var(--primary-color)'
 tap_action:
-  action: toggle
+  action: call-service
+  service: media_player.media_play_pause
+  service_data:
+    entity_id: media_player.portable_speaker
 hold_action:
   action: more-info
