@@ -13,9 +13,7 @@ automation:
     platform: event
   condition: []
   action:
-  - data:
-      entity_id: light.master_bedroom_lights
-    service: light.turn_on
+  - service: script.master_bedroom_auto_scene
 
 - alias: Deconz event 4000 - Master Bedroom Lights Off
   trigger:

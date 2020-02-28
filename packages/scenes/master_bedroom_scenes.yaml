@@ -1,0 +1,41 @@
+scene:
+- name: Master Bedroom Scene - Cool White
+  entities: 
+    light.master_bedroom_lights:
+      state: on
+      brightness: 255
+      kelvin: 3000
+
+- name: Master Bedroom Scene - Amber
+  entities:
+    light.master_bedroom_lights:
+      state: on
+      brightness: 255
+      kelvin: 1900
+
+- name: Master Bedroom Scene - Night Light
+  entities:
+    light.master_bedroom_lights:
+      state: on
+      brightness: 120
+      hs_color: 
+      - 15.178
+      - 99.216
+
+script:
+  master_bedroom_auto_scene:
+    alias: Master Bedroom Auto Scene
+    sequence:
+    - service: scene.turn_on
+      data_template:
+        entity_id: >
+          {% set hr = now().hour %}
+          {% if hr >= 5 and hr < 8 %}
+            scene.master_bedroom_scene_amber
+          {% elif hr >= 8 and hr < 21 %}
+            scene.master_bedroom_scene_cool_white
+          {% elif hr >= 21 and hr < 24 %}
+            scene.master_bedroom_scene_amber
+          {% elif hr >= 0 or hr < 5 %}
+            scene.master_bedroom_scene_night_light
+          {% endif %}

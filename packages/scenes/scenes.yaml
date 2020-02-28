@@ -492,24 +492,24 @@ automation:
     - automation.living_room_strips_shuffle_transition
 
 script:
-  house_auto_scene:
-    alias: House Auto Scene
-    sequence:
-    - service: scene.turn_on
-      data_template:
-        entity_id: >
-          {% set hr = now().hour %}
-          {% if hr >= 4 and hr < 8 %}
-            scene.man_cave_scene_wake_up
-          {% elif hr >= 8 and hr < 11 %}
-            scene.man_cave_scene_warm_white
-          {% elif hr >= 11 and hr < 16 %}
-            scene.man_cave_scene_focus
-          {% elif hr >= 16 and hr < 22 %}
-            scene.man_cave_scene_sweet_tart
-          {% elif hr >= 22 or hr < 4 %}
-            scene.man_cave_scene_wind_down
-          {% endif %}
+  # house_auto_scene:
+  #   alias: House Auto Scene
+  #   sequence:
+  #   - service: scene.turn_on
+  #     data_template:
+  #       entity_id: >
+  #         {% set hr = now().hour %}
+  #         {% if hr >= 4 and hr < 8 %}
+  #           scene.man_cave_scene_wake_up
+  #         {% elif hr >= 8 and hr < 11 %}
+  #           scene.man_cave_scene_warm_white
+  #         {% elif hr >= 11 and hr < 16 %}
+  #           scene.man_cave_scene_focus
+  #         {% elif hr >= 16 and hr < 22 %}
+  #           scene.man_cave_scene_sweet_tart
+  #         {% elif hr >= 22 or hr < 4 %}
+  #           scene.man_cave_scene_wind_down
+  #         {% endif %}
   man_cave_auto_scene:
     alias: Man Cave Auto Scene
     sequence:
