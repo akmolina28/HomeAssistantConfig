@@ -88,6 +88,10 @@ script:
     alias: Sleep Mode to Home Mode
     sequence:
     - service: script.turn_off_air_purifier
+
+    # Turn on motion sensors
+    - service: automation.turn_on
+      entity_id: automation.turn_on_man_cave_lights_when_motion_detected
     
     # if it's early in the morning, turn some lights on
     - condition: time
@@ -116,9 +120,10 @@ script:
         entity_id: sun.sun
         state: below_horizon
       - condition: numeric_state
-        entity_id: sensor.lightlevel_21
-        below: '100'
-    - service: script.lighting_scene_common_area_full_brightness
+        entity_id: sensor.hue_100_lux
+        below: 10
+    - service: scene.turn_on
+      entity_id: scene.house_scene_warm_welcome
 
   automation_mode_transition_other_to_away:
     alias: Other Mode to Away Mode
