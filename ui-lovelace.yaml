@@ -35,7 +35,7 @@ resources:
     type: js
   - url: /local/content-card-example.js
     type: js
-  - url: /local/simple-dark-sky-card.js?v=1.0.0
+  - url: /local/simple-dark-sky-card.js?v=1.0.1
     type: js
   - url: /local/gators-mbk-tracker.js?v=1.0.2
     type: js
