@@ -60,8 +60,7 @@ views:
         title: Man Cave
         show_header_toggle: false
         entities:
-        - type: entity
-          entity: light.man_cave_lights
+        - entity: light.man_cave_lights
           name: Lights
         - type: divider
         - type: "custom:slider-entity-row"
@@ -75,17 +74,14 @@ views:
           name: Reading Lamp
           icon: mdi:lamp
         - type: divider
-        - type: entity
-          entity: light.flex_strip_101
+        - entity: light.flex_strip_101
           name: Ambience
           icon: mdi:led-strip
-        - type: switch
-          entity: switch.man_cave_fluxer
+        - entity: switch.man_cave_fluxer
           name: Flux
           icon: mdi:brightness-4
         - type: divider
-        - type: sensor
-          entity: sensor.man_cave_temperature
+        - entity: sensor.man_cave_temperature
           name: Ecobee Sensor
         style: |
           .card-header {
@@ -139,7 +135,6 @@ views:
             icon: mdi:light-switch
           - type: divider
           - entity: switch.living_room_fluxer
-            type: switch
             icon: mdi:brightness-4
             name: Flux
           - type: divider
@@ -257,8 +252,7 @@ views:
       title: Great Room
       show_header_toggle: false
       entities:
-      - type: light
-        name: Lamps
+      - name: Lamps
         icon: mdi:lamp
         entity: light.living_room_lamps
       - type: "custom:fold-entity-row"

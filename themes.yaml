@@ -109,6 +109,7 @@ slate:
     paper-toggle-button-unchecked-button-color: 'var(--disabled-text-color)'
     paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'
     paper-toggle-button-unchecked-ink-color: 'var(--disabled-text-color)'
+    switch-unchecked-button-color: 'var(--primary-text-color)'
     # Sliders
     paper-slider-knob-color: '#2980b9'
     paper-slider-knob-start-color: '#2980b9'
@@ -146,4 +147,5 @@ slate:
     lumo-shade-5pct: 'rgba(34, 34, 34, .05)'
     lumo-tint-5pct: '#222222'
 
-    # ha-card-header-font-size: '16px'
+    # Entity Config Table, Service tool dropdown
+    card-background-color: "var(--paper-card-background-color)"

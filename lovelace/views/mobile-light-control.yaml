@@ -15,11 +15,9 @@ cards:
     toggle: true
   - type: divider
   - entity: light.kp_bedside
-    type: light
     name: KP
     icon: mdi:lamp
   - entity: light.andrew_bedside
-    type: light
     name: Andrew
     icon: mdi:lamp
 - type: entities
@@ -34,11 +32,9 @@ cards:
     icon: mdi:sofa
   - entity: light.flex_strip_105
     name: TV Backlight
-    type: switch
     icon: mdi:television
   - type: divider
-  - type: switch
-    entity: light.ledge_strips
+  - entity: light.ledge_strips
     name: Ledge Lights
     icon: mdi:weather-sunset-up
 - type: entities
@@ -85,7 +81,6 @@ cards:
   show_header_toggle: false
   entities:
   - entity: group.man_cave_lights
-    type: switch
     min: 5
     name: Lights
 
@@ -93,7 +88,6 @@ cards:
   title: Exterior Lights
   entities:
   - entity: group.back_yard_lights
-    type: switch
     name: Back Yard Lights
     icon: mdi:tree
   - entity: light.ge_softwhite_104
