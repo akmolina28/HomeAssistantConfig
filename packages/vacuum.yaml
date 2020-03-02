@@ -89,7 +89,7 @@ automation:
         - action: complete_isuck_brush_dirty
           title: Mark Complete
         tag: isuck-brush-dirty
-    service: notify.mobile_app_sm_g973u
+    service: notify.mobile_app_galaxy_s10_mobile_app
 
 - alias: iSuck Brush Boolean Notification Complete Event - Turn Off Boolean
   trigger:
@@ -118,7 +118,7 @@ automation:
         - action: complete_isuck_dust_bin
           title: Empty Dust Bin
         tag: isuck-dust-bin-full
-    service: notify.mobile_app_sm_g973u
+    service: notify.mobile_app_galaxy_s10_mobile_app
 
 - alias: iSuck Dust Bin Boolean Notification Complete Event - Turn Off Boolean
   trigger:
