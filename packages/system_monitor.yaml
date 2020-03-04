@@ -1,0 +1,76 @@
+input_number:
+  cpu_temp:
+    name: CPU Temperature
+    min: 0
+    max: 200000
+
+sensor:
+- platform: systemmonitor
+  resources:
+  - type: disk_use_percent
+    arg: /home
+  - type: disk_free
+    arg: /home
+  - type: disk_use
+    arg: /home
+  - type: memory_free
+  - type: memory_use
+  - type: memory_use_percent
+  - type: processor_use
+  - type: last_boot
+  - type: load_15m
+  - type: ipv4_address
+    arg: enp0s18
+
+- platform: version
+
+- platform: template
+  sensors:
+    proxmox_cpu_temp:
+      value_template: '{{ states("input_number.cpu_temp") | multiply(0.001) | round(1) }}'
+    disk_total_home:
+      value_template: '{{ (states("sensor.disk_use_home") | float + states("sensor.disk_free_home") | float) | round(1) }}'
+      unit_of_measurement: 'GiB'
+    vm_uptime:
+      value_template: >
+        {% set current = as_timestamp(states("sensor.date_time_iso")) %}
+        {% set last_boot = as_timestamp(states("sensor.last_boot")) %}
+        {% set span = (current - last_boot) / (60 * 60 * 24) %}
+        {% set days = span | round(0, 'floor') %}
+        {% set span = 24 * (span - days) %}
+        {% set hours = span | round(0, 'floor') %}
+        {% set span = 60 * (span - hours) %}
+        {% set minutes = span | round(0, 'floor') %}
+
+        {{ days | string + 'd ' + hours | string + 'h ' + minutes | string + 'm' }}
+
+homeassistant:
+  customize:
+    sensor.proxmox_cpu_temp:
+      templates:
+        unit_of_measurement: °C
+        device_class: temperature
+    sensor.disk_total_home:
+      templates:
+        icon: mdi:harddisk
+    sensor.disk_free_home:
+      templates:
+        icon: mdi:harddisk
+    sensor.disk_use_home:
+      templates:
+        icon: mdi:harddisk
+    sensor.disk_use_percent_home:
+      templates:
+        icon: mdi:harddisk
+    sensor.memory_use_percent:
+      templates:
+        icon: mdi:chip
+    sensor.memory_free:
+      templates:
+        icon: mdi:chip
+    sensor.memory_use:
+      templates:
+        icon: mdi:chip
+    sensor.processor_use:
+      templates:
+        icon: mdi:memory

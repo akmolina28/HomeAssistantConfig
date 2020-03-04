@@ -35,25 +35,30 @@ binary_sensor:
   scan_interval: 30
   name: google
 - platform: ping
-  host: 192.168.1.22
+  host: !secret hostname
   count: 2
   scan_interval: 30
-  name: Work Laptop
-- platform: ping
-  host: 192.168.1.23
-  count: 2
-  scan_interval: 30
-  name: Desktop PC
+  name: DDNS
 - platform: ping
   host: 192.168.1.100
   count: 2
-  scan_interval: 30
+  scan_interval: 6000
   name: Diskstation
 - platform: ping
-  host: 192.168.1.31
+  host: 192.168.1.119
   count: 2
   scan_interval: 30
-  name: Mini PC
+  name: Brother Printer
+- platform: ping
+  host: 192.168.1.119
+  count: 2
+  scan_interval: 30
+  name: Brother Printer
+- platform: ping
+  host: 192.168.1.2
+  count: 2
+  scan_interval: 30
+  name: HP Printer
 
 device_tracker:
 - platform: netgear

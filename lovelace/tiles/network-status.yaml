@@ -1,0 +1,31 @@
+type: custom:hui-entities-card
+show_header_toggle: false
+title: Network
+entities:
+- type: section
+  label: Internet
+- type: custom:hui-glance-card
+  entities:
+  - entity: binary_sensor.google
+    name: Internet
+  - entity: binary_sensor.ddns
+    name: DDNS
+  style: |
+    ha-card { 
+      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+      --ha-card-background: "rgba(0, 0, 0, 0.0)";
+      --ha-card-box-shadow: 'none';
+    }
+- type: section
+  label: Local Network
+- type: custom:hui-glance-card
+  entities:
+  - entity: binary_sensor.diskstation
+  - entity: binary_sensor.hp_printer
+  - entity: binary_sensor.brother_printer
+  style: |
+    ha-card { 
+      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+      --ha-card-background: "rgba(0, 0, 0, 0.0)";
+      --ha-card-box-shadow: 'none';
+    }

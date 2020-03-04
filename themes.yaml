@@ -70,6 +70,9 @@ slate:
     status-color-success: '#22C476'
     status-color-warning: '#FF622C'
     status-color-alert: '#FC2B36'
+    label-badge-green: '#22C476'
+    label-badge-yellow: '#FF622C'
+    label-badge-red: '#FC2B36'
     # Text colors
     primary-text-color: '#FFFFFF'
     text-primary-color: 'var(--primary-text-color)'
@@ -99,7 +102,7 @@ slate:
     paper-item-selected_-_background-color: '#292929'
     paper-tabs-selection-bar-color: 'green'
     # Labels
-    label-badge-red: 'var(--primary-color)'
+    # label-badge-red: 'var(--primary-color)'
     label-badge-text-color: 'var(--primary-text-color)'
     label-badge-background-color: '#222222'
     # Switches

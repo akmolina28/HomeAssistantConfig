@@ -101,3 +101,63 @@ automation:
     data:
       entity_id: input_select.automation_mode
       option: home
+
+sensor:
+- platform: template
+  sensors:
+    hue_100_sensor_status:
+      value_template: >
+        {% if states("binary_sensor.hue_100_motion") not in ["off", "on"] %}
+          Motion Unavailable
+        {% elif states("sensor.hue_100_lux") == "unavailable" %}
+          Lux Unavailable
+        {% elif states("sensor.hue_100_temp") == "unavailable" %}
+          Temp Unavailable
+        {% elif states("sensor.hue_100_battery_level") == "unavailable" %}
+          Battery Unavailable
+        {% else %}
+          OK
+        {% endif %}
+    hue_101_sensor_status:
+      value_template: >
+        {% if states("binary_sensor.hue_101_motion") not in ["off", "on"] %}
+          Motion Unavailable
+        {% elif states("sensor.hue_101_lux") == "unavailable" %}
+          Lux Unavailable
+        {% elif states("sensor.hue_101_temp") == "unavailable" %}
+          Temp Unavailable
+        {% elif states("sensor.hue_101_battery_level") == "unavailable" %}
+          Battery Unavailable
+        {% else %}
+          OK
+        {% endif %}
+    smartthings_100_sensor_status:
+      value_template: >
+        {% if states("binary_sensor.smartthings_100_motion") not in ["off", "on"] %}
+          Motion Unavailable
+        {% elif states("sensor.smartthings_100_temp") == "unavailable" %}
+          Temp Unavailable
+        {% elif states("sensor.smartthings_100_battery_level") == "unavailable" %}
+          Battery Unavailable
+        {% else %}
+          OK
+        {% endif %}
+
+
+homeassistant:
+  customize:
+    sensor.hue_100_sensor_status:
+      templates:
+        icon_color: >
+          if (state === 'OK') return 'var(--primary-text-color)';
+          else return 'var(--status-color-alert)';
+    sensor.hue_101_sensor_status:
+      templates:
+        icon_color: >
+          if (state === 'OK') return 'var(--primary-text-color)';
+          else return 'var(--status-color-alert)';
+    sensor.smartthings_100_sensor_status:
+      templates:
+        icon_color: >
+          if (state === 'OK') return 'var(--primary-text-color)';
+          else return 'var(--status-color-alert)';

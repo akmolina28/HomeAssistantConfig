@@ -1,0 +1,205 @@
+type: "custom:hui-entities-card"
+show_header_toggle: off
+title: System Monitor
+entities:
+- type: section
+  label: ThinkCentre M900 Tiny -- Proxmox VE 6.1-3
+  style: |
+    ha-card { 
+      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+      --ha-card-background: "rgba(0, 0, 0, 0.0)";
+      --ha-card-box-shadow: 'none';
+    }
+- type: "custom:hui-vertical-stack-card"
+  cards:
+  - type: "custom:hui-horizontal-stack-card"
+    cards:
+    - type: picture
+      title: Proxmox Box
+      image: /local/images/devices/thinkcentre-2.png
+      style: |
+        ha-card { 
+          --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+          --ha-card-background: "rgba(0, 0, 0, 0.0)";
+          --ha-card-box-shadow: 'none';
+        }
+    - type: 'custom:hui-vertical-stack-card'
+      cards:
+      - type: 'custom:button-card'
+        layout: icon_name_state2nd
+        show_icon: true
+        show_state: true
+        size: 100%
+        styles:
+          grid:
+          - grid-template-columns: 1fr 2fr
+          icon:
+          - padding: 0px 20px
+          - height: 30px
+          - width: 30px
+          card:
+          - --ha-card-background: "rgba(0, 0, 0, 0.0)"
+          - --ha-card-box-shadow: 'none'
+          state:
+          - padding: 0px 20px
+          - justify-self: start
+          - font-family: Roboto, sans-serif
+          - font-size: 15px
+          name:
+          - padding: 0px 20px
+          - justify-self: start
+          - color: var(--secondary-text-color)
+        entity: sensor.vm_uptime
+        name: Uptime
+        icon: mdi:clock-outline
+  - type: "custom:hui-horizontal-stack-card"
+    cards:
+    - type: "custom:config-template-card"
+      variables:
+      - states['sensor.ipv4_address_enp0s18'].state
+      entities:
+      - sensor.ipv4_address_enp0s18
+      card:
+        type: markdown
+        content: "${vars[0]}"
+        style: |
+          ha-card { 
+            --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+          }
+          ha-markdown {
+            # text-align: right!important;
+            color: var(--primary-color);
+            padding-top: 5px!important;
+            padding-bottom: 0!important;
+          }
+    - type: "custom:config-template-card"
+      variables:
+      - states['sensor.current_version'].state
+      entities:
+      - sensor.current_version
+      card:
+        type: markdown
+        content: "${'homeassistant' + vars[0]}"
+        style: |
+          ha-card { 
+            --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+          }
+          ha-markdown {
+            padding-top: 5px!important;
+            padding-bottom: 0!important;
+            color: var(--primary-color);
+          }
+  - type: "custom:config-template-card"
+    variables:
+    - states['sensor.disk_use_home'].state
+    - states['sensor.disk_total_home'].state
+    entities:
+    - sensor.disk_use_home
+    - sensor.disk_total_home
+    card:
+      type: custom:bar-card
+      title: "${ 'VDisk (' + vars[0] + 'Gb/' + vars[1] + 'Gb)' }"
+      title_position: inside
+      icon_position: inside
+      align: split
+      columns: 1
+      entity: sensor.disk_use_percent_home
+      animation: 'off'
+      indicator: right
+      unit_of_measurement: '%'
+      min: 0
+      max: 100
+      severity:
+      - value: 70
+        color: var(--primary-color)
+      - value: 90
+        color: var(--status-color-warning)
+      - value: 100
+        color: var(--status-color-alert)
+      style: |
+        ha-card { 
+          --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+          --ha-card-background: "rgba(0, 0, 0, 0.0)";
+          --ha-card-box-shadow: 'none';
+        }
+  - type: horizontal-stack
+    cards:
+    - type: custom:bar-card
+      title: VCPU
+      title_position: inside
+      icon_position: inside
+      align: split
+      columns: 1
+      entity: sensor.processor_use
+      animation: 'off'
+      indicator: right
+      unit_of_measurement: '%'
+      min: 0
+      max: 100
+      severity:
+      - value: 70
+        color: var(--primary-color)
+      - value: 90
+        color: var(--status-color-warning)
+      - value: 100
+        color: var(--status-color-alert)
+      style: |
+        ha-card { 
+          --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+          --ha-card-background: "rgba(0, 0, 0, 0.0)";
+          --ha-card-box-shadow: 'none';
+        }
+    - type: custom:bar-card
+      title: VRAM
+      title_position: inside
+      icon_position: inside
+      align: split
+      columns: 1
+      entity: sensor.memory_use_percent
+      animation: 'off'
+      indicator: right
+      unit_of_measurement: '%'
+      min: 0
+      max: 100
+      severity:
+      - value: 50
+        color: var(--primary-color)
+      - value: 80
+        color: var(--status-color-warning)
+      - value: 100
+        color: var(--status-color-alert)
+      style: |
+        ha-card { 
+          --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+          --ha-card-background: "rgba(0, 0, 0, 0.0)";
+          --ha-card-box-shadow: 'none';
+        }
+  - type: custom:mini-graph-card
+    height: 20
+    line_width: 2
+    font_size: 70
+    hours_to_show: 168
+    points_per_hour: 1
+    show:
+      extrema: true
+      fill: true
+    entities: 
+    - sensor.proxmox_cpu_temp
+    name: Core Temperature
+    color_thresholds:
+    - value: 60
+      color: var(--primary-color)
+    - value: 80
+      color: var(--status-color-warning)
+    - value: 120
+      color: var(--status-color-alert)
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }

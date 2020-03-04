@@ -1,0 +1,14 @@
+type: custom:hui-entities-card
+show_header_toggle: false
+title: Zigbee Devices
+entities:
+- type: section
+  label: Motion Sensors
+- entity: sensor.hue_100_sensor_status
+  name: Kitchen
+- entity: sensor.hue_101_sensor_status
+  name: Man Cave
+- entity: sensor.smartthings_100_sensor_status
+  name: Laundry Room
+- type: section
+  label: Dimmers

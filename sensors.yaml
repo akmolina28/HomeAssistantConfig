@@ -42,12 +42,6 @@
 
 - platform: template
   sensors:
-    # yoga_tablet_801_screen_brightness:
-    #   friendly_name: 'Yoga Tablet 801 Screen Brightness'
-    #   value_template: '{{ states.sensor.yoga_tablet_kiosk_801_device_info.attributes["screenBrightness"] }}'
-    # yoga_tablet_801_screen_on:
-    #   friendly_name: 'Yoga Tablet 801 Screen On'
-    #   value_template: '{{ states.sensor.yoga_tablet_kiosk_801_device_info.attributes["isScreenOn"] }}'
     day_of_week:
       value_template: >
         {% if (now().weekday() == 0) %}

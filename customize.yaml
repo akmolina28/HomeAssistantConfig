@@ -4,8 +4,31 @@ binary_sensor.google:
       if (state == "off") return 'var(--status-color-alert)';
       else return 'var(--primary-text-color)';
     icon: >
-      if (state == "on") return "mdi:check-network";
-      else return "mdi:close-network";
+      if (state == "on") return "mdi:earth";
+      else return "mdi:earth-off";
+
+binary_sensor.ddns:
+  templates:
+    icon_color: >
+      if (state == "off") return 'var(--status-color-alert)';
+      else return 'var(--primary-text-color)';
+    icon: >
+      if (state == "on") return "mdi:cloud-outline";
+      else return "mdi:cloud-outline-off";
+
+binary_sensor.brother_printer:
+  templates:
+    icon_color: >
+      if (state == "off") return 'var(--status-color-alert)';
+      else return 'var(--primary-text-color)';
+    icon: mdi:printer-wireless
+
+binary_sensor.hp_printer:
+  templates:
+    icon_color: >
+      if (state == "off") return 'var(--status-color-alert)';
+      else return 'var(--primary-text-color)';
+    icon: mdi:printer-wireless
 
 group.kitchen_lights:
   templates:
@@ -30,7 +53,7 @@ binary_sensor.work_laptop:
 binary_sensor.diskstation:
   templates:
     icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
+      if (state == "off") return 'var(--status-color-alert)';
       else return 'var(--primary-text-color)';
     icon: mdi:server
 
