@@ -1,0 +1,345 @@
+type: custom:hui-entities-card
+show_header_toggle: false
+title: Devices
+entities:
+- type: section
+  label: Motion Sensors
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: binary_sensor.hue_100_motion
+    icon: mdi:eye
+    name: Kitchen
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["sensor.hue_100_battery_level"]
+           && states["sensor.hue_100_battery_level"].state
+           && states["sensor.hue_100_battery_level"].state != "unavailable"
+           && parseInt(states["sensor.hue_100_battery_level"].state) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["binary_sensor.hue_100_motion"] 
+           || !states["binary_sensor.hue_100_motion"].state
+           || !(['off', 'on'].includes(states["binary_sensor.hue_100_motion"].state))
+           || !states["sensor.hue_100_temp"]
+           || !states["sensor.hue_100_temp"].state
+           || states["sensor.hue_100_temp"].state == "unavailable"
+           || !states["sensor.hue_100_lux"]
+           || !states["sensor.hue_100_lux"].state
+           || states["sensor.hue_100_lux"].state == "unavailable"
+           || !states["sensor.hue_100_battery_level"]
+           || !states["sensor.hue_100_battery_level"].state
+           || states["sensor.hue_100_battery_level"].state == "unavailable"
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.hue_101_motion
+    icon: mdi:eye
+    name: Man Cave
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["sensor.hue_101_battery_level"]
+           && states["sensor.hue_101_battery_level"].state
+           && states["sensor.hue_101_battery_level"].state != "unavailable"
+           && parseInt(states["sensor.hue_101_battery_level"].state) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["binary_sensor.hue_101_motion"] 
+           || !states["binary_sensor.hue_101_motion"].state
+           || !(['off', 'on'].includes(states["binary_sensor.hue_101_motion"].state))
+           || !states["sensor.hue_101_temp"]
+           || !states["sensor.hue_101_temp"].state
+           || states["sensor.hue_101_temp"].state == "unavailable"
+           || !states["sensor.hue_101_lux"]
+           || !states["sensor.hue_101_lux"].state
+           || states["sensor.hue_101_lux"].state == "unavailable"
+           || !states["sensor.hue_101_battery_level"]
+           || !states["sensor.hue_101_battery_level"].state
+           || states["sensor.hue_101_battery_level"].state == "unavailable"
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.smartthings_100_motion
+    icon: mdi:eye
+    name: Laundry
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["sensor.smartthings_100_battery_level"]
+           && states["sensor.smartthings_100_battery_level"].state
+           && states["sensor.smartthings_100_battery_level"].state != "unavailable"
+           && parseInt(states["sensor.smartthings_100_battery_level"].state) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["binary_sensor.smartthings_100_motion"] 
+           || !states["binary_sensor.smartthings_100_motion"].state
+           || !(['off', 'on'].includes(states["binary_sensor.smartthings_100_motion"].state))
+           || !states["sensor.smartthings_100_temp"]
+           || !states["sensor.smartthings_100_temp"].state
+           || states["sensor.smartthings_100_temp"].state == "unavailable"
+           || !states["sensor.smartthings_100_battery_level"]
+           || !states["sensor.smartthings_100_battery_level"].state
+           || states["sensor.smartthings_100_battery_level"].state == "unavailable"
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+- type: section
+  label: Z-Wave Devices
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: zwave.aeon_labs_zw090_z_stick_gen5_us
+    name: Z-Stick
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    # - value: >
+    #     [[[
+    #       if (states["sensor.smartthings_100_battery_level"]
+    #        && states["sensor.smartthings_100_battery_level"].state
+    #        && states["sensor.smartthings_100_battery_level"].state != "unavailable"
+    #        && parseInt(states["sensor.smartthings_100_battery_level"].state) < 20) {
+    #         return true;
+    #       }
+    #       else {
+    #         return false;
+    #       }
+    #     ]]]
+    #   operator: template
+    #   color: var(--status-color-warning)
+    #   label: Low Battery
+    - value: >
+        [[[
+          if (!states["zwave.aeon_labs_zw090_z_stick_gen5_us"] 
+           || !states["zwave.aeon_labs_zw090_z_stick_gen5_us"].state
+           || !(['ready'].includes(states["zwave.aeon_labs_zw090_z_stick_gen5_us"].state))
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101
+    name: Front Door Lock
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"]
+           && states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"].attributes
+           && states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"].attributes.battery_level
+           && parseInt(states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"].attributes.battery_level) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"] 
+           || !states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"].state
+           || !(['ready'].includes(states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_101"].state))
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102
+    name: Garage Lock
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"]
+           && states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"].attributes
+           && states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"].attributes.battery_level
+           && parseInt(states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"].attributes.battery_level) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"] 
+           || !states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"].state
+           || !(['ready'].includes(states["zwave.assa_abloy_yale_push_button_deadbolt_yrd210_102"].state))
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }

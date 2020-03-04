@@ -1,7 +1,7 @@
 title: Casa Molina
 custom_header:
   compact_mode: true
-  hide_tabs: devm
+  hide_tabs: devm,systemm
   footer_mode: true
   hide_unused: true
   hide_config: true
@@ -9,7 +9,7 @@ custom_header:
   - conditions:
       user_agent: Mobile
     config:
-      show_tabs: light-control,devm,scene,lights,system
+      show_tabs: light-control,devm,scene,lights,systemm
   - conditions:
 # Include external resources
 resources:
@@ -357,63 +357,19 @@ views:
     icon: mdi:chart-line
     panel: true
     cards:
-    - type: horizontal-stack
+    - type: custom:hui-horizontal-stack-card
       cards:
       - !include /config/lovelace/tiles/system-monitor-card.yaml
-        # - type: custom:bar-card
-        #   title: CPU Temperature
-        #   title_position: inside
-        #   icon_position: inside
-        #   align: split
-        #   columns: 1
-        #   entity: sensor.proxmox_cpu_temp
-        #   animation: 'off'
-        #   indicator: right
-        #   unit_of_measurement: °C
-        #   min: 0
-        #   max: 120
-        #   severity:
-        #   - value: 60
-        #     color: var(--primary-color)
-        #   - value: 80
-        #     color: var(--status-color-warning)
-        #   - value: 120
-        #     color: var(--status-color-alert)
-      - type: vertical-stack
-        cards:
-        - !include /config/lovelace/tiles/motion-sensor-status-1.yaml
-      - type: vertical-stack
-        cards:
-        - !include /config/lovelace/tiles/network-status.yaml
-    # - type: horizontal-stack
-    #   cards:
-    #   - type: gauge
-    #     entity: sensor.processor_use
-    #     name: CPU Usage
-    #     theme: Backend-selected
-    #     min: 0
-    #     max: 100
-    #     severity:
-    #       green: 0
-    #       yellow: 70
-    #       red: 90
-    #   - type: gauge
-    #     entity: sensor.memory_use_percent
-    #     name: RAM Usage
-    #     theme: Backend-selected
-    #     min: 0
-    #     max: 100
-    #     severity:
-    #       green: 0
-    #       yellow: 50
-    #       red: 80
-    #   - type: gauge
-    #     entity: sensor.disk_use_percent_home
-    #     name: Disk Usage
-    #     theme: Backend-selected
-    #     min: 0
-    #     max: 100
-    #     severity:
-    #       green: 0
-    #       yellow: 70
-    #       red: 90
+      - !include /config/lovelace/tiles/network-status.yaml
+      - !include /config/lovelace/tiles/device-status-card.yaml
+
+  - title: System Monitor
+    path: systemm
+    icon: mdi:chart-line
+    panel: true
+    cards:
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - !include /config/lovelace/tiles/system-monitor-card.yaml
+      - !include /config/lovelace/tiles/network-status.yaml
+      - !include /config/lovelace/tiles/device-status-card.yaml
