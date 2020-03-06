@@ -4,28 +4,180 @@ title: Network
 entities:
 - type: section
   label: Internet
-- type: custom:hui-glance-card
-  entities:
-  - entity: binary_sensor.google
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: binary_sensor.google
     name: Internet
-  - entity: binary_sensor.ddns
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'off'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'on'
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.ddns
     name: DDNS
-  style: |
-    ha-card { 
-      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
-      --ha-card-background: "rgba(0, 0, 0, 0.0)";
-      --ha-card-box-shadow: 'none';
-    }
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'off'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'on'
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    color_type: blank-card
 - type: section
   label: Local Network
-- type: custom:hui-glance-card
-  entities:
-  - entity: binary_sensor.diskstation
-  - entity: binary_sensor.hp_printer
-  - entity: binary_sensor.brother_printer
-  style: |
-    ha-card { 
-      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
-      --ha-card-background: "rgba(0, 0, 0, 0.0)";
-      --ha-card-box-shadow: 'none';
-    }
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: binary_sensor.diskstation
+    name: Synology
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'off'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'on'
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.hp_printer
+    name: HP Printer
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'off'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'on'
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.brother_printer
+    name: Brother Printer
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'off'
+      color: var(--status-color-alert)
+      label: Error
+    - value: 'on'
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+- type: section
+  label: Kiosks
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: sensor.yoga_tablet_801_kiosk_device_info
+    name: Kitchen Tablet
+    color_type: card
+    icon: mdi:tablet
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'OK'
+      color: var(--paper-card-background-color)
+      label: OK
+    - value: >
+        [[[
+          return true;
+        ]]]
+      color: var(--status-color-alert)
+      label: Error
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: sensor.fire_tablet_701_kiosk_device_info
+    name: Man-cave Tablet
+    color_type: card
+    icon: mdi:tablet
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'OK'
+      color: var(--paper-card-background-color)
+      label: OK
+    - value: >
+        [[[
+          return true;
+        ]]]
+      color: var(--status-color-alert)
+      label: Error
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    color_type: blank-card

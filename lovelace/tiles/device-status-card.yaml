@@ -198,21 +198,6 @@ entities:
     tap_action:
       action: more-info
     state:
-    # - value: >
-    #     [[[
-    #       if (states["sensor.smartthings_100_battery_level"]
-    #        && states["sensor.smartthings_100_battery_level"].state
-    #        && states["sensor.smartthings_100_battery_level"].state != "unavailable"
-    #        && parseInt(states["sensor.smartthings_100_battery_level"].state) < 20) {
-    #         return true;
-    #       }
-    #       else {
-    #         return false;
-    #       }
-    #     ]]]
-    #   operator: template
-    #   color: var(--status-color-warning)
-    #   label: Low Battery
     - value: >
         [[[
           if (!states["zwave.aeon_labs_zw090_z_stick_gen5_us"] 
