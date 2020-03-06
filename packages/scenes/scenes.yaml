@@ -263,28 +263,63 @@ scene:
       - 314.824
       - 100
       brightness: 255
-      transition: 0
+      transition: 5
     light.hue_color_a19_101:
       state: on
       hs_color: 
       - 314.824
       - 100
       brightness: 255
-      transition: 0
+      transition: 5
     light.flex_strip_102:
       state: on
       hs_color: 
       - 195.178
       - 100
       brightness: 255
-      transition: 0
+      transition: 5
     light.flex_strip_106:
       state: on
       hs_color: 
       - 195.178
       - 100
       brightness: 255
-      transition: 0
+      transition: 5
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 150
+      transition: 5
+
+- name: Man Cave Scene - Jungle
+  entities:
+    light.flex_strip_101:
+      state: on
+      hs_color: 
+      - 30.119
+      - 99.216
+      brightness: 255
+      transition: 5
+    light.hue_color_a19_101:
+      state: on
+      hs_color: 
+      - 26.87
+      - 90.196
+      brightness: 255
+      transition: 5
+    light.flex_strip_102:
+      state: on
+      hs_color: 
+      - 105.118
+      - 99.608
+      brightness: 255
+      transition: 5
+    light.flex_strip_106:
+      state: on
+      hs_color: 
+      - 14.231
+      - 81.569
+      brightness: 255
+      transition: 5
     light.fire_tablet_701_backlight:
       state: on
       brightness: 150

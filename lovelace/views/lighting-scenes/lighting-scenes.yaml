@@ -41,6 +41,15 @@ cards:
       service: scene.turn_on
       service_data:
         entity_id: scene.man_cave_scene_sweet_tart
+  - entity: scene.man_cave_scene_jungle
+    icon: mdi:tree
+    show_state: false
+    name: Jungle
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_jungle
   - entity: scene.man_cave_scene_wind_down
     icon: mdi:weather-night
     show_state: false
