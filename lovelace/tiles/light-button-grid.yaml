@@ -1,0 +1,75 @@
+type: vertical-stack
+cards:
+- type: horizontal-stack
+  cards:
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.kitchen_lights
+    name: Kitchen
+    icon: mdi:silverware-variant
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.ledge_strips
+    name: Ledge
+    icon: mdi:weather-sunset
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.living_room_lamps
+    name: TV Room
+    icon: mdi:sofa
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.back_yard_lights
+    name: Back Yard
+    icon: mdi:tree
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.exterior_lights
+    name: Exterior
+    icon: mdi:alarm-light
+    hold_action:
+      action: more-info
+- type: horizontal-stack
+  cards:
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.master_bedroom_lights
+    name: Master BR
+    icon: mdi:bed-empty
+    hold_action:
+      action: more-info
+    lock:
+      enabled: true
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.guest_room_lights
+    name: Guest BR
+    icon: mdi:alpha-g-box
+    hold_action:
+      action: more-info
+    lock:
+      enabled: true
+  - type: "custom:button-card"
+    color_type: card
+    entity: group.man_cave_lights
+    name: Man Cave
+    icon: mdi:guitar-electric
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.laundry_room_light
+    name: Laundry
+    icon: mdi:tshirt-crew
+    hold_action:
+      action: more-info
+  - type: "custom:button-card"
+    color_type: blank_card

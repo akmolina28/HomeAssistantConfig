@@ -1,0 +1,12 @@
+type: "custom:button-card"
+entity: person.andrew
+show_entity_picture: true
+show_state: true
+show_name: false
+state:
+- value: 'home'
+  entity_picture: /local/images/people/andrew-100px.png
+- value: 'not_home'
+  entity_picture: /local/images/people/andrew-away-100px.png
+tap_action:
+  action: more-info

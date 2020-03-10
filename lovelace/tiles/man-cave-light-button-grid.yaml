@@ -1,0 +1,98 @@
+type: vertical-stack
+cards:
+- type: horizontal-stack
+  cards:
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.flex_strip_101
+    name: Overhead
+    icon: mdi:led-strip
+    hold_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+      - box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+    state:
+    - value: 'off'
+      styles:
+        icon:
+        - color: var(--primary-text-color)
+        name:
+        - color: var(--primary-text-color)
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.flex_strip_102
+    name: Closet
+    icon: mdi:led-strip
+    hold_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+      - box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+    state:
+    - value: 'off'
+      styles:
+        icon:
+        - color: var(--primary-text-color)
+        name:
+        - color: var(--primary-text-color)
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.flex_strip_106
+    name: Backlight
+    icon: mdi:led-strip
+    hold_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+      - box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+    state:
+    - value: 'off'
+      styles:
+        icon:
+        - color: var(--primary-text-color)
+        name:
+        - color: var(--primary-text-color)
+  - type: "custom:button-card"
+    color_type: card
+    entity: light.hue_color_a19_101
+    name: Lamp
+    icon: mdi:led-strip
+    hold_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+      - box-shadow: 0px 0px 9px 3px var(--button-card-light-color)
+    state:
+    - value: 'off'
+      styles:
+        icon:
+        - color: var(--primary-text-color)
+        name:
+        - color: var(--primary-text-color)
+        - -webkit-box-shadow: none
+        - box-shadow: none

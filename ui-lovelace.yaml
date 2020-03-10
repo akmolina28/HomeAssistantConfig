@@ -11,6 +11,11 @@ custom_header:
     config:
       show_tabs: light-control,devm,scene,lights,systemm
   - conditions:
+      user: 'ManCaveTablet'
+    config:
+      hide_tabs: '*'
+      show_tabs: 'main-panel-mc,system'
+  - conditions:
 # Include external resources
 resources:
   - url: /local/roborock.js
@@ -55,6 +60,7 @@ views:
   - !include /config/lovelace/views/lighting-scenes/lighting-scenes.yaml
   - !include /config/lovelace/views/main-panel/tablet-view.yaml
   - !include /config/lovelace/views/main-panel/mobile-view.yaml 
+  - !include /config/lovelace/views/user/man_cave_tablet/main-panel.yaml
   
   - title: Man Cave
     path: man-cave
@@ -402,3 +408,4 @@ views:
       filter:
         include:
         - entity_id: "*_battery_level"
+  

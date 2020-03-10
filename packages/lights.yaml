@@ -311,8 +311,8 @@ script:
         entity_id:
         - light.ge_softwhite_101
         brightness: '255'
-    - service: switch.turn_on
-      entity_id: group.back_yard_lights
+    - service: light.turn_on
+      entity_id: light.back_yard_lights
 
   turn_off_exterior_lights:
     alias: Lighting Scene - Exterior Lights Off

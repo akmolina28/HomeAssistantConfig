@@ -328,3 +328,79 @@ entities:
         --ha-card-background: "rgba(0, 0, 0, 0.0)";
         --ha-card-box-shadow: 'none';
       }
+- type: section
+  label: Ecobee
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: climate.thermostat
+    name: Thermostat
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-warning)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.bedroom_occupancy
+    name: Bedroom Sensor
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-warning)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.man_cave_occupancy
+    name: Man Cave Sensor
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: 'unavailable'
+      color: var(--status-color-warning)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }

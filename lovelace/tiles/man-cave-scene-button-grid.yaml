@@ -1,0 +1,77 @@
+type: custom:hui-vertical-stack-card
+cards:
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: scene.man_cave_scene_off
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_off
+  - type: custom:button-card
+    entity: scene.man_cave_scene_jungle
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_jungle
+  - type: custom:button-card
+    entity: scene.man_cave_scene_focus
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_focus
+  - type: custom:button-card
+    entity: scene.man_cave_scene_reading_mode
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_reading_mode
+  - type: custom:button-card
+    entity: scene.man_cave_scene_sweet_tart
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_sweet_tart
+
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    entity: scene.man_cave_scene_wake_up
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_wake_up
+  - type: custom:button-card
+    entity: scene.man_cave_scene_warm_white
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_warm_white
+  - type: custom:button-card
+    entity: scene.man_cave_scene_wind_down
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_wind_down
+  - type: custom:button-card
+    entity: scene.man_cave_scene_reading_mode
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_reading_mode
+  - type: custom:button-card
+    entity: scene.man_cave_scene_sweet_tart
+    tap_action:
+      action: call-service
+      service: scene.turn_on
+      service_data:
+        entity_id: scene.man_cave_scene_sweet_tart
