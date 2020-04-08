@@ -1,0 +1,33 @@
+type: "custom:button-card"
+entity: cover.garage_door
+color_type: card
+show_name: false
+icon: mdi:garage
+show_label: true
+state:
+- value: closed
+  color: 'var(--paper-card-background-color)'
+  label: Closed
+- value: open
+  color: 'var(--primary-color)'
+  icon: mdi:garage-open
+  label: Open
+- value: opening
+  color: 'var(--primary-color)'
+  icon: mdi:refresh
+  spin: 'true'
+  label: 'Opening...'
+- value: closing
+  color: 'var(--primary-color)'
+  icon: mdi:refresh
+  spin: 'true'
+  label: 'Closing...'
+- value: unavailable
+  color: 'var(--status-color-alert)'
+  label: Unavailable
+tap_action:
+  action: toggle
+hold_action:
+  action: more-info
+lock:
+  enabled: true

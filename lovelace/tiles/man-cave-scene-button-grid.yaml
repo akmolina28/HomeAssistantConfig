@@ -69,9 +69,17 @@ cards:
       service_data:
         entity_id: scene.man_cave_scene_reading_mode
   - type: custom:button-card
-    entity: scene.man_cave_scene_sweet_tart
+    entity: switch.man_cave_fluxer
     tap_action:
-      action: call-service
-      service: scene.turn_on
-      service_data:
-        entity_id: scene.man_cave_scene_sweet_tart
+      action: toggle
+    hold_action:
+      action: more-info
+    color_type: card
+    name: Flux
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+      

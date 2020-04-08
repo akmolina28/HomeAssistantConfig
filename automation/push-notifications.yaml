@@ -11,6 +11,11 @@
   - data_template:
       message: Andrew is at {{ states("person.andrew") }}. Do you need anything?
     service: notify.html5_notifications
+  - data_template:
+      message: Andrew is at {{ states("person.andrew") }}. Do you need anything?
+    service: notify.mobile_app_kaitlyn_s_iphone
+
+
 
 - alias: Close Garage Door Reminder Notification
   trigger:

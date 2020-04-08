@@ -1,6 +1,7 @@
 scene:
 - name: House Scene - Sleep
   entities:
+    switch.ledge_fluxer: off
     light.interior_lights:
       state: off
       transition: 5
@@ -15,6 +16,7 @@ scene:
 
 - name: House Scene - Warm Welcome
   entities:
+    switch.ledge_fluxer: off
     light.ledge_strips:
       state: on
       kelvin: 3000
@@ -24,6 +26,7 @@ scene:
 
 - name: Great Room Scene - Dinner Time
   entities:
+    switch.ledge_fluxer: off
     light.ledge_strips:
       state: on
       kelvin: 3000
@@ -41,6 +44,7 @@ scene:
       transition: 5
 - name: Great Room Scene - Wake up
   entities:
+    switch.ledge_fluxer: off
     light.ledge_strips:
       state: on
       kelvin: 2700
@@ -56,6 +60,7 @@ scene:
 
 - name: Great Room Scene - Wind Down
   entities:
+    switch.ledge_fluxer: off
     light.great_room_strips:
       state: on
       kelvin: 2000
@@ -70,6 +75,7 @@ scene:
     group.kitchen_lights: off
 - name: Great Room Scene - Bright
   entities:
+    switch.ledge_fluxer: off
     light.great_room_strips:
       state: on
       kelvin: 5000
@@ -91,6 +97,7 @@ scene:
       transition: 5
 - name: Great Room Scene - Warm White
   entities:
+    switch.ledge_fluxer: off
     light.great_room_strips:
       state: on
       kelvin: 3000
@@ -106,6 +113,7 @@ scene:
       transition: 5
 - name: Great Room Scene - Night Light
   entities:
+    switch.ledge_fluxer: off
     light.flex_strip_105:
       state: off
       transition: 5
@@ -126,6 +134,7 @@ scene:
 
 - name: Great Room Scene - Sweet Tart
   entities:
+    switch.ledge_fluxer: off
     light.flex_strip_107:
       state: on
       hs_color: 
@@ -378,6 +387,44 @@ scene:
   entities:
     light.back_yard_lights: off
     light.ge_softwhite_104: off
+
+- name: Outside Scene - Sunset
+  entities:
+    light.back_yard_lights: on
+    light.ge_softwhite_104: off
+    light.ge_softwhite_101:
+      state: on
+      brightness: 255
+
+- name: Outside Scene - Sunrise
+  entities:
+    light.back_yard_lights: off
+    light.exterior_lights: off
+
+- name: Outside Scene - Security
+  entities:
+    light.back_yard_lights: off
+    light.ge_softwhite_101:
+      state: on
+      brightness: 255
+    light.ge_softwhite_104:
+      state: on
+      brightness: 50
+
+- name: Ledge Scene - Warm White
+  entities:
+    switch.ledge_fluxer: off
+    light.ledge_strips:
+      state: on
+      kelvin: 3000
+      brightness: 255
+      transition: 5
+
+- name: Ledge Scene - Flux
+  entities:
+    light.ledge_strips:  on
+    switch.ledge_fluxer: on
+
 
 automation:
 - alias: Man Cave Lights Disco Transition

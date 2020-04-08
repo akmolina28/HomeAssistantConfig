@@ -14,8 +14,12 @@ custom_header:
       user: 'ManCaveTablet'
     config:
       hide_tabs: '*'
-      show_tabs: 'main-panel-mc,system'
+      show_tabs: 'main-panel-mc,scene,system'
   - conditions:
+      user: 'Kaitlyn'
+    config:
+      hide_tabs: '*'
+      show_tabs: 'light-control'
 # Include external resources
 resources:
   - url: /local/roborock.js

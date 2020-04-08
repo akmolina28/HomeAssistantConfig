@@ -1,14 +1,26 @@
-switch:
-- platform: flux
-  lights:
-  - light.flex_strip_101
-  name: Man Cave Fluxer
-  start_colortemp: 6500
-  sunset_colortemp: 3400
-  stop_colortemp: 1900
-  disable_brightness_adjust: true
-  mode: rgb
+input_boolean:
+  ledge_fluxer:
+      name: Ledge Fluxer
+  man_cave_fluxer:
+      name: Man Cave Fluxer
 
+sensor:
+- platform: template
+  sensors:
+    daylight_kelvin:
+      value_template: '{{ states("input_number.daylight_kelvin") }}'
+
+input_number:
+  daylight_kelvin:
+    name: Daylight Kelvin
+    min: 0
+    max: 10000
+
+input_text:
+  daylight_rgb:
+    name: Daylight RGB
+
+switch:
 - platform: flux
   lights:
   - light.couch_lamp
@@ -27,3 +39,32 @@ switch:
   start_colortemp: 6500
   sunset_colortemp: 3400
   stop_colortemp: 1900
+
+- platform: template
+  switches:
+    ledge_fluxer:
+      value_template: "{{ is_state('input_boolean.ledge_fluxer', 'on') }}"
+      turn_on:
+        service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.ledge_fluxer
+      turn_off:
+        service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.ledge_fluxer
+
+    man_cave_fluxer:
+      value_template: "{{ is_state('input_boolean.man_cave_fluxer', 'on') }}"
+      turn_on:
+        service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.man_cave_fluxer
+      turn_off:
+        service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.man_cave_fluxer
+
+homeassistant:
+  customize:
+    sensor.daylight_kelvin:
+      unit_of_measurement: 'Kelvin'

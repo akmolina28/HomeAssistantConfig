@@ -28,7 +28,7 @@ man_cave_lights:
   - light.flex_strip_102
   - light.flex_strip_106
   - light.hue_color_a19_101
-  - switch.ikea_smart_plug_101
+  - light.flex_strip_111
 
 living_room_lamps:
   name: Living Room Lights
