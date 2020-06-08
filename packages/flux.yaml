@@ -1,6 +1,8 @@
 input_boolean:
   ledge_fluxer:
       name: Ledge Fluxer
+  great_room_shuffler:
+      name: Great Room Shuffler
   man_cave_fluxer:
       name: Man Cave Fluxer
 
@@ -63,6 +65,17 @@ switch:
         service: input_boolean.turn_off
         data:
           entity_id: input_boolean.man_cave_fluxer
+
+    great_room_shuffler:
+      value_template: "{{ is_state('input_boolean.great_room_shuffler', 'on') }}"
+      turn_on:
+        service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.great_room_shuffler
+      turn_off:
+        service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.great_room_shuffler
 
 homeassistant:
   customize:

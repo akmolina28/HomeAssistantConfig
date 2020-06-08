@@ -1,9 +1,6 @@
 default_config:
 
 system_log:
-  
-lovelace:
-  mode: yaml
 
 mobile_app:
 
@@ -133,8 +130,6 @@ zone:
   latitude: !secret wholesale_store_1_latitude
   longitude: !secret wholesale_store_1_longitude
   icon: mdi:store
-
-python_script:
 
 google_assistant:
   project_id: hass-integration-2f620

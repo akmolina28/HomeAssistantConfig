@@ -3,6 +3,14 @@ input_number:
     name: Man Cave Lights Timeout
     min: 0
     max: 86400
+  laundry_room_light_timeout_seconds:
+    name: Laundry Room Lights Timeout
+    min: 0
+    max: 86400
+  hue_201_motion_sensitivity:
+    name: Garage Motion Sensor Sensitivity
+    min: 0
+    max: 4
 
 automation:
 - alias: Turn On Man Cave Lights When Motion Detected
@@ -20,7 +28,8 @@ automation:
     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
   - service: automation.turn_on
     entity_id: automation.turn_off_man_cave_lights_and_turn_on_automation_when_no_motion
-  - service: rest_command.fire_tablet_701_brightness
+  - service: light.turn_on
+    entity_id: light.fire_tablet_701_backlight
     data:
       brightness: 255
 
@@ -30,15 +39,16 @@ automation:
     entity_id: binary_sensor.hue_101_motion
     to: 'off'
     for:
-      minutes: 30
+      minutes: 60
   action:
   - service: homeassistant.turn_off
     entity_id: group.man_cave_lights
   - service: automation.turn_on
     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
-  - service: rest_command.fire_tablet_701_brightness
+  - service: light.turn_on
+    entity_id: light.fire_tablet_701_backlight
     data:
-      brightness: 0
+      brightness: 1
 
 - alias: Turn Off Kitchen Lights And Tablet Screen When No Motion
   trigger:
@@ -51,7 +61,7 @@ automation:
   - service: homeassistant.turn_off
     entity_id: group.kitchen_lights
   - service: light.turn_off
-    entity_id: light.yoga_tablet_801_backlight
+    entity_id: light.lenovo_tablet_1001_backlight
 
 - alias: Turn On Kitchen Tablet Screen When Motion Detected
   trigger:
@@ -64,7 +74,7 @@ automation:
       {{ states("input_select.automation_mode") in ['home', 'guest'] }}
   action:
   - service: light.turn_on
-    entity_id: light.yoga_tablet_801_backlight
+    entity_id: light.lenovo_tablet_1001_backlight
 
 
 - alias: Turn On Laundry Room Lights When Motion Detected

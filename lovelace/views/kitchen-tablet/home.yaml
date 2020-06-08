@@ -1,0 +1,605 @@
+title: Home
+path: home
+panel: true
+cards:
+- type: custom:hui-vertical-stack-card
+  cards:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: custom:hui-weather-forecast-card
+      entity: weather.openweathermap
+      name: Pensacola, FL
+    - type: custom:hui-entities-card
+      entities:
+      - type: custom:hui-vertical-stack-card
+        cards:
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - !include /config/lovelace/tiles/andrew-status.yaml
+          - !include /config/lovelace/tiles/kaitlyn-status.yaml
+        - !include /config/lovelace/tiles/automation-mode-card.yaml
+    - type: custom:calendar-card
+      eventsLimit: 3
+      hideHeader: true
+      hardLimit: true
+      dateTopFormat: MM/DD
+      numberOfDays: 365
+      entities:
+      - calendar.men_s_basketball_floridagators_com
+      - calendar.akmolina28_gmail_com
+      - calendar.football_floridagators_com
+      - calendar.kpdancing123_aol_com
+      style: |
+        ha-card {
+          padding-top: 12px!important;
+        }
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - type: custom:hui-entities-card
+        title: Kitchen Lights
+        entities:
+        - type: custom:hui-vertical-stack-card
+          cards:
+          - type: custom:hui-horizontal-stack-card
+            cards:
+            - type: conditional
+              conditions:
+              - entity: light.kitchen_lights
+                state_not: 'on'
+              card:
+                type: "custom:button-card"
+                color_type: card
+                icon: mdi:toggle-switch-off-outline
+                entity: light.kitchen_lights
+                size: 100%
+                show_state: false
+                name: All Lights
+                tap_action:
+                  action: call-service
+                  service: light.turn_on
+                  service_data:
+                    entity_id: light.kitchen_lights
+                    brightness: 255
+                styles:
+                  icon:
+                  - color: var(--primary-text-color)
+                  name:
+                  - color: var(--primary-text-color)
+                  card:
+                  - background-color: var(--paper-card-background-color)
+                  - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+                  - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+                  - height: 100px
+            - type: conditional
+              conditions:
+              - entity: light.kitchen_lights
+                state: 'on'
+              card:
+                type: "custom:button-card"
+                color_type: card
+                icon: mdi:toggle-switch-off-outline
+                entity: light.kitchen_lights
+                size: 100%
+                show_state: false
+                name: All Lights
+                tap_action:
+                  action: call-service
+                  service: light.turn_off
+                  service_data:
+                    entity_id: light.kitchen_lights
+                styles:
+                  icon:
+                  - color: var(--primary-color)
+                  name:
+                  - color: var(--primary-text-color)
+                  card:
+                  - background-color: var(--paper-card-background-color)
+                  - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+                  - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+                  - height: 100px
+            - type: "custom:button-card"
+              color_type: card
+              entity: light.kitchen_cabinet_lights
+              name: Cabinet Lights
+              size: 100%
+              show_state: false
+              icon: mdi:light-switch
+              styles:
+                icon:
+                - color: var(--button-card-light-color)
+                name:
+                - color: var(--button-card-light-color)
+                card:
+                - height: 100px
+                - background-color: var(--paper-card-background-color)
+                - -webkit-box-shadow: 0px 0px 0px 0px
+                - box-shadow: 0px 0px 0px 0px
+              state:
+              - value: 'off'
+                styles:
+                  icon:
+                  - color: var(--primary-text-color)
+                  name:
+                  - color: var(--primary-text-color)
+            - type: "custom:button-card"
+              color_type: card
+              entity: light.kitchen_bar_lights
+              name: Bar Lights
+              size: 100%
+              show_state: false
+              icon: mdi:light-switch
+              styles:
+                icon:
+                - color: var(--button-card-light-color)
+                name:
+                - color: var(--button-card-light-color)
+                card:
+                - height: 100px
+                - background-color: var(--paper-card-background-color)
+                - -webkit-box-shadow: 0px 0px 0px 0px
+                - box-shadow: 0px 0px 0px 0px
+              state:
+              - value: 'off'
+                styles:
+                  icon:
+                  - color: var(--primary-text-color)
+                  name:
+                  - color: var(--primary-text-color)
+            - type: "custom:button-card"
+              color_type: card
+              entity: light.kitchen_overhead_lights
+              name: Overhead Light
+              size: 100%
+              show_state: false
+              icon: mdi:ceiling-light
+              styles:
+                icon:
+                - color: var(--button-card-light-color)
+                name:
+                - color: var(--button-card-light-color)
+                card:
+                - height: 100px
+                - background-color: var(--paper-card-background-color)
+                - -webkit-box-shadow: 0px 0px 0px 0px
+                - box-shadow: 0px 0px 0px 0px
+              state:
+              - value: 'off'
+                styles:
+                  icon:
+                  - color: var(--primary-text-color)
+                  name:
+                  - color: var(--primary-text-color)
+            - type: "custom:button-card"
+              color_type: card
+              entity: light.kitchen_table_lights
+              name: Table Lights
+              size: 100%
+              show_state: false
+              icon: mdi:ceiling-light
+              hold_action:
+                action: more-info
+              styles:
+                icon:
+                - color: var(--button-card-light-color)
+                name:
+                - color: var(--button-card-light-color)
+                card:
+                - height: 100px
+                - background-color: var(--paper-card-background-color)
+                - -webkit-box-shadow: 0px 0px 0px 0px
+                - box-shadow: 0px 0px 0px 0px
+              state:
+              - value: 'off'
+                styles:
+                  icon:
+                  - color: var(--primary-text-color)
+                  name:
+                  - color: var(--primary-text-color)
+          - type: custom:hui-horizontal-stack-card
+            cards:
+            - type: "custom:button-card"
+              color_type: blank-card
+            - type: "custom:button-card"
+              color_type: blank-card
+            - type: "custom:button-card"
+              color_type: blank-card
+            - type: "custom:button-card"
+              color_type: blank-card
+            - type: "custom:hui-entities-card"
+              style: |
+                ha-card {
+                  position: absolute!important;
+                  top: -36px;
+                  right: -8px;
+                  height: 40px!important;
+                  width: 130px!important;
+                  -webkit-box-shadow: 0px 0px 0px 0px;
+                  box-shadow: 0px 0px 0px 0px;
+                }
+                #states {
+                  padding: 0!important;
+                }
+              entities:
+              - type: "custom:slider-entity-row"
+                entity: light.kitchen_table_lights
+                full_row: true
+                hide_when_off: true
+                hide_state: true
+                min: 0
+                max: 100
+                step: 20
+      - type: custom:hui-entities-card
+        title: Chores
+        entities:
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - type: "custom:button-card"
+            entity: input_boolean.chewie_wet_food
+            name: Wet Food
+            color_type: card
+            show_state: false
+            show_label: true
+            tap_action:
+              action: toggle
+            state:
+            - value: >
+                [[[
+                  return entity.state == "on";
+                ]]]
+              label: Due
+              operator: template
+              color: var(--status-color-warning)
+            - value: >
+                [[[
+                  return entity.state == "off";
+                ]]]
+              label: Not Due
+              operator: template
+              color: var(--paper-card-background-color)
+            styles:
+              card:
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+          - type: "custom:button-card"
+            entity: input_boolean.chewie_water
+            name: Fresh Water
+            color_type: card
+            show_state: false
+            show_label: true
+            tap_action:
+              action: toggle
+            state:
+            - value: >
+                [[[
+                  return entity.state == "on";
+                ]]]
+              label: Due
+              operator: template
+              color: var(--status-color-warning)
+            - value: >
+                [[[
+                  return entity.state == "off";
+                ]]]
+              label: Not Due
+              operator: template
+              color: var(--paper-card-background-color)
+            styles:
+              card:
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+          - type: "custom:button-card"
+            entity: input_boolean.chewie_litter
+            name: Scoop Poops
+            color_type: card
+            show_state: false
+            show_label: true
+            tap_action:
+              action: toggle
+            state:
+            - value: >
+                [[[
+                  return entity.state == "on";
+                ]]]
+              label: Due
+              operator: template
+              color: var(--status-color-warning)
+            - value: >
+                [[[
+                  return entity.state == "off";
+                ]]]
+              label: Not Due
+              operator: template
+              color: var(--paper-card-background-color)
+            styles:
+              card:
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+          - type: "custom:button-card"
+            entity: input_boolean.take_garbage_out
+            name: Garbage
+            color_type: card
+            show_state: false
+            show_label: true
+            tap_action:
+              action: toggle
+            state:
+            - value: >
+                [[[
+                  return entity.state == "on";
+                ]]]
+              label: Due
+              operator: template
+              color: var(--status-color-warning)
+            - value: >
+                [[[
+                  return entity.state == "off";
+                ]]]
+              label: Not Due
+              operator: template
+              color: var(--paper-card-background-color)
+            styles:
+              card:
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+          - type: "custom:button-card"
+            entity: input_boolean.take_recycling_out
+            name: Recycling
+            color_type: card
+            show_state: false
+            show_label: true
+            tap_action:
+              action: toggle
+            state:
+            - value: >
+                [[[
+                  return entity.state == "on";
+                ]]]
+              label: Due
+              operator: template
+              color: var(--status-color-warning)
+            - value: >
+                [[[
+                  return entity.state == "off";
+                ]]]
+              label: Not Due
+              operator: template
+              color: var(--paper-card-background-color)
+            styles:
+              card:
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+      - type: custom:hui-entities-card
+        show_header_toggle: false
+        title: TV & Receiver
+        entities:
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - type: custom:hui-entities-card
+            show_header_toggle: false
+            entities:
+            - entity: switch.living_room_tv_power
+              name: TV
+            - entity: switch.living_room_receiver_power
+              name: Receiver
+            style: |
+              ha-card {
+                padding: 0;
+                -webkit-box-shadow: 0px 0px 0px 0px;
+                box-shadow: 0px 0px 0px 0px;
+              }
+              .card-content {
+                padding:0;
+              }
+          - type: custom:hui-entities-card
+            show_header_toggle: false
+            entities:
+            - type: "custom:slider-entity-row"
+              entity: media_player.living_room_receiver
+              full_row: true
+              hide_when_off: true
+              hide_state: true
+              min: 0
+              max: 100
+              step: 5
+            style: |
+              ha-card {
+                padding: 0;
+                -webkit-box-shadow: 0px 0px 0px 0px;
+                box-shadow: 0px 0px 0px 0px;
+              }
+              .card-content {
+                padding:0;
+              }
+
+    - type: custom:hui-entities-card
+      title: Home Security
+      entities:
+      - type: custom:hui-vertical-stack-card
+        cards:
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - type: "custom:button-card"
+            color_type: card
+            entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+            name: Front Door
+            size: 100%
+            show_state: false
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            styles:
+              icon:
+              - color: var(--button-card-light-color)
+              name:
+              - color: var(--button-card-light-color)
+              card:
+              - height: 100px
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+            state:
+            - value: >
+                [[[
+                  return entity.state == "unlocked" && states["sun.sun"].state == "below_horizon";
+                ]]]
+              operator: template
+              styles:
+                icon:
+                - color: var(--status-color-alert)
+                name:
+                - color: var(--status-color-alert)
+            - value: >
+                [[[
+                  return entity.state == "unlocked" && states["sun.sun"].state == "above_horizon";
+                ]]]
+              operator: template
+              styles:
+                icon:
+                - color: var(--status-color-warning)
+                name:
+                - color: var(--status-color-warning)
+          - type: "custom:button-card"
+            color_type: card
+            entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+            name: Laundry Door
+            size: 100%
+            show_state: false
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            styles:
+              icon:
+              - color: var(--button-card-light-color)
+              name:
+              - color: var(--button-card-light-color)
+              card:
+              - height: 100px
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+            state:
+            - value: >
+                [[[
+                  return entity.state == "unlocked" && states["sun.sun"].state == "below_horizon";
+                ]]]
+              operator: template
+              styles:
+                icon:
+                - color: var(--status-color-alert)
+                name:
+                - color: var(--status-color-alert)
+            - value: >
+                [[[
+                  return entity.state == "unlocked" && states["sun.sun"].state == "above_horizon";
+                ]]]
+              operator: template
+              styles:
+                icon:
+                - color: var(--status-color-warning)
+                name:
+                - color: var(--status-color-warning)
+          - type: "custom:button-card"
+            entity: cover.garage_door
+            color_type: card
+            name: Garage Door
+            show_state: false
+            icon: mdi:garage
+            show_label: true
+            styles:
+              icon:
+              - color: var(--button-card-light-color)
+              name:
+              - color: var(--button-card-light-color)
+              card:
+              - height: 100px
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+            state:
+            - value: closed
+              color: 'var(--paper-card-background-color)'
+            - value: >
+                [[[
+                  return entity.state == "open" && states["sun.sun"].state == "above_horizon";
+                ]]]
+              operator: template
+              icon: mdi:garage-open
+              styles:
+                icon:
+                - color: var(--status-color-warning)
+                name:
+                - color: var(--status-color-warning)
+            - value: >
+                [[[
+                  return entity.state == "open" && states["sun.sun"].state == "below_horizon";
+                ]]]
+              operator: template
+              icon: mdi:garage-open
+              styles:
+                icon:
+                - color: var(--status-color-alert)
+                name:
+                - color: var(--status-color-alert)
+            - value: opening
+              icon: mdi:refresh
+              spin: 'true'
+              name: 'Opening...'
+            - value: closing
+              icon: mdi:refresh
+              spin: 'true'
+              name: 'Closing...'
+            - value: unavailable
+              color: 'var(--status-color-alert)'
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+            lock:
+              enabled: true
+          - type: "custom:button-card"
+            color_type: card
+            name: CATio
+            size: 100%
+            icon: mdi:window-closed
+            show_state: false
+            tap_action:
+              action: more-info
+            styles:
+              icon:
+              - color: var(--button-card-light-color)
+              name:
+              - color: var(--button-card-light-color)
+              card:
+              - height: 100px
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px
+              - box-shadow: 0px 0px 0px 0px
+            state:
+            - value: >
+                [[[
+                  return states["binary_sensor.catio_door_sensor"] == "on" && states["sun.sun"].state == "below_horizon";
+                ]]]
+              operator: template
+              icon: mdi:window-open
+              styles:
+                icon:
+                - color: var(--status-color-alert)
+                name:
+                - color: var(--status-color-alert)
+            - value: >
+                [[[
+                  return states["binary_sensor.catio_door_sensor"] == "on" && states["sun.sun"].state == "above_horizon";
+                ]]]
+              operator: template
+              icon: mdi:window-open
+              styles:
+                icon:
+                - color: var(--status-color-warning)
+                name:
+                - color: var(--status-color-warning)
+        - type: picture-entity
+          entity: camera.front_door_last_activity

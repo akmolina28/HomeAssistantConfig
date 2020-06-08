@@ -53,7 +53,33 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
-    color_type: blank-card
+    entity: sensor.pi_hole_status
+    name: Pi Hole
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          return entity.state == "enabled" || entity.state == "disabled";
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
 - type: section
   label: Local Network
 - type: custom:hui-horizontal-stack-card
@@ -132,7 +158,7 @@ entities:
 - type: custom:hui-horizontal-stack-card
   cards:
   - type: custom:button-card
-    entity: sensor.yoga_tablet_801_kiosk_device_info
+    entity: sensor.lenovo_tablet_1001_kiosk_device_info
     name: Kitchen Tablet
     color_type: card
     icon: mdi:tablet

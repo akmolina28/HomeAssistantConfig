@@ -9,8 +9,24 @@
   - 'beat'
 
 - platform: rest
-  name: Yoga Tablet 801 Kiosk Device Info
-  resource: !secret rest_url_yoga_tablet_801_kiosk_device_info
+  name: Lenovo Tablet 1001 Kiosk Device Info
+  resource: !secret rest_url_lenovo_tablet_1001_kiosk_device_info
+  json_attributes:
+  - screenBrightness
+  - currentPage
+  - ip4
+  - mac
+  - isScreenOn
+  - batteryLevel
+  - deviceID
+  - maintenanceMode
+  - deviceManufacturer
+  - deviceModel
+  value_template: 'OK'
+
+- platform: rest
+  name: Lenovo Tablet 701 Kiosk Device Info
+  resource: !secret rest_url_lenovo_tablet_701_kiosk_device_info
   json_attributes:
   - screenBrightness
   - currentPage
@@ -42,42 +58,8 @@
 
 - platform: template
   sensors:
-    day_of_week:
-      value_template: >
-        {% if (now().weekday() == 0) %}
-          Monday
-        {% elif (now().weekday() == 1) %}
-          Tuesday
-        {% elif (now().weekday() == 2) %}
-          Wednesday
-        {% elif (now().weekday() == 3) %}
-          Thursday
-        {% elif (now().weekday() == 4) %}
-          Friday
-        {% elif (now().weekday() == 5) %}
-          Saturday
-        {% elif (now().weekday() == 6) %}
-          Sunday
-        {% endif %}
     is_weekday:
       value_template: '{{ now().weekday() < 5 }}'
-    day_of_week_abbr:
-      value_template: >
-        {% if (now().weekday() == 0) %}
-          MON
-        {% elif (now().weekday() == 1) %}
-          TUE
-        {% elif (now().weekday() == 2) %}
-          WED
-        {% elif (now().weekday() == 3) %}
-          THU
-        {% elif (now().weekday() == 4) %}
-          FRI
-        {% elif (now().weekday() == 5) %}
-          SAT
-        {% elif (now().weekday() == 6) %}
-          SUN
-        {% endif %}
     month:
       value_template: >
         {% if (now().month == 1) %}
@@ -140,29 +122,3 @@
     hvac_mode:
       value_template: '{{ state_attr("climate.thermostat", "hvac_action") }}'
 
-    payday_countdown:
-      value_template: >
-        {% set now_timestamp = as_timestamp(strptime(states("sensor.date_time"), "%Y-%m-%d, %H:%M")) %}
-        {% set next_payday = state_attr("calendar.payday", "start_time") %}
-        {% set next_holiday = state_attr("calendar.holidays_in_united_states", "start_time") %}
-        {% set next_payday_timestamp = as_timestamp(state_attr("calendar.payday", "start_time")) %}
-        {% set next_holiday_timestamp = as_timestamp(state_attr("calendar.holidays_in_united_states", "start_time")) %}
-
-        {# check if next payday falls on holiday #}
-        {% if (next_payday_timestamp == next_holiday_timestamp) %}
-          {# move payday back by 1 day #}
-          {% set next_payday_timestamp = next_payday_timestamp - (24 * 60 * 60) %}
-        {% endif %}
-
-        {% set next_payday_date = strptime(next_payday_timestamp | timestamp_local, "%Y-%m-%d %H:%M:%S") %}
-
-        {# if payday falls on a saturday, subtract a day #}
-        {% if (next_payday_date.weekday() == 5) %}
-          {% set next_payday_timestamp = next_payday_timestamp - (24 * 60 * 60) %} 
-        {# if payday falls on a sunday, subtract 2 days #}
-        {% elif (next_payday_date.weekday() == 6) %}
-          {% set next_payday_timestamp = next_payday_timestamp - (48 * 60 * 60) %}
-        {% endif %}
-
-        {# calculate number of days between now and adjusted payday #}
-        {{ ((next_payday_timestamp - now_timestamp) / (24 * 60 * 60)) | round(0, 'ceil') }}

@@ -21,6 +21,12 @@ interior_light_switches:
   - light.kitchen_table_lights
   - switch.laundry_room_light
 
+laundry_room_lights:
+  name: Laundry Room Lights
+  entities:
+  - switch.laundry_room_light
+  - light.hue_softwhite_lwb014_101
+
 man_cave_lights:
   name: Man-cave Lights
   entities:
@@ -29,6 +35,12 @@ man_cave_lights:
   - light.flex_strip_106
   - light.hue_color_a19_101
   - light.flex_strip_111
+
+garage_lights:
+  name: Garage Lights
+  entities:
+  - light.flex_strip_112
+  - switch.ikea_outlet_101
 
 living_room_lamps:
   name: Living Room Lights
@@ -63,3 +75,22 @@ exterior_lights:
   entities:
   - light.ge_softwhite_101
   - light.ge_softwhite_104
+
+ledge_strips:
+  name: Ledge Strips
+  entities:
+  - light.flex_strip_104
+  - light.flex_strip_107
+  - light.flex_strip_108
+  - light.flex_strip_109
+  - light.flex_strip_110
+
+great_room_strips:
+  name: Great Room Strips
+  entities:
+  - light.flex_strip_104
+  - light.flex_strip_107
+  - light.flex_strip_108
+  - light.flex_strip_109
+  - light.flex_strip_110
+  - light.flex_strip_105

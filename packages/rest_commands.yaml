@@ -5,6 +5,8 @@ rest_command:
     url: !secret rest_url_tasker_kaitlyn_home
   fire_tablet_701_kiosk_command:
     url: !secret rest_url_fire_tablet_701_kiosk_command
-  lenovo_tablet_801_kiosk_command:
-    url: !secret rest_url_yoga_tablet_801_kiosk_command
+  lenovo_tablet_1001_kiosk_command:
+    url: !secret rest_url_lenovo_tablet_1001_kiosk_command
+  lenovo_tablet_701_kiosk_command:
+    url: !secret rest_url_lenovo_tablet_701_kiosk_command
   

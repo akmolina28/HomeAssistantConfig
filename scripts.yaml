@@ -1,4 +1,17 @@
+ledge_strips_brightness_increase:
+  sequence: []
 
+ledge_strips_brightness_decrease:
+  sequence: []
+
+ledge_strips_brightness_max:
+  sequence: []
+
+ledge_strips_brightness_min:
+  sequence: []
+
+disable_garage_motion_1_hr:
+  sequence: []
 
 turn_off_media_players:
   alias: Turn Off Media Players

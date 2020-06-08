@@ -1,0 +1,8 @@
+title: Home Assistant
+custom_header:
+  compact_mode: true
+views:
+- !include /config/lovelace/views/kitchen-tablet/home.yaml
+- !include /config/lovelace/views/shared/rooms.yaml
+- !include /config/lovelace/views/shared/climate.yaml
+- !include /config/lovelace/views/shared/system-monitor.yaml

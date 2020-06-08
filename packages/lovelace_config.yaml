@@ -1,0 +1,61 @@
+lovelace:
+  mode: yaml
+  resources:
+  - url: /local/roborock.js
+    type: js
+  - url: /local/slider-entity-row.js?v=0.13
+    type: module
+  - url: /local/button-card.js?v=3.3.5
+    type: module
+  - url: /local/card-mod.js?v=1.0.13
+    type: module
+  - url: /local/simple-thermostat.js?v=0.35.0
+    type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.9.3
+    type: module
+  - url: /local/mini-media-player-bundle.js?v=1.9.1
+    type: module
+  - url: /local/markdown-mod.js?v=1.0.0.0
+    type: module
+  - url: /local/my-custom-card.js?v=0.0.0.12
+    type: js
+  - url: /local/content-card-example.js
+    type: js
+  - url: /local/simple-dark-sky-card.js?v=1.0.3
+    type: js
+  - url: /local/gators-mbk-tracker.js?v=1.0.2
+    type: js
+  - url: /local/custom-cards/bar-card.js?v=1.7.1
+    type: js
+  - url: /local/custom-header.js?v=1.4.1
+    type: module
+  - url: /local/fold-entity-row.js?v=0.106
+    type: module
+  - url: /local/auto-entities.js?v=0.106
+    type: module
+  - url: /local/config-template-card.js?v=1.1.2
+    type: module
+  - url: /local/calendar-card.js?v=3.108.7
+    type: js
+  dashboards:
+    living-room-tablet:
+      mode: yaml
+      filename: living-room-tablet.yaml
+      title: Living Room Tablet
+      icon: mdi:sofa
+      show_in_sidebar: true
+      require_admin: false
+    kitchen-tablet:
+      mode: yaml
+      filename: kitchen-tablet.yaml
+      title: Kitchen Tablet
+      icon: mdi:silverware-fork-knife
+      show_in_sidebar: true
+      require_admin: false
+    garage-tablet:
+      mode: yaml
+      filename: garage-tablet.yaml
+      title: Garage Tablet
+      icon: mdi:garage
+      show_in_sidebar: true
+      require_admin: false

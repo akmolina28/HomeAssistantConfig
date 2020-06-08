@@ -203,3 +203,21 @@ entities:
         --ha-card-background: "rgba(0, 0, 0, 0.0)";
         --ha-card-box-shadow: 'none';
       }
+- type: section
+  label: Pi-hole v5.0 (Raspberry Pi OS)
+  style: |
+    ha-card { 
+      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+      --ha-card-background: "rgba(0, 0, 0, 0.0)";
+      --ha-card-box-shadow: 'none';
+    }
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: sensor
+    name: Ads Blocked Today
+    entity: sensor.pi_hole_ads_blocked_today
+    graph: line
+  - type: sensor
+    name: Ads Blocked Today
+    entity:  sensor.pi_hole_ads_percentage_blocked_today
+    graph: line

@@ -1,0 +1,11 @@
+title: Living Room
+custom_header:
+  compact_mode: true
+views:
+- !include /config/lovelace/views/living-room-tablet/home.yaml
+- !include /config/lovelace/views/shared/rooms.yaml
+- !include /config/lovelace/views/shared/climate.yaml
+      
+
+
+    

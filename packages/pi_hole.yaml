@@ -1,0 +1,11 @@
+pi_hole:
+- host: '192.168.1.25'
+  api_key: !secret pi_hole_api_key
+
+sensor:
+- platform: command_line
+  name: Pi-hole Status
+  scan_interval: 10
+  command: !secret pi_hole_status_command
+  value_template: >
+    {{ value_json.status }}

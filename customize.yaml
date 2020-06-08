@@ -1,3 +1,32 @@
+sensor.pi_hole_status:
+  icon: mdi:pi-hole
+
+switch.ikea_outlet_103:
+  templates:
+    icon: >
+      return "mdi:fan";
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+switch.living_room_receiver_power:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+switch.living_room_tv_power:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+binary_sensor.catio_door_sensor:
+  templates:
+    icon: >
+      if (state == "on") return "mdi:window-open";
+      else return "mdi:window-closed";
+
 binary_sensor.google:
   templates:
     icon_color: >

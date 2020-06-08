@@ -1,0 +1,255 @@
+title: Rooms
+path: rooms
+panel: false
+cards:
+- type: entities
+  title: Master Bedroom
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: light.master_bedroom_lights
+      icon: mdi:bed-empty
+      name: Lights
+    entities:
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.kp_bedside
+      icon: mdi:lamp
+      name: KP
+      step: 20
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.andrew_bedside
+      icon: mdi:lamp
+      name: Andrew
+      step: 20
+  style: |
+    ha-card {
+      background: {% if is_state('group.master_bedroom_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }
+- type: entities
+  title: Kitchen
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: light.kitchen_lights
+      name: Lights
+      icon: mdi:light-switch
+    entities:
+    - entity: light.kitchen_cabinet_lights
+      icon: mdi:light-switch
+    - entity: light.kitchen_bar_lights
+      icon: mdi:light-switch
+    - entity: light.kitchen_table_lights
+      icon: mdi:silverware-variant
+    - entity: light.kitchen_overhead_lights
+      icon: mdi:ceiling-light
+  style: |
+    ha-card {
+      background: {% if is_state('group.kitchen_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }
+
+- type: entities
+  title: Great Room
+  show_header_toggle: false
+  entities:
+  - name: Lamps
+    icon: mdi:lamp
+    entity: light.living_room_lamps
+  - type: "custom:fold-entity-row"
+    head: 
+      entity: light.great_room_strips
+      name: LEDs
+      icon: mdi:led-strip
+    entities:
+    - entity: light.flex_strip_105
+      icon: mdi:television
+      name: TV
+    - type: "custom:fold-entity-row"
+      head: 
+        entity: light.ledge_strips
+        icon: mdi:weather-sunset
+        name: Ledge
+      entities:
+      - icon: mdi:led-strip
+        name: 1
+        entity: light.flex_strip_104
+      - icon: mdi:led-strip
+        name: 2
+        entity: light.flex_strip_108
+      - icon: mdi:led-strip
+        name: 3
+        entity: light.flex_strip_107
+      - icon: mdi:led-strip
+        name: 4
+        entity: light.flex_strip_109
+      - icon: mdi:led-strip
+        name: 5
+        entity: light.flex_strip_110
+    - entity: switch.ledge_fluxer
+      icon: mdi:brightness-6
+      name: Flux
+    - entity: switch.great_room_shuffler
+      icon: mdi:shuffle-variant
+      name: Shuffle
+  style: |
+    ha-card {
+      background: {% if is_state('group.great_room_strips', 'on') or is_state('group.living_room_lamps', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }
+
+- type: entities
+  title: Guest Bedroom
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: light.guest_room_lights
+      icon: mdi:bed-empty
+      name: Lights
+    entities:
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.guest_room_lamp_2
+      icon: mdi:lamp
+      name: Night Stand
+      step: 20
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.guest_room_lamp_1
+      icon: mdi:floor-lamp
+      name: Lamp
+      step: 20
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.flex_strip_103
+      icon: mdi:led-strip
+      name: Overhead
+      step: 20
+  style: |
+    ha-card {
+      background: {% if is_state('group.guest_room_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }
+- type: entities
+  title: Man Cave
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: group.man_cave_lights
+      name: Lights
+      icon: mdi:guitar-electric
+    entities:
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.flex_strip_101
+      step: 20
+      icon: mdi:led-strip
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.flex_strip_102
+      step: 20
+      icon: mdi:led-strip
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.flex_strip_106
+      step: 20
+      icon: mdi:led-strip
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.hue_color_a19_101
+      step: 20
+      icon: mdi:led-strip
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.flex_strip_111
+      step: 20
+      icon: mdi:led-strip
+  style: |
+    ha-card {
+      background: {% if is_state('group.man_cave_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }
+- type: entities
+  title: Laundry Room
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: group.laundry_room_lights
+      name: Lights
+      icon: mdi:washing-machine
+    entities:
+    - entity: switch.laundry_room_light
+      name: Room Light
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.hue_softwhite_lwb014_101
+      step: 20
+      icon: mdi:spotlight
+      name: Night Light
+  style: |
+    ha-card {
+      background: {% if is_state('group.laundry_room_lights', 'on') %} var(--secondary-text-color) {% else %} var(--paper-card-background-color) {% endif %};
+    }
+    
+- type: entities
+  title: Garage
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: group.garage_lights
+      name: Work Bench
+      icon: mdi:garage
+    entities:
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.flex_strip_112
+      step: 20
+      icon: mdi:led-strip
+    - entity: switch.ikea_outlet_101
+      icon: mdi:wrench
+  - entity: switch.ikea_outlet_103
+  style: |
+    ha-card {
+      background: {% if is_state('group.garage_lights', 'on') or is_state('switch.ikea_outlet_103', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }
+- type: entities
+  title: Exterior
+  show_header_toggle: false
+  entities:
+  - type: "custom:fold-entity-row"
+    head:
+      entity: light.back_yard_lights
+      name: Back Yard Lights
+      icon: mdi:tree
+    entities:
+    - entity: light.back_yard_strand_lights
+      icon: mdi:tree
+    - entity: light.back_yard_strand_lights_2
+      icon: mdi:tree
+    - entity: light.back_yard_spot_light
+      icon: mdi:spotlight-beam
+    - entity: light.back_yard_swing_lights
+      icon: mdi:seat-legroom-extra
+  - type: "custom:fold-entity-row"
+    head:
+      entity: light.exterior_lights
+      name: Exterior
+      icon: mdi:wall
+    entities:
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.ge_softwhite_101
+      step: 20
+      icon: mdi:wall-sconce
+    - type: "custom:slider-entity-row"
+      toggle: true
+      entity: light.ge_softwhite_104
+      step: 20
+      icon: mdi:wall-sconce
+  style: |
+    ha-card {
+      background: {% if is_state('light.exterior_lights', 'on') or is_state('light.back_yard_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+    }

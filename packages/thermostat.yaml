@@ -68,3 +68,9 @@ automation:
     value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
   action:
   - service: script.resume_climate_schedule
+
+sensor:
+- platform: template
+  sensors:
+    target_temperature:
+      value_template: '{{ state_attr("climate.thermostat", "temperature") }}'

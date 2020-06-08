@@ -1,0 +1,17 @@
+scene:
+- name: Laundry Room Scene - Bright
+  entities:
+    switch.laundry_room_light: on
+    light.hue_softwhite_lwb014_101: off
+- name: Laundry Room Scene - Night
+  entities:
+    switch.laundry_room_light: off
+    light.hue_softwhite_lwb014_101:
+      state: on
+      brightness: 255
+- name: Laundry Room Scene - Late Night
+  entities:
+    switch.laundry_room_light: off
+    light.hue_softwhite_lwb014_101:
+      state: on
+      brightness: 50

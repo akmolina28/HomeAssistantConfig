@@ -47,6 +47,7 @@ light:
   - light.guest_room_lights
   - light.master_bedroom_lights
   - light.man_cave_lights
+  - light.hue_softwhite_lwb014_101
 - platform: group
   name: Exterior Lights
   entities:
@@ -90,28 +91,56 @@ light:
   - light.kitchen_overhead_lights
   - light.kitchen_table_lights
 
+- platform: group
+  name: Garage Lights
+  entities:
+  - light.flex_strip_112
+  - light.pegboard_lights
+
+- platform: switch
+  name: Pegboard Lights
+  entity_id: switch.ikea_outlet_101
+
 - platform: template
   lights:
-    yoga_tablet_801_backlight:
+    lenovo_tablet_1001_backlight:
       friendly_name: Kitchen Tablet Backlight
-      value_template: '{{ states.sensor.yoga_tablet_801_kiosk_device_info.attributes["isScreenOn"] }}'
-      level_template: '{{ states.sensor.yoga_tablet_801_kiosk_device_info.attributes["screenBrightness"] }}'
+      value_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
+      level_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
-        service: rest_command.lenovo_tablet_801_kiosk_command
+        service: rest_command.lenovo_tablet_1001_kiosk_command
         data:
           cmd: screenOn
       turn_off:
-        service: rest_command.lenovo_tablet_801_kiosk_command
+        service: rest_command.lenovo_tablet_1001_kiosk_command
         data:
           cmd: screenOff
       set_level:
-        service: rest_command.lenovo_tablet_801_kiosk_command
+        service: rest_command.lenovo_tablet_1001_kiosk_command
         data_template:
           cmd: setStringSetting
           key: screenBrightness
           value: '{{ brightness }}'
-- platform: template
-  lights:
+
+    lenovo_tablet_701_backlight:
+      friendly_name: Garage Tablet Backlight
+      value_template: '{{ states.sensor.lenovo_tablet_701_kiosk_device_info.attributes["isScreenOn"] }}'
+      level_template: '{{ states.sensor.lenovo_tablet_701_kiosk_device_info.attributes["screenBrightness"] }}'
+      turn_on:
+        service: rest_command.lenovo_tablet_701_kiosk_command
+        data:
+          cmd: screenOn
+      turn_off:
+        service: rest_command.lenovo_tablet_701_kiosk_command
+        data:
+          cmd: screenOff
+      set_level:
+        service: rest_command.lenovo_tablet_701_kiosk_command
+        data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'
+
     fire_tablet_701_backlight:
       friendly_name: Man-cave Tablet Backlight
       value_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["isScreenOn"] }}'
@@ -414,7 +443,7 @@ script:
     alias: Lighting Scene - Home Sleep Mode
     sequence:
     - service: script.turn_off_interior_lights
-    - service: switch.turn_off
+    - service: homeassistant.turn_off
       entity_id: group.back_yard_lights
     - service: light.turn_on
       data:

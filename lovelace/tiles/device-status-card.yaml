@@ -129,6 +129,128 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
+    entity: binary_sensor.hue_103_motion
+    icon: mdi:eye
+    name: Unassigned
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["sensor.hue_103_battery_level"]
+           && states["sensor.hue_103_battery_level"].state
+           && states["sensor.hue_103_battery_level"].state != "unavailable"
+           && parseInt(states["sensor.hue_103_battery_level"].state) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["binary_sensor.hue_103_motion"] 
+           || !states["binary_sensor.hue_103_motion"].state
+           || !(['off', 'on'].includes(states["binary_sensor.hue_103_motion"].state))
+           || !states["sensor.hue_103_temp"]
+           || !states["sensor.hue_103_temp"].state
+           || states["sensor.hue_103_temp"].state == "unavailable"
+           || !states["sensor.hue_103_lux"]
+           || !states["sensor.hue_103_lux"].state
+           || states["sensor.hue_103_lux"].state == "unavailable"
+           || !states["sensor.hue_103_battery_level"]
+           || !states["sensor.hue_103_battery_level"].state
+           || states["sensor.hue_103_battery_level"].state == "unavailable"
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
+    entity: binary_sensor.hue_201_motion
+    icon: mdi:eye
+    name: Garage
+    color_type: card
+    show_label: true
+    tap_action:
+      action: more-info
+    state:
+    - value: >
+        [[[
+          if (states["sensor.hue_201_battery_level"]
+           && states["sensor.hue_201_battery_level"].state
+           && states["sensor.hue_201_battery_level"].state != "unavailable"
+           && parseInt(states["sensor.hue_201_battery_level"].state) < 20) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-warning)
+      label: Low Battery
+    - value: >
+        [[[
+          if (!states["binary_sensor.hue_201_motion"] 
+           || !states["binary_sensor.hue_201_motion"].state
+           || !(['off', 'on'].includes(states["binary_sensor.hue_201_motion"].state))
+           || !states["sensor.hue_201_temp"]
+           || !states["sensor.hue_201_temp"].state
+           || states["sensor.hue_201_temp"].state == "unavailable"
+           || !states["sensor.hue_201_lux"]
+           || !states["sensor.hue_201_lux"].state
+           || states["sensor.hue_201_lux"].state == "unavailable"
+           || !states["sensor.hue_201_battery_level"]
+           || !states["sensor.hue_201_battery_level"].state
+           || states["sensor.hue_201_battery_level"].state == "unavailable"
+           ) {
+            return true;
+          }
+          else {
+            return false;
+          }
+        ]]]
+      operator: template
+      color: var(--status-color-alert)
+      label: Error
+    - value: >
+        [[[
+          return true;
+        ]]]
+      operator: template
+      color: var(--paper-card-background-color)
+      label: OK
+    style: |
+      ha-card { 
+        --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+        --ha-card-background: "rgba(0, 0, 0, 0.0)";
+        --ha-card-box-shadow: 'none';
+      }
+  - type: custom:button-card
     entity: binary_sensor.smartthings_100_motion
     icon: mdi:eye
     name: Laundry

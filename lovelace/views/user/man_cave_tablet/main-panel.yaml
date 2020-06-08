@@ -18,7 +18,9 @@ cards:
     - !include /config/lovelace/tiles/man-cave-scene-button-grid.yaml
   - type: custom:hui-vertical-stack-card
     cards:
-    - !include /config/lovelace/tiles/compact-weather-card.yaml
+    - type: weather-forecast
+      entity: weather.openweathermap
+      name: Pensacola, FL
     - type: "custom:gators-mbk-tracker"
       entity: calendar.men_s_basketball_floridagators_com
     - type: picture-entity
