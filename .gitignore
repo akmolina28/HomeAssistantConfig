@@ -3,11 +3,19 @@
 /*
 
 !.gitignore
+
+# Whitelist sub-directories
 !lovelace/
 !automation/
 !packages/
+!node-red/
 
+# Whitelist all YAML files
 !/*.yaml
+
+# Whitelist node-red json files
+!node-red/**/*.json
+
 
 # Ignore folders.
 .storage
