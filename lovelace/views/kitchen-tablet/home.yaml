@@ -79,7 +79,7 @@ cards:
               card:
                 type: "custom:button-card"
                 color_type: card
-                icon: mdi:toggle-switch-off-outline
+                icon: mdi:toggle-switch-outline
                 entity: light.kitchen_lights
                 size: 100%
                 show_state: false
