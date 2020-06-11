@@ -39,6 +39,7 @@ light:
     - light.flex_strip_102
     - light.hue_color_a19_101
     - light.flex_strip_106
+    - light.flex_strip_111
 - platform: group
   name: Interior Lights
   entities:

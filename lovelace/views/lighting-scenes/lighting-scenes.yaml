@@ -77,13 +77,6 @@ cards:
       service: scene.turn_on
       service_data:
         entity_id: scene.man_cave_scene_off
-  - entity: automation.man_cave_lights_shuffle_transition
-    icon: mdi:shuffle-variant
-    show_state: true
-    name: Shuffle
-    tap_action:
-      action: toggle
-
 
 - type: glance
   title: Great Room Scenes
@@ -151,9 +144,3 @@ cards:
       service: scene.turn_on
       service_data:
         entity_id: scene.great_room_scene_night_light
-  - entity: automation.living_room_strips_shuffle_transition
-    icon: mdi:shuffle-variant
-    show_state: true
-    name: Shuffle
-    tap_action:
-      action: toggle
