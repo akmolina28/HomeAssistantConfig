@@ -11,134 +11,179 @@ cards:
       - type: custom:mini-media-player
         entity: media_player.garage_tv
         name: Chromecast
+        artwork: cover
       - type: custom:mini-media-player
         name: Denon Speaker
         icon: mdi:speaker-wireless
         entity: media_player.portable_speaker
+        artwork: cover
     - type: custom:hui-weather-forecast-card
       entity: weather.openweathermap
       name: Pensacola, FL
-  - type: custom:hui-horizontal-stack-card
-    cards:
-    - type: "custom:button-card"
-      color_type: card
-      entity: light.flex_strip_112
-      name: RGB
-      show_state: true
-      icon: mdi:led-strip
-      hold_action:
-        action: more-info
-      styles:
-        icon:
-        - color: var(--button-card-light-color)
-        name:
-        - color: var(--button-card-light-color)
-        card:
-        - background-color: var(--paper-card-background-color)
-        - -webkit-box-shadow: 0px 0px 0px 0px
-        - box-shadow: 0px 0px 0px 0px
-      state:
-      - value: 'off'
+  - type: custom:hui-entities-card
+    entities:
+    - type: custom:hui-horizontal-stack-card
+      cards:
+      - type: "custom:button-card"
+        color_type: card
+        entity: light.flex_strip_112
+        name: RGB
+        show_state: true
+        icon: mdi:led-strip
+        hold_action:
+          action: more-info
         styles:
           icon:
-          - color: var(--primary-text-color)
+          - color: var(--button-card-light-color)
           name:
-          - color: var(--primary-text-color)
-          - -webkit-box-shadow: none
-          - box-shadow: none
-    - type: "custom:button-card"
-      color_type: card
-      entity: switch.ikea_outlet_101
-      name: Bench Lights
-      show_state: true
-      icon: mdi:lightbulb
-      hold_action:
-        action: more-info
-      styles:
-        icon:
-        - color: var(--button-card-light-color)
-        name:
-        - color: var(--button-card-light-color)
-        card:
-        - background-color: var(--paper-card-background-color)
-        - -webkit-box-shadow: 0px 0px 0px 0px
-        - box-shadow: 0px 0px 0px 0px
-      state:
-      - value: 'off'
+          - color: var(--button-card-light-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px
+          - box-shadow: 0px 0px 0px 0px
+        state:
+        - value: 'off'
+          styles:
+            icon:
+            - color: var(--primary-text-color)
+            name:
+            - color: var(--primary-text-color)
+            - -webkit-box-shadow: none
+            - box-shadow: none
+      - type: "custom:button-card"
+        color_type: card
+        entity: switch.ikea_outlet_101
+        name: Bench Lights
+        show_state: true
+        icon: mdi:lightbulb
+        hold_action:
+          action: more-info
         styles:
           icon:
-          - color: var(--primary-text-color)
+          - color: var(--button-card-light-color)
           name:
-          - color: var(--primary-text-color)
-          - -webkit-box-shadow: none
-          - box-shadow: none
-    - type: "custom:button-card"
-      color_type: card
-      entity: switch.ikea_outlet_103
-      name: Fan
-      show_state: true
-      icon: mdi:fan
-      hold_action:
-        action: more-info
-      styles:
-        icon:
-        - color: var(--button-card-light-color)
-        name:
-        - color: var(--button-card-light-color)
-        card:
-        - background-color: var(--paper-card-background-color)
-        - -webkit-box-shadow: 0px 0px 0px 0px
-        - box-shadow: 0px 0px 0px 0px
-      state:
-      - value: 'off'
+          - color: var(--button-card-light-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px
+          - box-shadow: 0px 0px 0px 0px
+        state:
+        - value: 'off'
+          styles:
+            icon:
+            - color: var(--primary-text-color)
+            name:
+            - color: var(--primary-text-color)
+            - -webkit-box-shadow: none
+            - box-shadow: none
+      - type: "custom:button-card"
+        color_type: card
+        entity: switch.ikea_outlet_103
+        name: Fan
+        show_state: true
+        icon: mdi:fan
+        hold_action:
+          action: more-info
         styles:
           icon:
-          - color: var(--primary-text-color)
+          - color: var(--button-card-light-color)
           name:
-          - color: var(--primary-text-color)
-      - value: 'on'
-        spin: true
+          - color: var(--button-card-light-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px
+          - box-shadow: 0px 0px 0px 0px
+        state:
+        - value: 'off'
+          styles:
+            icon:
+            - color: var(--primary-text-color)
+            name:
+            - color: var(--primary-text-color)
+        - value: 'on'
+          spin: true
+          styles:
+            icon:
+            - color: var(--primary-color)
+            name:
+            - color: var(--primary-color)
+      - !include /config/lovelace/tiles/garage-door-card-3.yaml
+  - type: custom:hui-entities-card
+    entities:
+    - type: custom:hui-horizontal-stack-card
+      cards:
+      - type: "custom:button-card"
+        color_type: card
+        name: Disable Motion 1hr
+        show_state: true
+        icon: mdi:motion-sensor
+        tap_action:
+          action: call-service
+          service: script.turn_on
+          service_data:
+            entity_id: script.disable_garage_motion_1_hr
         styles:
           icon:
-          - color: var(--primary-color)
+          - color: var(--button-card-light-color)
           name:
-          - color: var(--primary-color)
-    - !include /config/lovelace/tiles/garage-door-card-3.yaml
-  - type: custom:hui-horizontal-stack-card
-    cards:
-    - type: "custom:button-card"
-      color_type: card
-      name: Disable Motion 1hr
-      show_state: true
-      icon: mdi:motion-sensor
-      tap_action:
-        action: call-service
-        service: script.turn_on
-        service_data:
-          entity_id: script.disable_garage_motion_1_hr
-      styles:
-        icon:
-        - color: var(--button-card-light-color)
-        name:
-        - color: var(--button-card-light-color)
-        card:
-        - background-color: var(--paper-card-background-color)
-        - -webkit-box-shadow: 0px 0px 0px 0px
-        - box-shadow: 0px 0px 0px 0px
-      state:
-      - value: 'off'
+          - color: var(--button-card-light-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px
+          - box-shadow: 0px 0px 0px 0px
+      - type: "custom:button-card"
+        show_name: false
+        show_state: false
+        show_entity_picture: true
+        entity_picture: /local/images/media_icons/wuwf.png
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          service_data:
+            entity_id: media_player.portable_speaker
+            media_content_type: 'favorite'
+            media_content_id: '1'
         styles:
-          icon:
-          - color: var(--primary-text-color)
           name:
           - color: var(--primary-text-color)
-          - -webkit-box-shadow: none
-          - box-shadow: none
-    - type: custom:button-card
-      color_type: blank_card
-    - type: custom:button-card
-      color_type: blank_card
-    - type: custom:button-card
-      color_type: blank_card
-    - type: custom:button-card
-      color_type: blank_card
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - type: "custom:button-card"
+        show_name: false
+        show_state: false
+        show_entity_picture: true
+        entity_picture: /local/images/media_icons/msnbc.png
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          service_data:
+            entity_id: media_player.portable_speaker
+            media_content_type: 'favorite'
+            media_content_id: '2'
+        styles:
+          name:
+          - color: var(--primary-text-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - type: custom:button-card
+        color_type: blank_card
+        styles:
+          name:
+          - color: var(--primary-text-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - type: custom:button-card
+        color_type: blank_card
+        styles:
+          name:
+          - color: var(--primary-text-color)
+          card:
+          - background-color: var(--paper-card-background-color)
+          - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
