@@ -93,3 +93,13 @@ slate:
 
     # Mini media player mod
     mini-media-player-icon-color: "var(--primary-text-color)"
+
+    weather-icon-sunny: url("/local/images/ico/animated/day.svg")
+    weather-icon-clear-night: url("/local/images/ico/animated/night.svg")
+    weather-icon-cloudy: url("/local/images/ico/animated/cloudy.svg")
+    weather-icon-fog: url("/local/images/ico/animated/cloudy.svg")
+    weather-icon-lightning: url("/local/images/ico/animated/thunder.svg")
+    weather-icon-lightning-rainy: url("/local/images/ico/animated/thunder.svg")
+    weather-icon-partlycloudy: url("/local/images/ico/animated/cloudy-day-3.svg")
+    weather-icon-pouring: url("/local/images/ico/animated/rainy-7.svg")
+    weather-icon-rainy: url("/local/images/ico/animated/rainy-5.svg")
