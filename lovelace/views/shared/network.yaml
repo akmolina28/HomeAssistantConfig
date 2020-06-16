@@ -1,0 +1,128 @@
+title: Network
+path: network
+panel: false
+cards:
+- type: custom:hui-entities-card
+  title: Pi-hole Ad Blocker
+  icon: mdi:pi-hole
+  show_header_toggle: false
+  entities:
+  - type: section
+  - entity: sensor.pi_hole_reachable
+  - entity: switch.pi_hole_enable_disable
+    name: Ad Blocker
+    icon: mdi:block-helper
+#     label: Status
+#   - entity: sensor.pi_hole_reachable
+#   - entity: sensor.pi_hole_status
+#     name: Ad Blocker
+#     icon: mdi:block-helper
+#   - type: custom:hui-conditional-card
+#     conditions:
+#     - entity: sensor.pi_hole_status
+#       state: 'enabled'
+#     card:
+#       type: custom:button-card
+#   - type: custom:hui-horizontal-stack-card
+#     cards:
+#     - type: conditional
+#       conditions:
+#       - entity: sensor.pi_hole_status
+#         state: 'enabled'
+#       card:
+#         type: custom:button-card
+#         color_type: card
+#         icon: mdi:block-helper
+#         name: Disable
+#         label: for 5 min
+#         show_name: true
+#         show_label: true
+#         tap_action:
+#           action: call-service
+#           service: pi_hole.disable
+#           service_data:
+#             duration: '00:05:00'
+#         styles:
+#           icon:
+#           - color: var(--primary-text-color)
+#           name:
+#           - color: var(--primary-text-color)
+#           label:
+#           - color: var(--primary-text-color)
+#           card:
+#           - background-color: var(--paper-card-background-color)
+#           - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#           - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#     - type: conditional
+#       conditions:
+#       - entity: sensor.pi_hole_status
+#         state: 'disabled'
+#       card:
+#         type: custom:button-card
+#         color_type: card
+#         icon: mdi:pi-hole
+#         name: Enable
+#         label: now
+#         show_name: true
+#         show_label: true
+#         tap_action:
+#           action: call-service
+#           service: pi_hole.enable
+#         styles:
+#           icon:
+#           - color: var(--primary-text-color)
+#           name:
+#           - color: var(--primary-text-color)
+#           label:
+#           - color: var(--primary-text-color)
+#           card:
+#           - background-color: var(--paper-card-background-color)
+#           - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#           - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#     - type: custom:button-card
+#       color_type: card
+#       icon: mdi:block-helper
+#       name: Disable
+#       label: for 1 hour
+#       show_name: true
+#       show_label: true
+#       tap_action:
+#         action: call-service
+#         service: pi_hole.disable
+#         service_data:
+#           duration: '01:00:00'
+#       styles:
+#         icon:
+#         - color: var(--primary-text-color)
+#         name:
+#         - color: var(--primary-text-color)
+#         label:
+#         - color: var(--primary-text-color)
+#         card:
+#         - background-color: var(--paper-card-background-color)
+#         - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#         - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#     - type: custom:button-card
+#       color_type: card
+#       icon: mdi:block-helper
+#       name: Disable
+#       label: for 12 hours
+#       show_name: true
+#       show_label: true
+#       tap_action:
+#         action: call-service
+#         service: pi_hole.disable
+#         service_data:
+#           duration: '00:12:00'
+#       styles:
+#         icon:
+#         - color: var(--primary-text-color)
+#         name:
+#         - color: var(--primary-text-color)
+#         label:
+#         - color: var(--primary-text-color)
+#         card:
+#         - background-color: var(--paper-card-background-color)
+#         - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+#         - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+

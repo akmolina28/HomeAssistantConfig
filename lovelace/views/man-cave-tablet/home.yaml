@@ -1,0 +1,317 @@
+title: Home
+path: home
+panel: true
+cards:
+- type: custom:hui-vertical-stack-card
+  cards:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: custom:hui-entities-card
+      entities: []
+    - type: custom:hui-entities-card
+      entities:
+      - type: custom:hui-weather-forecast-card
+        entity: weather.openweathermap
+        name: Pensacola
+        show_forecast: false
+        style: |
+          .icon-image > div {
+            background-size: 150%!important;
+            background-position: -20px -20px!important;
+          }
+  - type: custom:hui-entities-card
+    entities:
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - type: custom:hui-horizontal-stack-card
+        cards:
+        - type: conditional
+          conditions:
+          - entity: light.man_cave_lights
+            state_not: 'on'
+          card:
+            type: "custom:button-card"
+            color_type: card
+            icon: mdi:toggle-switch-off-outline
+            size: 100%
+            show_state: false
+            name: All Lights
+            tap_action:
+              action: call-service
+              service: light.turn_on
+              service_data:
+                entity_id: light.man_cave_lights
+                brightness: 255
+            styles:
+              icon:
+              - color: var(--primary-text-color)
+              name:
+              - color: var(--primary-text-color)
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - height: 100px
+        - type: conditional
+          conditions:
+          - entity: light.man_cave_lights
+            state: 'on'
+          card:
+            type: "custom:button-card"
+            color_type: card
+            icon: mdi:toggle-switch-outline
+            size: 100%
+            show_state: false
+            name: All Lights
+            tap_action:
+              action: call-service
+              service: light.turn_off
+              service_data:
+                entity_id: light.man_cave_lights
+            styles:
+              icon:
+              - color: var(--primary-color)
+              name:
+              - color: var(--primary-text-color)
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - height: 100px
+        - type: "custom:button-card"
+          color_type: card
+          entity: light.flex_strip_101
+          name: Overhead
+          size: 100%
+          show_state: false
+          icon: mdi:weather-sunset
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+        - type: "custom:button-card"
+          color_type: card
+          entity: light.flex_strip_106
+          name: Backlight
+          size: 100%
+          show_state: false
+          icon: mdi:television-ambient-light
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+        - type: "custom:button-card"
+          color_type: card
+          entity: light.flex_strip_102
+          name: Closet
+          size: 100%
+          show_state: false
+          icon: mdi:window-open-variant
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+        - type: "custom:button-card"
+          color_type: card
+          entity: light.hue_color_a19_101
+          name: Lamp
+          size: 100%
+          show_state: false
+          icon: mdi:floor-lamp
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+        - type: "custom:button-card"
+          color_type: card
+          entity: light.flex_strip_111
+          name: Bookshelf
+          size: 100%
+          show_state: false
+          icon: mdi:bookshelf
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+  - type: custom:hui-entities-card
+    entities:
+    - type: custom:hui-horizontal-stack-card
+      cards:
+      - type: conditional
+        conditions:
+        - entity: light.man_cave_lights
+          state_not: 'on'
+        card:
+          type: "custom:button-card"
+          color_type: blank-card
+      - type: conditional
+        conditions:
+        - entity: light.man_cave_lights
+          state: 'on'
+        card:
+          type: "custom:button-card"
+          color_type: card
+          entity: switch.man_cave_fluxer
+          name: Flux
+          show_state: true
+          icon: mdi:weather-sunny
+          hold_action:
+            action: more-info
+          state:
+          - value: 'on'
+            spin: true
+            styles:
+              icon:
+              - color: var(--button-card-light-color)
+              name:
+              - color: var(--button-card-light-color)
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - operator: template
+            value: >
+              [[[
+                return true;
+              ]]]
+            spin: false
+            label: 'Off'
+            show_label: true
+            show_state: true
+            styles:
+              icon:
+              - color: var(--primary-text-color)
+              name:
+              - color: var(--primary-text-color)
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - type: conditional
+        conditions:
+        - entity: light.man_cave_lights
+          state_not: 'on'
+        card:
+          type: "custom:button-card"
+          color_type: blank-card
+      - type: conditional
+        conditions:
+        - entity: light.man_cave_lights
+          state: 'on'
+        card:
+          type: "custom:button-card"
+          color_type: card
+          entity: switch.man_cave_shuffler
+          name: Shuffle
+          show_state: true
+          icon: mdi:decagram
+          hold_action:
+            action: more-info
+          state:
+          - value: 'on'
+            spin: true
+            styles:
+              icon:
+              - color: pink
+              name:
+              - color: pink
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - operator: template
+            value: >
+              [[[
+                return true;
+              ]]]
+            spin: false
+            styles:
+              icon:
+              - color: var(--primary-text-color)
+              name:
+              - color: var(--primary-text-color)
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - type: custom:button-card
+        color_type: blank-card
+      - type: custom:button-card
+        color_type: blank-card
+      - type: custom:button-card
+        color_type: blank-card

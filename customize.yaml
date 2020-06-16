@@ -1,6 +1,3 @@
-sensor.pi_hole_status:
-  icon: mdi:pi-hole
-
 switch.ikea_outlet_103:
   templates:
     icon: >

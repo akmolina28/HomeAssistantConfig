@@ -74,7 +74,7 @@ cards:
   - type: "custom:button-card"
     color_type: card
     entity: light.flex_strip_111
-    name: Amp
+    name: Bookshelf
     icon: mdi:led-strip
     hold_action:
       action: more-info
