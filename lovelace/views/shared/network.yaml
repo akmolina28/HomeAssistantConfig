@@ -2,16 +2,45 @@ title: Network
 path: network
 panel: false
 cards:
-- type: custom:hui-entities-card
-  title: Pi-hole Ad Blocker
-  icon: mdi:pi-hole
-  show_header_toggle: false
-  entities:
-  - type: section
+- type: conditional
+  conditions:
   - entity: sensor.pi_hole_reachable
-  - entity: switch.pi_hole_enable_disable
-    name: Ad Blocker
-    icon: mdi:block-helper
+    state: 'Reachable'
+  card:
+    type: custom:hui-entities-card
+    title: Pi-hole Ad Blocker
+    icon: mdi:pi-hole
+    show_header_toggle: false
+    entities:
+    - type: section
+    - entity: sensor.pi_hole_reachable
+    - entity: switch.pi_hole_enable_disable
+      name: Ad Blocker
+      icon: mdi:block-helper
+    - type: custom:hui-markdown-card
+      content: >-
+        [[ if(sensor.pi_hole_status == "enabled", "Ad Blocking is <strong>enabled</strong>. If you are having trouble browsing the web, disable it using the toggle switch above.", "Ad Blocking is temporarily disabled.") ]]
+- type: conditional
+  conditions:
+  - entity: sensor.pi_hole_reachable
+    state: 'Not Reachable'
+  card:
+    type: entities
+    title: Pi-hole Ad Blocker
+    entities:
+    - entity: sensor.pi_hole_reachable
+    - type: custom:hui-markdown-card
+      content: >-
+        ## <ha-icon style='color:var(--status-color-alert)!important' icon='mdi:alert-box'></ha-icon> Pi-hole is not reachable!!
+
+        This might cause issues with home internet access!
+
+        Make sure the host is running, or log in to the router to disable the custom DNS.
+      style: |
+        ha-card {
+          color: red!important;
+        }
+
 #     label: Status
 #   - entity: sensor.pi_hole_reachable
 #   - entity: sensor.pi_hole_status

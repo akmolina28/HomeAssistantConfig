@@ -1,5 +1,5 @@
 pi_hole:
-- host: '192.168.1.25'
+- host: '192.168.1.41'
   api_key: !secret pi_hole_api_key
 
 switch:
@@ -25,9 +25,9 @@ sensor:
 - platform: template
   sensors:
     pi_hole_reachable:
-      friendly_name: '192.168.1.25'
+      friendly_name: '192.168.1.41'
       value_template: >
-        {% if is_state('device_tracker.pi_hole', 'home') %}
+        {% if is_state('device_tracker.pihole', 'home') %}
           Reachable
         {% else %}
           Not Reachable
