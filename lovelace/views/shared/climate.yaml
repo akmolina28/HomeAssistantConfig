@@ -5,6 +5,20 @@ cards:
 - type: custom:simple-thermostat
   entity: climate.thermostat
   name: Thermostat
+
+- type: custom:mini-graph-card
+  name: Outdoor Temp
+  show:
+    labels: true
+    labels_secondary: true
+  hours_to_show: 24
+  points_per_hour: 4
+  entities:
+  - entity: sensor.owm_temperature
+    name: Outdoor Temp
+  - entity: sensor.hue_201_temp
+    name: Garage Temp
+
 - type: custom:mini-graph-card
   name: Indoor Temp
   show:
@@ -21,16 +35,3 @@ cards:
     name: Master Bedroom
   - entity: sensor.man_cave_temperature
     name: Man-cave
-
-- type: custom:mini-graph-card
-  name: Outdoor Temp
-  show:
-    labels: true
-    labels_secondary: true
-  hours_to_show: 24
-  points_per_hour: 4
-  entities:
-  - entity: sensor.owm_temperature
-    name: Outdoor Temp
-  - entity: sensor.hue_201_temp
-    name: Garage Temp
