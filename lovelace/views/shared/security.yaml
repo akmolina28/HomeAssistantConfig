@@ -1,0 +1,189 @@
+title: Security
+path: security
+panel: false
+cards:
+- type: picture-entity
+  entity: camera.front_door_last_activity
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: "custom:button-card"
+    color_type: card
+    entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+    name: Front Door
+    size: 100%
+    show_state: false
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - height: 100px
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+    state:
+    - value: >
+        [[[
+          return entity.state == "unlocked" && states["sun.sun"].state == "below_horizon";
+        ]]]
+      operator: template
+      styles:
+        icon:
+        - color: var(--status-color-alert)
+        name:
+        - color: var(--status-color-alert)
+    - value: >
+        [[[
+          return entity.state == "unlocked" && states["sun.sun"].state == "above_horizon";
+        ]]]
+      operator: template
+      styles:
+        icon:
+        - color: var(--status-color-warning)
+        name:
+        - color: var(--status-color-warning)
+  - type: "custom:button-card"
+    color_type: card
+    entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+    name: Laundry Door
+    size: 100%
+    show_state: false
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - height: 100px
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+    state:
+    - value: >
+        [[[
+          return entity.state == "unlocked" && states["sun.sun"].state == "below_horizon";
+        ]]]
+      operator: template
+      styles:
+        icon:
+        - color: var(--status-color-alert)
+        name:
+        - color: var(--status-color-alert)
+    - value: >
+        [[[
+          return entity.state == "unlocked" && states["sun.sun"].state == "above_horizon";
+        ]]]
+      operator: template
+      styles:
+        icon:
+        - color: var(--status-color-warning)
+        name:
+        - color: var(--status-color-warning)
+  - type: "custom:button-card"
+    entity: cover.garage_door
+    color_type: card
+    name: Garage Door
+    show_state: false
+    icon: mdi:garage
+    show_label: true
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - height: 100px
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+    state:
+    - value: closed
+      color: 'var(--paper-card-background-color)'
+    - value: >
+        [[[
+          return entity.state == "open" && states["sun.sun"].state == "above_horizon";
+        ]]]
+      operator: template
+      icon: mdi:garage-open
+      styles:
+        icon:
+        - color: var(--status-color-warning)
+        name:
+        - color: var(--status-color-warning)
+    - value: >
+        [[[
+          return entity.state == "open" && states["sun.sun"].state == "below_horizon";
+        ]]]
+      operator: template
+      icon: mdi:garage-open
+      styles:
+        icon:
+        - color: var(--status-color-alert)
+        name:
+        - color: var(--status-color-alert)
+    - value: opening
+      icon: mdi:refresh
+      spin: 'true'
+      name: 'Opening...'
+    - value: closing
+      icon: mdi:refresh
+      spin: 'true'
+      name: 'Closing...'
+    - value: unavailable
+      color: 'var(--status-color-alert)'
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    lock:
+      enabled: true
+  - type: "custom:button-card"
+    color_type: card
+    name: CATio
+    size: 100%
+    icon: mdi:window-closed
+    show_state: false
+    tap_action:
+      action: more-info
+    styles:
+      icon:
+      - color: var(--button-card-light-color)
+      name:
+      - color: var(--button-card-light-color)
+      card:
+      - height: 100px
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+    state:
+    - value: >
+        [[[
+          return states["binary_sensor.catio_door_sensor"] == "on" && states["sun.sun"].state == "below_horizon";
+        ]]]
+      operator: template
+      icon: mdi:window-open
+      styles:
+        icon:
+        - color: var(--status-color-alert)
+        name:
+        - color: var(--status-color-alert)
+    - value: >
+        [[[
+          return states["binary_sensor.catio_door_sensor"] == "on" && states["sun.sun"].state == "above_horizon";
+        ]]]
+      operator: template
+      icon: mdi:window-open
+      styles:
+        icon:
+        - color: var(--status-color-warning)
+        name:
+        - color: var(--status-color-warning)

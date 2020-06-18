@@ -53,7 +53,7 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
-    entity: sensor.pi_hole_status
+    entity: sensor.pi_hole_101_status
     name: Pi Hole
     color_type: card
     show_label: true

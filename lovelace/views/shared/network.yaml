@@ -4,7 +4,7 @@ panel: false
 cards:
 - type: conditional
   conditions:
-  - entity: sensor.pi_hole_reachable
+  - entity: sensor.pi_hole_101_reachable
     state: 'Reachable'
   card:
     type: custom:hui-entities-card
@@ -13,22 +13,22 @@ cards:
     show_header_toggle: false
     entities:
     - type: section
-    - entity: sensor.pi_hole_reachable
-    - entity: switch.pi_hole_enable_disable
+    - entity: sensor.pi_hole_101_reachable
+    - entity: switch.pi_hole_101_enable_disable
       name: Ad Blocker
       icon: mdi:block-helper
     - type: custom:hui-markdown-card
       content: >-
-        [[ if(sensor.pi_hole_status == "enabled", "Ad Blocking is <strong>enabled</strong>. If you are having trouble browsing the web, disable it using the toggle switch above.", "Ad Blocking is temporarily disabled.") ]]
+        [[ if(sensor.pi_hole_101_status == "enabled", "Ad Blocking is <strong>enabled</strong>. If you are having trouble browsing the web, disable it using the toggle switch above.", "Ad Blocking is temporarily disabled.") ]]
 - type: conditional
   conditions:
-  - entity: sensor.pi_hole_reachable
+  - entity: sensor.pi_hole_101_reachable
     state: 'Not Reachable'
   card:
     type: entities
     title: Pi-hole Ad Blocker
     entities:
-    - entity: sensor.pi_hole_reachable
+    - entity: sensor.pi_hole_101_reachable
     - type: custom:hui-markdown-card
       content: >-
         ## <ha-icon style='color:var(--status-color-alert)!important' icon='mdi:alert-box'></ha-icon> Pi-hole is not reachable!!
@@ -42,13 +42,13 @@ cards:
         }
 
 #     label: Status
-#   - entity: sensor.pi_hole_reachable
-#   - entity: sensor.pi_hole_status
+#   - entity: sensor.pi_hole_101_reachable
+#   - entity: sensor.pi_hole_101_status
 #     name: Ad Blocker
 #     icon: mdi:block-helper
 #   - type: custom:hui-conditional-card
 #     conditions:
-#     - entity: sensor.pi_hole_status
+#     - entity: sensor.pi_hole_101_status
 #       state: 'enabled'
 #     card:
 #       type: custom:button-card
@@ -56,7 +56,7 @@ cards:
 #     cards:
 #     - type: conditional
 #       conditions:
-#       - entity: sensor.pi_hole_status
+#       - entity: sensor.pi_hole_101_status
 #         state: 'enabled'
 #       card:
 #         type: custom:button-card
@@ -84,7 +84,7 @@ cards:
 #           - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
 #     - type: conditional
 #       conditions:
-#       - entity: sensor.pi_hole_status
+#       - entity: sensor.pi_hole_101_status
 #         state: 'disabled'
 #       card:
 #         type: custom:button-card
