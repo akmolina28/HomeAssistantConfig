@@ -161,7 +161,7 @@ cards:
           service_data:
             entity_id: media_player.portable_speaker
             media_content_type: 'favorite'
-            media_content_id: '2'
+            media_content_id: '3'
         styles:
           name:
           - color: var(--primary-text-color)
@@ -169,8 +169,18 @@ cards:
           - background-color: var(--paper-card-background-color)
           - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
           - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-      - type: custom:button-card
-        color_type: blank_card
+      - type: "custom:button-card"
+        show_name: false
+        show_state: false
+        show_entity_picture: true
+        entity_picture: /local/images/media_icons/cnn.png
+        tap_action:
+          action: call-service
+          service: media_player.play_media
+          service_data:
+            entity_id: media_player.portable_speaker
+            media_content_type: 'favorite'
+            media_content_id: '2'
         styles:
           name:
           - color: var(--primary-text-color)
