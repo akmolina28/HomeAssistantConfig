@@ -3,52 +3,57 @@ input_number:
     name: Man Cave Lights Timeout
     min: 0
     max: 86400
-  laundry_room_light_timeout_seconds:
-    name: Laundry Room Lights Timeout
-    min: 0
-    max: 86400
   hue_201_motion_sensitivity:
     name: Garage Motion Sensor Sensitivity
     min: 0
     max: 4
 
-automation:
-- alias: Turn On Man Cave Lights When Motion Detected
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hue_101_motion
-    to: 'on'
-  condition:
-  - condition: template
-    value_template: >
-      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
-  action:
-  - service: script.man_cave_auto_scene
-  - service: automation.turn_off
-    entity_id: automation.turn_on_man_cave_lights_when_motion_detected
-  - service: automation.turn_on
-    entity_id: automation.turn_off_man_cave_lights_and_turn_on_automation_when_no_motion
-  - service: light.turn_on
-    entity_id: light.fire_tablet_701_backlight
-    data:
-      brightness: 255
+group:
+  indoor_motion_sensors:
+    name: Indoor Motion Sensors
+    entities:
+    - binary_sensor.hue_100_motion
+    - binary_sensor.hue_101_motion
+    - binary_sensor.hue_103_motion
+    - binary_sensor.hue_104_motion
 
-- alias: Turn Off Man Cave Lights and Turn On Automation When No Motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hue_101_motion
-    to: 'off'
-    for:
-      minutes: 60
-  action:
-  - service: homeassistant.turn_off
-    entity_id: group.man_cave_lights
-  - service: automation.turn_on
-    entity_id: automation.turn_on_man_cave_lights_when_motion_detected
-  - service: light.turn_on
-    entity_id: light.fire_tablet_701_backlight
-    data:
-      brightness: 1
+automation:
+# - alias: Turn On Man Cave Lights When Motion Detected
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.hue_101_motion
+#     to: 'on'
+#   condition:
+#   - condition: template
+#     value_template: >
+#       {{ states("input_select.automation_mode") in ['home', 'guest'] }}
+#   action:
+#   - service: script.man_cave_auto_scene
+#   - service: automation.turn_off
+#     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+#   - service: automation.turn_on
+#     entity_id: automation.turn_off_man_cave_lights_and_turn_on_automation_when_no_motion
+#   - service: light.turn_on
+#     entity_id: light.fire_tablet_701_backlight
+#     data:
+#       brightness: 255
+
+# - alias: Turn Off Man Cave Lights and Turn On Automation When No Motion
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.hue_101_motion
+#     to: 'off'
+#     for:
+#       minutes: 60
+#   action:
+#   - service: homeassistant.turn_off
+#     entity_id: group.man_cave_lights
+#   - service: automation.turn_on
+#     entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+#   - service: light.turn_on
+#     entity_id: light.fire_tablet_701_backlight
+#     data:
+#       brightness: 1
 
 - alias: Turn Off Kitchen Lights And Tablet Screen When No Motion
   trigger:
@@ -76,31 +81,6 @@ automation:
   - service: light.turn_on
     entity_id: light.lenovo_tablet_1001_backlight
 
-
-- alias: Turn On Laundry Room Lights When Motion Detected
-  trigger:
-    platform: state
-    entity_id: binary_sensor.smartthings_100_motion
-    to: 'on'
-  condition:
-  - condition: template
-    value_template: >
-      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
-  action:
-  - service: switch.turn_on
-    entity_id: switch.laundry_room_light
-
-- alias: Turn Off Laundry Room Lights When No Motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.smartthings_100_motion
-    to: 'off'
-    for:
-      seconds: 30
-  action:
-  - service: switch.turn_off
-    entity_id: switch.laundry_room_light
-
 - alias: Bedroom Motion - Home Mode
   trigger:
   - platform: state
@@ -109,7 +89,7 @@ automation:
     to: 'on'
   condition:
   - condition: time
-    after: '04:00:00'
+    after: '05:00:00'
     before: '08:00:00'
   - condition: state
     entity_id: input_select.automation_mode

@@ -7,10 +7,16 @@ all_device_trackers:
 kitchen_lights:
   name: Kitchen Lights
   entities:
-    - switch.bar_lights
-    - switch.cabinet_lights
-    - switch.kitchen_overhead_lights
-    - light.kitchen_table_lights
+  - switch.bar_lights
+  - switch.cabinet_lights
+  - switch.kitchen_overhead_lights
+  - light.kitchen_table_lights
+
+great_room_lights:
+  name: Great Room Lights
+  entities:
+  - light.great_room_strips
+  - light.living_room_lamps
 
 interior_light_switches:
   name: Interior Light Switches
@@ -59,6 +65,13 @@ all_light_switches:
 
 master_bedroom_lights:
   name: Master Bedroom Lights
+  entities:
+  - light.kp_bedside
+  - light.andrew_bedside
+  - switch.master_bedroom_light
+
+master_bedroom_lamps:
+  name: Master Bedroom Lamps
   entities:
   - light.kp_bedside
   - light.andrew_bedside

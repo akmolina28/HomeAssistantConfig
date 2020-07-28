@@ -7,3 +7,4 @@ views:
 - !include /config/lovelace/views/shared/climate.yaml
 - !include /config/lovelace/views/shared/network.yaml
 - !include /config/lovelace/views/shared/security.yaml
+- !include /config/lovelace/views/shared/system-monitor.yaml

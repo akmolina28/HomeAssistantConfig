@@ -86,53 +86,50 @@ script:
 # Transition Scripts #############################################
   automation_mode_transition_sleep_to_home:
     alias: Sleep Mode to Home Mode
-    sequence:
-    - service: script.turn_off_air_purifier
+    sequence: []
+    # - service: script.turn_off_air_purifier
 
-    # Turn on motion sensors
-    - service: automation.turn_on
-      entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+    # # Turn on motion sensors
+    # - service: automation.turn_on
+    #   entity_id: automation.turn_on_man_cave_lights_when_motion_detected
     
-    # if it's early in the morning, turn some lights on
-    - condition: time
-      after: '04:00:00'
-      before: '08:00:00'
-    - service: light.turn_on
-      entity_id: light.ledge_strips
-    - service: switch.turn_on
-      entity_id: switch.ledge_fluxer
-    - service: automation.turn_on
-      entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+    # # if it's early in the morning, turn some lights on
+    # - condition: time
+    #   after: '04:00:00'
+    #   before: '08:00:00'
+    # - service: light.turn_on
+    #   entity_id: light.ledge_strips
+    # - service: switch.turn_on
+    #   entity_id: switch.ledge_fluxer
+    # - service: automation.turn_on
+    #   entity_id: automation.turn_on_man_cave_lights_when_motion_detected
 
   automation_mode_transition_away_to_home:
     alias: Away Mode to Home Mode
-    sequence:
+    sequence: []
     # Turn off noisy fan, resume A/C schedule
-    - service: script.turn_off_air_purifier
-    - service: script.resume_climate_schedule
+    # - service: script.turn_off_air_purifier
+    # - service: script.resume_climate_schedule
 
-    # Turn on motion sensors
-    - service: automation.turn_on
-      entity_id: automation.turn_on_man_cave_lights_when_motion_detected
+    # # Turn on motion sensors
+    # - service: automation.turn_on
+    #   entity_id: automation.turn_on_man_cave_lights_when_motion_detected
 
-    # if it's dark out, turn on some lights
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: sun.sun
-        state: below_horizon
-      - condition: numeric_state
-        entity_id: sensor.hue_100_lux
-        below: 10
-    - service: scene.turn_on
-      entity_id: scene.house_scene_warm_welcome
+    # # if it's dark out, turn on some lights
+    # - condition: or
+    #   conditions:
+    #   - condition: state
+    #     entity_id: sun.sun
+    #     state: below_horizon
+    #   - condition: numeric_state
+    #     entity_id: sensor.hue_100_lux
+    #     below: 10
+    # - service: scene.turn_on
+    #   entity_id: scene.house_scene_warm_welcome
 
   automation_mode_transition_other_to_away:
     alias: Other Mode to Away Mode
-    sequence:
-    - service: script.set_climate_away_mode
-    - service: script.turn_on_air_purifier
-    - service: script.turn_off_interior_lights
+    sequence: []
 
   automation_mode_transition_other_to_sleep:
     alias: Other Mode to Sleep Mode
@@ -143,10 +140,7 @@ script:
 
   automation_mode_transition_other_to_other:
     alias: Other Mode to Other Mode
-    sequence:
-    - service: notify.html5_notifications
-      data:
-        message: 'automation_mode_transition_other'
+    sequence: []
 
 
   set_automation_mode_sleep:

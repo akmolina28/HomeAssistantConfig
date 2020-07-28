@@ -96,10 +96,9 @@ media_player:
     amp: True
     android: True
     name: Living Room TV
-  - platform: denonavr
+  - platform: denon
     host: 192.168.1.15
     name: Living Room Receiver
-    show_all_sources: true
 
 switch: !include switches.yaml
 
@@ -179,4 +178,7 @@ google_assistant:
       expose: true
     switch.kitchen_overhead_lights:
       name: Kitchen Overhead Lights
+      expose: true
+    switch.master_bedroom_fan:
+      name: Master Bedroom Fan
       expose: true

@@ -1,0 +1,24 @@
+title: Meal Plan
+path: meal-plan
+panel: true
+cards:
+- type: vertical-stack
+  cards:
+  - type: custom:calendar-card
+    title: Meal Plan (tap for recipe)
+    hidePastEvents: false
+    useSourceUrl: true
+    showMultiDay: true
+    hideTime: true
+    eventsLimit: 20
+    dateTopFormat: dddd
+    dateBottomFormat: MMMM Do
+    showProgressBar: true
+    # hideHeader: true
+    # hardLimit: true
+    numberOfDays: 365
+    entities:
+    - calendar.meal_planning
+  - type: markdown
+    content: >-
+      # [Edit Meal Plan](http://mealplanner.local/planner)

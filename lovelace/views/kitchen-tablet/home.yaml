@@ -9,15 +9,6 @@ cards:
     - type: custom:hui-weather-forecast-card
       entity: weather.openweathermap
       name: Pensacola, FL
-      style: |
-        .icon-image > div {
-          background-size: 150%!important;
-          background-position: -20px -20px!important;
-        }
-        .forecast-image-icon > div {
-          background-size: 150%!important;
-          background-position: -10px -12px!important;
-        }
     - type: custom:hui-entities-card
       entities:
       - type: custom:hui-vertical-stack-card
@@ -33,11 +24,14 @@ cards:
       hardLimit: true
       dateTopFormat: MM/DD
       numberOfDays: 365
+      useSourceUrl: true
       entities:
       - calendar.men_s_basketball_floridagators_com
       - calendar.akmolina28_gmail_com
       - calendar.football_floridagators_com
       - calendar.kpdancing123_aol_com
+      - calendar.holidays_in_united_states
+      - calendar.meal_planning
       style: |
         ha-card {
           padding-top: 12px!important;
@@ -515,6 +509,7 @@ cards:
             entity: cover.garage_door
             color_type: card
             name: Garage Door
+            size: 100%
             show_state: false
             icon: mdi:garage
             show_label: true

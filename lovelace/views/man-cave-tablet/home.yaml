@@ -14,11 +14,6 @@ cards:
         entity: weather.openweathermap
         name: Pensacola
         show_forecast: false
-        style: |
-          .icon-image > div {
-            background-size: 150%!important;
-            background-position: -20px -20px!important;
-          }
   - type: custom:hui-entities-card
     entities:
     - type: custom:hui-vertical-stack-card

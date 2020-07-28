@@ -1,4 +1,34 @@
 scene:
+- name: House Scene - Away
+  entities:
+    # Kitchen Off
+    group.kitchen_lights: off
+    light.lenovo_tablet_1001_backlight: off
+
+    # Man Cave Off
+    group.man_cave_lights: off
+    light.fire_tablet_701_backlight:
+      state: on
+      brightness: 1
+    
+    # Guest Room Off
+    group.guest_room_lights: off
+    
+    # Master Bedroom Off
+    group.master_bedroom_lights: off
+
+    # Great Room Off
+    group.great_room_lights: off
+    media_player.living_room_tv: off
+    media_player.living_room_receiver: off
+
+    # Garage Off
+    group.garage_lights: off
+    switch.ikea_outlet_103: off
+
+    # Laundry Room Off
+    group.laundry_room_lights: off
+
 - name: House Scene - Sleep
   entities:
     switch.ledge_fluxer: off
@@ -16,11 +46,8 @@ scene:
 
 - name: House Scene - Warm Welcome
   entities:
-    switch.ledge_fluxer: off
-    light.ledge_strips:
-      state: on
-      kelvin: 3000
-      brightness: 255
+    light.ledge_strips: on
+    switch.ledge_fluxer: on
     light.kitchen_cabinet_lights: on
     light.kitchen_bar_lights: on
 
@@ -42,21 +69,14 @@ scene:
       state: on
       brightness: 120
       transition: 5
+
 - name: Great Room Scene - Wake up
   entities:
-    switch.ledge_fluxer: off
+    switch.ledge_fluxer: on
     light.ledge_strips:
       state: on
-      kelvin: 2700
-      brightness: 255
+      brightness: 127
       transition: 5
-    switch.bar_lights: off
-    switch.cabinet_lights: on
-    light.flex_strip_105: off
-    light.couch_lamp: off
-    light.love_seat_lamp: off
-    light.kitchen_overhead_lights: off
-    light.kitchen_table_lights: off
 
 - name: Great Room Scene - Wind Down
   entities:
@@ -180,9 +200,12 @@ scene:
     light.flex_strip_106:
       state: off
       transition: 0
+    light.flex_strip_111: off
     light.hue_color_a19_101:
       state: off
       transition: 0
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 75
@@ -206,11 +229,14 @@ scene:
       kelvin: 3000
       brightness: 255
       transition: 0
+    light.flex_strip_111: off
     light.hue_color_a19_101:
       state: on
       kelvin: 3000
       brightness: 255
       transition: 0
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 150
@@ -234,11 +260,18 @@ scene:
       kelvin: 6500
       brightness: 255
       transition: 0
+    light.flex_strip_111:
+      state: on
+      kelvin: 6500
+      brightness: 255
+      transition: 0
     light.hue_color_a19_101:
       state: on
       kelvin: 6500
       brightness: 255
       transition: 0
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 255
@@ -263,6 +296,9 @@ scene:
       state: on
       kelvin: 2000
       brightness: 255
+    light.flex_strip_111: off
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 75
@@ -299,6 +335,9 @@ scene:
       - 100
       brightness: 255
       transition: 5
+    light.flex_strip_111: off
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 150
@@ -335,6 +374,9 @@ scene:
       - 81.569
       brightness: 255
       transition: 5
+    light.flex_strip_111: off
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 150
@@ -359,6 +401,9 @@ scene:
     light.hue_color_a19_101:
       state: off
       transition: 5
+    light.flex_strip_111: off
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 75
@@ -370,6 +415,8 @@ scene:
     light.man_cave_lights:
       state: off
       transition: 5
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
     light.fire_tablet_701_backlight:
       state: on
       brightness: 1

@@ -27,7 +27,7 @@ lovelace:
     type: js
   - url: /local/custom-cards/bar-card.js?v=1.7.1
     type: js
-  - url: /local/custom-header.js?v=1.4.1
+  - url: /local/custom-header.js?v=1.6.7
     type: module
   - url: /local/fold-entity-row.js?v=0.106
     type: module
@@ -35,7 +35,7 @@ lovelace:
     type: module
   - url: /local/config-template-card.js?v=1.1.2
     type: module
-  - url: /local/calendar-card.js?v=3.108.7
+  - url: /local/calendar-card.js?v=1111
     type: js
   dashboards:
     living-room-tablet:

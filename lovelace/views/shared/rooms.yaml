@@ -8,7 +8,7 @@ cards:
   entities:
   - type: "custom:fold-entity-row"
     head:
-      entity: light.master_bedroom_lights
+      entity: group.master_bedroom_lights
       icon: mdi:bed-empty
       name: Lights
     entities:
@@ -24,6 +24,8 @@ cards:
       icon: mdi:lamp
       name: Andrew
       step: 20
+    - switch.master_bedroom_light
+  - switch.master_bedroom_fan
   style: |
     ha-card {
       background: {% if is_state('group.master_bedroom_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
@@ -34,7 +36,7 @@ cards:
   entities:
   - type: "custom:fold-entity-row"
     head:
-      entity: light.kitchen_lights
+      entity: group.kitchen_lights
       name: Lights
       icon: mdi:light-switch
     entities:

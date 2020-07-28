@@ -1,10 +1,10 @@
 pi_hole:
 - host: '192.168.1.41'
   api_key: !secret pi_hole_101_api_key
-  name: Pi Hole 101
+  name: Pi-Hole-101
 - host: '192.168.1.25'
   api_key: !secret pi_hole_102_api_key
-  name: Pi Hole 102
+  name: Pi-Hole-102
 
 switch:
 - platform: template
@@ -14,23 +14,23 @@ switch:
       turn_on:
         service: pi_hole.enable
         data:
-          name: 'Pi Hole 101'
+          name: 'Pi-Hole-101'
       turn_off:
         service: pi_hole.disable
         data:
           duration: '12:00:00'
-          name: 'Pi Hole 101'
+          name: 'Pi-Hole-101'
     pi_hole_102_enable_disable:
       value_template: "{{ is_state('sensor.pi_hole_102_status', 'enabled') }}"
       turn_on:
         service: pi_hole.enable
         data:
-          name: 'Pi Hole 102'
+          name: 'Pi-Hole-102'
       turn_off:
         service: pi_hole.disable
         data:
           duration: '12:00:00'
-          name: 'Pi Hole 102'
+          name: 'Pi-Hole-102'
 
 group:
   pi_hole_enable_disable:
@@ -82,9 +82,10 @@ sensor:
           Not Reachable
         {% endif %}
 
+
 homeassistant:
   customize:
-    sensor.pi_hole_101_status:
+    sensor.pi_hole_status:
       templates:
         icon_color: >
           if (state === 'enabled') return 'var(--secondary-text-color)';
