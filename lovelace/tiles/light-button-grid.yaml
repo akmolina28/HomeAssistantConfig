@@ -18,7 +18,7 @@ cards:
       action: more-info
   - type: "custom:button-card"
     color_type: card
-    entity: light.living_room_lamps
+    entity: group.living_room_lamps
     name: TV Room
     icon: mdi:sofa
     hold_action:

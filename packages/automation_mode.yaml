@@ -150,7 +150,7 @@ script:
       data:
         entity_id: input_select.automation_mode
         option: sleep
-      
+
 ###############
 # Automations #
 ###############

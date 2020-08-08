@@ -9,4 +9,5 @@ rest_command:
     url: !secret rest_url_lenovo_tablet_1001_kiosk_command
   lenovo_tablet_701_kiosk_command:
     url: !secret rest_url_lenovo_tablet_701_kiosk_command
-  
+  lenovo_tablet_1001_tasker_command:
+    url: !secret rest_url_lenovo_tablet_1001_tasker

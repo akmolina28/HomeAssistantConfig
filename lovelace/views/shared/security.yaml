@@ -187,3 +187,21 @@ cards:
         - color: var(--status-color-warning)
         name:
         - color: var(--status-color-warning)
+- type: entities
+  title: Security System
+  entities:
+  - name: Status
+    entity: sensor.all_door_and_window_sensors
+  - name: Open Sensors
+    entity: sensor.open_doors_and_windows
+  # entities:
+  # - binary_sensor.front_door
+  # - binary_sensor.garage_entrance_door
+  # - binary_sensor.back_door
+  # - binary_sensor.garage_ext_door
+  # - binary_sensor.front_bedroom_window
+  # - binary_sensor.rear_bedroom_window
+  # - binary_sensor.master_bedroom_window
+  # - binary_sensor.back_office_windows
+  # - binary_sensor.garage_windows
+  # - binary_sensor.kitchen_windows

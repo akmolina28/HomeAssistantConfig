@@ -269,7 +269,7 @@ cards:
         cards:
         - type: "custom:button-card"
           color_type: card
-          entity: light.living_room_lamps
+          entity: group.living_room_lamps
           name: Lamps
           show_state: true
           icon: mdi:lamp

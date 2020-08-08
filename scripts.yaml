@@ -44,9 +44,9 @@ hass_restart:
 living_room_on:
   alias: Living Room On
   sequence:
-  - service: light.turn_on
+  - service: group.turn_on
     data:
-      entity_id: light.living_room_lamps
+      entity_id: group.living_room_lamps
   - service: media_player.turn_on
     data:
       entity_id:

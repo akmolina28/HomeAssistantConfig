@@ -43,7 +43,8 @@ light:
 - platform: group
   name: Interior Lights
   entities:
-  - light.living_room_lamps
+  - light.couch_lamp
+  - light.love_seat_lamp
   - light.great_room_strips
   - light.guest_room_lights
   - light.master_bedroom_lights
@@ -203,9 +204,9 @@ automation:
   - condition: template
     value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
   action:
-  - service: light.turn_off
+  - service: group.turn_off
     data:
-      entity_id: light.living_room_lamps
+      entity_id: group.living_room_lamps
   - service: light.turn_off
     data:
       entity_id: light.master_bedroom_lights
@@ -365,9 +366,9 @@ script:
   lighting_scene_common_area_full_brightness:
     alias: Lighting Scene - Common Area Full Brightness
     sequence:
-    - service: light.turn_on
+    - service: group.turn_on
       data:
-        entity_id: light.living_room_lamps
+        entity_id: group.living_room_lamps
         brightness: '255'
     - service: light.turn_on
       data:
@@ -396,9 +397,9 @@ script:
   lighting_scene_common_area_dim:
     alias: Lighting Scene - Common Area Dim
     sequence:
-    - service: light.turn_on
+    - service: group.turn_on
       data:
-        entity_id: light.living_room_lamps
+        entity_id: group.living_room_lamps
         brightness: '100'
     - service: switch.turn_on
       entity_id: 

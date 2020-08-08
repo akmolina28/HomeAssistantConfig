@@ -1,0 +1,53 @@
+group:
+  all_door_and_window_sensors:
+    name: All Door and Window Sensors
+    entities:
+      - binary_sensor.front_door
+      - binary_sensor.garage_entrance_door
+      - binary_sensor.back_door
+      - binary_sensor.garage_ext_door
+      - binary_sensor.front_bedroom_window
+      - binary_sensor.rear_bedroom_window
+      - binary_sensor.master_bedroom_window
+      - binary_sensor.back_office_windows
+      - binary_sensor.garage_windows
+      - binary_sensor.kitchen_windows
+
+
+sensor:
+- platform: template
+  sensors:
+    all_door_and_window_sensors:
+      friendly_name: All Door and Window Sensors
+      value_template: "{{ states('group.all_door_and_window_sensors') }}"
+      entity_id:
+      - binary_sensor.front_door
+      - binary_sensor.garage_entrance_door
+      - binary_sensor.back_door
+      - binary_sensor.garage_ext_door
+      - binary_sensor.front_bedroom_window
+      - binary_sensor.rear_bedroom_window
+      - binary_sensor.master_bedroom_window
+      - binary_sensor.back_office_windows
+      - binary_sensor.garage_windows
+      - binary_sensor.kitchen_windows
+
+    open_doors_and_windows:
+      friendly_name: Open Doors and Windows
+      value_template: "{{ expand('group.all_door_and_window_sensors') | selectattr('state','eq','on') | map(attribute='name') | list | join(', ') | default('None', true) }}"
+      entity_id:
+      - binary_sensor.front_door
+      - binary_sensor.garage_entrance_door
+      - binary_sensor.back_door
+      - binary_sensor.garage_ext_door
+      - binary_sensor.front_bedroom_window
+      - binary_sensor.rear_bedroom_window
+      - binary_sensor.master_bedroom_window
+      - binary_sensor.back_office_windows
+      - binary_sensor.garage_windows
+      - binary_sensor.kitchen_windows
+
+# alarm_control_panel:
+# - platform: manual
+#   name: Home Alarm
+#   code: !secret

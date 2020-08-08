@@ -70,7 +70,7 @@ customizer:
   custom_ui: local
 
 http:
-  base_url: !secret http_base_url
+  # base_url: !secret http_base_url
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
@@ -149,8 +149,8 @@ google_assistant:
     switch.cabinet_lights:
       name: Cabinet Lights
       expose: true
-    light.living_room_lamps:
-      name: Living Room Lights
+    group.living_room_lamps:
+      name: Living Room Lamps
       expose: true
     light.flex_strip_105:
       name: TV Backlight

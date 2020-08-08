@@ -12,11 +12,17 @@ kitchen_lights:
   - switch.kitchen_overhead_lights
   - light.kitchen_table_lights
 
+living_room_lamps:
+  name: Living Room Lamps
+  entities:
+  - light.couch_lamp
+  - light.love_seat_lamp
+
 great_room_lights:
   name: Great Room Lights
   entities:
   - light.great_room_strips
-  - light.living_room_lamps
+  - group.living_room_lamps
 
 interior_light_switches:
   name: Interior Light Switches
@@ -47,12 +53,6 @@ garage_lights:
   entities:
   - light.flex_strip_112
   - switch.ikea_outlet_101
-
-living_room_lamps:
-  name: Living Room Lights
-  entities:
-  - light.living_room_lamps
-  - light.flex_strip_105
 
 all_light_switches:
   name: All Light Switches

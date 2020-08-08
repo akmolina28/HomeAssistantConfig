@@ -19,6 +19,10 @@ cards:
     numberOfDays: 365
     entities:
     - calendar.meal_planning
+    style: |
+      ha-card { 
+        font-size: 18px;
+      }
   - type: markdown
     content: >-
       # [Edit Meal Plan](http://mealplanner.local/planner)

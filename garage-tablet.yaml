@@ -5,4 +5,5 @@ views:
 - !include /config/lovelace/views/garage-tablet/home.yaml
 - !include /config/lovelace/views/shared/rooms.yaml
 - !include /config/lovelace/views/shared/climate.yaml
+- !include /config/lovelace/views/shared/meal-plan.yaml
 - !include /config/lovelace/views/shared/network.yaml

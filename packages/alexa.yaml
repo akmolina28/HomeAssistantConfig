@@ -7,7 +7,7 @@ alexa:
       - switch.kitchen_overhead_lights
       - light.kitchen_table_lights
       - switch.xiaomi_wifi_smart_plug_101
-      - light.living_room_lamps
+      - group.living_room_lamps
       - script.lighting_scene_kitchen_lights_on
       - script.lighting_scene_kitchen_lights_off
       - script.lighting_scene_common_area_full_brightness
@@ -29,6 +29,8 @@ alexa:
 
       - lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
       - lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+
+      - switch.chill_mode
     entity_config:
       switch.bar_lights:
         name: Bar Lights
@@ -50,9 +52,9 @@ alexa:
         name: Christmas Tree
         description: Christmas tree smart plug
         display_categories: SMARTPLUG
-      light.living_room_lamps:
-        name: Living Room Lights
-        description: Lighting in the living room area
+      group.living_room_lamps:
+        name: Living Room Lamps
+        description: Lamps in the living room
         display_categories: LIGHT
       cover.garage_door:
         name: Garage Door
@@ -122,3 +124,7 @@ alexa:
         name: Garage Entrace Lock
         description: Garage entrance door deadbolt lock
         display_categories: SMARTLOCK
+      switch.chill_mode:
+        name: Chill Mode
+        description: Turn on to help wind down at night
+        display_categories: SWITCH

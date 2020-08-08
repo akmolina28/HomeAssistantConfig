@@ -59,7 +59,7 @@ cards:
   entities:
   - name: Lamps
     icon: mdi:lamp
-    entity: light.living_room_lamps
+    entity: group.living_room_lamps
   - type: "custom:fold-entity-row"
     head: 
       entity: light.great_room_strips
