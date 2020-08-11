@@ -5,7 +5,7 @@ lovelace:
     type: js
   - url: /local/slider-entity-row.js?v=0.13
     type: module
-  - url: /local/button-card.js?v=3.3.5
+  - url: /local/community/button-card/button-card.js
     type: module
   - url: /local/card-mod.js?v=2.0.0
     type: module
