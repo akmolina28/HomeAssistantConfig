@@ -55,31 +55,31 @@ automation:
 #     data:
 #       brightness: 1
 
-- alias: Turn Off Kitchen Lights And Tablet Screen When No Motion
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hue_100_motion
-    to: 'off'
-    for:
-      minutes: 30
-  action:
-  - service: homeassistant.turn_off
-    entity_id: group.kitchen_lights
-  - service: light.turn_off
-    entity_id: light.lenovo_tablet_1001_backlight
+# - alias: Turn Off Kitchen Lights And Tablet Screen When No Motion
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.hue_100_motion
+#     to: 'off'
+#     for:
+#       minutes: 30
+#   action:
+#   - service: homeassistant.turn_off
+#     entity_id: group.kitchen_lights
+#   - service: light.turn_off
+#     entity_id: light.lenovo_tablet_1001_backlight
 
-- alias: Turn On Kitchen Tablet Screen When Motion Detected
-  trigger:
-    platform: state
-    entity_id: binary_sensor.hue_100_motion
-    to: 'on'
-  condition:
-  - condition: template
-    value_template: >
-      {{ states("input_select.automation_mode") in ['home', 'guest'] }}
-  action:
-  - service: light.turn_on
-    entity_id: light.lenovo_tablet_1001_backlight
+# - alias: Turn On Kitchen Tablet Screen When Motion Detected
+#   trigger:
+#     platform: state
+#     entity_id: binary_sensor.hue_100_motion
+#     to: 'on'
+#   condition:
+#   - condition: template
+#     value_template: >
+#       {{ states("input_select.automation_mode") in ['home', 'guest'] }}
+#   action:
+#   - service: light.turn_on
+#     entity_id: light.lenovo_tablet_1001_backlight
 
 - alias: Bedroom Motion - Home Mode
   trigger:

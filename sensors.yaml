@@ -25,6 +25,22 @@
   value_template: 'OK'
 
 - platform: rest
+  name: Samsung Tablet 1001 Kiosk Device Info
+  resource: !secret rest_url_samsung_tablet_1001_kiosk_device_info
+  json_attributes:
+  - screenBrightness
+  - currentPage
+  - ip4
+  - mac
+  - isScreenOn
+  - batteryLevel
+  - deviceID
+  - maintenanceMode
+  - deviceManufacturer
+  - deviceModel
+  value_template: 'OK'
+
+- platform: rest
   name: Lenovo Tablet 701 Kiosk Device Info
   resource: !secret rest_url_lenovo_tablet_701_kiosk_device_info
   json_attributes:

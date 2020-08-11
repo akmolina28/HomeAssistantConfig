@@ -106,7 +106,7 @@ light:
 - platform: template
   lights:
     lenovo_tablet_1001_backlight:
-      friendly_name: Kitchen Tablet Backlight
+      friendly_name: Wall Tablet Backlight
       value_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
       level_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
@@ -119,6 +119,25 @@ light:
           cmd: screenOff
       set_level:
         service: rest_command.lenovo_tablet_1001_kiosk_command
+        data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'
+    
+    samsung_tablet_1001_backlight:
+      friendly_name: Kitchen Tablet Backlight
+      value_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
+      level_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
+      turn_on:
+        service: rest_command.samsung_tablet_1001_kiosk_command
+        data:
+          cmd: screenOn
+      turn_off:
+        service: rest_command.samsung_tablet_1001_kiosk_command
+        data:
+          cmd: screenOff
+      set_level:
+        service: rest_command.samsung_tablet_1001_kiosk_command
         data_template:
           cmd: setStringSetting
           key: screenBrightness
@@ -184,33 +203,33 @@ automation:
   action:
   - service: script.turn_on_exterior_lights
 
-# When kaitlyn leaves for work on weekday mornings, turn lights off
-- alias: Kaitlyn Leaves For Work - Turn Lights Off
-  trigger:
-  - platform: state
-    entity_id: person.kaitlyn
-    to: not_home
-    for: '00:05:00'
-  condition:
-  - condition: time
-    after: '04:00:00'
-    before: '10:00:00'
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  - condition: template
-    value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
-  action:
-  - service: group.turn_off
-    data:
-      entity_id: group.living_room_lamps
-  - service: light.turn_off
-    data:
-      entity_id: light.master_bedroom_lights
-  - service: script.turn_off_kitchen_lights
+# # When kaitlyn leaves for work on weekday mornings, turn lights off
+# - alias: Kaitlyn Leaves For Work - Turn Lights Off
+#   trigger:
+#   - platform: state
+#     entity_id: person.kaitlyn
+#     to: not_home
+#     for: '00:05:00'
+#   condition:
+#   - condition: time
+#     after: '04:00:00'
+#     before: '10:00:00'
+#     weekday:
+#     - mon
+#     - tue
+#     - wed
+#     - thu
+#     - fri
+#   - condition: template
+#     value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
+#   action:
+#   - service: group.turn_off
+#     data:
+#       entity_id: group.living_room_lamps
+#   - service: light.turn_off
+#     data:
+#       entity_id: light.master_bedroom_lights
+#   - service: script.turn_off_kitchen_lights
 
 
 

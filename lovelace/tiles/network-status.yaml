@@ -159,7 +159,7 @@ entities:
   cards:
   - type: custom:button-card
     entity: sensor.lenovo_tablet_1001_kiosk_device_info
-    name: Kitchen Tablet
+    name: Wall Tablet
     color_type: card
     icon: mdi:tablet
     show_label: true
