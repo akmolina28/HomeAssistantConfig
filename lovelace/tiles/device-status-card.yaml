@@ -192,7 +192,7 @@ entities:
   - type: custom:button-card
     entity: binary_sensor.hue_201_motion
     icon: mdi:eye
-    name: Garage
+    name: Outdoor
     color_type: card
     show_label: true
     tap_action:

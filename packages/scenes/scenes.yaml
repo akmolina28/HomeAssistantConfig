@@ -1,3 +1,21 @@
+input_boolean:
+  chill_mode:
+      name: Chill Mode
+
+switch:
+- platform: template
+  switches:
+    chill_mode:
+        value_template: "{{ is_state('input_boolean.chill_mode', 'on') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.chill_mode
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.chill_mode
+
 scene:
 - name: House Scene - Away
   entities:

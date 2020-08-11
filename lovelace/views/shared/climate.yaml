@@ -16,7 +16,7 @@ cards:
   entities:
   - entity: sensor.owm_temperature
     name: Outdoor Temp
-  - entity: sensor.hue_201_temp
+  - entity: sensor.hue_105_temp
     name: Garage Temp
 
 - type: custom:mini-graph-card

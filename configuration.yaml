@@ -69,10 +69,10 @@ device_tracker:
 customizer:
   custom_ui: local
 
-http:
+# http:
   # base_url: !secret http_base_url
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
+  # ssl_certificate: /ssl/fullchain.pem
+  # ssl_key: /ssl/privkey.pem
 
 notify:
   - platform: html5

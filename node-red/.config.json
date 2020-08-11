@@ -1611,6 +1611,40 @@
      "file": "/opt/node_modules/node-red-contrib-deconz/deconz.js"
     }
    }
+  },
+  "node-red-contrib-credentials": {
+   "name": "node-red-contrib-credentials",
+   "version": "0.2.1",
+   "local": false,
+   "nodes": {
+    "credent": {
+     "name": "credent",
+     "types": [
+      "credentials"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-credentials",
+     "file": "/opt/node_modules/node-red-contrib-credentials/credentials/credentials.js"
+    }
+   }
+  },
+  "node-red-contrib-wait-paths": {
+   "name": "node-red-contrib-wait-paths",
+   "version": "0.3.2",
+   "local": false,
+   "nodes": {
+    "wait-paths": {
+     "name": "wait-paths",
+     "types": [
+      "wait-paths"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-wait-paths",
+     "file": "/opt/node_modules/node-red-contrib-wait-paths/wait-paths.js"
+    }
+   }
   }
  },
  "users": {

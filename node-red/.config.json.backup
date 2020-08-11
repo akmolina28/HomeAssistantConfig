@@ -1611,6 +1611,23 @@
      "file": "/opt/node_modules/node-red-contrib-deconz/deconz.js"
     }
    }
+  },
+  "node-red-contrib-credentials": {
+   "name": "node-red-contrib-credentials",
+   "version": "0.2.1",
+   "local": false,
+   "nodes": {
+    "credent": {
+     "name": "credent",
+     "types": [
+      "credentials"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-credentials",
+     "file": "/opt/node_modules/node-red-contrib-credentials/credentials/credentials.js"
+    }
+   }
   }
  },
  "users": {
@@ -1625,7 +1642,7 @@
      "view-show-tips": false
     },
     "context": {
-     "flowRefresh": true
+     "flowRefresh": false
     }
    },
    "menu-menu-item-palette": true,

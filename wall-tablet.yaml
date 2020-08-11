@@ -1,0 +1,5 @@
+title: Home Assistant
+custom_header:
+  compact_mode: true
+views:
+- !include /config/lovelace/views/shared/alarm.yaml

@@ -7,7 +7,7 @@ lovelace:
     type: module
   - url: /local/button-card.js?v=3.3.5
     type: module
-  - url: /local/card-mod.js?v=1.0.13
+  - url: /local/card-mod.js?v=2.0.0
     type: module
   - url: /local/simple-thermostat.js?v=0.35.0
     type: module
@@ -15,7 +15,7 @@ lovelace:
     type: module
   - url: /local/mini-media-player-bundle.js?v=1.9.1
     type: module
-  - url: /local/markdown-mod.js?v=1.0.0.0
+  - url: /local/markdown-mod.js?v=0.3
     type: module
   - url: /local/my-custom-card.js?v=0.0.0.12
     type: js
@@ -36,6 +36,8 @@ lovelace:
   - url: /local/config-template-card.js?v=1.1.2
     type: module
   - url: /local/calendar-card.js?v=1111
+    type: js
+  - url: /local/alarm_control_panel-card.js?v=1.0.2
     type: js
   dashboards:
     living-room-tablet:
@@ -65,4 +67,11 @@ lovelace:
       title: Man-cave Tablet
       icon: mdi:guitar-electric
       show_in_sidebar: true
+      require_admin: false
+    wall-tablet:
+      mode: yaml
+      filename: wall-tablet.yaml
+      title: Wall Tablet
+      icon: mdi:tablet-dashboard
+      show_in_sidebar: false
       require_admin: false

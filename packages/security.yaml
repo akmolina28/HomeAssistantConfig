@@ -17,6 +17,13 @@ group:
 sensor:
 - platform: template
   sensors:
+    not_ready_to_arm:
+      friendly_name: Not Ready to Arm
+      value_template: "{{ states('alarm_control_panel.home_alarm') == 'disarmed' and states('sensor.all_door_and_window_sensors') == 'on' }}"
+      entity_id:
+      - alarm_control_panel.home_alarm
+      - sensor.all_door_and_window_sensors
+
     all_door_and_window_sensors:
       friendly_name: All Door and Window Sensors
       value_template: "{{ states('group.all_door_and_window_sensors') }}"
@@ -47,7 +54,13 @@ sensor:
       - binary_sensor.garage_windows
       - binary_sensor.kitchen_windows
 
-# alarm_control_panel:
-# - platform: manual
-#   name: Home Alarm
-#   code: !secret
+alarm_control_panel:
+- platform: manual
+  name: Home Alarm
+  code: !secret alarm_code
+  armed_home:
+    arming_time: 0
+  armed_night:
+    arming_time: 0
+  # delay_time: 10
+  # trigger_time: 10
