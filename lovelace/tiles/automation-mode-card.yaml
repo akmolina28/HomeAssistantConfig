@@ -1,4 +1,4 @@
-type: horizontal-stack
+type: custom:hui-horizontal-stack-card
 cards:
 - type: "custom:button-card"
   icon: mdi:home
@@ -16,8 +16,10 @@ cards:
   styles:
     card:
       - max_height: 60px
-  lock:
-    enabled: true
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+  # lock:
+  #   enabled: true
       
 - type: "custom:button-card"
   icon: mdi:exit-run
@@ -35,8 +37,10 @@ cards:
   styles:
     card:
       - max_height: 60px
-  lock:
-    enabled: true
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+  # lock:
+  #   enabled: true
       
 - type: "custom:button-card"
   icon: mdi:weather-night
@@ -54,8 +58,10 @@ cards:
   styles:
     card:
       - max_height: 60px
-  lock:
-    enabled: true
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+  # lock:
+  #   enabled: true
       
 - type: "custom:button-card"
   icon: mdi:beach
@@ -73,8 +79,10 @@ cards:
   styles:
     card:
       - max_height: 60px
-  lock:
-    enabled: true
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+  # lock:
+  #   enabled: true
       
 - type: "custom:button-card"
   icon: mdi:human-male-male
@@ -92,5 +100,7 @@ cards:
   styles:
     card:
       - max_height: 60px
-  lock:
-    enabled: true
+      - -webkit-box-shadow: 0px 0px 0px 0px
+      - box-shadow: 0px 0px 0px 0px
+  # lock:
+  #   enabled: true

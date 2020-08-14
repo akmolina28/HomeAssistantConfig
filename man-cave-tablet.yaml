@@ -3,7 +3,6 @@ custom_header:
   compact_mode: true
 views:
 - !include /config/lovelace/views/man-cave-tablet/home.yaml
-- !include /config/lovelace/views/shared/alarm.yaml
 - !include /config/lovelace/views/shared/rooms.yaml
 - !include /config/lovelace/views/shared/climate.yaml
 - !include /config/lovelace/views/shared/meal-plan.yaml

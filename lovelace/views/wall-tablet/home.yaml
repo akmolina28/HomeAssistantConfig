@@ -1,5 +1,5 @@
-title: Alarm
-path: alarm
+title: Home
+path: home
 panel: true
 cards:
 - type: custom:hui-horizontal-stack-card
@@ -11,12 +11,10 @@ cards:
       show_keypad: true
       title: Alarm System
       scale: 36px
-      # style: '--alarm-color-disarmed: var(--label-badge-blue);'
       states:
         - arm_home
         - arm_away
         - arm_night
-      # show_label_ids: true
       labels:
         ui.card.alarm_control_panel.arm_home: ' HOME'
         ui.card.alarm_control_panel.arm_away: 'AWAY '
@@ -50,6 +48,13 @@ cards:
             padding: 5px 12px;
             margin: 0px 6px;
             border-radius: 5px;
+            -webkit-box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+            box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+          }
+          .actions paper-button:active {
+            background-color: var(--primary-color);
+            -webkit-box-shadow: 0px 0px 0px 0px;
+            box-shadow: 0px 0px 0px 0px;
           }
           .actions #disarm {
             margin-left: 140px;
@@ -57,6 +62,9 @@ cards:
           }
           paper-input {
             margin-top: 25px;
+          }
+          .pad {
+            font-family: "Lucida Console", Monaco, monospace;
           }
           .pad paper-button {
             border: solid 1px var(--primary-color);
@@ -66,6 +74,13 @@ cards:
             line-height: 22px;
             text-align: center;
             margin: 7px;
+            -webkit-box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+            box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+          }
+          .pad paper-button:active {
+            background-color: var(--primary-color);
+            -webkit-box-shadow: 0px 0px 0px 0px;
+            box-shadow: 0px 0px 0px 0px;
           }
           .pad paper-button .alpha {
             font-size: 16px;
@@ -82,7 +97,11 @@ cards:
       entity: weather.openweathermap
       name: Pensacola, FL
     - type: custom:hui-entities-card
-      title: 
+      title: Home Automation Profile
+      entities:
+      - !include /config/lovelace/tiles/automation-mode-card.yaml
+    - type: custom:hui-entities-card
+      title: Doors & Locks
       entities:
       - type: custom:hui-horizontal-stack-card
         cards:
@@ -227,14 +246,37 @@ cards:
           lock:
             enabled: true
     - type: custom:hui-entities-card
-      title: 
+      title: Lights
       entities:
       - type: custom:hui-horizontal-stack-card
         cards:
+        - type: "custom:button-card"
+          color_type: card
+          name: Lights On
+          size: 100%
+          show_state: false
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.great_room_smart_toggle
+          hold_action:
+            action: more-info
+          icon: mdi:lightbulb-on
+          styles:
+            icon:
+            - color: white
+            name:
+            - color: white
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
         - type: conditional
           conditions:
-          - entity: switch.chill_mode
-            state: 'off'
+          - entity: sun.sun
+            state: below_horizon
           card:
             type: "custom:button-card"
             color_type: card
@@ -248,115 +290,50 @@ cards:
               action: more-info
             icon: mdi:meditation
             styles:
-              icon:
-              - color: var(--button-card-light-color)
-              name:
-              - color: var(--button-card-light-color)
               card:
               - height: 100px
               - background-color: var(--paper-card-background-color)
               - -webkit-box-shadow: 0px 0px 0px 0px
               - box-shadow: 0px 0px 0px 0px
-        - type: conditional
-          conditions:
-          - entity: switch.chill_mode
-            state: 'on'
-          card:
-            type: "custom:button-card"
-            color_type: blank_card
+            state:
+            - value: 'on'
+              styles:
+                icon:
+                - color: var(--secondary-text-color)
+        - type: "custom:button-card"
+          color_type: card
+          entity: switch.great_room_shuffler
+          name: Disco
+          show_state: false
+          icon: mdi:decagram
+          hold_action:
+            action: more-info
+          state:
+          - value: 'on'
+            spin: true
             styles:
               icon:
-              - color: var(--button-card-light-color)
+              - color: pink
               name:
-              - color: var(--button-card-light-color)
+              - color: pink
               card:
               - height: 100px
               - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px
-              - box-shadow: 0px 0px 0px 0px
-        - type: "custom:button-card"
-          color_type: blank_card
-          styles:
-            icon:
-            - color: var(--button-card-light-color)
-            name:
-            - color: var(--button-card-light-color)
-            card:
-            - height: 100px
-            - background-color: var(--paper-card-background-color)
-            - -webkit-box-shadow: 0px 0px 0px 0px
-            - box-shadow: 0px 0px 0px 0px
-        - type: "custom:button-card"
-          color_type: blank_card
-          styles:
-            icon:
-            - color: var(--button-card-light-color)
-            name:
-            - color: var(--button-card-light-color)
-            card:
-            - height: 100px
-            - background-color: var(--paper-card-background-color)
-            - -webkit-box-shadow: 0px 0px 0px 0px
-            - box-shadow: 0px 0px 0px 0px
-# - type: custom:hui-horizontal-stack-card
-  # cards:
-  # - type: custom:hui-vertical-stack-card
-  #   cards:
-  #   - type: conditional
-  #     conditions:
-  #     - entity: sensor.not_ready_to_arm
-  #       state: 'True'
-  #     card:
-  #       type: entities
-  #       title: Not ready to arm
-  #       entities:
-  #       - entity: sensor.open_doors_and_windows
-  #         name: Open Sensors
-  #       style: |
-  #         ha-card {
-  #           margin-top: 40px;
-  #         }
-  #   - type: conditional
-  #     conditions:
-  #     - entity: sensor.not_ready_to_arm
-  #       state: 'False'
-  #     card:
-  #       type: alarm-panel
-  #       entity: alarm_control_panel.home_alarm
-  #       name: Home Alarm
-  #       states:
-  #       - arm_home
-  #       - arm_away
-  #       - arm_night
-  #       debug_cardmod: true
-  #       style:
-  #         .: |
-  #           .card-header {
-  #             font-size: 36px;
-  #           }
-  #           #keypad {
-  #             max-width: 500px!important;
-  #           }
-  #         "#armActions mwc-button":
-  #           $: |
-  #             button {
-  #               font-size: 16px !important;
-  #               height: 60px !important;
-  #             }
-  #         "#keypad mwc-button":
-  #           $: |
-  #             button {
-  #               font-size: 24px !important;
-  #               height: 60px !important;
-  #             }
-  #         "#keypad mwc-button:nth-of-type(12)":
-  #           $: |
-  #             button {
-  #               font-size: 16px !important;
-  #               # --mdc-theme-primary: green;
-  #             }
-  # - type: custom:hui-vertical-stack-card
-  #   cards:
-  #   - type: picture-entity
-  #     entity: camera.front_door_last_activity
-    
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+          - operator: template
+            value: >
+              [[[
+                return true;
+              ]]]
+            spin: false
+            styles:
+              icon:
+              - color: var(--primary-text-color)
+              name:
+              - color: var(--primary-text-color)
+              card:
+              - height: 100px
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)

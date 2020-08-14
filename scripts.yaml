@@ -1,3 +1,4 @@
+# Empty scripts set up to trigger Node Red automations
 ledge_strips_brightness_increase:
   sequence: []
 
@@ -11,6 +12,9 @@ ledge_strips_brightness_min:
   sequence: []
 
 disable_garage_motion_1_hr:
+  sequence: []
+
+great_room_smart_toggle:
   sequence: []
 
 turn_off_media_players:

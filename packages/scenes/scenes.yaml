@@ -21,7 +21,7 @@ scene:
   entities:
     # Kitchen Off
     group.kitchen_lights: off
-    light.lenovo_tablet_1001_backlight: off
+    light.samsung_tablet_1001_backlight: off
 
     # Man Cave Off
     group.man_cave_lights: off
@@ -46,6 +46,19 @@ scene:
 
     # Laundry Room Off
     group.laundry_room_lights: off
+
+- name: House Scene - Alarm Triggered
+  entities:
+    switch.ledge_fluxer: off
+    light.great_room_strips:
+      state: on
+      brightness: 255
+      rgb_color: [255, 0, 0]
+
+- name: House Scene - Alarm Disarmed
+  entities:
+    switch.ledge_fluxer: on
+
 
 - name: House Scene - Sleep
   entities:

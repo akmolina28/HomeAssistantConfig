@@ -106,7 +106,7 @@ light:
 - platform: template
   lights:
     lenovo_tablet_1001_backlight:
-      friendly_name: Wall Tablet Backlight
+      friendly_name: Kitchen Tablet Backlight
       value_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
       level_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
@@ -125,7 +125,7 @@ light:
           value: '{{ brightness }}'
     
     samsung_tablet_1001_backlight:
-      friendly_name: Kitchen Tablet Backlight
+      friendly_name: Wall Tablet Backlight
       value_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
       level_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
