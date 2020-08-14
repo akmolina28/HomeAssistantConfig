@@ -40,33 +40,40 @@ lovelace:
   - url: /local/alarm_control_panel-card.js?v=1.0.2
     type: js
   dashboards:
+    mobile-device:
+      mode: yaml
+      filename: mobile-device.yaml
+      title: Mobile
+      icon: mdi:cellphone-iphone
+      show_in_sidebar: true
+      require_admin: false
     living-room-tablet:
       mode: yaml
       filename: living-room-tablet.yaml
       title: Living Room Tablet
       icon: mdi:sofa
-      show_in_sidebar: true
+      show_in_sidebar: false
       require_admin: false
     kitchen-tablet:
       mode: yaml
       filename: kitchen-tablet.yaml
       title: Kitchen Tablet
       icon: mdi:silverware-fork-knife
-      show_in_sidebar: true
+      show_in_sidebar: false
       require_admin: false
     garage-tablet:
       mode: yaml
       filename: garage-tablet.yaml
       title: Garage Tablet
       icon: mdi:garage
-      show_in_sidebar: true
+      show_in_sidebar: false
       require_admin: false
     man-cave-tablet:
       mode: yaml
       filename: man-cave-tablet.yaml
       title: Man-cave Tablet
       icon: mdi:guitar-electric
-      show_in_sidebar: true
+      show_in_sidebar: false
       require_admin: false
     wall-tablet:
       mode: yaml

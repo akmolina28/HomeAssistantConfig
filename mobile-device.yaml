@@ -1,0 +1,9 @@
+title: Mobile
+custom_header:
+  compact_mode: true
+  footer_mode: true
+views:
+- !include /config/lovelace/views/mobile/light-control.yaml
+- !include /config/lovelace/views/mobile/climate.yaml
+- !include /config/lovelace/views/mobile/network.yaml
+- !include /config/lovelace/views/mobile/meal-plan.yaml

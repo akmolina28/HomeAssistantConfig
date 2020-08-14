@@ -100,6 +100,10 @@ cards:
       title: Home Automation Profile
       entities:
       - !include /config/lovelace/tiles/automation-mode-card.yaml
+      style: |
+        .card-header {
+          padding-top: 10px;
+        }
     - type: custom:hui-entities-card
       title: Doors & Locks
       entities:
@@ -245,6 +249,10 @@ cards:
             action: more-info
           lock:
             enabled: true
+      style: |
+        .card-header {
+          padding-top: 10px;
+        }
     - type: custom:hui-entities-card
       title: Lights
       entities:
@@ -337,3 +345,7 @@ cards:
               - background-color: var(--paper-card-background-color)
               - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
               - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      style: |
+        .card-header {
+          padding-top: 10px;
+        }

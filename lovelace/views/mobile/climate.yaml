@@ -1,0 +1,38 @@
+title: Climate
+path: climate
+icon: mdi:thermostat
+panel: false
+cards:
+- type: custom:simple-thermostat
+  entity: climate.thermostat
+  name: Thermostat
+
+- type: custom:mini-graph-card
+  name: Outdoor Temp
+  show:
+    labels: true
+    labels_secondary: true
+  hours_to_show: 24
+  points_per_hour: 4
+  entities:
+  - entity: sensor.owm_temperature
+    name: Outdoor Temp
+  - entity: sensor.hue_105_temp
+    name: Garage Temp
+
+- type: custom:mini-graph-card
+  name: Indoor Temp
+  show:
+    labels: true
+    labels_secondary: true
+  hours_to_show: 24
+  points_per_hour: 4
+  entities:
+  - entity: sensor.living_room_temperature
+    name: Great Room
+  - entity: sensor.target_temperature
+    name: Target
+  - entity: sensor.bedroom_temperature
+    name: Master Bedroom
+  - entity: sensor.man_cave_temperature
+    name: Man-cave

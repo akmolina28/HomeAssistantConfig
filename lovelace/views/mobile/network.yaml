@@ -1,0 +1,146 @@
+title: Network
+path: network
+panel: false
+icon: mdi:access-point-network
+cards:
+
+- type: vertical-stack
+  cards:
+  - type: conditional
+    conditions:
+    - entity: sensor.pi_hole_101_reachable
+      state: 'Reachable'
+    - entity: sensor.pi_hole_102_reachable
+      state: 'Reachable'
+    card:
+      type: custom:hui-entities-card
+      title: Pi-hole Ad Blocker
+      icon: mdi:pi-hole
+      entities:
+      - type: section
+        label: "Turn off Ad Blocking if you have internet issues:"
+      - entity: group.pi_hole_enable_disable
+        name: Ad Blocker
+        icon: mdi:close-octagon-outline
+      - type: section
+      - entity: sensor.pi_hole_101_reachable
+        name: '192.168.1.41 (Primary)'
+        icon: mdi:raspberry-pi
+      - entity: sensor.pi_hole_102_reachable
+        name: '192.168.1.25 (Secondary)'
+        icon: mdi:raspberry-pi
+      - type: custom:hui-horizontal-stack-card
+        cards:
+        - type: sensor
+          name: Ads Blocked Today
+          entity: sensor.pi_hole_101_ads_blocked_today
+          graph: line
+        - type: sensor
+          name: Ads Blocked Today
+          entity:  sensor.pi_hole_101_ads_percentage_blocked_today
+          graph: line
+
+  - type: conditional
+    conditions:
+    - entity: sensor.pi_hole_101_reachable
+      state_not: 'Reachable'
+    - entity: sensor.pi_hole_102_reachable
+      state: 'Reachable'
+    card:
+      type: custom:hui-entities-card
+      title: Pi-hole Ad Blocker
+      icon: mdi:pi-hole
+      entities:
+      - type: section
+        label: "Primary DNS unreachable!"
+        style: |
+          .label { 
+            font-size: 20px;
+            color: var(--status-color-alert)!important;
+          }
+      - entity: group.pi_hole_enable_disable
+        name: Ad Blocker
+        icon: mdi:close-octagon-outline
+      - type: section
+      - entity: sensor.pi_hole_101_reachable
+        name: '192.168.1.41 (Primary)'
+        icon: mdi:raspberry-pi
+      - entity: sensor.pi_hole_102_reachable
+        name: '192.168.1.25 (Secondary)'
+        icon: mdi:raspberry-pi
+      - type: custom:hui-horizontal-stack-card
+        cards:
+        - type: sensor
+          name: Ads Blocked Today
+          entity: sensor.pi_hole_102_ads_blocked_today
+          graph: line
+        - type: sensor
+          name: Ads Blocked Today
+          entity:  sensor.pi_hole_102_ads_percentage_blocked_today
+          graph: line
+
+  - type: conditional
+    conditions:
+    - entity: sensor.pi_hole_101_reachable
+      state: 'Reachable'
+    - entity: sensor.pi_hole_102_reachable
+      state_not: 'Reachable'
+    card:
+      type: custom:hui-entities-card
+      title: Pi-hole Ad Blocker
+      icon: mdi:pi-hole
+      entities:
+      - type: section
+        label: "Secondary DNS unreachable!"
+        style: |
+          .label { 
+            font-size: 20px;
+            color: var(--status-color-alert)!important;
+          }
+      - entity: group.pi_hole_enable_disable
+        name: Ad Blocker
+        icon: mdi:close-octagon-outline
+      - type: section
+      - entity: sensor.pi_hole_101_reachable
+        name: '192.168.1.41 (Primary)'
+        icon: mdi:raspberry-pi
+      - entity: sensor.pi_hole_102_reachable
+        name: '192.168.1.25 (Secondary)'
+        icon: mdi:raspberry-pi
+      - type: custom:hui-horizontal-stack-card
+        cards:
+        - type: sensor
+          name: Ads Blocked Today
+          entity: sensor.pi_hole_101_ads_blocked_today
+          graph: line
+        - type: sensor
+          name: Ads Blocked Today
+          entity:  sensor.pi_hole_101_ads_percentage_blocked_today
+          graph: line
+
+  - type: conditional
+    conditions:
+    - entity: sensor.pi_hole_101_reachable
+      state_not: 'Reachable'
+    - entity: sensor.pi_hole_102_reachable
+      state_not: 'Reachable'
+    card:
+      type: custom:hui-entities-card
+      title: Pi-hole Ad Blocker
+      icon: mdi:pi-hole
+      entities:
+      - type: section
+        label: "DNS UNREACHABLE!"
+        style: |
+          .label { 
+            font-size: 20px;
+            color: var(--status-color-alert)!important;
+          }
+      - entity: sensor.pi_hole_101_reachable
+        name: '192.168.1.41 (Primary)'
+        icon: mdi:raspberry-pi
+      - entity: sensor.pi_hole_102_reachable
+        name: '192.168.1.25 (Secondary)'
+        icon: mdi:raspberry-pi
+
+- !include /config/lovelace/tiles/network-status.yaml

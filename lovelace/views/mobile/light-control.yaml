@@ -1,0 +1,115 @@
+title: Light Control
+icon: mdi:lightbulb-on
+path: light-control
+panel: false
+cards:
+- type: entities
+  title: Master Bedroom
+  show_header_toggle: false
+  entities:
+  - entity: light.master_bedroom_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Lights
+    icon: mdi:bed-empty
+    toggle: true
+  - type: divider
+  - entity: light.kp_bedside
+    name: KP
+    icon: mdi:lamp
+  - entity: light.andrew_bedside
+    name: Andrew
+    icon: mdi:lamp
+  - type: divider
+  - entity: switch.master_bedroom_fan
+    name: Fan
+    icon: mdi:fan
+- type: entities
+  title: Great Room
+  show_header_toggle: false
+  entities:
+  - entity: "light.living_room_lamps"
+    type: "custom:slider-entity-row"
+    min: 5
+    toggle: true
+    name: Lamps
+    icon: mdi:sofa
+  - entity: light.flex_strip_105
+    name: TV Backlight
+    icon: mdi:television
+  - type: divider
+  - entity: light.ledge_strips
+    name: Ledge Lights
+    icon: mdi:weather-sunset-up
+- type: entities
+  title: Kitchen
+  show_header_toggle: false
+  entities:
+  - entity: switch.cabinet_lights
+    name: Cabinet Lights
+    icon: mdi:light-switch
+  - entity: switch.bar_lights
+    name: Bar Lights
+    icon: mdi:light-switch
+  - entity: switch.kitchen_overhead_lights
+    name: Overhead Light
+    icon: mdi:ceiling-light
+  - entity: light.kitchen_table_lights
+    type: "custom:slider-entity-row"
+    name: Kitchen Table
+    icon: mdi:silverware-fork-knife
+    min: 3
+    toggle: true
+- type: entities
+  title: Guest Bedroom
+  show_header_toggle: false
+  entities:
+  - entity: light.guest_room_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Lights
+    icon: mdi:bed-empty
+    toggle: true
+  - type: divider
+  - entity: light.guest_room_lamp_2
+    icon: mdi:lamp
+    name: Nightstand
+  - entity: light.guest_room_lamp_1
+    icon: mdi:floor-lamp
+    name: Lamp
+  - entity: light.flex_strip_103
+    icon: mdi:track-light
+    name: Ambience
+- type: entities
+  title: Man-cave
+  show_header_toggle: false
+  entities:
+  - entity: group.man_cave_lights
+    min: 5
+    name: Lights
+
+- type: entities
+  title: Exterior Lights
+  entities:
+  - entity: group.back_yard_lights
+    name: Back Yard Lights
+    icon: mdi:tree
+  - entity: light.ge_softwhite_104
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Patio
+    toggle: true
+  - entity: light.ge_softwhite_101
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Side Yard
+    toggle: true
+    icon: mdi:garage
+# - type: "custom:button-card"
+#   entity: switch.all_lights_off
+#   icon: mdi:power
+#   color: '#FC2B36'
+#   name: All Lights Off
+#   styles:
+#     card:
+#       - height: 100px
