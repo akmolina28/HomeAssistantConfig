@@ -13,16 +13,21 @@ group:
       - binary_sensor.garage_windows
       - binary_sensor.kitchen_windows
 
+input_boolean:
+  bypass_open_sensors:
+    name: Bypass Open Sensors
+    icon: mdi:shield-check-outline
 
 sensor:
 - platform: template
   sensors:
-    not_ready_to_arm:
-      friendly_name: Not Ready to Arm
-      value_template: "{{ states('alarm_control_panel.home_alarm') == 'disarmed' and states('sensor.all_door_and_window_sensors') == 'on' }}"
+    alarm_keypad_visible:
+      friendly_name: Alarm Keypad Visible
+      value_template: "{{ states('input_boolean.bypass_open_sensors') == 'on' or states('alarm_control_panel.home_alarm') != 'disarmed' or states('sensor.all_door_and_window_sensors') == 'off' }}"
       entity_id:
       - alarm_control_panel.home_alarm
       - sensor.all_door_and_window_sensors
+      - input_boolean.bypass_open_sensors
 
     all_door_and_window_sensors:
       friendly_name: All Door and Window Sensors
