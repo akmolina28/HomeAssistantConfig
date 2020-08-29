@@ -1,0 +1,8 @@
+title: Entities
+custom_header:
+  compact_mode: true
+views:
+- !include /config/lovelace/views/entities/lights-and-switches.yaml
+- !include /config/lovelace/views/entities/motion-sensors.yaml
+- !include /config/lovelace/views/entities/konnected.yaml
+- !include /config/lovelace/views/entities/kiosks.yaml

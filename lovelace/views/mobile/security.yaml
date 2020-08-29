@@ -1,0 +1,7 @@
+title: Security
+path: security
+icon: mdi:shield
+panel: false
+cards:
+- !include /config/lovelace/tiles/alarm-keypad.yaml
+- !include /config/lovelace/tiles/doors-and-locks.yaml

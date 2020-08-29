@@ -1539,7 +1539,7 @@
   },
   "node-red-contrib-deconz": {
    "name": "node-red-contrib-deconz",
-   "version": "1.2.0",
+   "version": "1.2.1",
    "local": false,
    "nodes": {
     "in": {
@@ -1665,7 +1665,7 @@
    "menu-menu-item-palette": true,
    "menu-deploymenu-item-node": true,
    "menu-deploymenu-item-full": false,
-   "menu-menu-item-sidebar": true
+   "menu-menu-item-sidebar": false
   }
  }
 }

@@ -1,0 +1,7 @@
+title: Chores
+path: chores
+icon: mdi:check-box-outline
+panel: false
+cards:
+- !include /config/lovelace/tiles/cat-chores.yaml
+- !include /config/lovelace/tiles/vacuum-status-report-card.yaml

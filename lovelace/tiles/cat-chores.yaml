@@ -1,0 +1,84 @@
+type: custom:hui-entities-card
+icon: mdi:cat
+title: Cat Chores
+entities:
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: custom:button-card
+    color_type: card
+    entity: input_boolean.chewie_wet_food
+    name: Wet Food
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    size: 50%
+    styles:
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+    state:
+    - value: 'on'
+      icon: mdi:checkbox-blank-outline
+      styles:
+        card:
+        - background-color: var(--status-color-warning)
+    - operator: template
+      icon: mdi:checkbox-marked-outline
+      value: >
+        [[[
+          return true;
+        ]]]
+  - type: custom:button-card
+    color_type: card
+    entity: input_boolean.chewie_water
+    name: Fresh Water
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    size: 50%
+    styles:
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+    state:
+    - value: 'on'
+      icon: mdi:checkbox-blank-outline
+      styles:
+        card:
+        - background-color: var(--status-color-warning)
+    - operator: template
+      icon: mdi:checkbox-marked-outline
+      value: >
+        [[[
+          return true;
+        ]]]
+  - type: custom:button-card
+    color_type: card
+    entity: input_boolean.chewie_litter
+    name: Scoop Poops
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    size: 50%
+    styles:
+      card:
+      - background-color: var(--paper-card-background-color)
+      - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+    state:
+    - value: 'on'
+      icon: mdi:checkbox-blank-outline
+      styles:
+        card:
+        - background-color: var(--status-color-warning)
+    - operator: template
+      icon: mdi:checkbox-marked-outline
+      value: >
+        [[[
+          return true;
+        ]]]

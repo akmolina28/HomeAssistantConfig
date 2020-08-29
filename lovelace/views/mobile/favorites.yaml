@@ -1,0 +1,252 @@
+title: Favorites
+icon: mdi:star
+path: favorites
+panel: false
+cards:
+- type: custom:hui-entities-card
+  title: Master Bedroom
+  icon: mdi:bed-empty
+  show_header_toggle: false
+  entities:
+  - entity: light.kp_bedside
+    type: "custom:slider-entity-row"
+    min: 5
+    name: KP
+    icon: mdi:lamp
+    toggle: true
+    hide_when_off: true
+  - entity: light.andrew_bedside
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Andrew
+    icon: mdi:lamp
+    toggle: true
+    hide_when_off: true
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: "custom:button-card"
+      color_type: card
+      name: Cool White
+      icon: mdi:snowflake
+      tap_action:
+        action: call-service
+        service: light.turn_on
+        service_data:
+          entity_id: light.master_bedroom_lights
+          kelvin: 5000
+          brightness: 255
+      styles:
+        icon:
+        - color: "#baf8ff"
+        name:
+        - color: var(--button-card-light-color)
+        - font-size: 14px
+        card:
+        - background-color: var(--paper-card-background-color)
+        - -webkit-box-shadow: 0px 0px 0px 0px
+        - box-shadow: 0px 0px 0px 0px
+    - type: "custom:button-card"
+      color_type: card
+      name: Warm White
+      icon: mdi:weather-sunny
+      tap_action:
+        action: call-service
+        service: light.turn_on
+        service_data:
+          entity_id: light.master_bedroom_lights
+          kelvin: 3000
+          brightness: 255
+      styles:
+        icon:
+        - color: "#feffdb"
+        name:
+        - color: var(--button-card-light-color)
+        - font-size: 14px
+        card:
+        - background-color: var(--paper-card-background-color)
+        - -webkit-box-shadow: 0px 0px 0px 0px
+        - box-shadow: 0px 0px 0px 0px
+    - type: "custom:button-card"
+      color_type: card
+      name: Eye Saver
+      icon: mdi:power-sleep
+      tap_action:
+        action: call-service
+        service: light.turn_on
+        service_data:
+          entity_id: light.master_bedroom_lights
+          kelvin: 2000
+          brightness: 127
+      styles:
+        icon:
+        - color: "#ffb95e"
+        name:
+        - color: var(--button-card-light-color)
+        - font-size: 14px
+        card:
+        - background-color: var(--paper-card-background-color)
+        - -webkit-box-shadow: 0px 0px 0px 0px
+        - box-shadow: 0px 0px 0px 0px
+  - type: divider
+  - entity: switch.master_bedroom_fan
+    name: Fan
+    icon: mdi:fan
+- type: entities
+  title: Guest Bedroom
+  icon: mdi:bed-empty
+  show_header_toggle: false
+  entities:
+  - entity: light.guest_room_lights
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Lights
+    icon: mdi:lightbulb-on
+    toggle: true
+  - type: divider
+  - entity: light.guest_room_lamp_2
+    icon: mdi:lamp
+    name: Nightstand
+  - entity: light.guest_room_lamp_1
+    icon: mdi:floor-lamp
+    name: Lamp
+  - entity: light.flex_strip_103
+    icon: mdi:track-light
+    name: Ambience
+- type: custom:hui-entities-card
+  title: Great Room
+  show_header_toggle: false
+  icon: mdi:sofa
+  entities:
+  - entity: "light.living_room_lamps"
+    type: "custom:slider-entity-row"
+    min: 5
+    hide_when_off: true
+    toggle: true
+    name: Lamps
+    icon: mdi:lamp
+  - entity: light.ledge_strips
+    icon: mdi:weather-sunset-up
+    name: Ledge
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: "custom:button-card"
+      color_type: card
+      name: Auto
+      entity: switch.ledge_fluxer
+      icon: mdi:brightness-auto
+      styles:
+        name:
+        - font-size: 14px
+        card:
+        - background-color: var(--paper-card-background-color)
+        - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+        - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      state:
+      - value: 'on'
+        styles:
+          icon:
+          - color: var(--button-card-light-color)
+          name:
+          - color: var(--button-card-light-color)
+      - operator: template
+        value: >
+          [[[
+            return true;
+          ]]]
+        label: 'Off'
+        styles:
+          icon:
+          - color: var(--disabled-text-color)
+          name:
+          - color: var(--disabled-text-color)
+    - type: "custom:button-card"
+      color_type: card
+      entity: switch.great_room_shuffler
+      name: Shuffle
+      icon: mdi:shuffle
+      hold_action:
+        action: more-info
+      styles:
+        name:
+        - font-size: 14px
+        card:
+        - background-color: var(--paper-card-background-color)
+        - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+        - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+      state:
+      - value: 'on'
+        styles:
+          icon:
+          - color: pink
+          name:
+          - color: pink
+      - operator: template
+        value: >
+          [[[
+            return true;
+          ]]]
+        styles:
+          icon:
+          - color: var(--disabled-text-color)
+          name:
+          - color: var(--disabled-text-color)
+    - type: "custom:button-card"
+      color_type: blank_card
+      styles:
+        card:
+        - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+        - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+  - type: divider
+  - entity: switch.ikea_outlet_2
+- type: entities
+  title: Kitchen
+  show_header_toggle: false
+  entities:
+  - entity: switch.cabinet_lights
+    name: Cabinet Lights
+    icon: mdi:light-switch
+  - entity: switch.bar_lights
+    name: Bar Lights
+    icon: mdi:light-switch
+  - entity: switch.kitchen_overhead_lights
+    name: Overhead Light
+    icon: mdi:ceiling-light
+  - entity: light.kitchen_table_lights
+    type: "custom:slider-entity-row"
+    name: Kitchen Table
+    icon: mdi:silverware-fork-knife
+    min: 3
+    toggle: true
+- type: entities
+  title: Man-cave
+  show_header_toggle: false
+  entities:
+  - entity: group.man_cave_lights
+    min: 5
+    name: Lights
+
+- type: entities
+  title: Exterior Lights
+  entities:
+  - entity: group.back_yard_lights
+    name: Back Yard Lights
+    icon: mdi:tree
+  - entity: light.ge_softwhite_104
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Patio
+    toggle: true
+  - entity: light.ge_softwhite_101
+    type: "custom:slider-entity-row"
+    min: 5
+    name: Side Yard
+    toggle: true
+    icon: mdi:garage
+# - type: "custom:button-card"
+#   entity: switch.all_lights_off
+#   icon: mdi:power
+#   color: '#FC2B36'
+#   name: All Lights Off
+#   styles:
+#     card:
+#       - height: 100px

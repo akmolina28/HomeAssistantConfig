@@ -151,19 +151,13 @@ cards:
   title: Garage
   show_header_toggle: false
   entities:
-  - type: "custom:fold-entity-row"
-    head:
-      entity: group.garage_lights
-      name: Work Bench
-      icon: mdi:garage
-    entities:
-    - type: "custom:slider-entity-row"
-      toggle: true
-      entity: light.flex_strip_112
-      min: 1
-      icon: mdi:led-strip
-    - entity: switch.ikea_outlet_101
-      icon: mdi:wrench
+  - type: "custom:slider-entity-row"
+    toggle: true
+    entity: light.flex_strip_112
+    min: 1
+    icon: mdi:led-strip
+  - entity: switch.ikea_outlet_101
+    icon: mdi:wrench
 - type: entities
   title: Exterior
   show_header_toggle: false

@@ -1,99 +1,11 @@
 pi_hole:
-- host: '192.168.1.41'
-  api_key: !secret pi_hole_101_api_key
-  name: Pi-Hole-101
 - host: '192.168.1.25'
-  api_key: !secret pi_hole_102_api_key
-  name: Pi-Hole-102
+  api_key: !secret pi_hole_api_key
+  name: Pi-Hole
 
-switch:
-- platform: template
-  switches:
-    pi_hole_101_enable_disable:
-      value_template: "{{ is_state('sensor.pi_hole_101_status', 'enabled') }}"
-      turn_on:
-        service: pi_hole.enable
-        data:
-          name: 'Pi-Hole-101'
-      turn_off:
-        service: pi_hole.disable
-        data:
-          duration: '12:00:00'
-          name: 'Pi-Hole-101'
-    pi_hole_102_enable_disable:
-      value_template: "{{ is_state('sensor.pi_hole_102_status', 'enabled') }}"
-      turn_on:
-        service: pi_hole.enable
-        data:
-          name: 'Pi-Hole-102'
-      turn_off:
-        service: pi_hole.disable
-        data:
-          duration: '12:00:00'
-          name: 'Pi-Hole-102'
-
-group:
-  pi_hole_enable_disable:
-    name: Pi Hole Enabled
-    entities:
-      - switch.pi_hole_101_enable_disable
-      - switch.pi_hole_102_enable_disable
-
-sensor:
-- platform: command_line
-  name: Pi-hole 101 Status
-  scan_interval: 10
-  command: !secret pi_hole_101_status_command
-  value_template: >
-    {% if (states("sensor.pi_hole_101_reachable") == "Reachable") %}
-      {{ value_json.status }}
-    {% else %}
-      unknown
-    {% endif %}
-
-- platform: command_line
-  name: Pi-hole 102 Status
-  scan_interval: 10
-  command: !secret pi_hole_102_status_command
-  value_template: >
-    {% if (states("sensor.pi_hole_102_reachable") == "Reachable") %}
-      {{ value_json.status }}
-    {% else %}
-      unknown
-    {% endif %}
-
-- platform: template
-  sensors:
-    pi_hole_101_reachable:
-      friendly_name: '192.168.1.41'
-      value_template: >
-        {% if is_state('device_tracker.pihole', 'home') %}
-          Reachable
-        {% else %}
-          Not Reachable
-        {% endif %}
-
-    pi_hole_102_reachable:
-      friendly_name: '192.168.1.25'
-      value_template: >
-        {% if is_state('device_tracker.raspberrypi', 'home') %}
-          Reachable
-        {% else %}
-          Not Reachable
-        {% endif %}
-
-
-homeassistant:
-  customize:
-    sensor.pi_hole_status:
-      templates:
-        icon_color: >
-          if (state === 'enabled') return 'var(--secondary-text-color)';
-          else return 'var(--primary-text-color)';
-        icon: mdi:pi-hole
-    sensor.pi_hole_101_reachable:
-      templates:
-        icon_color: >
-          if (state === 'Reachable') return 'var(--secondary-text-color)';
-          else return 'var(--primary-text-color)';
-        icon: mdi:raspberry-pi;
+binary_sensor:
+- platform: ping
+  name: 'Pi-Hole Reachable'
+  host: 192.168.1.25
+  count: 1
+  scan_interval: 300

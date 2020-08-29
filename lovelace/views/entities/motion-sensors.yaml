@@ -1,0 +1,59 @@
+title: Motion Sensors
+path: motion-sensors
+icon: mdi:eye
+panel: false
+cards:
+
+- type: entities
+  title: Hue 100
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_100_motion
+  - sensor.hue_100_temp
+  - sensor.hue_100_lux
+  - sensor.hue_100_battery_level
+
+- type: entities
+  title: Hue 101
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_101_motion
+  - sensor.hue_101_temp
+  - sensor.hue_101_lux
+  - sensor.hue_101_battery_level
+
+- type: entities
+  title: Hue 103
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_103_motion
+  - sensor.hue_103_temp
+  - sensor.hue_103_lux
+  - sensor.hue_103_battery_level
+
+- type: entities
+  title: Hue 104
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_104_motion
+  - sensor.hue_104_temp
+  - sensor.hue_104_lux
+  - sensor.hue_104_battery_level
+
+- type: entities
+  title: Hue 105
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_105_motion
+  - sensor.hue_105_temp
+  - sensor.hue_105_lux
+  - sensor.hue_105_battery_level
+
+- type: entities
+  title: Hue 201
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_201_motion
+  - sensor.hue_201_temp
+  - sensor.hue_201_lux
+  - sensor.hue_201_battery_level

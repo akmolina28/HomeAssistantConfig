@@ -8,7 +8,7 @@ cards:
   entities:
   - type: "custom:fold-entity-row"
     head:
-      entity: group.master_bedroom_lights
+      entity: group.master_bedroom_lights_and_switches
       icon: mdi:bed-empty
       name: Lights
     entities:
@@ -28,7 +28,7 @@ cards:
   - switch.master_bedroom_fan
   style: |
     ha-card {
-      background: {% if is_state('group.master_bedroom_lights', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+      background: {% if is_state('group.master_bedroom_lights_and_switches', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
     }
 - type: entities
   title: Kitchen
@@ -199,23 +199,17 @@ cards:
   title: Garage
   show_header_toggle: false
   entities:
-  - type: "custom:fold-entity-row"
-    head:
-      entity: group.garage_lights
-      name: Work Bench
-      icon: mdi:garage
-    entities:
-    - type: "custom:slider-entity-row"
-      toggle: true
-      entity: light.flex_strip_112
-      step: 20
-      icon: mdi:led-strip
-    - entity: switch.ikea_outlet_101
-      icon: mdi:wrench
+  - type: "custom:slider-entity-row"
+    toggle: true
+    entity: light.flex_strip_112
+    step: 20
+    icon: mdi:led-strip
+  - entity: switch.ikea_outlet_101
+    icon: mdi:wrench
   - entity: switch.ikea_outlet_103
   style: |
     ha-card {
-      background: {% if is_state('group.garage_lights', 'on') or is_state('switch.ikea_outlet_103', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+      background: {% if is_state('group.garage_lights_and_switches', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
     }
 - type: entities
   title: Exterior

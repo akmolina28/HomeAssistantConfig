@@ -21,8 +21,14 @@ living_room_lamps:
 great_room_lights:
   name: Great Room Lights
   entities:
-  - light.great_room_strips
-  - group.living_room_lamps
+  - light.flex_strip_104
+  - light.flex_strip_108
+  - light.flex_strip_107
+  - light.flex_strip_109
+  - light.flex_strip_110
+  - light.flex_strip_105
+  - light.couch_lamp
+  - light.love_seat_lamp
 
 interior_light_switches:
   name: Interior Light Switches
@@ -48,11 +54,12 @@ man_cave_lights:
   - light.hue_color_a19_101
   - light.flex_strip_111
 
-garage_lights:
+garage_lights_and_switches:
   name: Garage Lights
   entities:
   - light.flex_strip_112
   - switch.ikea_outlet_101
+  - switch.ikea_outlet_103
 
 all_light_switches:
   name: All Light Switches
@@ -63,12 +70,13 @@ all_light_switches:
   - switch.xiaomi_wifi_smart_plug_101
   - switch.ikea_smart_plug_101
 
-master_bedroom_lights:
+master_bedroom_lights_and_switches:
   name: Master Bedroom Lights
   entities:
   - light.kp_bedside
   - light.andrew_bedside
   - switch.master_bedroom_light
+  - switch.master_bedroom_fan
 
 master_bedroom_lamps:
   name: Master Bedroom Lamps
@@ -88,6 +96,10 @@ exterior_lights:
   entities:
   - light.ge_softwhite_101
   - light.ge_softwhite_104
+  - light.back_yard_strand_lights
+  - light.back_yard_strand_lights_2
+  - light.back_yard_spot_light
+  - light.back_yard_swing_lights
 
 ledge_strips:
   name: Ledge Strips

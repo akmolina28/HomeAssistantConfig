@@ -1,36 +1,6 @@
 type: horizontal-stack
 cards:
 
-# - type: conditional
-#   conditions:
-#   - entity: input_boolean.isuck_dust_bin_full
-#     state: 'on'
-#   card:
-#     type: "custom:button-card"
-#     name: Empty Dust Bin
-#     entity: input_boolean.isuck_dust_bin_full
-#     service: input_boolean.turn_off
-#     color_type: icon
-#     color: var(--primary-text-color)
-#     styles: 
-#       card:
-#       - height: 100px
-
-# - type: conditional
-#   conditions:
-#   - entity: input_boolean.isuck_brush_dirty
-#     state: 'on'
-#   card:
-#     type: "custom:button-card"
-#     name: Clean Brush
-#     entity: input_boolean.isuck_brush_dirty
-#     service: input_boolean.turn_off
-#     color_type: icon
-#     color: var(--primary-text-color)
-#     styles: 
-#       card:
-#       - height: 100px
-
 - type: conditional
   conditions:
   - entity: input_boolean.isuck_dust_bin_full
@@ -80,7 +50,7 @@ cards:
     tap_action:
       action: call-service
       service: vacuum.return_to_base
-      data:
+      service_data:
         entity_id: vacuum.isuck
     color_type: icon
     color: var(--primary-text-color)

@@ -1,0 +1,40 @@
+title: Kiosks
+path: kiosks
+icon: mdi:tablet-dashboard
+panel: false
+cards:
+
+- type: entities
+  title: Wall Tablet
+  icon: mdi:tablet-dashboard
+  entities:
+  - sensor.lenovo_tablet_1001_kiosk_device_info
+  - light.lenovo_tablet_1001_backlight
+
+- type: entities
+  title: Kitchen Tablet
+  icon: mdi:tablet-dashboard
+  entities:
+  - sensor.samsung_tablet_1001_kiosk_device_info
+  - light.samsung_tablet_1001_backlight
+
+- type: entities
+  title: Garage Tablet
+  icon: mdi:tablet-dashboard
+  entities:
+  - sensor.lenovo_tablet_701_kiosk_device_info
+  - light.lenovo_tablet_701_backlight
+
+- type: entities
+  title: Man-cave Tablet
+  icon: mdi:tablet-dashboard
+  entities:
+  - sensor.fire_tablet_701_kiosk_device_info
+  - light.fire_tablet_701_backlight
+
+- type: entities
+  title: Great Room Tablet
+  icon: mdi:tablet-dashboard
+  entities:
+  - sensor.fire_tablet_702_kiosk_device_info
+  - light.fire_tablet_702_backlight

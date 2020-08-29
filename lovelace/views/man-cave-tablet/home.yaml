@@ -6,14 +6,22 @@ cards:
   cards:
   - type: custom:hui-horizontal-stack-card
     cards:
-    - type: custom:hui-entities-card
-      entities: []
-    - type: custom:hui-entities-card
-      entities:
-      - type: custom:hui-weather-forecast-card
-        entity: weather.openweathermap
-        name: Pensacola
-        show_forecast: false
+    - type: picture-entity
+      entity: camera.driveway_last_alert
+      # camera_image: camera.driveway_alert
+      # camera_view: live
+      show_state: false
+      show_name: false
+    # - type: picture-entity
+    #   entity: camera.annke101hd
+    #   camera_image: camera.annke101hd
+    #   camera_view: live
+    #   show_state: false
+    #   show_name: false
+    - type: custom:hui-weather-forecast-card
+      entity: weather.openweathermap
+      name: Pensacola
+      show_forecast: true
   - type: custom:hui-entities-card
     entities:
     - type: custom:hui-vertical-stack-card

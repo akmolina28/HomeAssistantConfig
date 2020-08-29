@@ -22,6 +22,7 @@
   - maintenanceMode
   - deviceManufacturer
   - deviceModel
+  - isInScreensaver
   value_template: 'OK'
 
 - platform: rest

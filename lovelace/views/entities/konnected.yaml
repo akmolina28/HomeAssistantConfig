@@ -1,0 +1,32 @@
+title: Konnected
+path: konnected
+icon: mdi:shield-home
+panel: false
+cards:
+
+- type: entities
+  title: Alarm Panels
+  icon: mdi:developer-board
+  entities:
+  - binary_sensor.konnected_6_zone_alarm_panel
+  - binary_sensor.konnected_6_zone_add_on_panel
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:eye
+    title: Sensors
+  filter:
+    include:
+    - group: group.all_door_and_window_sensors
+
+- type: entities
+  title: Switches
+  icon: mdi:bullhorn
+  show_header_toggle: false
+  entities:
+  - switch.chirp
+  - switch.two_medium_chirps
+  - switch.buzzer
+  - entity: switch.siren
+    name: "Siren ** WARNING: VERY LOUD **"

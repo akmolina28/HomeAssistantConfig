@@ -41,7 +41,7 @@ cards:
   cards:
   - type: "custom:button-card"
     color_type: card
-    entity: group.master_bedroom_lights
+    entity: group.master_bedroom_lights_and_switches
     name: Master BR
     icon: mdi:bed-empty
     hold_action:

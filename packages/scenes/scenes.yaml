@@ -33,7 +33,7 @@ scene:
     group.guest_room_lights: off
     
     # Master Bedroom Off
-    group.master_bedroom_lights: off
+    group.master_bedroom_lights_and_switches: off
 
     # Great Room Off
     group.great_room_lights: off
@@ -41,8 +41,7 @@ scene:
     media_player.living_room_receiver: off
 
     # Garage Off
-    group.garage_lights: off
-    switch.ikea_outlet_103: off
+    group.garage_lights_and_switches: off
 
     # Laundry Room Off
     group.laundry_room_lights: off
@@ -112,10 +111,11 @@ scene:
 - name: Great Room Scene - Wind Down
   entities:
     switch.ledge_fluxer: off
+    switch.great_room_shuffler: off
     light.great_room_strips:
       state: on
       kelvin: 2000
-      brightness: 255
+      brightness: 127
       transition: 5
     light.couch_lamp:
       state: off
@@ -124,6 +124,7 @@ scene:
       state: off
       transition: 5
     group.kitchen_lights: off
+
 - name: Great Room Scene - Bright
   entities:
     switch.ledge_fluxer: off

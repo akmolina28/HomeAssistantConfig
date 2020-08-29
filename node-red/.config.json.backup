@@ -1539,7 +1539,7 @@
   },
   "node-red-contrib-deconz": {
    "name": "node-red-contrib-deconz",
-   "version": "1.2.0",
+   "version": "1.2.1",
    "local": false,
    "nodes": {
     "in": {
@@ -1626,6 +1626,23 @@
      "local": false,
      "module": "node-red-contrib-credentials",
      "file": "/opt/node_modules/node-red-contrib-credentials/credentials/credentials.js"
+    }
+   }
+  },
+  "node-red-contrib-wait-paths": {
+   "name": "node-red-contrib-wait-paths",
+   "version": "0.3.2",
+   "local": false,
+   "nodes": {
+    "wait-paths": {
+     "name": "wait-paths",
+     "types": [
+      "wait-paths"
+     ],
+     "enabled": true,
+     "local": false,
+     "module": "node-red-contrib-wait-paths",
+     "file": "/opt/node_modules/node-red-contrib-wait-paths/wait-paths.js"
     }
    }
   }

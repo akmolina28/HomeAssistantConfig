@@ -1,0 +1,6 @@
+title: Chores
+path: chores
+panel: false
+cards:
+- !include /config/lovelace/tiles/cat-chores.yaml
+- !include /config/lovelace/tiles/vacuum-status-report-card.yaml

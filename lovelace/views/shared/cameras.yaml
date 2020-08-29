@@ -1,0 +1,19 @@
+title: Cameras
+path: cameras
+panel: true
+cards:
+- type: custom:hui-horizontal-stack-card
+  cards:
+  - type: picture-entity
+    entity: camera.annke101sd
+    camera_image: camera.annke101sd
+    camera_view: live
+    name: Live Feed
+  - type: custom:hui-vertical-stack-card
+    cards:
+    - type: picture-entity
+      entity: camera.driveway_last_alert
+      name: Latest Motion Alert
+    - type: picture-entity
+      entity: camera.front_door_last_activity
+      name: Doorbell

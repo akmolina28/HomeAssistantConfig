@@ -1,0 +1,78 @@
+title: Lights and Switches
+path: lights-and-switches
+icon: mdi:lightbulb
+panel: false
+cards:
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:silverware-fork-knife
+    title: Kitchen
+  filter:
+    include:
+    - group: group.kitchen_lights
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:sofa
+    title: Great Room
+  filter:
+    include:
+    - group: group.great_room_lights
+    - entity_id: switch.ikea_outlet_2
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:bed-empty
+    title: Master Bedroom
+  filter:
+    include:
+    - group: group.master_bedroom_lights_and_switches
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:bed-empty
+    title: Guest Bedroom
+  filter:
+    include:
+    - group: group.guest_room_lights
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:guitar-electric
+    title: Man Cave
+  filter:
+    include:
+    - group: group.man_cave_lights
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:washing-machine
+    title: Laundry Room
+  filter:
+    include:
+    - group: group.laundry_room_lights
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:garage
+    title: Garage
+  filter:
+    include:
+    - group: group.garage_lights_and_switches
+
+- type: custom:auto-entities
+  card:
+    type: entities
+    icon: mdi:tree
+    title: Exterior
+  filter:
+    include:
+    - group: group.exterior_lights

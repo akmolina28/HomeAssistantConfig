@@ -41,6 +41,8 @@ cards:
   - entity: light.ledge_strips
     name: Ledge Lights
     icon: mdi:weather-sunset-up
+  - type: divider
+  - entity: switch.ikea_outlet_2
 - type: entities
   title: Kitchen
   show_header_toggle: false

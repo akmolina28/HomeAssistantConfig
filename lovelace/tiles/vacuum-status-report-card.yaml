@@ -1,19 +1,35 @@
-type: markdown
-title: Vacuum Status Report
-content: >
+type: custom:hui-entities-card
+title: Vacuum
+icon: mdi:robot-vacuum
+entities:
+- type: custom:hui-vertical-stack-card
+  cards:
+  - type: markdown
+    content: >-
+      {% if (states("sensor.vacuum_cleaning_due") != "not_due") %}
+        ### <ha-icon style='color:var(--secondary-text-color)' icon='mdi:alert-circle-outline'></ha-icon> <font color=#b58e31>Cleaning is due!</font>
+        ***
+      {% endif %}
 
-    [[ if(sensor.vacuum_cleaning_due != "not_due", ### <ha-icon style='color:var(--secondary-text-color)' icon='mdi:alert-circle-outline'></ha-icon> <font color=#b58e31>Cleaning is due!</font>, "") ]]
-
-    [[ if(sensor.vacuum_cleaning_due != "not_due", ***, "") ]]
-
-    <ha-icon icon='mdi:robot-vacuum'></ha-icon> **Vacuum Status:** [[ vacuum.isuck ]]
+      <ha-icon icon='mdi:robot-vacuum'></ha-icon> **Vacuum Status:** {{states("vacuum.isuck")}}
 
 
-    [[ if(vacuum.isuck == "docked", if(sensor.vacuum_cleaning_due == "overdue", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, if(sensor.vacuum_cleaning_due == "due", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>)), <ha-icon icon='mdi:clock-outline'></ha-icon>) ]]
-    **Clean Status:** [[ if(vacuum.isuck == "docked", if(sensor.vacuum_cleaning_due == "overdue", "Cleaning overdue!", if(sensor.vacuum_cleaning_due == "due", "cleaning due", "House is clean")), "in progress...") ]]
+      {% if (states("vacuum.isuck") == "docked") %}{% if (states("sensor.vacuum_cleaning_due") != "not_due") %}<font color="#FC2B36"><ha-icon icon='mdi:close'></ha-icon></font>{% else %}<font color="#22C476"><ha-icon icon='mdi:check'></ha-icon></font>{% endif %}{% else %}<ha-icon icon='mdi:clock-outline'></ha-icon>{% endif %} **Clean Status:** {% if (states("vacuum.isuck") == "docked") %}{% if (states("sensor.vacuum_cleaning_due") == "overdue") %}cleaning overdue!{% elif (states("sensor.vacuum_cleaning_due") == "due") %}cleaning due{% else %}House is clean{% endif %}{% else %}in progress...{% endif %}
+    
 
-    [[ if(input_boolean.isuck_dust_bin_full == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
-    **Dust Bin Status:** [[ if(input_boolean.isuck_dust_bin_full == "on", "Full", "Empty") ]]
-
-    [[ if(input_boolean.isuck_brush_dirty == "on", <ha-icon style='color:var(--status-color-alert)' icon='mdi:close'></ha-icon>, <ha-icon icon='mdi:check'></ha-icon>) ]]
-    **Brush Head Status:** [[ if(input_boolean.isuck_brush_dirty == "on", "Dirty", "Clean") ]]
+      {% if (states("input_boolean.isuck_dust_bin_full") == "on") %}
+      <font color="#FC2B36"><ha-icon icon='mdi:close'></ha-icon></font>
+      {% else %}
+      <font color="#22C476"><ha-icon icon='mdi:check'></ha-icon></font>
+      {% endif %}
+      **Dust Bin Status:** {% if (states("input_boolean.isuck_dust_bin_full") == "on") %}
+      Full
+      {% else %}
+      Empty
+      {% endif %}
+    style: |
+      ha-card {
+        -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color);
+        box-shadow: 0px 0px 0px 0px var(--button-card-light-color);
+      }
+  - !include /config/lovelace/tiles/vacuum-action-card.yaml

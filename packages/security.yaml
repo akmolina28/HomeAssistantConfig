@@ -18,6 +18,24 @@ input_boolean:
     name: Bypass Open Sensors
     icon: mdi:shield-check-outline
 
+binary_sensor:
+- platform: ping
+  host: 192.168.1.48
+  count: 1
+  scan_interval: 300
+  name: Konnected 6-zone Alarm Panel
+- platform: ping
+  host: 192.168.1.47
+  count: 1
+  scan_interval: 300
+  name: Konnected 6-zone Add-on Panel
+- platform: mqtt
+  name: "Driveway Motion"
+  device_class: motion
+  state_topic: "BlueIris/annke101hd/alert"
+  payload_on: "on"
+  off_delay: 30
+
 sensor:
 - platform: template
   sensors:
@@ -69,3 +87,36 @@ alarm_control_panel:
     arming_time: 0
   # delay_time: 10
   # trigger_time: 10
+
+camera:
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.79:81/mjpg/annke101hd
+  name: annke101hd
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.79:81/mjpg/annke101sd
+  name: annke101sd
+
+- platform: mqtt
+  topic: "BlueIris/annke101hd/alertImage"
+
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/Driveway Non-car.jpg'
+  name: Driveway Non-car Alert
+
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/Driveway Car.jpg'
+  name: Driveway Car Alert
+
+- platform: generic
+  still_image_url: >
+    {% if (states.binary_sensor.driveway_non_car.last_changed < states.binary_sensor.driveway_car.last_changed) %}
+      http://127.0.0.1:8123/local/images/ai_alerts/Driveway Car.jpg
+    {% else %}
+      http://127.0.0.1:8123/local/images/ai_alerts/Driveway Non-car.jpg
+    {% endif %}
+  name: Driveway Last Alert
+
+folder_watcher:
+- folder: /config/www/images/ai_alerts
+  patterns:
+  - '*.jpg'

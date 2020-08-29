@@ -53,24 +53,17 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
-    entity: sensor.pi_hole_101_status
+    entity: binary_sensor.pi_hole_reachable
     name: Pi Hole
     color_type: card
     show_label: true
     tap_action:
       action: more-info
     state:
-    - value: >
-        [[[
-          return entity.state == "enabled" || entity.state == "disabled";
-        ]]]
-      operator: template
+    - value: 'on'
       color: var(--paper-card-background-color)
       label: OK
-    - value: >
-        [[[
-          return true;
-        ]]]
+    - value: 'off'
       operator: template
       color: var(--status-color-alert)
       label: Error

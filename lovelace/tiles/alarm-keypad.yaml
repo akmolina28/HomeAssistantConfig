@@ -1,0 +1,148 @@
+type: custom:hui-vertical-stack-card
+cards:
+  - type: conditional
+    conditions:
+    - entity: sensor.alarm_keypad_visible
+      state: 'True'
+    card:
+      type: custom:alarm_control_panel-card
+      entity: alarm_control_panel.home_alarm
+      show_keypad: true
+      title: Alarm System
+      scale: 36px
+      states:
+        - arm_home
+        - arm_away
+        # - arm_night
+      labels:
+        ui.card.alarm_control_panel.arm_home: ' HOME'
+        ui.card.alarm_control_panel.arm_away: 'AWAY '
+        ui.card.alarm_control_panel.arm_night: 'NIGHT '
+        ui.card.alarm_control_panel.disarm: 'DISARM'
+        ui.card.alarm_control_panel.clear_code: 'C'
+      display_letters: true
+      style:
+        .: |
+          .card-header {
+            font-size: 36px;
+          }
+          #state-text {
+            margin-top: 10px;
+            font-size: 24px;
+            text-transform: uppercase;
+          }
+          #state-icon {
+            width: 40px;
+            height: 40px;
+          }
+          .actions {
+            display: block;
+            max-width: 440px;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+          }
+          .actions paper-button {
+            border: solid 1px var(--primary-color);
+            padding: 5px 12px;
+            margin: 0px 6px;
+            border-radius: 5px;
+            -webkit-box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+            box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+          }
+          .actions paper-button:active {
+            background-color: var(--primary-color);
+            -webkit-box-shadow: 0px 0px 0px 0px;
+            box-shadow: 0px 0px 0px 0px;
+          }
+          .actions #disarm {
+            margin-left: 140px;
+            color: var(--primary-color);
+          }
+          paper-input {
+            margin-top: 25px;
+          }
+          .pad {
+            font-family: "Lucida Console", Monaco, monospace;
+          }
+          .pad paper-button {
+            border: solid 1px var(--primary-color);
+            border-radius: 5px;
+            width: 40px;
+            height: 30;
+            line-height: 22px;
+            text-align: center;
+            margin: 7px;
+            -webkit-box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+            box-shadow: 1px 1px 6px 2px var(--primary-background-color);
+          }
+          .pad paper-button:active {
+            background-color: var(--primary-color);
+            -webkit-box-shadow: 0px 0px 0px 0px;
+            box-shadow: 0px 0px 0px 0px;
+          }
+          .pad paper-button .alpha {
+            font-size: 16px;
+          }
+        "#state-icon":
+          $: |
+            ha-svg-icon {
+              width: 40px;
+              height: 40px;
+            }
+  - type: conditional
+    conditions:
+    - entity: sensor.alarm_keypad_visible
+      state: 'False'
+    card:
+      type: custom:hui-entities-card
+      title: Open Sensors
+      entities:
+      - type: custom:auto-entities
+        card:
+          type: glance
+          style: |
+            .card-header {
+              font-size: 36px;
+            }
+            .entities {
+              font-size: 20px!important;
+            }
+            ha-card {
+              -webkit-box-shadow: 0px 0px 0px 0px;
+              box-shadow: 0px 0px 0px 0px;
+            }
+        filter:
+          include:
+          - group: group.all_door_and_window_sensors
+          exclude:
+          - state: 'off'
+        style: |
+          ha-card {
+            font-size: 20px;
+          }
+      - type: custom:hui-entities-card
+        entities:
+        - type: "custom:button-card"
+          color_type: card
+          name: Bypass Open Sensors
+          icon: mdi:shield-check-outline
+          show_state: false
+          tap_action:
+            action: call-service
+            service: input_boolean.turn_on
+            service_data:
+              entity_id: input_boolean.bypass_open_sensors
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            - font-size: 20px
+            card:
+            - height: 100px
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
