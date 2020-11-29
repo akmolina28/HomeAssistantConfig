@@ -29,12 +29,6 @@ binary_sensor:
   count: 1
   scan_interval: 300
   name: Konnected 6-zone Add-on Panel
-- platform: mqtt
-  name: "Driveway Motion"
-  device_class: motion
-  state_topic: "BlueIris/annke101hd/alert"
-  payload_on: "on"
-  off_delay: 30
 
 sensor:
 - platform: template
@@ -90,31 +84,42 @@ alarm_control_panel:
 
 camera:
 - platform: mjpeg
-  mjpeg_url: http://192.168.1.79:81/mjpg/annke101hd
+  mjpeg_url: http://192.168.1.31:81/mjpg/annke101hd
   name: annke101hd
 - platform: mjpeg
-  mjpeg_url: http://192.168.1.79:81/mjpg/annke101sd
+  mjpeg_url: http://192.168.1.31:81/mjpg/annke101sd
   name: annke101sd
-
-- platform: mqtt
-  topic: "BlueIris/annke101hd/alertImage"
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.31:81/mjpg/eufy101
+  name: eufy101
+- platform: mjpeg
+  mjpeg_url: http://192.168.1.31:81/mjpg/eufy102
+  name: eufy102
 
 - platform: generic
-  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/Driveway Non-car.jpg'
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/driveway-person.jpg'
   name: Driveway Non-car Alert
 
 - platform: generic
-  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/Driveway Car.jpg'
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/driveway-vehicle.jpg'
   name: Driveway Car Alert
+
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/great-room-person.jpg'
+  name: Great Room Person Alert
 
 - platform: generic
   still_image_url: >
     {% if (states.binary_sensor.driveway_non_car.last_changed < states.binary_sensor.driveway_car.last_changed) %}
-      http://127.0.0.1:8123/local/images/ai_alerts/Driveway Car.jpg
+      http://127.0.0.1:8123/local/images/ai_alerts/driveway-vehicle.jpg
     {% else %}
-      http://127.0.0.1:8123/local/images/ai_alerts/Driveway Non-car.jpg
+      http://127.0.0.1:8123/local/images/ai_alerts/driveway-person.jpg
     {% endif %}
   name: Driveway Last Alert
+
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/garage-person.jpg'
+  name: Garage Person Alert
 
 folder_watcher:
 - folder: /config/www/images/ai_alerts

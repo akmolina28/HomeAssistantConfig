@@ -203,11 +203,3 @@ entities:
         --ha-card-background: "rgba(0, 0, 0, 0.0)";
         --ha-card-box-shadow: 'none';
       }
-- type: section
-  label: Pi-hole v5.0 (Raspberry Pi OS)
-  style: |
-    ha-card { 
-      --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
-      --ha-card-background: "rgba(0, 0, 0, 0.0)";
-      --ha-card-box-shadow: 'none';
-    }

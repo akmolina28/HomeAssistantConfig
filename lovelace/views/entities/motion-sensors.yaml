@@ -57,3 +57,20 @@ cards:
   - sensor.hue_201_temp
   - sensor.hue_201_lux
   - sensor.hue_201_battery_level
+
+- type: entities
+  title: Hue 202
+  show_header_toggle: false
+  entities:
+  - binary_sensor.hue_201_motion
+  - sensor.hue_201_temp
+  - sensor.hue_201_lux
+  - sensor.hue_201_battery_level
+
+- type: entities
+  title: SmartThings 201
+  show_header_toggle: false
+  entities:
+  - binary_sensor.smartthings_201_openclose
+  - sensor.smartthings_201_temp
+  - binary_sensor.smartthings_201_vibration

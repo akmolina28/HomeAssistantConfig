@@ -4,7 +4,7 @@ custom_header:
   footer_mode: true
 views:
 - !include /config/lovelace/views/mobile/favorites.yaml
-- !include /config/lovelace/views/mobile/light-control.yaml
+- !include /config/lovelace/views/mobile/rooms.yaml
 - !include /config/lovelace/views/mobile/climate.yaml
 - !include /config/lovelace/views/mobile/security.yaml
 - !include /config/lovelace/views/mobile/cameras.yaml

@@ -3,20 +3,4 @@ path: cameras
 icon: mdi:camera-iris
 panel: false
 cards:
-- type: picture-entity
-  entity: camera.annke101sd
-  camera_image: camera.annke101sd
-  camera_view: live
-  name: Live View
-  show_state: false
-  icon: mdi:webcam
-- type: picture-entity
-  entity: camera.driveway_last_alert
-  name: Last Alert
-  show_state: false
-  icon: mdi:alert
-- type: picture-entity
-  entity: camera.front_door_last_activity
-  icon: mdi:alert
-  name: Doorbell
-  show_state: false
+- !include /config/lovelace/tiles/driveway-camera-card.yaml

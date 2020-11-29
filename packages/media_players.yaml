@@ -35,10 +35,14 @@ automation:
     to: 'off'
     platform: state
     from: 'on'
+    for:
+      minutes: 1
   - entity_id: media_player.living_room_tv
     to: 'off'
     platform: state
     from: 'on'
+    for:
+      minutes: 1
   action:
   - service: light.turn_off
     entity_id: light.flex_strip_105

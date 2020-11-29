@@ -6,22 +6,7 @@ cards:
   cards:
   - type: custom:hui-vertical-stack-card
     cards:
-    - type: picture-glance
-      camera_image: camera.annke101sd
-      camera_view: live
-      entities:
-      - entity: camera.annke101hd
-        tap_action:
-          action: more-info
-        icon: mdi:fullscreen
-      - entity: camera.driveway_last_alert
-        tap_action:
-          action: more-info
-        icon: mdi:motion-sensor
-      - entity: camera.front_door_last_activity
-        tap_action:
-          action: more-info
-        icon: mdi:doorbell-video
+    - !include /config/lovelace/tiles/driveway-camera-card.yaml
     - type: custom:hui-entities-card
       title: Kitchen Lights
       entities:

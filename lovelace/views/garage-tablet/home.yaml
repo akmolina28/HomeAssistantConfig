@@ -78,7 +78,7 @@ cards:
             - box-shadow: none
       - type: "custom:button-card"
         color_type: card
-        entity: switch.ikea_outlet_103
+        entity: switch.ikea_outlet_103_BAK
         name: Fan
         show_state: true
         icon: mdi:fan

@@ -175,7 +175,7 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
-    entity: sensor.fire_tablet_701_kiosk_device_info
+    entity: sensor.samsung_tablet_1002_kiosk_device_info
     name: Man-cave Tablet
     color_type: card
     icon: mdi:tablet

@@ -74,3 +74,14 @@ homeassistant:
     sensor.processor_use:
       templates:
         icon: mdi:memory
+
+proxmoxve:
+- host: !secret proxmox_host
+  username: !secret proxmox_username
+  password: !secret proxmox_password
+  verify_ssl: false
+  realm: pve
+  nodes:
+  - node: 'proxmox'
+    vms:
+    - 105

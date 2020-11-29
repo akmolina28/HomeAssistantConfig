@@ -1,0 +1,23 @@
+type: "custom:button-card"
+color_type: card
+entity: switch.night_shift
+name: Night Shift
+show_state: false
+show_label: true
+tap_action:
+  action: toggle
+hold_action:
+  action: more-info
+icon: mdi:stethoscope
+styles:
+  card:
+  - background-color: var(--paper-card-background-color)
+  - -webkit-box-shadow: 0px 0px 0px 0px
+  - box-shadow: 0px 0px 0px 0px
+state:
+- value: 'on'
+  styles:
+    name:
+    - color: var(--primary-color)
+    icon:
+    - color: var(--primary-color)

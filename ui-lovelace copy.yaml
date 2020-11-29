@@ -91,12 +91,12 @@ views:
         - type: entities
           show_header_toggle: false
           entities:
-          - entity: light.love_seat_lamp
+          - entity: light.hue_color_a19_102
             type: "custom:slider-entity-row"
             toggle: true
             name: End Table Left
             icon: mdi:lamp
-          - entity: light.couch_lamp
+          - entity: light.hue_color_a19_103
             type: "custom:slider-entity-row"
             toggle: true
             name: End Table Right

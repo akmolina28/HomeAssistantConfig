@@ -251,7 +251,7 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
-    entity: binary_sensor.smartthings_100_motion
+    entity: binary_sensor.hue_103_motion
     icon: mdi:eye
     name: Laundry
     color_type: card
@@ -261,10 +261,10 @@ entities:
     state:
     - value: >
         [[[
-          if (states["sensor.smartthings_100_battery_level"]
-           && states["sensor.smartthings_100_battery_level"].state
-           && states["sensor.smartthings_100_battery_level"].state != "unavailable"
-           && parseInt(states["sensor.smartthings_100_battery_level"].state) < 20) {
+          if (states["sensor.hue_103_battery_level"]
+           && states["sensor.hue_103_battery_level"].state
+           && states["sensor.hue_103_battery_level"].state != "unavailable"
+           && parseInt(states["sensor.hue_103_battery_level"].state) < 20) {
             return true;
           }
           else {
@@ -276,15 +276,15 @@ entities:
       label: Low Battery
     - value: >
         [[[
-          if (!states["binary_sensor.smartthings_100_motion"] 
-           || !states["binary_sensor.smartthings_100_motion"].state
-           || !(['off', 'on'].includes(states["binary_sensor.smartthings_100_motion"].state))
-           || !states["sensor.smartthings_100_temp"]
-           || !states["sensor.smartthings_100_temp"].state
-           || states["sensor.smartthings_100_temp"].state == "unavailable"
-           || !states["sensor.smartthings_100_battery_level"]
-           || !states["sensor.smartthings_100_battery_level"].state
-           || states["sensor.smartthings_100_battery_level"].state == "unavailable"
+          if (!states["binary_sensor.hue_103_motion"] 
+           || !states["binary_sensor.hue_103_motion"].state
+           || !(['off', 'on'].includes(states["binary_sensor.hue_103_motion"].state))
+           || !states["sensor.hue_103_temp"]
+           || !states["sensor.hue_103_temp"].state
+           || states["sensor.hue_103_temp"].state == "unavailable"
+           || !states["sensor.hue_103_battery_level"]
+           || !states["sensor.hue_103_battery_level"].state
+           || states["sensor.hue_103_battery_level"].state == "unavailable"
            ) {
             return true;
           }

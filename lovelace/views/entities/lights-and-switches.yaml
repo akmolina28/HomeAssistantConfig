@@ -20,7 +20,7 @@ cards:
     title: Great Room
   filter:
     include:
-    - group: group.great_room_lights
+    - group: group.all_living_room_lights
     - entity_id: switch.ikea_outlet_2
 
 - type: custom:auto-entities

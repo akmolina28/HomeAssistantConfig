@@ -1,0 +1,23 @@
+type: "custom:button-card"
+color_type: card
+entity: switch.chill_mode
+name: Wind Down
+show_state: false
+show_label: true
+tap_action:
+  action: toggle
+hold_action:
+  action: more-info
+icon: mdi:meditation
+styles:
+  card:
+  - background-color: var(--paper-card-background-color)
+  - -webkit-box-shadow: 0px 0px 0px 0px
+  - box-shadow: 0px 0px 0px 0px
+state:
+- value: 'on'
+  styles:
+    name:
+    - color: var(--secondary-text-color)
+    icon:
+    - color: var(--secondary-text-color)

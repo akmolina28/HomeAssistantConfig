@@ -6,7 +6,7 @@ alexa:
       - switch.cabinet_lights
       - switch.kitchen_overhead_lights
       - light.kitchen_table_lights
-      - switch.xiaomi_wifi_smart_plug_101
+      - switch.ikea_outlet_103
       - group.living_room_lamps
       - script.lighting_scene_kitchen_lights_on
       - script.lighting_scene_kitchen_lights_off
@@ -48,7 +48,7 @@ alexa:
         name: Kitchen Table Lights
         description: Kitchen table light fixture
         display_categories: LIGHT
-      switch.xiaomi_wifi_smart_plug_101:
+      switch.ikea_outlet_103:
         name: Christmas Tree
         description: Christmas tree smart plug
         display_categories: SMARTPLUG

@@ -2,7 +2,7 @@
   "nodes": {
     "d474958_a22a568": {
       "lastPayload": {
-        "state": "on",
+        "state": "off",
         "attributes": {}
       }
     },
@@ -14,7 +14,19 @@
     },
     "a8e49f3f_50bbf": {
       "lastPayload": {
-        "state": "on",
+        "state": "off",
+        "attributes": {}
+      }
+    },
+    "62e1a5d7_31720c": {
+      "lastPayload": {
+        "state": "off",
+        "attributes": {}
+      }
+    },
+    "ba065f72_257d2": {
+      "lastPayload": {
+        "state": "off",
         "attributes": {}
       }
     }

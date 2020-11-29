@@ -1,0 +1,417 @@
+- id: '1601162958819'
+  name: Spooky
+  entities:
+    light.hue_color_a19_103:
+      brightness: 1
+      friendly_name: Couch Lamp
+      is_deconz_group: false
+      state: 'on'
+      supported_features: 41
+    light.flex_strip_104:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 1
+      hs_color:
+      - 269.79
+      - 56.078
+      is_deconz_group: false
+      rgb_color:
+      - 183
+      - 112
+      - 255
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.28
+      - 0.162
+    light.flex_strip_105:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Living Room TV LED Strip
+      hs_color:
+      - 30.119
+      - 99.216
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 129
+      - 1
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.61
+      - 0.376
+    light.flex_strip_107:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 3
+      hs_color:
+      - 30.119
+      - 99.216
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 129
+      - 1
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.61
+      - 0.376
+    light.flex_strip_108:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 2
+      hs_color:
+      - 269.79
+      - 56.078
+      is_deconz_group: false
+      rgb_color:
+      - 183
+      - 112
+      - 255
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.28
+      - 0.162
+    light.flex_strip_109:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 4
+      hs_color:
+      - 30.119
+      - 99.216
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 129
+      - 1
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.61
+      - 0.376
+    light.flex_strip_110:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 5
+      hs_color:
+      - 269.79
+      - 56.078
+      is_deconz_group: false
+      rgb_color:
+      - 183
+      - 112
+      - 255
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.28
+      - 0.162
+    light.hue_color_a19_102:
+      brightness: 1
+      friendly_name: Corner Lamp
+      is_deconz_group: false
+      state: 'on'
+      supported_features: 41
+  icon: mdi:pumpkin
+- id: '1606681417968'
+  name: Great Room Scene - Christmas 1
+  entities:
+    light.flex_strip_104:
+      effect_list:
+      - colorloop
+      brightness: 209
+      hs_color:
+      - 210.364
+      - 96.863
+      rgb_color:
+      - 7
+      - 130
+      - 255
+      xy_color:
+      - 0.142
+      - 0.141
+      is_deconz_group: false
+      friendly_name: Ledge Strip 1
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_105:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 0.392
+      rgb_color:
+      - 255
+      - 254
+      - 254
+      xy_color:
+      - 0.324
+      - 0.329
+      is_deconz_group: false
+      friendly_name: Living Room TV LED Strip
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_107:
+      effect_list:
+      - colorloop
+      brightness: 209
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Ledge Strip 3
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_108:
+      effect_list:
+      - colorloop
+      brightness: 209
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 2
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_109:
+      effect_list:
+      - colorloop
+      brightness: 209
+      hs_color:
+      - 44.941
+      - 100
+      rgb_color:
+      - 255
+      - 190
+      - 0
+      xy_color:
+      - 0.528
+      - 0.446
+      is_deconz_group: false
+      friendly_name: Ledge Strip 4
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_110:
+      effect_list:
+      - colorloop
+      brightness: 209
+      hs_color:
+      - 210.364
+      - 96.863
+      rgb_color:
+      - 7
+      - 130
+      - 255
+      xy_color:
+      - 0.142
+      - 0.141
+      is_deconz_group: false
+      friendly_name: Ledge Strip 5
+      supported_features: 61
+      state: 'on'
+    light.hue_color_a19_102:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 204
+      hs_color:
+      - 0
+      - 0.392
+      rgb_color:
+      - 255
+      - 254
+      - 254
+      xy_color:
+      - 0.324
+      - 0.329
+      is_deconz_group: false
+      friendly_name: Hue Color A19 102
+      supported_features: 63
+      state: 'on'
+    light.hue_color_a19_103:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 204
+      hs_color:
+      - 0
+      - 0.392
+      rgb_color:
+      - 255
+      - 254
+      - 254
+      xy_color:
+      - 0.324
+      - 0.329
+      is_deconz_group: false
+      friendly_name: Hue Color A19 103
+      supported_features: 63
+      state: 'on'
+- id: '1606681785457'
+  name: Great Room Scene - Christmas 2
+  entities:
+    light.flex_strip_104:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 1
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_105:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Living Room TV LED Strip
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_107:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Ledge Strip 3
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_108:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 2
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_109:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Ledge Strip 4
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_110:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 5
+      supported_features: 61
+      state: 'on'
+    light.hue_color_a19_102:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 254
+      color_temp: 153
+      is_deconz_group: false
+      friendly_name: Hue Color A19 102
+      supported_features: 63
+      state: 'on'
+    light.hue_color_a19_103:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 0.392
+      rgb_color:
+      - 255
+      - 254
+      - 254
+      xy_color:
+      - 0.324
+      - 0.329
+      is_deconz_group: false
+      friendly_name: Hue Color A19 103
+      supported_features: 63
+      state: 'on'

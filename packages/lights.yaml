@@ -17,11 +17,6 @@
 
 light:
 - platform: group
-  name: Living Room Lamps
-  entities:
-    - light.couch_lamp
-    - light.love_seat_lamp
-- platform: group
   name: Guest Room Lights
   entities:
     - light.guest_room_lamp_1
@@ -43,8 +38,8 @@ light:
 - platform: group
   name: Interior Lights
   entities:
-  - light.couch_lamp
-  - light.love_seat_lamp
+  - light.hue_color_a19_103
+  - light.hue_color_a19_102
   - light.great_room_strips
   - light.guest_room_lights
   - light.master_bedroom_lights
@@ -107,7 +102,7 @@ light:
   lights:
     lenovo_tablet_1001_backlight:
       friendly_name: Kitchen Tablet Backlight
-      value_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
+      value_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenOn"] }}'
       level_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
         service: rest_command.lenovo_tablet_1001_kiosk_command
@@ -126,7 +121,7 @@ light:
     
     samsung_tablet_1001_backlight:
       friendly_name: Wall Tablet Backlight
-      value_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["isScreenOn"] }}'
+      value_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["screenOn"] }}'
       level_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
         service: rest_command.samsung_tablet_1001_kiosk_command
@@ -142,10 +137,29 @@ light:
           cmd: setStringSetting
           key: screenBrightness
           value: '{{ brightness }}'
+    
+    samsung_tablet_1002_backlight:
+      friendly_name: Man-cave Backlight
+      value_template: '{{ states.sensor.samsung_tablet_1002_kiosk_device_info.attributes["screenOn"] }}'
+      level_template: '{{ states.sensor.samsung_tablet_1002_kiosk_device_info.attributes["screenBrightness"] }}'
+      turn_on:
+        service: rest_command.samsung_tablet_1002_kiosk_command
+        data:
+          cmd: screenOn
+      turn_off:
+        service: rest_command.samsung_tablet_1002_kiosk_command
+        data:
+          cmd: screenOff
+      set_level:
+        service: rest_command.samsung_tablet_1002_kiosk_command
+        data_template:
+          cmd: setStringSetting
+          key: screenBrightness
+          value: '{{ brightness }}'
 
     lenovo_tablet_701_backlight:
       friendly_name: Garage Tablet Backlight
-      value_template: '{{ states.sensor.lenovo_tablet_701_kiosk_device_info.attributes["isScreenOn"] }}'
+      value_template: '{{ states.sensor.lenovo_tablet_701_kiosk_device_info.attributes["screenOn"] }}'
       level_template: '{{ states.sensor.lenovo_tablet_701_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
         service: rest_command.lenovo_tablet_701_kiosk_command
@@ -163,8 +177,8 @@ light:
           value: '{{ brightness }}'
 
     fire_tablet_701_backlight:
-      friendly_name: Man-cave Tablet Backlight
-      value_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["isScreenOn"] }}'
+      friendly_name: Fire Tablet Backlight
+      value_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["screenOn"] }}'
       level_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
         service: rest_command.fire_tablet_701_kiosk_command

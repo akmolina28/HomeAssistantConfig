@@ -11,6 +11,8 @@ rest_command:
     url: !secret rest_url_lenovo_tablet_1001_kiosk_load_url
   samsung_tablet_1001_kiosk_command:
     url: !secret rest_url_samsung_tablet_1001_kiosk_command
+  samsung_tablet_1002_kiosk_command:
+    url: !secret rest_url_samsung_tablet_1002_kiosk_command
   lenovo_tablet_701_kiosk_command:
     url: !secret rest_url_lenovo_tablet_701_kiosk_command
   lenovo_tablet_1001_tasker_command:

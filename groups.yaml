@@ -11,25 +11,7 @@ kitchen_lights:
   - switch.cabinet_lights
   - switch.kitchen_overhead_lights
   - light.kitchen_table_lights
-
-living_room_lamps:
-  name: Living Room Lamps
-  entities:
-  - light.couch_lamp
-  - light.love_seat_lamp
-
-great_room_lights:
-  name: Great Room Lights
-  entities:
-  - light.flex_strip_104
-  - light.flex_strip_108
-  - light.flex_strip_107
-  - light.flex_strip_109
-  - light.flex_strip_110
-  - light.flex_strip_105
-  - light.couch_lamp
-  - light.love_seat_lamp
-
+  
 interior_light_switches:
   name: Interior Light Switches
   entities:
@@ -59,7 +41,13 @@ garage_lights_and_switches:
   entities:
   - light.flex_strip_112
   - switch.ikea_outlet_101
-  - switch.ikea_outlet_103
+  - switch.ikea_outlet_103_BAK
+
+garage_lights:
+  name: Garage Lights
+  entities:
+  - light.flex_strip_112
+  - switch.ikea_outlet_101
 
 all_light_switches:
   name: All Light Switches
@@ -119,3 +107,15 @@ great_room_strips:
   - light.flex_strip_109
   - light.flex_strip_110
   - light.flex_strip_105
+
+all_living_room_lights:
+  name: All Living Room Lights
+  entities:
+  - light.flex_strip_104
+  - light.flex_strip_107
+  - light.flex_strip_108
+  - light.flex_strip_109
+  - light.flex_strip_110
+  - light.flex_strip_105
+  - light.hue_color_a19_102
+  - light.hue_color_a19_103

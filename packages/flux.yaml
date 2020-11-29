@@ -19,30 +19,16 @@ input_number:
     name: Daylight Kelvin
     min: 0
     max: 10000
+  circadian_brightness:
+    name: Circadian Brightness
+    min: 0
+    max: 255
 
 input_text:
   daylight_rgb:
     name: Daylight RGB
 
 switch:
-- platform: flux
-  lights:
-  - light.couch_lamp
-  - light.love_seat_lamp
-  name: Living Room Fluxer
-  start_colortemp: 6500
-  sunset_colortemp: 3400
-  stop_colortemp: 1900
-
-- platform: flux
-  lights:
-  - light.couch_lamp
-  - light.love_seat_lamp
-  name: Living Room Fluxer Fast
-  transition: 1
-  start_colortemp: 6500
-  sunset_colortemp: 3400
-  stop_colortemp: 1900
 
 - platform: template
   switches:

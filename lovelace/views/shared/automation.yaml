@@ -1,0 +1,20 @@
+title: Automation
+path: automation
+# panel: true
+cards:
+- type: custom:hui-entities-card
+  title: Automation Mode
+  entities:
+  - !include /config/lovelace/tiles/automation-mode-card.yaml
+- type: custom:hui-history-graph-card
+  entities:
+  - input_select.automation_mode
+- type: custom:hui-entities-card
+  title: Special Modes
+  entities:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - !include /config/lovelace/tiles/wind-down-button-card.yaml
+    - !include /config/lovelace/tiles/night-shift-button-card.yaml
+    - type: "custom:button-card"
+      color_type: blank-card

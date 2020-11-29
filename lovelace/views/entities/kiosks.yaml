@@ -29,8 +29,8 @@ cards:
   title: Man-cave Tablet
   icon: mdi:tablet-dashboard
   entities:
-  - sensor.fire_tablet_701_kiosk_device_info
-  - light.fire_tablet_701_backlight
+  - sensor.samsung_tablet_1002_kiosk_device_info
+  - light.samsung_tablet_1002_backlight
 
 - type: entities
   title: Great Room Tablet

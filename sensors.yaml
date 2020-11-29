@@ -16,7 +16,7 @@
   - currentPage
   - ip4
   - mac
-  - isScreenOn
+  - screenOn
   - batteryLevel
   - deviceID
   - maintenanceMode
@@ -33,7 +33,23 @@
   - currentPage
   - ip4
   - mac
-  - isScreenOn
+  - screenOn
+  - batteryLevel
+  - deviceID
+  - maintenanceMode
+  - deviceManufacturer
+  - deviceModel
+  value_template: 'OK'
+
+- platform: rest
+  name: Samsung Tablet 1002 Kiosk Device Info
+  resource: !secret rest_url_samsung_tablet_1002_kiosk_device_info
+  json_attributes:
+  - screenBrightness
+  - currentPage
+  - ip4
+  - mac
+  - screenOn
   - batteryLevel
   - deviceID
   - maintenanceMode
@@ -49,7 +65,7 @@
   - currentPage
   - ip4
   - mac
-  - isScreenOn
+  - screenOn
   - batteryLevel
   - deviceID
   - maintenanceMode
@@ -65,12 +81,17 @@
   - currentPage
   - ip4
   - mac
-  - isScreenOn
+  - screenOn
   - batteryLevel
   - deviceID
   - maintenanceMode
   - deviceManufacturer
   - deviceModel
+  value_template: 'OK'
+
+- platform: rest
+  name: Last Watch AI Alive
+  resource: !secret last_watch_alive
   value_template: 'OK'
 
 - platform: template

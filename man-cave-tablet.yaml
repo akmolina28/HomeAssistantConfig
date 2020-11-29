@@ -7,5 +7,8 @@ views:
 - !include /config/lovelace/views/shared/climate.yaml
 - !include /config/lovelace/views/shared/meal-plan.yaml
 - !include /config/lovelace/views/shared/network.yaml
+- !include /config/lovelace/views/shared/automation.yaml
 - !include /config/lovelace/views/shared/security.yaml
+- !include /config/lovelace/views/shared/cameras.yaml
+- !include /config/lovelace/views/shared/last-watch.yaml
 - !include /config/lovelace/views/shared/system-monitor.yaml

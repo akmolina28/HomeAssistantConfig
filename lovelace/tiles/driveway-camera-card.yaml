@@ -1,0 +1,29 @@
+type: picture-glance
+camera_image: camera.annke101sd
+camera_view: live
+entities:
+- entity: camera.annke101hd
+  tap_action:
+    action: more-info
+  icon: mdi:fullscreen
+- entity: camera.driveway_last_alert
+  tap_action:
+    action: more-info
+  icon: mdi:motion-sensor
+- entity: camera.eufy101
+  tap_action:
+    action: more-info
+  icon: mdi:garage-variant
+- entity: camera.eufy102
+  tap_action:
+    action: more-info
+  icon: mdi:home
+- entity: camera.front_door_last_activity
+  tap_action:
+    action: more-info
+  icon: mdi:doorbell-video
+- entity: camera.annke101sd
+  icon: mdi:clipboard-play-multiple
+  tap_action:
+    action: url
+    url_path: http://blueiris.local:81

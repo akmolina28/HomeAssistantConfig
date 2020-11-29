@@ -1,4 +1,4 @@
-switch.ikea_outlet_103:
+switch.ikea_outlet_103_BAK:
   templates:
     icon: >
       return "mdi:fan";

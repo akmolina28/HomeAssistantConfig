@@ -1,4 +1,4 @@
-title: Home
+title: Man-cave
 path: home
 panel: true
 cards:
@@ -6,22 +6,236 @@ cards:
   cards:
   - type: custom:hui-horizontal-stack-card
     cards:
-    - type: picture-entity
-      entity: camera.driveway_last_alert
-      # camera_image: camera.driveway_alert
-      # camera_view: live
-      show_state: false
-      show_name: false
-    # - type: picture-entity
-    #   entity: camera.annke101hd
-    #   camera_image: camera.annke101hd
-    #   camera_view: live
-    #   show_state: false
-    #   show_name: false
-    - type: custom:hui-weather-forecast-card
-      entity: weather.openweathermap
-      name: Pensacola
-      show_forecast: true
+    - !include /config/lovelace/tiles/driveway-camera-card.yaml
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - type: custom:hui-weather-forecast-card
+        entity: weather.openweathermap
+        name: Pensacola
+        show_forecast: true
+      - type: custom:hui-horizontal-stack-card
+        cards:
+        - type: custom:button-card
+          entity: binary_sensor.google
+          name: Internet
+          color_type: card
+          show_label: true
+          icon: mdi:earth
+          tap_action:
+            action: more-info
+          state:
+          - value: 'unavailable'
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+            label: Error
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+            label: Error
+          - value: 'on'
+            styles:
+              icon:
+              - color: var(--status-color-success)
+              name:
+              - color: var(--status-color-success)
+            label: OK
+          styles:
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+            - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+        - type: "custom:button-card"
+          color_type: card
+          entity: switch.pi_hole
+          show_label: true
+          name: Pi-Hole
+          icon: mdi:pi-hole
+          hold_action:
+            action: more-info
+          styles:
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'on'
+            styles:
+              icon:
+              - color: var(--status-color-success)
+              name:
+              - color: var(--status-color-success)
+            label: 'Enabled'
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--status-color-warning)
+              name:
+              - color: var(--status-color-warning)
+            label: 'Disabled'
+          - value: 'unavailable'
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+            label: 'Unavailable'
+        - type: "custom:button-card"
+          color_type: card
+          entity: sensor.last_watch_ai_alive
+          show_label: true
+          name: Last Watch AI
+          icon: mdi:brain
+          hold_action:
+            action: more-info
+          styles:
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+            label:
+            - color: var(--primary-text-color)
+          state:
+          - value: 'OK'
+            styles:
+              icon:
+              - color: var(--status-color-success)
+              name:
+              - color: var(--status-color-success)
+            label: 'OK'
+          - value: 'unavailable'
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+            label: 'Unavailable'
+        - type: "custom:button-card"
+          color_type: card
+          entity: climate.thermostat
+          show_label: true
+          name: >
+            [[[
+              if (entity.attributes && entity.attributes.climate_mode) {
+                return entity.attributes.climate_mode;
+              }
+              return '';
+            ]]]
+          icon: mdi:thermostat
+          tap_action:
+            action: more-info
+          label: >
+            [[[
+              if (entity.attributes && entity.attributes.temperature) {
+                return entity.attributes.temperature;
+              }
+              return 'Thermostat';
+            ]]]
+          styles:
+            icon:
+            - color: var(--primary-color)
+            name:
+            - color: var(--primary-color)
+            label:
+            - color: var(--primary-text-color)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'unavailable'
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+            label: 'Unavailable'
+      - type: custom:hui-horizontal-stack-card
+        cards:
+        - type: "custom:button-card"
+          color_type: card
+          entity: sensor.driveway_vehicle_presence
+          show_label: true
+          name: Driveway Car
+          icon: mdi:car-hatchback
+          tap_action:
+            action: more-info
+          styles:
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+            label:
+            - color: var(--primary-text-color)
+          state:
+          - value: 'on'
+            styles:
+              icon:
+              - color: var(--primary-color)
+              name:
+              - color: var(--primary-color)
+            label: 'Present'
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+            label: 'Not Present'
+          - value: 'Unavailable'
+            styles:
+              icon:
+              - color: var(--status-color-warning)
+              name:
+              - color: var(--status-color-warning)
+            label: 'Unavailable'
+        - type: "custom:button-card"
+          color_type: card
+          entity: sensor.Garage_vehicle_presence
+          show_label: true
+          name: Garage Car
+          icon: mdi:car
+          tap_action:
+            action: more-info
+          styles:
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+            label:
+            - color: var(--primary-text-color)
+          state:
+          - value: 'on'
+            styles:
+              icon:
+              - color: var(--primary-color)
+              name:
+              - color: var(--primary-color)
+            label: 'Present'
+          - value: 'off'
+            styles:
+              icon:
+              - color: var(--disabled-text-color)
+              name:
+              - color: var(--disabled-text-color)
+            label: 'Not Present'
+          - value: 'Unavailable'
+            styles:
+              icon:
+              - color: var(--status-color-warning)
+              name:
+              - color: var(--status-color-warning)
+            label: 'Unavailable'
+        - type: "custom:button-card"
+          color_type: blank-card
+        - type: "custom:button-card"
+          color_type: blank-card
+        
   - type: custom:hui-entities-card
     entities:
     - type: custom:hui-vertical-stack-card
@@ -211,110 +425,118 @@ cards:
               - color: var(--disabled-text-color)
               name:
               - color: var(--disabled-text-color)
-  - type: custom:hui-entities-card
-    entities:
-    - type: custom:hui-horizontal-stack-card
-      cards:
-      - type: conditional
-        conditions:
-        - entity: light.man_cave_lights
-          state_not: 'on'
-        card:
-          type: "custom:button-card"
-          color_type: blank-card
-      - type: conditional
-        conditions:
-        - entity: light.man_cave_lights
-          state: 'on'
-        card:
-          type: "custom:button-card"
+        - type: conditional
+          conditions:
+          - entity: light.man_cave_lights
+            state_not: 'on'
+          card:
+            type: "custom:button-card"
+            color_type: blank-card
+        - type: conditional
+          conditions:
+          - entity: light.man_cave_lights
+            state: 'on'
+          card:
+            type: "custom:button-card"
+            color_type: card
+            entity: switch.man_cave_fluxer
+            name: Flux
+            show_state: false
+            icon: mdi:weather-sunny
+            hold_action:
+              action: more-info
+            styles:
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - height: 100px
+            state:
+            - value: 'on'
+              spin: true
+              styles:
+                icon:
+                - color: var(--button-card-light-color)
+                name:
+                - color: var(--button-card-light-color)
+            - operator: template
+              value: >
+                [[[
+                  return true;
+                ]]]
+              spin: false
+              label: 'Off'
+              show_label: true
+              show_state: false
+              styles:
+                icon:
+                - color: var(--disabled-text-color)
+                name:
+                - color: var(--disabled-text-color)
+        - type: conditional
+          conditions:
+          - entity: light.man_cave_lights
+            state_not: 'on'
+          card:
+            type: "custom:button-card"
+            color_type: blank-card
+        - type: conditional
+          conditions:
+          - entity: light.man_cave_lights
+            state: 'on'
+          card:
+            type: "custom:button-card"
+            color_type: card
+            entity: switch.man_cave_shuffler
+            name: Shuffle
+            show_state: false
+            icon: mdi:decagram
+            hold_action:
+              action: more-info
+            styles:
+              card:
+              - background-color: var(--paper-card-background-color)
+              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
+              - height: 100px
+            state:
+            - value: 'on'
+              spin: true
+              styles:
+                icon:
+                - color: pink
+                name:
+                - color: pink
+            - operator: template
+              value: >
+                [[[
+                  return true;
+                ]]]
+              spin: false
+              styles:
+                icon:
+                - color: var(--disabled-text-color)
+                name:
+                - color: var(--disabled-text-color)
+        - type: "custom:button-card"
           color_type: card
-          entity: switch.man_cave_fluxer
-          name: Flux
-          show_state: true
-          icon: mdi:weather-sunny
-          hold_action:
-            action: more-info
-          state:
-          - value: 'on'
-            spin: true
-            styles:
-              icon:
-              - color: var(--button-card-light-color)
-              name:
-              - color: var(--button-card-light-color)
-              card:
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-          - operator: template
-            value: >
-              [[[
-                return true;
-              ]]]
-            spin: false
-            label: 'Off'
-            show_label: true
-            show_state: true
-            styles:
-              icon:
-              - color: var(--primary-text-color)
-              name:
-              - color: var(--primary-text-color)
-              card:
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-      - type: conditional
-        conditions:
-        - entity: light.man_cave_lights
-          state_not: 'on'
-        card:
-          type: "custom:button-card"
-          color_type: blank-card
-      - type: conditional
-        conditions:
-        - entity: light.man_cave_lights
-          state: 'on'
-        card:
-          type: "custom:button-card"
-          color_type: card
-          entity: switch.man_cave_shuffler
-          name: Shuffle
-          show_state: true
-          icon: mdi:decagram
-          hold_action:
-            action: more-info
-          state:
-          - value: 'on'
-            spin: true
-            styles:
-              icon:
-              - color: pink
-              name:
-              - color: pink
-              card:
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-          - operator: template
-            value: >
-              [[[
-                return true;
-              ]]]
-            spin: false
-            styles:
-              icon:
-              - color: var(--primary-text-color)
-              name:
-              - color: var(--primary-text-color)
-              card:
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-      - type: custom:button-card
-        color_type: blank-card
-      - type: custom:button-card
-        color_type: blank-card
-      - type: custom:button-card
-        color_type: blank-card
+          entity: script.man_cave_auto_scene
+          name: Auto-scene
+          show_state: false
+          tap_action:
+            action: call-service
+            service: script.turn_on
+            service_data:
+              entity_id: script.man_cave_auto_scene
+          icon: mdi:brightness-auto
+          styles:
+            icon:
+            - color: var(--primary-color)
+            name:
+            - color: var(--primary-color)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+            - height: 100px
+    

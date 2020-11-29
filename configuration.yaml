@@ -149,7 +149,7 @@ google_assistant:
     switch.cabinet_lights:
       name: Cabinet Lights
       expose: true
-    group.living_room_lamps:
+    light.living_room_lamps_deconz:
       name: Living Room Lamps
       expose: true
     light.flex_strip_105:
@@ -181,4 +181,13 @@ google_assistant:
       expose: true
     switch.master_bedroom_fan:
       name: Master Bedroom Fan
+      expose: true
+    switch.chill_mode:
+      name: Chill Mode
+      expose: true
+    light.all_living_room_lights_deconz:
+      name: Living Room Lights
+      expose: true
+    light.ledge_strips_deconz:
+      name: Ledge Lights
       expose: true

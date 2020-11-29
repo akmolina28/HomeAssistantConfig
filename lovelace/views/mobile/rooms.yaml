@@ -1,5 +1,6 @@
 title: Rooms
 path: rooms
+icon: mdi:eye
 panel: false
 cards:
 - type: entities

@@ -1,6 +1,8 @@
 input_boolean:
   chill_mode:
       name: Chill Mode
+  night_shift:
+      name: Night Shift
 
 switch:
 - platform: template
@@ -15,8 +17,289 @@ switch:
           service: input_boolean.turn_off
           data:
             entity_id: input_boolean.chill_mode
+    night_shift:
+        value_template: "{{ is_state('input_boolean.night_shift', 'on') }}"
+        turn_on:
+          service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.night_shift
+        turn_off:
+          service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.night_shift
+    
 
 scene:
+- id: '1606681785457'
+  name: Great Room Scene - Christmas 2
+  entities:
+    light.flex_strip_104:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 1
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_105:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Living Room TV LED Strip
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_107:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Ledge Strip 3
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_108:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 2
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_109:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      is_deconz_group: false
+      friendly_name: Ledge Strip 4
+      supported_features: 61
+      state: 'on'
+    light.flex_strip_110:
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 105.118
+      - 99.608
+      rgb_color:
+      - 64
+      - 255
+      - 0
+      xy_color:
+      - 0.2
+      - 0.724
+      is_deconz_group: false
+      friendly_name: Ledge Strip 5
+      supported_features: 61
+      state: 'on'
+    light.hue_color_a19_102:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 254
+      color_temp: 153
+      is_deconz_group: false
+      friendly_name: Hue Color A19 102
+      supported_features: 63
+      state: 'on'
+    light.hue_color_a19_103:
+      min_mireds: 140
+      max_mireds: 650
+      effect_list:
+      - colorloop
+      brightness: 254
+      hs_color:
+      - 0
+      - 0.392
+      rgb_color:
+      - 255
+      - 254
+      - 254
+      xy_color:
+      - 0.324
+      - 0.329
+      is_deconz_group: false
+      friendly_name: Hue Color A19 103
+      supported_features: 63
+      state: 'on'
+    switch.ledge_fluxer: off
+- id: '1601162958819'
+  name: Spooky
+  entities:
+    switch.ledge_fluxer: off
+    switch.great_room_shuffler: off
+    light.hue_color_a19_103:
+      brightness: 1
+      friendly_name: Couch Lamp
+      is_deconz_group: false
+      state: 'on'
+      supported_features: 41
+    light.flex_strip_104:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 1
+      hs_color:
+      - 269.79
+      - 56.078
+      is_deconz_group: false
+      rgb_color:
+      - 183
+      - 112
+      - 255
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.28
+      - 0.162
+    light.flex_strip_105:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Living Room TV LED Strip
+      hs_color:
+      - 30.119
+      - 99.216
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 129
+      - 1
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.61
+      - 0.376
+    light.flex_strip_107:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 3
+      hs_color:
+      - 30.119
+      - 99.216
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 129
+      - 1
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.61
+      - 0.376
+    light.flex_strip_108:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 2
+      hs_color:
+      - 269.79
+      - 56.078
+      is_deconz_group: false
+      rgb_color:
+      - 183
+      - 112
+      - 255
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.28
+      - 0.162
+    light.flex_strip_109:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 4
+      hs_color:
+      - 30.119
+      - 99.216
+      is_deconz_group: false
+      rgb_color:
+      - 255
+      - 129
+      - 1
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.61
+      - 0.376
+    light.flex_strip_110:
+      brightness: 254
+      effect_list:
+      - colorloop
+      friendly_name: Ledge Strip 5
+      hs_color:
+      - 269.79
+      - 56.078
+      is_deconz_group: false
+      rgb_color:
+      - 183
+      - 112
+      - 255
+      state: 'on'
+      supported_features: 61
+      xy_color:
+      - 0.28
+      - 0.162
+    light.hue_color_a19_102:
+      brightness: 1
+      friendly_name: Corner Lamp
+      is_deconz_group: false
+      state: 'on'
+      supported_features: 41
+  icon: mdi:pumpkin
+
 - name: House Scene - Away
   entities:
     # Kitchen Off
@@ -25,9 +308,7 @@ scene:
 
     # Man Cave Off
     group.man_cave_lights: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 1
+    light.samsung_tablet_1002_backlight: off
     
     # Guest Room Off
     group.guest_room_lights: off
@@ -36,7 +317,7 @@ scene:
     group.master_bedroom_lights_and_switches: off
 
     # Great Room Off
-    group.great_room_lights: off
+    group.all_living_room_lights: off
     media_player.living_room_tv: off
     media_player.living_room_receiver: off
 
@@ -92,8 +373,8 @@ scene:
     switch.bar_lights: on
     switch.cabinet_lights: on
     light.flex_strip_105: off
-    light.couch_lamp: off
-    light.love_seat_lamp: off
+    light.hue_color_a19_103: off
+    light.hue_color_a19_102: off
     light.kitchen_overhead_lights: off
     light.kitchen_table_lights:
       state: on
@@ -105,8 +386,6 @@ scene:
     switch.ledge_fluxer: on
     light.ledge_strips:
       state: on
-      brightness: 127
-      transition: 5
 
 - name: Great Room Scene - Wind Down
   entities:
@@ -117,10 +396,10 @@ scene:
       kelvin: 2000
       brightness: 127
       transition: 5
-    light.couch_lamp:
+    light.hue_color_a19_103:
       state: off
       transition: 5
-    light.love_seat_lamp:
+    light.hue_color_a19_102:
       state: off
       transition: 5
     group.kitchen_lights: off
@@ -133,11 +412,11 @@ scene:
       kelvin: 5000
       brightness: 255
       transition: 5
-    light.couch_lamp:
+    light.hue_color_a19_103:
       state: on
       brightness: 255
       transition: 5
-    light.love_seat_lamp:
+    light.hue_color_a19_102:
       state: on
       brightness: 255
       transition: 5
@@ -155,11 +434,11 @@ scene:
       kelvin: 3000
       brightness: 255
       transition: 5
-    light.couch_lamp:
+    light.hue_color_a19_103:
       state: on
       brightness: 127
       transition: 5
-    light.love_seat_lamp:
+    light.hue_color_a19_102:
       state: on
       brightness: 127
       transition: 5
@@ -176,10 +455,10 @@ scene:
       - 15.178
       - 99.216
       transition: 5
-    light.couch_lamp:
+    light.hue_color_a19_103:
       state: off
       transition: 5
-    light.love_seat_lamp:
+    light.hue_color_a19_102:
       state: off
       transition: 5
     group.kitchen_lights: off
@@ -216,6 +495,31 @@ scene:
       brightness: 255
       transition: 5
 
+- name: Great Room Scene - Welcome Night
+  entities:
+    switch.ledge_fluxer: off
+    switch.great_room_shuffler: off
+    light.flex_strip_104:
+      state: on
+      brightness: 255
+      kelvin: 3000
+    light.flex_strip_107:
+      state: on
+      brightness: 63
+      kelvin: 3000
+    light.flex_strip_108:
+      state: on
+      kelvin: 3000
+      brightness: 63
+    light.flex_strip_109:
+      state: on
+      kelvin: 3000
+      brightness: 63
+    light.flex_strip_110:
+      state: on
+      kelvin: 3000
+      brightness: 255
+
 - name: Man Cave Scene - Wake Up
   icon: mdi:weather-sunset-up
   entities:
@@ -238,10 +542,7 @@ scene:
       transition: 0
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 75
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Warm White
   icon: mdi:brightness-5
@@ -269,10 +570,7 @@ scene:
       transition: 0
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 150
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Focus
   icon: mdi:brightness-7
@@ -304,10 +602,7 @@ scene:
       transition: 0
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 255
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Reading Mode
   icon: mdi:book-open-page-variant
@@ -331,10 +626,7 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 75
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Sweet Tart
   icon: mdi:candycane
@@ -370,10 +662,7 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 150
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Jungle
   icon: mdi:tree
@@ -409,10 +698,7 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 150
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Wind Down
   icon: mdi:weather-night
@@ -436,10 +722,7 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 75
-      transition: 5
+    light.samsung_tablet_1002_backlight: on
 
 - name: Man Cave Scene - Off
   icon: mdi:power-off
@@ -449,10 +732,7 @@ scene:
       transition: 5
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.fire_tablet_701_backlight:
-      state: on
-      brightness: 1
-      transition: 5
+    light.samsung_tablet_1002_backlight: off
 
 - name: Back Yard Scene - Sleep
   entities:
@@ -524,21 +804,7 @@ script:
   #         {% elif hr >= 22 or hr < 4 %}
   #           scene.man_cave_scene_wind_down
   #         {% endif %}
+  
   man_cave_auto_scene:
     alias: Man Cave Auto Scene
-    sequence:
-    - service: scene.turn_on
-      data_template:
-        entity_id: >
-          {% set hr = now().hour %}
-          {% if hr >= 4 and hr < 8 %}
-            scene.man_cave_scene_wake_up
-          {% elif hr >= 8 and hr < 11 %}
-            scene.man_cave_scene_warm_white
-          {% elif hr >= 11 and hr < 16 %}
-            scene.man_cave_scene_focus
-          {% elif hr >= 16 and hr < 22 %}
-            scene.man_cave_scene_sweet_tart
-          {% elif hr >= 22 or hr < 4 %}
-            scene.man_cave_scene_wind_down
-          {% endif %}
+    sequence: []
