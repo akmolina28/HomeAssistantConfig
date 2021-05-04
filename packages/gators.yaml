@@ -1,0 +1,23 @@
+binary_sensor:
+  - platform: template
+    sensors:
+      basketball_game_today:
+        friendly_name: "Basketball Game Today"
+        value_template: >-
+          {% if (state_attr('calendar.men_s_basketball_floridagators_com', 'start_time')) %}
+            {{ state_attr('calendar.men_s_basketball_floridagators_com', 'start_time')[:10] == states('sensor.date') }}
+          {% else %}
+            false
+          {% endif %}
+
+sensor:
+  - platform: template
+    sensors:
+      next_basketball_game:
+        friendly_name: "Basketball Game Countdown"
+        value_template: >-
+          {% if state_attr('calendar.men_s_basketball_floridagators_com', 'start_time') %}
+            {{ ((as_timestamp(state_attr('calendar.men_s_basketball_floridagators_com', 'start_time')[:10]) - as_timestamp(states('sensor.date'))) | int /60/1440) | round(0) }}
+          {% else %}
+            -1
+          {% endif %}

@@ -1,6 +1,0 @@
-title: Mobile
-custom_header:
-  compact_mode: true
-  footer_mode: true
-views:
-- !include /config/lovelace/views/mobile/light-control.yaml

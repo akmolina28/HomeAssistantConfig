@@ -78,7 +78,7 @@ cards:
             - box-shadow: none
       - type: "custom:button-card"
         color_type: card
-        entity: switch.ikea_outlet_103_BAK
+        entity: switch.ikea_outlet_103
         name: Fan
         show_state: true
         icon: mdi:fan
@@ -107,7 +107,7 @@ cards:
             - color: var(--primary-color)
             name:
             - color: var(--primary-color)
-      - !include /config/lovelace/tiles/garage-door-card-3.yaml
+      - !include /config/lovelace/tiles/garage-door-card.yaml
   - type: custom:hui-entities-card
     entities:
     - type: custom:hui-horizontal-stack-card

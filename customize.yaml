@@ -1,128 +1,211 @@
-switch.ikea_outlet_103_BAK:
+"*.*":
+  hide_attributes:
+  - all
+
+binary_sensor.hue_*:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+sensor.*_battery_level:
+  templates:
+    icon_color: >
+      if (state < 50) return 'var(--status-color-warning)';
+      else if (state < 15) return 'var(--status-color-alert)';
+      else return 'var(--primary-text-color)';
+
+binary_sensor.*_occupancy:
+  templates:
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+binary_sensor.*_person_occupancy:
   templates:
     icon: >
-      return "mdi:fan";
+      if (state === 'on') return 'mdi:account';
+      else return 'mdi:account-outline';
     icon_color: >
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
 
-switch.living_room_receiver_power:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-
-switch.living_room_tv_power:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-
-binary_sensor.catio_door_sensor:
+switch.chill_mode:
   templates:
     icon: >
-      if (state == "on") return "mdi:window-open";
-      else return "mdi:window-closed";
-
-binary_sensor.google:
-  templates:
-    icon_color: >
-      if (state == "off") return 'var(--status-color-alert)';
-      else return 'var(--primary-text-color)';
-    icon: >
-      if (state == "on") return "mdi:earth";
-      else return "mdi:earth-off";
-
-binary_sensor.ddns:
-  templates:
-    icon_color: >
-      if (state == "off") return 'var(--status-color-alert)';
-      else return 'var(--primary-text-color)';
-    icon: >
-      if (state == "on") return "mdi:cloud-outline";
-      else return "mdi:cloud-outline-off";
-
-binary_sensor.brother_printer:
-  templates:
-    icon_color: >
-      if (state == "off") return 'var(--status-color-alert)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:printer-wireless
-
-binary_sensor.hp_printer:
-  templates:
-    icon_color: >
-      if (state == "off") return 'var(--status-color-alert)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:printer-wireless
-
-group.kitchen_lights:
-  templates:
+      return 'mdi:meditation';
     icon_color: >
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
 
-binary_sensor.desktop_pc:
+
+binary_sensor.*_car_occupancy:
   templates:
+    icon: >
+      if (state === 'on') return 'mdi:car';
+      else return 'mdi:car-off';
     icon_color: >
       if (state === 'on') return 'var(--secondary-text-color)';
       else return 'var(--primary-text-color)';
-    icon: mdi:desktop-tower
+
+binary_sensor.*_car_motion:
+  templates:
+    icon: >
+      if (state === 'on') return 'mdi:car-connected';
+      else return 'mdi:car';
+    icon_color: >
+      if (state === 'on') return 'var(--secondary-text-color)';
+      else return 'var(--primary-text-color)';
+
+light.*_bedside:
+  templates:
+    icon: >
+      return 'mdi:lamp';
+
+light.flex_strip_*:
+  templates:
+    icon: >
+      return 'mdi:led-strip-variant';
+
+switch.master_bedroom_fan:
+  templates:
+    icons: >
+      return 'mdi:fan';
+    icon_color: >
+      if (state === 'on') return 'var(--primary-color)';
+      else return 'var(--primary-text-color)';
+  
+switch.master_bedroom_light:
+  templates:
+    icons: >
+      return 'mdi:ceiling-light';
+
+
+# switch.ikea_outlet_103:
+#   templates:
+#     icon: >
+#       return "mdi:fan";
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+
+# switch.living_room_receiver_power:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+
+# switch.living_room_tv_power:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+
+# binary_sensor.catio_door_sensor:
+#   templates:
+#     icon: >
+#       if (state == "on") return "mdi:window-open";
+#       else return "mdi:window-closed";
+
+# binary_sensor.google:
+#   templates:
+#     icon_color: >
+#       if (state == "off") return 'var(--status-color-alert)';
+#       else return 'var(--primary-text-color)';
+#     icon: >
+#       if (state == "on") return "mdi:earth";
+#       else return "mdi:earth-off";
+
+# binary_sensor.ddns:
+#   templates:
+#     icon_color: >
+#       if (state == "off") return 'var(--status-color-alert)';
+#       else return 'var(--primary-text-color)';
+#     icon: >
+#       if (state == "on") return "mdi:cloud-outline";
+#       else return "mdi:cloud-outline-off";
+
+# binary_sensor.brother_printer:
+#   templates:
+#     icon_color: >
+#       if (state == "off") return 'var(--status-color-alert)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:printer-wireless
+
+# binary_sensor.hp_printer:
+#   templates:
+#     icon_color: >
+#       if (state == "off") return 'var(--status-color-alert)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:printer-wireless
+
+# group.kitchen_lights:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+
+# binary_sensor.desktop_pc:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:desktop-tower
     
-binary_sensor.work_laptop:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:laptop
+# binary_sensor.work_laptop:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:laptop
 
-binary_sensor.diskstation:
-  templates:
-    icon_color: >
-      if (state == "off") return 'var(--status-color-alert)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:server
+# binary_sensor.diskstation:
+#   templates:
+#     icon_color: >
+#       if (state == "off") return 'var(--status-color-alert)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:server
 
-binary_sensor.mini_pc:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:desktop-tower
+# binary_sensor.mini_pc:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:desktop-tower
 
-switch.xiaomi_wifi_smart_plug_101:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'red';
-      else return 'var(--primary-text-color)';
-    icon: mdi:candycane
+# switch.xiaomi_wifi_smart_plug_101:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'red';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:candycane
 
-media_player.living_room_tv:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:television
+# media_player.living_room_tv:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:television
 
-media_player.living_room_receiver:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:set-top-box
+# media_player.living_room_receiver:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:set-top-box
 
-cover.garage_door:
-  templates:
-    icon_color: >
-      if (state === 'open') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
+# cover.garage_door:
+#   templates:
+#     icon_color: >
+#       if (state === 'open') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
 
-group.back_yard_lights:
-  templates:
-    icon_color: >
-      if (state === 'on') return 'var(--secondary-text-color)';
-      else return 'var(--primary-text-color)';
-    icon: mdi:tree
+# group.back_yard_lights:
+#   templates:
+#     icon_color: >
+#       if (state === 'on') return 'var(--secondary-text-color)';
+#       else return 'var(--primary-text-color)';
+#     icon: mdi:tree
 
 switch.ikea_outlet_2:
   templates:

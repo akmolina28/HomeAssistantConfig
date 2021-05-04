@@ -1,0 +1,126 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+custom_header:
+  exceptions:
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
+views:
+  - icon: 'mdi:air-conditioner'
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: 'custom:button-card'
+            size: 25px
+            icon: 'mdi:close'
+            tap_action:
+              action: navigate
+              navigation_path: /mobile-dashboard/0
+            styles:
+              card:
+                - width: 40px
+                - height: 40px
+                - background-color: 'rgba(255,255,255,0)'
+                - box-shadow: none
+                - margin-bottom: '-25px'
+              icon:
+                - margin-left: px
+          - type: 'custom:homekit-card'
+            home: false
+            title: Home
+            useBrightness: true
+            useTemperature: false
+            titleColor: '#FFF'
+            statePositionTop: true
+            style: |
+              :host {
+                --tile-background: rgba(255, 255, 255, 0.10);
+                --tile-border-radius: 12px;
+                --tile-width: 100px;
+                --tile-height: 100px;
+                --tile-on-background: rgba(255, 255, 255, 0.7);
+
+                --tile-name-text-color: rgba(255, 255, 255, 0.8);
+                --tile-on-name-text-color: rgba(0, 0, 0, 1);
+
+                --tile-state-text-color: rgba(255, 255, 255, 0.8);
+                --tile-on-state-text-color: rgba(0, 0, 0, 1);
+
+                --tile-state-changed-text-color: rgb(134, 134, 134);
+                --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
+
+                --tile-value-text-color: rgba(255, 0, 0, 1);
+
+
+                --tile-icon-color: rgba(255, 255, 255, 0.8);
+                --tile-on-icon-color: rgba(222,144,0,1.0);
+                /* #f7d959; */
+                font-family: Arial;
+              }
+              homekit-button .icon.climate {
+                 background-color: var(--primary-color) !important;
+              }
+              .hideState .state {
+                visibility:hidden !important;
+              }
+            entities:
+              - title: Climate Control
+                entities:
+                  - entity: climate.thermostat
+                    offStates:
+                      - heat
+                      - cool
+                      - heat_cool
+                    double_tap_action:
+                      action: popup
+          - type: markdown
+            content: '### Room Sensors'
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(0,0,0,0);
+                  box-shadow: none;
+                  padding: 0px;
+                  margin-bottom: -35px;
+                  top: -20px;
+                  left: 5px;
+                }
+          - type: entities
+            entities:
+            - entity: sensor.living_room_humidity
+              icon: 'mdi:thermostat'
+              type: 'custom:multiple-entity-row'
+              name: Thermostat
+              state_header: Humidity
+              entities:
+                - entity: sensor.living_room_temperature
+                  name: Temperature
+            - entity: binary_sensor.man_cave_occupancy
+              icon: 'mdi:wifi'
+              type: 'custom:multiple-entity-row'
+              name: Man Cave
+              state_header: Occupancy
+              entities:
+                - entity: sensor.man_cave_temperature
+                  name: Temperature
+            - entity: binary_sensor.bedroom_occupancy
+              icon: 'mdi:wifi'
+              type: 'custom:multiple-entity-row'
+              name: Bedroom
+              state_header: Occupancy
+              entities:
+              - entity: sensor.bedroom_temperature
+                name: Temperature
+            card_mod:
+              style: |
+                ha-card {
+                  width: 92%;
+                  margin: auto;
+                  border-radius: 12px;
+                  background: rgba(255,255,255,0.1);
+                  color: white;
+                  --paper-item-icon-color: white;
+                  margin-bottom: 15px;
+                }
+title: HVAC

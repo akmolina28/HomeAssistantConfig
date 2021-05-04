@@ -1,0 +1,328 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+custom_header:
+  exceptions:
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
+views:
+  - icon: 'mdi:shield-home'
+    badges: []
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: 'custom:button-card'
+            size: 25px
+            icon: 'mdi:close'
+            tap_action:
+              action: navigate
+              navigation_path: /mobile-dashboard/0
+            styles:
+              card:
+                - width: 40px
+                - height: 40px
+                - background-color: 'rgba(255,255,255,0)'
+                - box-shadow: none
+                - margin-bottom: 15px
+              icon:
+                - margin-left: px
+          - type: markdown
+            content: '### Security'
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(0,0,0,0);
+                  box-shadow: none;
+                  padding: 0px;
+                  margin-bottom: -35px;
+                  top: -20px;
+                  left: 5px;
+                }
+          - type: 'custom:mod-card'
+            card_mod:
+              style: |
+                ha-card {
+                  width: 92%;
+                  margin: auto;
+                }
+            card:
+              type: horizontal-stack
+              cards:
+                - type: 'custom:button-card'
+                  entity: alarm_control_panel.home_alarm
+                  name: Alarm
+                  icon: 'mdi:shield-home-outline'
+                  show_state: true
+                  aspect_ratio: 1/1
+                  card_size: 3
+                  size: 30%
+                  tap_action:
+                    action: call-service
+                    service: |
+                      [[[
+                        if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+                          return "alarm_control_panel.alarm_arm_home";
+                        return "alarm_control_panel.alarm_disarm";
+                      ]]]
+                    service_data:
+                      entity_id: alarm_control_panel.home_alarm
+                      code: !secret alarm_code
+                  hold_action:
+                    action: call-service
+                    service: |
+                      [[[
+                        if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+                          return "alarm_control_panel.alarm_arm_away";
+                        return "alarm_control_panel.alarm_disarm";
+                      ]]]
+                    service_data:
+                      entity_id: alarm_control_panel.home_alarm
+                      code: !secret alarm_code
+                  styles:
+                    icon:
+                      - left: 15px
+                      - top: '-25px'
+                      - color: |
+                          [[[
+                            if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+                              return "rgba(24, 199, 71,1)";
+                            return "rgba(230, 0, 0,0.7)";
+                          ]]]
+                    card:
+                      - background: |
+                          [[[
+                            if (states['alarm_control_panel.home_alarm'].state == "disarmed") 
+                              return "rgba(255,255,255,0.1)";
+                            return "rgba(255,255,255,0.7)";
+                          ]]]
+                      - border-radius: 12px
+                      - box-shadow: 5px 5px 5px;
+                      - font-size: 100%
+                    grid:
+                      - grid-template-areas: '"i" "n" "s"'
+                      - grid-template-columns: 1fr
+                      - grid-template-rows: 1fr min-content min-content
+                    img_cell:
+                      - align-self: start
+                      - text-align: start
+                    name:
+                      - justify-self: start
+                      - padding-left: 10px
+                      - margin-top: '-65px'
+                      - color: |
+                          [[[
+                            if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+                              return "white";
+                            return "black";
+                          ]]]
+                    state:
+                      - justify-self: start
+                      - padding-left: 10px
+                      - margin-top: '-32px'
+                      - color: |
+                          [[[
+                            if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+                              return "white";
+                            return "black";
+                          ]]]
+                - type: 'custom:button-card'
+                  entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+                  name: Front Door
+                  show_state: true
+                  aspect_ratio: 1/1
+                  card_size: 3
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: |
+                      [[[
+                        if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked'].state == "locked")
+                          return "lock.unlock";
+                        return "lock.lock";
+                      ]]]
+                    service_data:
+                      entity_id: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+                  styles:
+                    icon:
+                      - left: 15px
+                      - top: '-25px'
+                      - color: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked'].state == "unlocked")
+                              return "rgba(230, 0, 0,0.7)";
+                            return "white";
+                          ]]]
+                    card:
+                      - background: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked'].state == "locked") 
+                              return "rgba(255,255,255,0.1)";
+                            return "rgba(255,255,255,0.7)";
+                          ]]]
+                      - border-radius: 12px
+                      - box-shadow: 5px 5px 5px;
+                      - font-size: 100%
+                    grid:
+                      - grid-template-areas: '"i" "n" "s"'
+                      - grid-template-columns: 1fr
+                      - grid-template-rows: 1fr min-content min-content
+                    img_cell:
+                      - align-self: start
+                      - text-align: start
+                    name:
+                      - justify-self: start
+                      - padding-left: 10px
+                      - margin-top: '-65px'
+                      - color: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked'].state == "unlocked")
+                              return "black";
+                            return "white";
+                          ]]]
+                    state:
+                      - justify-self: start
+                      - padding-left: 10px
+                      - margin-top: '-32px'
+                      - color: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked'].state == "unlocked")
+                              return "black";
+                            return "white";
+                          ]]]
+                - type: 'custom:button-card'
+                  entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+                  name: Laundry Door
+                  show_state: true
+                  aspect_ratio: 1/1
+                  card_size: 3
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: |
+                      [[[
+                        if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked'].state == "locked")
+                          return "lock.unlock";
+                        return "lock.lock";
+                      ]]]
+                    service_data:
+                      entity_id: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+                  styles:
+                    icon:
+                      - left: 15px
+                      - top: '-25px'
+                      - color: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked'].state == "unlocked")
+                              return "rgba(230, 0, 0,0.7)";
+                            return "white";
+                          ]]]
+                    card:
+                      - background: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked'].state == "locked") 
+                              return "rgba(255,255,255,0.1)";
+                            return "rgba(255,255,255,0.7)";
+                          ]]]
+                      - border-radius: 12px
+                      - box-shadow: 5px 5px 5px;
+                      - font-size: 100%
+                    grid:
+                      - grid-template-areas: '"i" "n" "s"'
+                      - grid-template-columns: 1fr
+                      - grid-template-rows: 1fr min-content min-content
+                    img_cell:
+                      - align-self: start
+                      - text-align: start
+                    name:
+                      - justify-self: start
+                      - padding-left: 10px
+                      - margin-top: '-65px'
+                      - color: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked'].state == "unlocked")
+                              return "black";
+                            return "white";
+                          ]]]
+                    state:
+                      - justify-self: start
+                      - padding-left: 10px
+                      - margin-top: '-32px'
+                      - color: |
+                          [[[
+                            if (states['lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked'].state == "unlocked")
+                              return "black";
+                            return "white";
+                          ]]]
+              square: true
+          - type: markdown
+            content: '### Alarm Trigger Sensors'
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(0,0,0,0);
+                  box-shadow: none;
+                  padding: 0px;
+                  margin-bottom: -12px;
+                  left: 5px;
+                }
+          - type: custom:auto-entities
+            card:
+              type: entities
+              card_mod:
+              style: |
+                ha-card {
+                  width: 92%;
+                  margin: auto;
+                  border-radius: 12px;
+                  background: rgba(255,255,255,0.1);
+                  color: white;
+                  --paper-item-icon-color: white;
+                }
+            filter:
+              include:
+              - group: group.all_door_and_window_sensors
+            
+          - type: markdown
+            content: '### Occupancy Sensors'
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(0,0,0,0);
+                  box-shadow: none;
+                  padding: 0px;
+                  margin-bottom: -12px;
+                  left: 5px;
+                }
+          - type: entities
+            entities:
+              - binary_sensor.man_cave_occupancy
+              - binary_sensor.bedroom_occupancy
+              - entity: binary_sensor.ai_doorbell_person_occupancy
+                name: Doorbell Person Occupancy
+              - entity: binary_sensor.ai_great_room_person_occupancy
+                name: Great Room Person Occupancy
+              - entity: binary_sensor.ai_driveway_car_occupancy
+                name: Driveway Car Occupancy
+              - entity: binary_sensor.ai_driveway_car_motion
+                name: Driveway Car Motion
+              - entity: binary_sensor.ai_driveway_person_occupancy
+                name: Driveway Person
+              - entity: binary_sensor.ai_garage_car_occupancy
+                name: Garage Car Occupancy
+              - entity: binary_sensor.ai_garage_car_motion
+                name: Garage Car Motion
+              - entity: binary_sensor.ai_garage_person_occupancy
+                name: Garage Person
+            state_color: false
+            card_mod:
+              style: |
+                ha-card {
+                  width: 92%;
+                  margin: auto;
+                  border-radius: 12px;
+                  background: rgba(255,255,255,0.1);
+                  color: white;
+                  --paper-item-icon-color: white;
+                  margin-bottom: 15px;
+                }
+title: Security

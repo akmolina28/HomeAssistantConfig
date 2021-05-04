@@ -1,31 +1,52 @@
 type: "custom:button-card"
 entity: cover.garage_door
 color_type: card
-name: Garage
-show_name: true
+name: Garage Door
+show_state: true
 icon: mdi:garage
-show_label: true
+show_label: false
+styles:
+  icon:
+  - color: var(--button-card-light-color)
+  name:
+  - color: var(--button-card-light-color)
+  card:
+  - background-color: var(--paper-card-background-color)
+  - -webkit-box-shadow: 0px 0px 0px 0px
+  - box-shadow: 0px 0px 0px 0px
 state:
 - value: closed
   color: 'var(--paper-card-background-color)'
-  label: Closed<br/>&nbsp;
-- value: open
-  color: 'var(--primary-color)'
+- value: >
+    [[[
+      return entity.state == "open" && states["sun.sun"].state == "above_horizon";
+    ]]]
+  operator: template
   icon: mdi:garage-open
-  label: Open<br/>&nbsp;
+  styles:
+    icon:
+    - color: var(--status-color-warning)
+    name:
+    - color: var(--status-color-warning)
+- value: >
+    [[[
+      return entity.state == "open" && states["sun.sun"].state == "below_horizon";
+    ]]]
+  operator: template
+  icon: mdi:garage-open
+  styles:
+    icon:
+    - color: var(--status-color-alert)
+    name:
+    - color: var(--status-color-alert)
 - value: opening
-  color: 'var(--primary-color)'
   icon: mdi:refresh
   spin: 'true'
-  label: 'Opening...<br/>&nbsp;'
 - value: closing
-  color: 'var(--primary-color)'
   icon: mdi:refresh
   spin: 'true'
-  label: 'Closing...<br/>&nbsp;'
 - value: unavailable
   color: 'var(--status-color-alert)'
-  label: Unavailable<br/>&nbsp;
 tap_action:
   action: toggle
 hold_action:

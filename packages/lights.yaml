@@ -45,6 +45,7 @@ light:
   - light.master_bedroom_lights
   - light.man_cave_lights
   - light.hue_softwhite_lwb014_101
+  - light.garage_lights
 - platform: group
   name: Exterior Lights
   entities:
@@ -100,25 +101,28 @@ light:
 
 - platform: template
   lights:
-    lenovo_tablet_1001_backlight:
-      friendly_name: Kitchen Tablet Backlight
-      value_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenOn"] }}'
-      level_template: '{{ states.sensor.lenovo_tablet_1001_kiosk_device_info.attributes["screenBrightness"] }}'
+    wall_tablet_backlight:
+      friendly_name: Wall Tablet Backlight
+      value_template: '{{ states.sensor.wall_tablet_kiosk_device_info.attributes["screenOn"] }}'
+      level_template: '{{ states.sensor.wall_tablet_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
-        service: rest_command.lenovo_tablet_1001_kiosk_command
+        service: rest_command.wall_tablet_kiosk_command
         data:
           cmd: screenOn
       turn_off:
-        service: rest_command.lenovo_tablet_1001_kiosk_command
+        service: rest_command.wall_tablet_kiosk_command
         data:
           cmd: screenOff
       set_level:
-        service: rest_command.lenovo_tablet_1001_kiosk_command
+      - service: rest_command.wall_tablet_kiosk_command
+        data:
+          cmd: screenOn
+      - service: rest_command.wall_tablet_kiosk_command
         data_template:
           cmd: setStringSetting
           key: screenBrightness
           value: '{{ brightness }}'
-    
+      
     samsung_tablet_1001_backlight:
       friendly_name: Wall Tablet Backlight
       value_template: '{{ states.sensor.samsung_tablet_1001_kiosk_device_info.attributes["screenOn"] }}'
@@ -138,20 +142,23 @@ light:
           key: screenBrightness
           value: '{{ brightness }}'
     
-    samsung_tablet_1002_backlight:
+    man_cave_tablet_backlight:
       friendly_name: Man-cave Backlight
-      value_template: '{{ states.sensor.samsung_tablet_1002_kiosk_device_info.attributes["screenOn"] }}'
-      level_template: '{{ states.sensor.samsung_tablet_1002_kiosk_device_info.attributes["screenBrightness"] }}'
+      value_template: '{{ states.sensor.man_cave_tablet_kiosk_device_info.attributes["screenOn"] }}'
+      level_template: '{{ states.sensor.man_cave_tablet_kiosk_device_info.attributes["screenBrightness"] }}'
       turn_on:
-        service: rest_command.samsung_tablet_1002_kiosk_command
+        service: rest_command.man_cave_tablet_kiosk_command
         data:
           cmd: screenOn
       turn_off:
-        service: rest_command.samsung_tablet_1002_kiosk_command
+        service: rest_command.man_cave_tablet_kiosk_command
         data:
           cmd: screenOff
       set_level:
-        service: rest_command.samsung_tablet_1002_kiosk_command
+      - service: rest_command.man_cave_tablet_kiosk_command
+        data:
+          cmd: screenOn
+      - service: rest_command.man_cave_tablet_kiosk_command
         data_template:
           cmd: setStringSetting
           key: screenBrightness
@@ -175,77 +182,6 @@ light:
           cmd: setStringSetting
           key: screenBrightness
           value: '{{ brightness }}'
-
-    fire_tablet_701_backlight:
-      friendly_name: Fire Tablet Backlight
-      value_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["screenOn"] }}'
-      level_template: '{{ states.sensor.fire_tablet_701_kiosk_device_info.attributes["screenBrightness"] }}'
-      turn_on:
-        service: rest_command.fire_tablet_701_kiosk_command
-        data:
-          cmd: screenOn
-      turn_off:
-        service: rest_command.fire_tablet_701_kiosk_command
-        data:
-          cmd: screenOff
-      set_level:
-        service: rest_command.fire_tablet_701_kiosk_command
-        data_template:
-          cmd: setStringSetting
-          key: screenBrightness
-          value: '{{ brightness }}'
-
-
-
-
-automation:
-- alias: Sunrise - Exterior Lights Off
-  trigger:
-  - entity_id: sun.sun
-    platform: state
-    to: above_horizon
-  condition: []
-  action:
-  - service: script.turn_off_exterior_lights
-
-- alias: Sunset - Exterior Lights On
-  trigger:
-  - entity_id: sun.sun
-    platform: state
-    to: below_horizon
-  condition: []
-  action:
-  - service: script.turn_on_exterior_lights
-
-# # When kaitlyn leaves for work on weekday mornings, turn lights off
-# - alias: Kaitlyn Leaves For Work - Turn Lights Off
-#   trigger:
-#   - platform: state
-#     entity_id: person.kaitlyn
-#     to: not_home
-#     for: '00:05:00'
-#   condition:
-#   - condition: time
-#     after: '04:00:00'
-#     before: '10:00:00'
-#     weekday:
-#     - mon
-#     - tue
-#     - wed
-#     - thu
-#     - fri
-#   - condition: template
-#     value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
-#   action:
-#   - service: group.turn_off
-#     data:
-#       entity_id: group.living_room_lamps
-#   - service: light.turn_off
-#     data:
-#       entity_id: light.master_bedroom_lights
-#   - service: script.turn_off_kitchen_lights
-
-
 
 script:
   lights_bright_up:
@@ -401,7 +337,7 @@ script:
     sequence:
     - service: group.turn_on
       data:
-        entity_id: group.living_room_lamps
+        entity_id: light.living_room_lamps_deconz
         brightness: '255'
     - service: light.turn_on
       data:
@@ -421,7 +357,7 @@ script:
     - service: homeassistant.turn_off
       entity_id:
       - group.kitchen_lights
-      - group.living_room_lamps
+      - light.living_room_lamps_deconz
     - service: switch.turn_off
       entity_id:
       - light.flex_strip_105
@@ -432,7 +368,7 @@ script:
     sequence:
     - service: group.turn_on
       data:
-        entity_id: group.living_room_lamps
+        entity_id: light.living_room_lamps_deconz
         brightness: '100'
     - service: switch.turn_on
       entity_id: 

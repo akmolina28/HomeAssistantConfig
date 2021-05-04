@@ -14,7 +14,7 @@ ledge_strips_brightness_min:
 disable_garage_motion_1_hr:
   sequence: []
 
-great_room_smart_toggle:
+voice_command_show_cameras_on_man_cave_tablet:
   sequence: []
 
 turn_off_media_players:
@@ -23,7 +23,7 @@ turn_off_media_players:
   - service: media_player.turn_off
     entity_id:
     - media_player.living_room_tv
-    - media_player.living_room_receiver
+    - media_player.denon_avr_s640h
 
 fast_enable_flux_living_room:
   alias: Fast Enable Living Room Flux
@@ -50,9 +50,9 @@ living_room_on:
   sequence:
   - service: group.turn_on
     data:
-      entity_id: group.living_room_lamps
+      entity_id: light.living_room_lamps_deconz
   - service: media_player.turn_on
     data:
       entity_id:
       - media_player.living_room_tv
-      - media_player.living_room_receiver
+      - media_player.denon_avr_s640h

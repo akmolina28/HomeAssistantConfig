@@ -178,3 +178,26 @@ automation:
       data:
         entity_id: input_select.automation_mode
         option: sleep
+
+binary_sensor:
+- platform: template
+  sensors:
+    automation_home_mode:
+      friendly_name: 'Home Mode'
+      value_template: "{{ states('input_select.automation_mode') == 'home' }}"
+      
+    automation_away_mode:
+      friendly_name: 'Away Mode'
+      value_template: "{{ states('input_select.automation_mode') == 'away' }}"
+      
+    automation_sleep_mode:
+      friendly_name: 'Sleep Mode'
+      value_template: "{{ states('input_select.automation_mode') == 'sleep' }}"
+      
+    automation_vacation_mode:
+      friendly_name: 'Vacation Mode'
+      value_template: "{{ states('input_select.automation_mode') == 'vacation' }}"
+      
+    automation_guest_mode:
+      friendly_name: 'Guest Mode'
+      value_template: "{{ states('input_select.automation_mode') == 'guest' }}"

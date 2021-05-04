@@ -4,6 +4,7 @@ custom_header:
 views:
 - !include /config/lovelace/views/wall-tablet/home.yaml
 - !include /config/lovelace/views/shared/cameras.yaml
+- !include /config/lovelace/views/shared/doorbell-cameras.yaml
 - !include /config/lovelace/views/shared/rooms.yaml
 - !include /config/lovelace/views/shared/climate.yaml
 - !include /config/lovelace/views/shared/chores.yaml

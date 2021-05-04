@@ -1,33 +1,164 @@
 {
   "nodes": {
-    "d474958_a22a568": {
+    "edf6e07b_87fa7": {
       "lastPayload": {
         "state": "off",
         "attributes": {}
       }
     },
-    "f9fc5e0e_0524e": {
+    "29345937_9d8f16": {
       "lastPayload": {
         "state": "off",
         "attributes": {}
       }
     },
-    "a8e49f3f_50bbf": {
+    "4d15e4f3_ecb27c": {
       "lastPayload": {
         "state": "off",
         "attributes": {}
       }
     },
-    "62e1a5d7_31720c": {
+    "dcc65b42_c526c8": {
+      "lastPayload": {
+        "state": "on",
+        "attributes": {}
+      }
+    },
+    "e00292de_abaad": {
       "lastPayload": {
         "state": "off",
         "attributes": {}
       }
     },
-    "ba065f72_257d2": {
+    "511b6b36_76f174": {
       "lastPayload": {
         "state": "off",
         "attributes": {}
+      }
+    },
+    "56b5dd13_0428f4": {
+      "lastPayload": {
+        "state": "off",
+        "attributes": {}
+      }
+    },
+    "a7c5267c_29d928": {
+      "isEnabled": true
+    },
+    "5cf088d1_758e88": {
+      "lastPayload": {
+        "state": "off",
+        "attributes": {}
+      }
+    },
+    "27f1c18a_cdd26e": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@54942980.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@54942980.bvr",
+          "path": "@54942980.bvr",
+          "name": "annke101hd Clip 0",
+          "date": "May-3-2021 21:37:49"
+        }
+      }
+    },
+    "7923397c_15e658": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@54835993.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@54835993.bvr",
+          "path": "@54835993.bvr",
+          "name": "annke101hd Clip 1",
+          "date": "May-3-2021 21:37:13"
+        }
+      }
+    },
+    "2eefbc34_9f8ed4": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@54741842.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@54741842.bvr",
+          "path": "@54741842.bvr",
+          "name": "annke101hd Clip 2",
+          "date": "May-3-2021 21:36:13"
+        }
+      }
+    },
+    "b0e38bce_ad6748": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@54373262.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@54373262.bvr",
+          "path": "@54373262.bvr",
+          "name": "annke101hd Clip 3",
+          "date": "May-3-2021 20:19:46"
+        }
+      }
+    },
+    "ab1b666a_832208": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@54257262.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@54257262.bvr",
+          "path": "@54257262.bvr",
+          "name": "annke101hd Clip 4",
+          "date": "May-3-2021 20:19:11"
+        }
+      }
+    },
+    "4d0d4b26_08be44": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@53595770.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@53595770.bvr",
+          "path": "@53595770.bvr",
+          "name": "annke101hd Clip 5",
+          "date": "May-3-2021 18:57:45"
+        }
+      }
+    },
+    "b59e0da2_419f8": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@53444143.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@53444143.bvr",
+          "path": "@53444143.bvr",
+          "name": "annke101hd Clip 6",
+          "date": "May-3-2021 18:55:49"
+        }
+      }
+    },
+    "d94f7843_df35c8": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@52928019.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@52928019.bvr",
+          "path": "@52928019.bvr",
+          "name": "annke101hd Clip 7",
+          "date": "May-3-2021 17:48:42"
+        }
+      }
+    },
+    "96dbdff4_7e5cb": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@51058533.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@51058533.bvr",
+          "path": "@51058533.bvr",
+          "name": "annke101hd Clip 8",
+          "date": "May-3-2021 10:54:12"
+        }
+      }
+    },
+    "e230b35b_66355": {
+      "lastPayload": {
+        "state": "https://kleypot.duckdns.org/ui3.htm?maximize=1&rec=@50912767.bvr",
+        "attributes": {
+          "thumburl": "https://kleypot.duckdns.org/thumbs/@50912767.bvr",
+          "path": "@50912767.bvr",
+          "name": "annke101hd Clip 9",
+          "date": "May-3-2021 10:53:47"
+        }
       }
     }
   }

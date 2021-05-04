@@ -1,7 +1,7 @@
 type: "custom:button-card"
 entity: input_select.automation_mode
 icon: mdi:home
-show_name: false
+name: Automation Mode
 show_label: true
 tap_action:
   action: more-info
@@ -10,16 +10,16 @@ hold_action:
 state:
 - value: home
   icon: mdi:home
-  label: Home Mode
+  label: Home
 - value: away
   icon: mdi:exit-run
-  label: Away Mode
+  label: Away
 - value: sleep
   icon: mdi:weather-night
-  label: Sleep Mode
+  label: Sleep
 - value: vacation
   icon: mdi:beach
   label: Vacation
 - value: guest
   icon: mdi:human-male-male
-  label: Guest Mode
+  label: Guest

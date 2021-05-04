@@ -1,8 +1,0 @@
-title: System
-path: system
-panel: true
-cards:
-- type: custom:hui-horizontal-stack-card
-  cards:
-  - !include /config/lovelace/tiles/system-monitor-card.yaml
-  - !include /config/lovelace/tiles/device-status-card.yaml

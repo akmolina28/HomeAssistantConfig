@@ -1,3 +1,18 @@
+rest:
+- authentication: basic
+  username: !secret blueiris_user
+  password: !secret blueiris_pass
+  method: POST
+  payload: '{"cmd": "cliplist", "camera": "annke101hd", "view": "all"}'
+  scan_interval: 60
+  resource: !secret blueiris_resource_url
+  sensor:
+  - name: "Driveway Alert Clips"
+    value_template: "OK"
+    json_attributes:
+    - "data1"
+
+
 group:
   all_door_and_window_sensors:
     name: All Door and Window Sensors
@@ -79,44 +94,37 @@ alarm_control_panel:
     arming_time: 0
   armed_night:
     arming_time: 0
-  # delay_time: 10
-  # trigger_time: 10
+
+shell_command:
+  save_doorbell_image: cp /config/www/images/ai_alerts/doorbell-person-hd.jpg /config/www/images/ai_alerts/doorbell-person-hd-latest.jpg
 
 camera:
-- platform: mjpeg
-  mjpeg_url: http://192.168.1.31:81/mjpg/annke101hd
-  name: annke101hd
-- platform: mjpeg
-  mjpeg_url: http://192.168.1.31:81/mjpg/annke101sd
-  name: annke101sd
-- platform: mjpeg
-  mjpeg_url: http://192.168.1.31:81/mjpg/eufy101
-  name: eufy101
-- platform: mjpeg
-  mjpeg_url: http://192.168.1.31:81/mjpg/eufy102
-  name: eufy102
-
 - platform: generic
-  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/driveway-person.jpg'
-  name: Driveway Non-car Alert
-
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/driveway-person-4k.jpg'
+  name: Driveway Person Alert
 - platform: generic
-  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/driveway-vehicle.jpg'
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/doorbell-person-hd.jpg'
+  name: Doorbell Person Alert
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/driveway-vehicle-4k.jpg'
   name: Driveway Car Alert
-
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/doorbell-person-hd-latest.jpg'
+  name: Doorbell Person Alert Latest
+- platform: generic
+  still_image_url: 'http://127.0.0.1:8123/local/images/doorbell-press-alert.jpg'
+  name: Doorbell Press Alert Latest
 - platform: generic
   still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/great-room-person.jpg'
   name: Great Room Person Alert
-
 - platform: generic
   still_image_url: >
-    {% if (states.binary_sensor.driveway_non_car.last_changed < states.binary_sensor.driveway_car.last_changed) %}
-      http://127.0.0.1:8123/local/images/ai_alerts/driveway-vehicle.jpg
+    {% if (states.binary_sensor.ai_driveway_person_occupancy.last_changed < states.binary_sensor.ai_driveway_car_motion.last_changed) %}
+      http://127.0.0.1:8123/local/images/ai_alerts/driveway-vehicle-4k.jpg
     {% else %}
-      http://127.0.0.1:8123/local/images/ai_alerts/driveway-person.jpg
+      http://127.0.0.1:8123/local/images/ai_alerts/driveway-person-4k.jpg
     {% endif %}
   name: Driveway Last Alert
-
 - platform: generic
   still_image_url: 'http://127.0.0.1:8123/local/images/ai_alerts/garage-person.jpg'
   name: Garage Person Alert

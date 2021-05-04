@@ -26,49 +26,6 @@ script:
         entity_id: climate.thermostat
         preset_mode: Kaitlyn Away
 
-
-
-automation:
-
-# When kaitlyn leaves for work on weekday mornings, change climate mode
-- alias: Kaitlyn Leaves For Work - Set Climate Mode
-  trigger:
-  - platform: state
-    entity_id: person.kaitlyn
-    to: not_home
-    for: '00:05:00'
-  condition:
-  - condition: time
-    after: '04:00:00'
-    before: '10:00:00'
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  - condition: state
-    entity_id: person.andrew
-    state: home
-  - condition: template
-    value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
-  action:
-  - service: script.set_climate_kaitlyn_away_mode
-
-# When Kaitlyn arrives home, resume thermostat program
-# This handles cases where Andrew has deviated from the climate program while kaitlyn was away
-# Also handles cases where climate mode was automatically changed when kaitlyn is at work
-- alias: Kaitlyn Arrives Home - Reset Climate Mode
-  trigger:
-  - platform: state
-    entity_id: person.kaitlyn
-    to: home
-  condition:
-  - condition: template
-    value_template: '{{ states("input_select.automation_mode") in ["home"] }}'
-  action:
-  - service: script.resume_climate_schedule
-
 sensor:
 - platform: template
   sensors:

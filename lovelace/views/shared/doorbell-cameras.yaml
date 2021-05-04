@@ -1,0 +1,7 @@
+title: Doorbell
+path: doorbell-cameras
+panel: true
+cards:
+- type: iframe
+  url: !secret doorbell_480p_url
+  aspect_ratio: '16:9'

@@ -3,19 +3,13 @@ rest_command:
     url: !secret rest_url_tasker_garage_open
   tasker_kaitlyn_home:
     url: !secret rest_url_tasker_kaitlyn_home
-  fire_tablet_701_kiosk_command:
-    url: !secret rest_url_fire_tablet_701_kiosk_command
-  lenovo_tablet_1001_kiosk_command:
-    url: !secret rest_url_lenovo_tablet_1001_kiosk_command
-  lenovo_tablet_1001_kiosk_load_page:
-    url: !secret rest_url_lenovo_tablet_1001_kiosk_load_url
+  wall_tablet_kiosk_command:
+    url: !secret rest_url_wall_tablet_kiosk_command
   samsung_tablet_1001_kiosk_command:
     url: !secret rest_url_samsung_tablet_1001_kiosk_command
-  samsung_tablet_1002_kiosk_command:
-    url: !secret rest_url_samsung_tablet_1002_kiosk_command
+  man_cave_tablet_kiosk_command:
+    url: !secret rest_url_man_cave_tablet_kiosk_command
   lenovo_tablet_701_kiosk_command:
     url: !secret rest_url_lenovo_tablet_701_kiosk_command
-  lenovo_tablet_1001_tasker_command:
-    url: !secret rest_url_lenovo_tablet_1001_tasker
-  fire_tablet_701_tasker_command:
-    url: !secret rest_url_fire_tablet_701_tasker
+  wall_tablet_tasker_command:
+    url: !secret rest_url_wall_tablet_tasker

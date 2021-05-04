@@ -60,7 +60,7 @@ cards:
   entities:
   - name: Lamps
     icon: mdi:lamp
-    entity: group.living_room_lamps
+    entity: light.living_room_lamps_deconz
   - type: "custom:fold-entity-row"
     head: 
       entity: light.great_room_strips
@@ -99,7 +99,7 @@ cards:
       name: Shuffle
   style: |
     ha-card {
-      background: {% if is_state('group.great_room_strips', 'on') or is_state('group.living_room_lamps', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
+      background: {% if is_state('group.great_room_strips', 'on') or is_state('light.living_room_lamps_deconz', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};
     }
 
 - type: entities
@@ -207,7 +207,7 @@ cards:
     icon: mdi:led-strip
   - entity: switch.ikea_outlet_101
     icon: mdi:wrench
-  - entity: switch.ikea_outlet_103_BAK
+  - entity: switch.ikea_outlet_103
   style: |
     ha-card {
       background: {% if is_state('group.garage_lights_and_switches', 'on') %}var(--secondary-text-color){% else %}var(--paper-card-background-color){% endif %};

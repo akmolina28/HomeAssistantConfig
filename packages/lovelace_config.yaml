@@ -1,44 +1,42 @@
 lovelace:
   mode: yaml
   resources:
-  - url: /local/roborock.js
-    type: js
+  - url: /local/custom_ui/custom-ui.js?v=20210412
+    type: module
+  - url: /local/community/lovelace-card-mod/card-mod.js
+    type: module
+  - url: /local/community/Homekit-panel-card/homekit-panel-card.js
+    type: module
+  - url: /local/community/lovelace-multiple-entity-row/multiple-entity-row.js
+    type: module
+  - url: /local/community/vacuum-card/vacuum-card.js
+    type: module
+  - url: /local/community/config-template-card/config-template-card.js
+    type: module
+  - url: /local/swipe-card.js?v=20210418
+    type: module
   - url: /local/slider-entity-row.js?v=0.13
     type: module
   - url: /local/community/button-card/button-card.js
-    type: module
-  # - url: /local/community/lovelace-auto-entities/auto-entities.js
-  #   type: module
-  - url: /local/card-mod.js?v=2.0.0
     type: module
   - url: /local/simple-thermostat.js?v=0.35.0
     type: module
   - url: /local/mini-graph-card-bundle.js?v=0.9.3
     type: module
-  - url: /local/mini-media-player-bundle.js?v=1.9.1
-    type: module
-  - url: /local/my-custom-card.js?v=0.0.0.12
-    type: js
-  - url: /local/content-card-example.js
-    type: js
-  - url: /local/simple-dark-sky-card.js?v=1.0.3
-    type: js
-  - url: /local/gators-mbk-tracker.js?v=1.0.2
-    type: js
-  - url: /local/custom-cards/bar-card.js?v=1.7.1
-    type: js
-  - url: /local/custom-header.js?v=1.6.7
+  - url: /local/community/mini-media-player/mini-media-player-bundle.js
     type: module
   - url: /local/fold-entity-row.js?v=0.106
     type: module
   - url: /local/auto-entities.js?v=0.106
     type: module
-  - url: /local/config-template-card.js?v=1.1.2
-    type: module
   - url: /local/calendar-card.js?v=1111
+    type: js
+  - url: /local/custom-cards/bar-card.js?v=1.7.1
     type: js
   - url: /local/alarm_control_panel-card.js?v=1.0.2
     type: js
+  - url: /local/custom-header.js?v=123
+    type: module
   dashboards:
     all-entities:
       mode: yaml
@@ -80,5 +78,68 @@ lovelace:
       filename: wall-tablet.yaml
       title: Wall Tablet
       icon: mdi:tablet-dashboard
+      show_in_sidebar: false
+      require_admin: false
+    mobile-dashboard:
+      mode: yaml
+      filename: mobile-dashboard.yaml
+      title: Dashboard
+      icon: mdi:iphone
+      show_in_sidebar: false
+      require_admin: false
+    sub-hvac:
+      mode: yaml
+      filename: hvac.yaml
+      title: HVAC
+      icon: mdi:air-conditioner
+      show_in_sidebar: false
+      require_admin: false
+    sub-lights042121:
+      mode: yaml
+      filename: lights.yaml
+      title: Lights
+      icon: mdi:lightbulb
+      show_in_sidebar: false
+      require_admin: false
+    sub-security:
+      mode: yaml
+      filename: security.yaml
+      title: Security
+      icon: mdi:shield-home
+      show_in_sidebar: false
+      require_admin: false
+    sub-vacuum:
+      mode: yaml
+      filename: vacuum.yaml
+      title: Vacuum
+      icon: mdi:robot-vacuum
+      show_in_sidebar: false
+      require_admin: false
+    sub-media-players:
+      mode: yaml
+      filename: media-players.yaml
+      title: Media Players
+      icon: mdi:cast
+      show_in_sidebar: false
+      require_admin: false
+    sub-automations:
+      mode: yaml
+      filename: automations.yaml
+      title: Automations
+      icon: mdi:home-automation
+      show_in_sidebar: false
+      require_admin: false
+    sub-doorbell:
+      mode: yaml
+      filename: doorbell.yaml
+      title: Doorbell
+      icon: mdi:doorbell-video
+      show_in_sidebar: false
+      require_admin: false
+    sub-cameras:
+      mode: yaml
+      filename: cameras.yaml
+      title: Cameras
+      icon: mdi:camera-burst
       show_in_sidebar: false
       require_admin: false

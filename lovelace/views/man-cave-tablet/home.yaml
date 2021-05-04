@@ -6,14 +6,23 @@ cards:
   cards:
   - type: custom:hui-horizontal-stack-card
     cards:
-    - !include /config/lovelace/tiles/driveway-camera-card.yaml
     - type: custom:hui-vertical-stack-card
       cards:
+      - !include /config/lovelace/tiles/driveway-camera-card.yaml
       - type: custom:hui-weather-forecast-card
         entity: weather.openweathermap
         name: Pensacola
-        show_forecast: true
-      - type: custom:hui-horizontal-stack-card
+        show_forecast: false
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - type: grid
+        square: false
+        title: Network Status
+        columns: 5
+        style: |
+          .card-header {
+            padding-top: 0px!important;
+          }
         cards:
         - type: custom:button-card
           entity: binary_sensor.google
@@ -117,6 +126,264 @@ cards:
             label: 'Unavailable'
         - type: "custom:button-card"
           color_type: card
+          entity: device_tracker.desktop_t3mu2l6
+          show_label: true
+          name: Blue Iris
+          icon: mdi:server-security
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--status-color-alert)
+            name:
+            - color: var(--status-color-alert)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+            label:
+            - color: var(--primary-text-color)
+          state:
+          - value: 'home'
+            styles:
+              icon:
+              - color: var(--status-color-success)
+              name:
+              - color: var(--status-color-success)
+            label: 'OK'
+        - type: custom:button-card
+          entity: binary_sensor.diskstation
+          name: Synology
+          color_type: card
+          show_label: true
+          label: Error
+          tap_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--status-color-alert)
+            name:
+            - color: var(--status-color-alert)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+            label:
+            - color: var(--primary-text-color)
+          state:
+          - value: 'on'
+            styles:
+              icon:
+              - color: var(--status-color-success)
+              name:
+              - color: var(--status-color-success)
+            label: 'OK'
+      - type: grid
+        columns: 4
+        square: false
+        title: Home Automation
+        cards:
+        - type: custom:button-card
+          color_type: card
+          name: Alarm
+          entity: alarm_control_panel.home_alarm
+          icon: mdi:shield-off
+          styles:
+            icon:
+            - color: var(--status-color-warning)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: 'armed_home'
+            styles:
+              icon:
+              - color: var(--primary-text-color)
+            icon: mdi:shield-home-outline
+
+        - type: "custom:button-card"
+          color_type: card
+          entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_101_locked
+          name: Front Door
+          show_state: false
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: >
+              [[[
+                return entity.state == "unlocked" && states["sun.sun"].state == "below_horizon";
+              ]]]
+            operator: template
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+          - value: >
+              [[[
+                return entity.state == "unlocked" && states["sun.sun"].state == "above_horizon";
+              ]]]
+            operator: template
+            styles:
+              icon:
+              - color: var(--status-color-warning)
+              name:
+              - color: var(--status-color-warning)
+        - type: "custom:button-card"
+          color_type: card
+          entity: lock.assa_abloy_yale_push_button_deadbolt_yrd210_102_locked
+          name: Laundry Door
+          show_state: false
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: >
+              [[[
+                return entity.state == "unlocked" && states["sun.sun"].state == "below_horizon";
+              ]]]
+            operator: template
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+          - value: >
+              [[[
+                return entity.state == "unlocked" && states["sun.sun"].state == "above_horizon";
+              ]]]
+            operator: template
+            styles:
+              icon:
+              - color: var(--status-color-warning)
+              name:
+              - color: var(--status-color-warning)
+        - type: "custom:button-card"
+          entity: cover.garage_door
+          color_type: card
+          name: Garage Door
+          show_state: false
+          icon: mdi:garage
+          show_label: true
+          styles:
+            icon:
+            - color: var(--button-card-light-color)
+            name:
+            - color: var(--button-card-light-color)
+            card:
+            - background-color: var(--paper-card-background-color)
+            - -webkit-box-shadow: 0px 0px 0px 0px
+            - box-shadow: 0px 0px 0px 0px
+          state:
+          - value: closed
+            color: 'var(--paper-card-background-color)'
+          - value: >
+              [[[
+                return entity.state == "open" && states["sun.sun"].state == "above_horizon";
+              ]]]
+            operator: template
+            icon: mdi:garage-open
+            styles:
+              icon:
+              - color: var(--status-color-warning)
+              name:
+              - color: var(--status-color-warning)
+          - value: >
+              [[[
+                return entity.state == "open" && states["sun.sun"].state == "below_horizon";
+              ]]]
+            operator: template
+            icon: mdi:garage-open
+            styles:
+              icon:
+              - color: var(--status-color-alert)
+              name:
+              - color: var(--status-color-alert)
+          - value: opening
+            icon: mdi:refresh
+            spin: 'true'
+            name: 'Opening...'
+          - value: closing
+            icon: mdi:refresh
+            spin: 'true'
+            name: 'Closing...'
+          - value: unavailable
+            color: 'var(--status-color-alert)'
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+          lock:
+            enabled: true
+        - !include /config/lovelace/tiles/automation-mode-card-compact.yaml
+      # - type: custom:hui-horizontal-stack-card
+      #   cards:
+      #   - type: "custom:button-card"
+      #     color_type: card
+      #     entity: sensor.driveway_vehicle_presence
+      #     show_label: true
+      #     name: Driveway Car
+      #     icon: mdi:car-hatchback
+      #     tap_action:
+      #       action: more-info
+      #     styles:
+      #       card:
+      #       - background-color: var(--paper-card-background-color)
+      #       - -webkit-box-shadow: 0px 0px 0px 0px
+      #       - box-shadow: 0px 0px 0px 0px
+      #       label:
+      #       - color: var(--primary-text-color)
+      #     state:
+      #     - value: 'on'
+      #       styles:
+      #         icon:
+      #         - color: var(--primary-color)
+      #         name:
+      #         - color: var(--primary-color)
+      #       label: 'Present'
+      #     - value: 'off'
+      #       styles:
+      #         icon:
+      #         - color: var(--disabled-text-color)
+      #         name:
+      #         - color: var(--disabled-text-color)
+      #       label: 'Not Present'
+      #     - value: 'Unavailable'
+      #       styles:
+      #         icon:
+      #         - color: var(--status-color-warning)
+      #         name:
+      #         - color: var(--status-color-warning)
+      #       label: 'Unavailable'
+        - !include /config/lovelace/tiles/next-basketball-game-card.yaml
+        - type: "custom:button-card"
+          color_type: blank-card
+        - type: "custom:button-card"
+          color_type: card
           entity: climate.thermostat
           show_label: true
           name: >
@@ -155,86 +422,6 @@ cards:
               name:
               - color: var(--status-color-alert)
             label: 'Unavailable'
-      - type: custom:hui-horizontal-stack-card
-        cards:
-        - type: "custom:button-card"
-          color_type: card
-          entity: sensor.driveway_vehicle_presence
-          show_label: true
-          name: Driveway Car
-          icon: mdi:car-hatchback
-          tap_action:
-            action: more-info
-          styles:
-            card:
-            - background-color: var(--paper-card-background-color)
-            - -webkit-box-shadow: 0px 0px 0px 0px
-            - box-shadow: 0px 0px 0px 0px
-            label:
-            - color: var(--primary-text-color)
-          state:
-          - value: 'on'
-            styles:
-              icon:
-              - color: var(--primary-color)
-              name:
-              - color: var(--primary-color)
-            label: 'Present'
-          - value: 'off'
-            styles:
-              icon:
-              - color: var(--disabled-text-color)
-              name:
-              - color: var(--disabled-text-color)
-            label: 'Not Present'
-          - value: 'Unavailable'
-            styles:
-              icon:
-              - color: var(--status-color-warning)
-              name:
-              - color: var(--status-color-warning)
-            label: 'Unavailable'
-        - type: "custom:button-card"
-          color_type: card
-          entity: sensor.Garage_vehicle_presence
-          show_label: true
-          name: Garage Car
-          icon: mdi:car
-          tap_action:
-            action: more-info
-          styles:
-            card:
-            - background-color: var(--paper-card-background-color)
-            - -webkit-box-shadow: 0px 0px 0px 0px
-            - box-shadow: 0px 0px 0px 0px
-            label:
-            - color: var(--primary-text-color)
-          state:
-          - value: 'on'
-            styles:
-              icon:
-              - color: var(--primary-color)
-              name:
-              - color: var(--primary-color)
-            label: 'Present'
-          - value: 'off'
-            styles:
-              icon:
-              - color: var(--disabled-text-color)
-              name:
-              - color: var(--disabled-text-color)
-            label: 'Not Present'
-          - value: 'Unavailable'
-            styles:
-              icon:
-              - color: var(--status-color-warning)
-              name:
-              - color: var(--status-color-warning)
-            label: 'Unavailable'
-        - type: "custom:button-card"
-          color_type: blank-card
-        - type: "custom:button-card"
-          color_type: blank-card
         
   - type: custom:hui-entities-card
     entities:

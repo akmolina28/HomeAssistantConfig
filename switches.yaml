@@ -6,3 +6,10 @@
 #   host: 192.168.1.29
 #   token: !secret xiaomi_outlet_2_token
 #   name: Power Outlet 2
+
+- platform: netgear_enhanced
+  host: !secret router_gateway
+  username: !secret router_username
+  password: !secret router_password
+  resources:
+    - 'reboot'

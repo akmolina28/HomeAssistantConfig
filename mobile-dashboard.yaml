@@ -1,0 +1,577 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+title: Home
+custom_header:
+  exceptions:
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
+views:
+  - title: Home
+    panel: true
+    badges: []
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: iframe
+        url: !secret driveway_480p_url
+        aspect_ratio: '16:9'
+        # card_mod:
+        #   style: |
+        #     .box {
+        #       background: rgba(255,255,255,0) !important;
+        #     }
+      # - type: 'custom:mod-card'
+      #   card_mod:
+      #     style:
+      #       swipe-card:
+      #         $: |
+      #           .swiper-pagination-bullet {
+      #             width: 10px;
+      #             height: 10px;
+      #             background-color: rgba(255,255,255,1.0) !important;
+      #             position: relative;
+      #             top: 15px
+      #           }
+      #           .swiper-pagination-bullet-active {
+      #             background-color: var(--primary-color) !important;
+      #           }
+      #   card:
+      #     type: 'custom:swipe-card'
+      #     start_card: 1
+      #     reset_after: 30
+      #     parameters:
+      #       spaceBetween: 8
+      #       autoHeight: true
+      #       pagination:
+      #         type: bullets
+      #     cards:
+      #     - type: entities
+      #       entities:
+      #       - type: 'custom:hui-vertical-stack-card'
+      #         cards:
+              # - type: iframe
+              #   url: https://kleypot.duckdns.org/ui3.htm?maximize=1&cam=doorbell
+              #   aspect_ratio: '16:9'
+              #   card_mod:
+              #     style: |
+              #       .box {
+              #         background: rgba(255,255,255,0) !important;
+              #       }
+              # - type: picture-glance
+              #   aspect_ratio: '16:9'
+              #   camera_image: camera.blueiris_doorbell
+              #   camera_view: live
+              #   entities: []
+              #   title: Doorbell
+              #   tap_action:
+              #     action: none
+              #   card_mod:
+              #     style: |
+              #       .box {
+              #         background: rgba(255,255,255,0) !important;
+              #       }
+            # card_mod:
+            #   style: |
+            #     ha-card {
+            #       margin-bottom: 15px;
+            #       background: rgba(255, 255, 255, 0.0);
+            #       box-shadow: none;
+            #     }
+            #     .card-content {
+            #       padding: 5px;
+            #     }
+            #     .box {
+            #       background: rgba(255,255,255,0) !important;
+            #     }
+          # - type: entities
+          #   entities:
+          #   - type: 'custom:hui-vertical-stack-card'
+          #     cards:
+          #     - type: picture-glance
+          #       aspect_ratio: '16:9'
+          #       camera_image: camera.blueiris_annke101sd
+          #       camera_view: live
+          #       entities: []
+          #       title: Driveway
+          #       tap_action:
+          #         action: none
+          #       card_mod:
+          #         style: |
+          #           .box {
+          #             background: rgba(255,255,255,0) !important;
+          #           }
+          #   card_mod:
+          #     style: |
+          #       ha-card {
+          #         margin-bottom: 15px;
+          #         background: rgba(255, 255, 255, 0.0);
+          #         box-shadow: none;
+          #       }
+          #       .card-content {
+          #         padding: 5px;
+          #       }
+          #       .box {
+          #         background: rgba(255,255,255,0) !important;
+          #       }
+          # - type: entities
+          #   entities:
+          #   - type: 'custom:hui-vertical-stack-card'
+          #     cards:
+          #     - type: picture-glance
+          #       aspect_ratio: '16:9'
+          #       camera_image: camera.eufy101
+          #       camera_view: live
+          #       entities: []
+          #       title: Garage
+          #       tap_action:
+          #         action: none
+          #       card_mod:
+          #         style: |
+          #           .box {
+          #             background: rgba(255,255,255,0) !important;
+          #           }
+          #   card_mod:
+          #     style: |
+          #       ha-card {
+          #         margin-bottom: 15px;
+          #         background: rgba(255, 255, 255, 0.0);
+          #         box-shadow: none;
+          #       }
+          #       .card-content {
+          #         padding: 5px;
+          #       }
+          # - type: entities
+          #   entities:
+          #   - type: 'custom:hui-vertical-stack-card'
+          #     cards:
+          #     - type: picture-glance
+          #       aspect_ratio: '16:9'
+          #       camera_image: camera.eufy102
+          #       camera_view: live
+          #       entities: []
+          #       title: Great Room
+          #       tap_action:
+          #         action: none
+          #       card_mod:
+          #         style: |
+          #           .box {
+          #             background: rgba(255,255,255,0) !important;
+          #           }
+          #   card_mod:
+          #     style: |
+          #       ha-card {
+          #         margin-bottom: 15px;
+          #         background: rgba(255, 255, 255, 0.0);
+          #         box-shadow: none;
+          #       }
+          #       .card-content {
+          #         padding: 5px;
+          #       }
+      - type: "custom:homekit-card"
+        style: |
+          :host {
+            --tile-background: rgba(255, 255, 255, 0.10);
+            --tile-border-radius: 12px;
+            --tile-width: 100px;
+            --tile-height: 100px;
+            --tile-on-background: rgba(255, 255, 255, 0.7);
+
+            --tile-name-text-color: rgba(255, 255, 255, 0.8);
+            --tile-on-name-text-color: rgba(0, 0, 0, 1);
+
+            --tile-state-text-color: rgba(255, 255, 255, 0.8);
+            --tile-on-state-text-color: rgba(0, 0, 0, 1);
+
+            --tile-state-changed-text-color: rgb(134, 134, 134);
+            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
+
+            --tile-value-text-color: rgba(255, 0, 0, 1);
+
+
+            --tile-icon-color: rgba(255, 255, 255, 0.8);
+            --tile-on-icon-color: var(--primary-color) !important;
+            font-family: Arial;
+          }
+          .top-fav {
+            background-color: rgba(255, 255, 230,0.5) !important;
+          }
+          .off-bg {
+            background-color: rgba(255, 255, 255, 0.10) ;
+          }
+          .hideState .state {
+            visibility:hidden !important;
+          }
+          homekit-button .icon.climate {
+            background-color: var(--primary-color) !important;
+          }
+          homekit-button .icon {
+            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
+            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
+          }
+          homekit-button.action-button .state {
+            display: none;
+          }
+        home: false
+        title: Home
+        useBrightness: true
+        useTemperature: true
+        titleColor: '#FFF'
+        statePositionTop: false
+        entities:
+        - title: Favorites
+          icon: mdi:star
+          entities:
+          - type: button
+            name: KP Lamp
+            icon: mdi:lamp
+            entity: light.kp_bedside
+            slider: true
+            double_tap_action:
+              action: popup
+          - type: button
+            entity: light.andrew_bedside
+            name: Andrew Lamp
+            icon: mdi:lamp
+            slider: true
+            double_tap_action:
+              action: popup
+          - type: button
+            entity: switch.master_bedroom_fan
+            name: Fan
+            icon: 'mdi:fan'
+            spin: true
+            tap_action:
+              action: call-service
+              service: switch.toggle
+              haptic: medium
+              service_data:
+                entity_id: switch.master_bedroom_fan
+          - type: button
+            entity: switch.mute_wall_tablet
+            name: Mute Chimes
+            tap_action:
+              action: call-service
+              service: switch.toggle
+              haptic: medium
+              service_data:
+                entity_id: switch.mute_wall_tablet
+      
+      - type: "custom:homekit-card"
+        style: |
+          :host {
+            --tile-background: rgba(255, 255, 255, 0.10);
+            --tile-border-radius: 12px;
+            --tile-width: 100px;
+            --tile-height: 100px;
+            --tile-on-background: rgba(255, 255, 255, 0.7);
+
+            --tile-name-text-color: rgba(255, 255, 255, 0.8);
+            --tile-on-name-text-color: rgba(0, 0, 0, 1);
+
+            --tile-state-text-color: rgba(255, 255, 255, 0.8);
+            --tile-on-state-text-color: rgba(0, 0, 0, 1);
+
+            --tile-state-changed-text-color: rgb(134, 134, 134);
+            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
+
+            --tile-value-text-color: rgba(255, 0, 0, 1);
+
+
+            --tile-icon-color: rgba(255, 255, 255, 0.8);
+            --tile-on-icon-color: var(--primary-color) !important;
+            font-family: Arial;
+          }
+          .top-fav {
+            background-color: rgba(255, 255, 230,0.5) !important;
+          }
+          .off-bg {
+            background-color: rgba(255, 255, 255, 0.10) ;
+          }
+          .hideState .state {
+            visibility:hidden !important;
+          }
+          homekit-button .icon.climate {
+            background-color: var(--primary-color) !important;
+          }
+          homekit-button .icon {
+            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
+            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
+          }
+          homekit-button.action-button .state {
+            display: none;
+          }
+        home: false
+        title: Home
+        useBrightness: true
+        useTemperature: true
+        titleColor: '#FFF'
+        statePositionTop: true
+        entities:
+        - title: Lights
+          icon: mdi:lightbulb
+          entities:
+          - entity: group.kitchen_lights
+            icon: mdi:silverware-fork-knife
+            name: Kitchen
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/kitchen
+              haptic: selection
+            double_tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/scene/kitchen/bright
+              haptic: medium
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/kitchen
+              haptic: medium
+          - entity: group.all_living_room_lights
+            icon: mdi:sofa
+            name: Great Room
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/great-room
+              haptic: selection
+            double_tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/scene/great-room/bright
+              haptic: medium
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/great-room
+              haptic: medium
+          - entity: group.man_cave_lights
+            icon: mdi:guitar-acoustic
+            name: Man Cave
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/man-cave
+              haptic: selection
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/man-cave-2
+              haptic: medium
+          - entity: group.master_bedroom_lights
+            icon: mdi:bed-king
+            name: Bedroom
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/bedroom
+              haptic: selection
+            double_tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/scene/master-bedroom/bright
+              haptic: medium
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/bedroom
+              haptic: medium
+          - entity: group.guest_room_lights
+            icon: mdi:bed-double
+            name: Guest Room
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/guest-room
+              haptic: selection
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/guest-room
+              haptic: medium
+          - entity: group.garage_lights
+            icon: mdi:garage
+            name: Garage
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/garage
+              haptic: selection
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/garage
+              haptic: medium
+          - entity: group.exterior_lights
+            icon: mdi:tree
+            name: Exterior
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/smart-light-toggle/exterior
+              haptic: selection
+            hold_action:
+              action: navigate
+              navigation_path: /sub-lights042121/outdoor
+              haptic: medium
+
+        - title: Smart Home
+          entities:
+          - entity: climate.thermostat
+            conditionalClass: |
+              [[[
+                return "action-button";
+              ]]]
+            name: A/C
+            icon: 'mdi:air-conditioner'
+            offStates:
+              - heat
+              - cool
+              - heat_cool
+            tap_action:
+              action: navigate
+              navigation_path: /sub-hvac/0
+            hold_action:
+              action: none
+          - entity: switch.ikea_outlet_2
+          - entity: vacuum.isuck
+            name: Vacuum
+            icon: 'mdi:robot-vacuum'
+            state: vacuum.isuck
+            statePath: attributes.battery_level
+            offStates:
+              - docked
+            spin: true
+            tap_action:
+              action: navigate
+              navigation_path: /sub-vacuum/0
+            hold_action:
+              action: none
+          - entity: media_player.living_room_tv
+            icon: mdi:television
+            state: sensor.living_room_tv_volume
+          - entity: cover.garage_door
+            icon: mdi:garage-open
+            offIcon: mdi:garage
+            offStates:
+            - closed
+            tap_action:
+              action: call-service
+              service: cover.toggle
+              service_data:
+                entity_id: cover.garage_door
+              confirmation:
+                text: Are you sure you want to open/close the garage?
+          - card: 'custom:button-card'
+            tap_action:
+              haptic: selection
+              action: navigate
+              navigation_path: /sub-security/0
+            hold_action:
+              haptic: selection
+              action: navigate
+              navigation_path: /sub-security/0
+            cardOptions:
+              name: Alarm & Security
+              icon: 'mdi:shield-home'
+              size: 80%
+              show_name: false
+              show_state: false
+              show_label: false
+              styles:
+                card:
+                  - '-webkit-box-shadow': none
+                  - box-shadow: none
+                  - background-color: 'rgba(255, 255, 255, 0.0)'
+                  - margin-top: 5px
+                icon:
+                  - color: |
+                      [[[ 
+                        if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+                          return "rgba(51, 102, 0,1)";
+                        return "rgba(230, 0, 0,0.7)";
+                      ]]]
+          - card: 'custom:button-card'
+            tap_action:
+              haptic: selection
+              action: navigate
+              navigation_path: /sub-cameras/0
+            hold_action:
+              haptic: selection
+              action: navigate
+              navigation_path: /sub-cameras/0
+            cardOptions:
+              name: Video
+              icon: 'mdi:video'
+              size: 80%
+              show_name: false
+              show_state: false
+              show_label: false
+              styles:
+                card:
+                  - '-webkit-box-shadow': none
+                  - box-shadow: none
+                  - background-color: 'rgba(255, 255, 255, 0.0)'
+                  - margin-top: 5px
+                icon:
+                  - color: |
+                  - color: var(--primary-color)
+          - card: 'custom:button-card'
+            tap_action:
+              action: navigate
+              haptic: selection
+              navigation_path: /sub-automations/0
+            hold_action:
+              action: navigate
+              haptic: selection
+              navigation_path: /sub-automations/0
+            cardOptions:
+              name: Home Automation
+              icon: 'mdi:home-automation'
+              size: 80%
+              show_name: false
+              show_state: false
+              show_label: false
+              styles:
+                card:
+                  - '-webkit-box-shadow': none
+                  - box-shadow: none
+                  - background-color: 'rgba(255, 255, 255, 0.0)'
+                  - margin-top: 5px
+                icon:
+                  - color: var(--primary-color)
+
+        - title: Network & Internet
+          entities:
+          - entity: binary_sensor.google
+            icon: mdi:earth
+            name: Internet
+            tap_action:
+              action: popup
+            hideState: true
+          - entity: switch.pi_hole
+          - custom: rebootrouter
+            name: Reboot Router
+            # entity: switch.ng_enhanced_reboot
+            conditionalClass: |
+              [[[
+                return "action-button";
+              ]]]
+            icon: mdi:router-wireless
+            # offStates: []
+            tap_action:
+              action: call-service
+              service: switch.turn_on
+              service_data:
+                entity_id: switch.ng_enhanced_reboot
+              confirmation:
+                text: Are you sure you want to reboot the router?
+            hold_action:
+              action: none
+            

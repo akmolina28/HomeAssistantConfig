@@ -151,7 +151,7 @@ entities:
 - type: custom:hui-horizontal-stack-card
   cards:
   - type: custom:button-card
-    entity: sensor.lenovo_tablet_1001_kiosk_device_info
+    entity: sensor.wall_tablet_kiosk_device_info
     name: Wall Tablet
     color_type: card
     icon: mdi:tablet
@@ -175,7 +175,7 @@ entities:
         --ha-card-box-shadow: 'none';
       }
   - type: custom:button-card
-    entity: sensor.samsung_tablet_1002_kiosk_device_info
+    entity: sensor.man_cave_tablet_kiosk_device_info
     name: Man-cave Tablet
     color_type: card
     icon: mdi:tablet

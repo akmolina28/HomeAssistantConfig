@@ -4,3 +4,81 @@ icon: mdi:camera-iris
 panel: false
 cards:
 - !include /config/lovelace/tiles/driveway-camera-card.yaml
+# - type: 'custom:mod-card'
+#   card_mod:
+#     style:
+#       swipe-card:
+#         $: |
+#           .swiper-pagination-bullet {
+#             width: 10px;
+#             height: 10px;
+#             background-color: rgba(255,255,255,1.0) !important;
+#             position: relative;
+#             top: 15px
+#           }
+#           .swiper-pagination-bullet-active {
+#             background-color: rgba(247,148,29,1.0) !important;
+#           }
+#   card:
+#     type: custom:swipe-card
+#     reset_after: 30
+#     parameters:
+#       spaceBetween: 8
+#       autoHeight: true
+#       pagination:
+#         type: bullets
+#     cards:
+#     - type: picture-glance
+#       aspect_ratio: '16:9'
+#       camera_image: camera.annke101sd
+#       camera_view: live
+#       entities: []
+#       title: Driveway
+#       card_mod:
+#         style: |
+#           ha-card {
+#             margin-bottom: 15px;
+#             background: rgba(255, 255, 255, 0.0);
+#             border-radius: 0;
+#             box-shadow: none;
+#             color: white;
+#             }
+#           .box {
+#             background: rgba(255,255,255,0) !important;
+#           }
+#     - type: picture-glance
+#       aspect_ratio: '16:9'
+#       camera_image: camera.eufy101
+#       camera_view: live
+#       entities: []
+#       title: Garage
+#       card_mod:
+#         style: |
+#           ha-card {
+#             margin-bottom: 15px;
+#             background: rgba(255, 255, 255, 0.0);
+#             border-radius: 0;
+#             box-shadow: none;
+#             color: white;
+#             }
+#           .box {
+#             background: rgba(255,255,255,0) !important;
+#           }
+#     - type: picture-glance
+#       aspect_ratio: '16:9'
+#       camera_image: camera.eufy102
+#       camera_view: live
+#       entities: []
+#       title: Great Room
+#       card_mod:
+#         style: |
+#           ha-card {
+#             margin-bottom: 15px;
+#             background: rgba(255, 255, 255, 0.0);
+#             border-radius: 0;
+#             box-shadow: none;
+#             color: white;
+#             }
+#           .box {
+#             background: rgba(255,255,255,0) !important;
+#           }

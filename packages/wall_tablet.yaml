@@ -1,0 +1,7 @@
+input_boolean:
+  wall_tablet_mute:
+      name: Wall Tablet Mute
+      icon: mdi:volume-mute
+  wall_tablet_screensaver:
+      name: Wall Tablet Screensaver
+      icon: mdi:image-frame

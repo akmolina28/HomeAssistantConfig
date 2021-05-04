@@ -1,0 +1,6 @@
+
+binary_sensor:
+- platform: template
+  sensors:
+    is_weekday:
+      value_template: '{{ now().weekday() < 5 }}'

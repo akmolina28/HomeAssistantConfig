@@ -1,0 +1,230 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+custom_header:
+  exceptions:
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
+views:
+  - icon: mdi:camera-burst
+    name: Caneras
+    path: cameras
+    badges: []
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: 'custom:button-card'
+        size: 25px
+        icon: 'mdi:close'
+        tap_action:
+          action: navigate
+          navigation_path: /mobile-dashboard/0
+        styles:
+          card:
+            - width: 40px
+            - height: 40px
+            - background-color: 'rgba(255,255,255,0)'
+            - box-shadow: none
+            - margin-bottom: '-25px'
+          icon:
+            - margin-left: px
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_2
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_3
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_4
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_5
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_6
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_7
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_8
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_9
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]
+      - type: 'custom:button-card'
+        name: Driveway
+        label: |
+          [[[
+            return entity.attributes.date;
+          ]]]
+        entity: sensor.annke101hd_clip_10
+        show_label: true
+        show_entity_picture: true
+        size: 100%
+        entity_picture: |
+          [[[
+            return entity.attributes.thumburl;
+          ]]]
+        tap_action:
+          action: url
+          url_path: |
+            [[[
+              return entity.state;
+            ]]]

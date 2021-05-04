@@ -308,7 +308,7 @@ scene:
 
     # Man Cave Off
     group.man_cave_lights: off
-    light.samsung_tablet_1002_backlight: off
+    light.man_cave_tablet_backlight: off
     
     # Guest Room Off
     group.guest_room_lights: off
@@ -319,7 +319,7 @@ scene:
     # Great Room Off
     group.all_living_room_lights: off
     media_player.living_room_tv: off
-    media_player.living_room_receiver: off
+    media_player.denon_avr_s640h: off
 
     # Garage Off
     group.garage_lights_and_switches: off
@@ -542,7 +542,7 @@ scene:
       transition: 0
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Warm White
   icon: mdi:brightness-5
@@ -570,7 +570,7 @@ scene:
       transition: 0
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Focus
   icon: mdi:brightness-7
@@ -602,7 +602,7 @@ scene:
       transition: 0
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Reading Mode
   icon: mdi:book-open-page-variant
@@ -626,43 +626,193 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Sweet Tart
   icon: mdi:candycane
   entities:
     light.flex_strip_101:
       state: on
-      hs_color: 
-      - 314.824
-      - 100
+      # rgb(255, 0, 195)
+      rgb_color: 
+      - 255
+      - 0
+      - 195
       brightness: 255
-      transition: 5
+      transition: 0
     light.hue_color_a19_101:
       state: on
-      hs_color: 
-      - 314.824
-      - 100
+      # rgb(255, 0, 195)
+      rgb_color: 
+      - 255
+      - 0
+      - 195
       brightness: 255
-      transition: 5
+      transition: 0
     light.flex_strip_102:
       state: on
-      hs_color: 
-      - 195.178
-      - 100
+      # rgb(0, 190, 255)
+      rgb_color: 
+      - 0
+      - 190
+      - 255
       brightness: 255
-      transition: 5
+      transition: 0
     light.flex_strip_106:
       state: on
-      hs_color: 
-      - 195.178
-      - 100
+      # rgb(0, 190, 255)
+      rgb_color: 
+      - 0
+      - 190
+      - 255
       brightness: 255
-      transition: 5
+      transition: 0
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
+
+- name: Man Cave Scene - Neon Rose
+  icon: mdi:candycane
+  entities:
+    light.flex_strip_101:
+      state: on
+      # rgb(255, 143, 161)
+      rgb_color: 
+      - 255
+      - 143
+      - 161
+    light.hue_color_a19_101:
+      state: on
+      # rgb(154, 255, 143)
+      rgb_color: 
+      - 154
+      - 255
+      - 143
+      brightness: 160
+      transition: 0
+    light.flex_strip_102:
+      state: on
+      # rgb(255, 143, 161)
+      rgb_color: 
+      - 255
+      - 143
+      - 161
+    light.flex_strip_106:
+      state: on
+      # rgb(255, 143, 161)
+      rgb_color: 
+      - 255
+      - 143
+      - 161
+      brightness: 255
+      transition: 0
+    light.flex_strip_111:
+      state: on
+      # rgb(255, 143, 161)
+      rgb_color: 
+      - 255
+      - 143
+      - 161
+      brightness: 255
+      transition: 0
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
+    light.man_cave_tablet_backlight: on
+
+
+- name: Man Cave Scene - Uranium
+  icon: mdi:candycane
+  entities:
+    light.flex_strip_101:
+      state: on
+      # rgb(230, 255, 58)
+      rgb_color:
+      - 244
+      - 220
+      - 150
+    light.hue_color_a19_101:
+      state: on
+      # rgb(230, 255, 58)
+      rgb_color:
+      - 244
+      - 220
+      - 150
+      brightness: 160
+      transition: 0
+    light.flex_strip_102:
+      state: on
+      # rgb(210, 75, 255)
+      rgb_color:
+      - 210
+      - 75
+      - 255
+    light.flex_strip_106:
+      state: on
+      # rgb(210, 75, 255)
+      rgb_color:
+      - 210
+      - 75
+      - 255
+      brightness: 255
+      transition: 0
+    light.flex_strip_111:
+      state: on
+      # rgb(210, 75, 255)
+      rgb_color:
+      - 210
+      - 75
+      - 255
+      brightness: 255
+      transition: 0
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
+    light.man_cave_tablet_backlight: on
+
+
+- name: Man Cave Scene - Blue Flame
+  icon: mdi:candycane
+  entities:
+    light.flex_strip_101: 
+      state: on
+      # rgb(0, 0, 255)
+      rgb_color:
+      - 0
+      - 0
+      - 255
+      brightness: 255
+      transition: 0
+    light.hue_color_a19_101: off
+    light.flex_strip_102: 
+      state: on
+      # rgb(255, 128, 0)
+      rgb_color:
+      - 255
+      - 60
+      - 0
+      brightness: 255
+      transition: 0
+    light.flex_strip_106:  
+      state: on
+      # rgb(255, 0, 0)
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      brightness: 55
+      transition: 0
+    light.flex_strip_111:  
+      state: on
+      # rgb(255, 0, 0)
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      brightness: 255
+      transition: 0
+    switch.man_cave_fluxer: off
+    switch.man_cave_shuffler: off
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Jungle
   icon: mdi:tree
@@ -698,7 +848,7 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Wind Down
   icon: mdi:weather-night
@@ -722,7 +872,7 @@ scene:
     light.flex_strip_111: off
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: on
+    light.man_cave_tablet_backlight: on
 
 - name: Man Cave Scene - Off
   icon: mdi:power-off
@@ -732,7 +882,7 @@ scene:
       transition: 5
     switch.man_cave_fluxer: off
     switch.man_cave_shuffler: off
-    light.samsung_tablet_1002_backlight: off
+    light.man_cave_tablet_backlight: off
 
 - name: Back Yard Scene - Sleep
   entities:

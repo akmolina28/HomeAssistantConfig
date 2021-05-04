@@ -4,6 +4,8 @@ system_log:
 
 mobile_app:
 
+mqtt:
+
 zwave:
   usb_path: /dev/ttyACM1
   network_key: "0x2e, 0xcc, 0xab, 0x1c, 0xa3, 0x7f, 0x0e, 0xb5, 0x70, 0x71, 0x2d, 0x98, 0x25, 0x43, 0xee, 0x0c"
@@ -19,8 +21,8 @@ homeassistant:
   unit_system: imperial
   time_zone: America/Chicago
   name: Home
-  customize: !include customize.yaml
-  packages:  !include_dir_named packages
+  customize_glob: !include customize.yaml
+  packages: !include_dir_named packages
 
 tplink:
   discovery: false
@@ -66,13 +68,10 @@ device_tracker:
   new_device_defaults:
     track_new_devices: false
 
-customizer:
-  custom_ui: local
-
 # http:
-  # base_url: !secret http_base_url
-  # ssl_certificate: /ssl/fullchain.pem
-  # ssl_key: /ssl/privkey.pem
+#   base_url: !secret http_base_url
+#   ssl_certificate: /ssl/fullchain.pem
+#   ssl_key: /ssl/privkey.pem
 
 notify:
   - platform: html5
@@ -89,16 +88,9 @@ automation: !include_dir_merge_list automation/
 script: !include scripts.yaml
 
 media_player:
-  - platform: braviatv_psk
-    host: 192.168.1.20
-    psk: 3813
-    mac: 0C:96:E6:A6:67:B3
-    amp: True
-    android: True
-    name: Living Room TV
   - platform: denon
     host: 192.168.1.15
-    name: Living Room Receiver
+    name: Receiver
 
 switch: !include switches.yaml
 
@@ -137,6 +129,8 @@ google_assistant:
   expose_by_default: false
   secure_devices_pin: !secret secure_devices_pin
   entity_config:
+    script.voice_command_show_cameras_on_man_cave_tablet:
+      name: Automation - Show Cameras on the Man Cave Tablet
     script.set_automation_mode_sleep:
       name: Trigger Sleep Mode
       expose: true

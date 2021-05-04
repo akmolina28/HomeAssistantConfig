@@ -1,9 +1,0 @@
-title: Vacuum
-path: vacuum
-icon: mdi:robot-vacuum
-cards:
-- type: vertical-stack
-  cards:
-  - !include /config/lovelace/tiles/vacuum-status-report-card.yaml
-  - !include /config/lovelace/tiles/vacuum-action-card.yaml
-

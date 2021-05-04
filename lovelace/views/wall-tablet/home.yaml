@@ -10,108 +10,218 @@ cards:
     - type: custom:hui-weather-forecast-card
       entity: weather.openweathermap
       name: Pensacola, FL
-    - type: custom:hui-entities-card
-      title: Home Automation Profile
-      entities:
-      - !include /config/lovelace/tiles/automation-mode-card.yaml
-      style: |
-        .card-header {
-          padding-top: 10px;
-        }
-    - !include /config/lovelace/tiles/doors-and-locks.yaml
-    - type: custom:hui-entities-card
-      title: Lights
-      entities:
-      - type: custom:hui-horizontal-stack-card
+    - type: custom:hui-horizontal-stack-card
+      cards:
+      - !include /config/lovelace/tiles/doors-and-locks.yaml
+      - type: grid
+        title: Automations
+        columns: 3
         cards:
         - type: "custom:button-card"
           color_type: card
-          name: Lights On
-          size: 100%
+          entity: switch.chill_mode
+          name: Wind Down
+          size: 60%
+          aspect_ratio: 1/1
           show_state: false
           tap_action:
-            action: call-service
-            service: script.turn_on
-            service_data:
-              entity_id: script.great_room_smart_toggle
+            action: toggle
           hold_action:
             action: more-info
-          icon: mdi:lightbulb-on
+          icon: mdi:meditation
           styles:
-            icon:
-            - color: white
-            name:
-            - color: white
             card:
-            - height: 100px
             - background-color: var(--paper-card-background-color)
             - -webkit-box-shadow: 0px 0px 0px 0px
             - box-shadow: 0px 0px 0px 0px
-        - type: conditional
-          conditions:
-          - entity: sun.sun
-            state: below_horizon
-          card:
-            type: "custom:button-card"
-            color_type: card
-            entity: switch.chill_mode
-            name: Wind Down
-            size: 100%
-            show_state: false
-            tap_action:
-              action: toggle
-            hold_action:
-              action: more-info
-            icon: mdi:meditation
-            styles:
-              card:
-              - height: 100px
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px
-              - box-shadow: 0px 0px 0px 0px
-            state:
-            - value: 'on'
-              styles:
-                icon:
-                - color: var(--secondary-text-color)
-        - type: "custom:button-card"
-          color_type: card
-          entity: switch.great_room_shuffler
-          name: Disco
-          show_state: false
-          icon: mdi:decagram
-          hold_action:
-            action: more-info
           state:
           - value: 'on'
-            spin: true
             styles:
               icon:
-              - color: pink
-              name:
-              - color: pink
-              card:
-              - height: 100px
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-          - operator: template
-            value: >
-              [[[
-                return true;
-              ]]]
-            spin: false
-            styles:
-              icon:
-              - color: var(--primary-text-color)
-              name:
-              - color: var(--primary-text-color)
-              card:
-              - height: 100px
-              - background-color: var(--paper-card-background-color)
-              - -webkit-box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-              - box-shadow: 0px 0px 0px 0px var(--button-card-light-color)
-      style: |
-        .card-header {
-          padding-top: 10px;
-        }
+              - color: var(--secondary-text-color)
+        - type: conditional
+          conditions:
+          - entity: input_select.automation_mode
+            state_not: 'away'
+          card:
+            type: button
+            name: Set Away
+            icon: mdi:exit-run
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/kiosk/wall-tablet/away-mode
+        - type: conditional
+          conditions:
+          - entity: input_select.automation_mode
+            state: 'away'
+          card:
+            type: button
+            name: Set Home
+            icon: mdi:home
+            tap_action:
+              action: call-service
+              service: mqtt.publish
+              service_data:
+                topic: /hass/kiosk/wall-tablet/home-mode
+        - type: button
+          entity: input_boolean.wall_tablet_screensaver
+          name: Screen Saver
+          tap_action:
+            action: call-service
+            service: mqtt.publish
+            service_data:
+              topic: /hass/kiosk/wall-tablet/toggle-screensaver
+    - type: grid
+      title: Lights & Devices
+      columns: 6
+      cards:
+      - type: button
+        entity: group.all_living_room_lights
+        icon: mdi:sofa
+        name: Great Room
+        tap_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/smart-light-toggle/great-room
+        hold_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/scene/great-room/bright
+      - type: button
+        entity: group.kitchen_lights
+        icon: mdi:silverware-fork-knife
+        name: Kitchen
+        tap_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/smart-light-toggle/kitchen
+        hold_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/scene/kitchen/bright
+      - type: button
+        entity: group.master_bedroom_lights
+        icon: mdi:bed-king
+        name: Bedroom
+        tap_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/smart-light-toggle/bedroom
+        hold_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/scene/master-bedroom/bright
+      - type: button
+        entity: group.man_cave_lights
+        icon: mdi:guitar-acoustic
+        name: Man Cave
+        tap_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/smart-light-toggle/man-cave
+      - type: button
+        entity: group.guest_room_lights
+        icon: mdi:bed-double
+        name: Guest Room
+        tap_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/smart-light-toggle/guest-room
+      - type: button
+        entity: group.garage_lights
+        icon: mdi:garage
+        name: Garage
+        tap_action:
+          action: call-service
+          service: mqtt.publish
+          service_data:
+            topic: /hass/smart-light-toggle/garage
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        name: Thermostat
+        icon: mdi:thermostat
+        entity: climate.thermostat
+        size: 60%
+        styles:
+          icon:
+          - color: var(--primary-color)
+        state:
+        - value: 'unavailable'
+          styles:
+            icon:
+            - color: var(--status-color-alert)
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        name: Air Purifier
+        icon: mdi:air-purifier
+        entity: switch.ikea_outlet_2
+        size: 60%
+        state:
+        - value: 'on'
+          styles:
+            icon:
+            - color: var(--primary-color)
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        name: TV
+        icon: mdi:television
+        entity: media_player.living_room_tv
+        tap_action:
+          action: call-service
+          service: media_player.toggle
+          service_data:
+            entity_id: media_player.living_room_tv
+        size: 60%
+        state:
+        - value: 'on'
+          styles:
+            icon:
+            - color: var(--primary-color)
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        name: Receiver
+        icon: mdi:audio-video
+        entity: media_player.denon_avr_s640h
+        tap_action:
+          action: call-service
+          service: media_player.toggle
+          service_data:
+            entity_id: media_player.denon_avr_s640h
+        size: 60%
+        state:
+        - value: 'on'
+          styles:
+            icon:
+            - color: var(--primary-color)
+      - type: custom:button-card
+        aspect_ratio: 1/1
+        name: Vacuum
+        icon: mdi:robot-vacuum
+        entity: vacuum.isuck
+        size: 60%
+        styles:
+          icon:
+          - color: var(--primary-color)
+        state:
+        - value: 'docked'
+          styles:
+            icon:
+            - color: var(--primary-text-color)
+      # - type: button
+      #   icon: mdi:weather-sunny
+      #   name: Warm White
+      #   tap_action:
+      #     action: call-service
+      #     service: scene.turn_on
+      #     service_data:
+      #       entity_id: scene.great_room_scene_warm_white

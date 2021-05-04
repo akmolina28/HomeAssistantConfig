@@ -41,7 +41,7 @@ garage_lights_and_switches:
   entities:
   - light.flex_strip_112
   - switch.ikea_outlet_101
-  - switch.ikea_outlet_103_BAK
+  - switch.ikea_outlet_103
 
 garage_lights:
   name: Garage Lights
@@ -59,12 +59,19 @@ all_light_switches:
   - switch.ikea_smart_plug_101
 
 master_bedroom_lights_and_switches:
-  name: Master Bedroom Lights
+  name: Master Bedroom Lights and Switches
   entities:
   - light.kp_bedside
   - light.andrew_bedside
   - switch.master_bedroom_light
   - switch.master_bedroom_fan
+
+master_bedroom_lights:
+  name: Master Bedroom Lights
+  entities:
+  - light.kp_bedside
+  - light.andrew_bedside
+  - switch.master_bedroom_light
 
 master_bedroom_lamps:
   name: Master Bedroom Lamps
@@ -117,5 +124,4 @@ all_living_room_lights:
   - light.flex_strip_109
   - light.flex_strip_110
   - light.flex_strip_105
-  - light.hue_color_a19_102
-  - light.hue_color_a19_103
+  - light.living_room_lamps_deconz

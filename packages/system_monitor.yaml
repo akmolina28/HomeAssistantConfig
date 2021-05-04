@@ -84,4 +84,7 @@ proxmoxve:
   nodes:
   - node: 'proxmox'
     vms:
-    - 105
+    - 101
+    containers:
+    - 102
+    - 103

@@ -9,8 +9,8 @@
   - 'beat'
 
 - platform: rest
-  name: Lenovo Tablet 1001 Kiosk Device Info
-  resource: !secret rest_url_lenovo_tablet_1001_kiosk_device_info
+  name: Wall Tablet Kiosk Device Info
+  resource: !secret rest_url_wall_tablet_kiosk_device_info
   json_attributes:
   - screenBrightness
   - currentPage
@@ -42,8 +42,8 @@
   value_template: 'OK'
 
 - platform: rest
-  name: Samsung Tablet 1002 Kiosk Device Info
-  resource: !secret rest_url_samsung_tablet_1002_kiosk_device_info
+  name: Man Cave Tablet Kiosk Device Info
+  resource: !secret rest_url_man_cave_tablet_kiosk_device_info
   json_attributes:
   - screenBrightness
   - currentPage
@@ -74,30 +74,14 @@
   value_template: 'OK'
 
 - platform: rest
-  name: Fire Tablet 701 Kiosk Device Info
-  resource: !secret rest_url_fire_tablet_701_kiosk_device_info
-  json_attributes:
-  - screenBrightness
-  - currentPage
-  - ip4
-  - mac
-  - screenOn
-  - batteryLevel
-  - deviceID
-  - maintenanceMode
-  - deviceManufacturer
-  - deviceModel
-  value_template: 'OK'
-
-- platform: rest
   name: Last Watch AI Alive
   resource: !secret last_watch_alive
   value_template: 'OK'
 
 - platform: template
   sensors:
-    is_weekday:
-      value_template: '{{ now().weekday() < 5 }}'
+    always_off:
+      value_template: '{{ "off" }}'
     month:
       value_template: >
         {% if (now().month == 1) %}

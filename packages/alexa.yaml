@@ -7,7 +7,7 @@ alexa:
       - switch.kitchen_overhead_lights
       - light.kitchen_table_lights
       - switch.ikea_outlet_103
-      - group.living_room_lamps
+      - light.living_room_lamps_deconz
       - script.lighting_scene_kitchen_lights_on
       - script.lighting_scene_kitchen_lights_off
       - script.lighting_scene_common_area_full_brightness
@@ -52,7 +52,7 @@ alexa:
         name: Christmas Tree
         description: Christmas tree smart plug
         display_categories: SMARTPLUG
-      group.living_room_lamps:
+      light.living_room_lamps_deconz:
         name: Living Room Lamps
         description: Lamps in the living room
         display_categories: LIGHT

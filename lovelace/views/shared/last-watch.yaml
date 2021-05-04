@@ -3,4 +3,4 @@ path: last-watch
 panel: true
 cards:
 - type: iframe
-  url: http://192.168.1.31:8080
+  url: http://192.168.1.96

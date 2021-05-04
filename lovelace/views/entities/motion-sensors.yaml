@@ -4,73 +4,96 @@ icon: mdi:eye
 panel: false
 cards:
 
-- type: entities
+- type: glance
   title: Hue 100
-  show_header_toggle: false
   entities:
   - binary_sensor.hue_100_motion
   - sensor.hue_100_temp
   - sensor.hue_100_lux
   - sensor.hue_100_battery_level
 
-- type: entities
+- type: glance
   title: Hue 101
-  show_header_toggle: false
   entities:
   - binary_sensor.hue_101_motion
   - sensor.hue_101_temp
   - sensor.hue_101_lux
   - sensor.hue_101_battery_level
 
-- type: entities
+- type: glance
   title: Hue 103
-  show_header_toggle: false
   entities:
   - binary_sensor.hue_103_motion
   - sensor.hue_103_temp
   - sensor.hue_103_lux
   - sensor.hue_103_battery_level
 
-- type: entities
+- type: glance
   title: Hue 104
-  show_header_toggle: false
   entities:
   - binary_sensor.hue_104_motion
   - sensor.hue_104_temp
   - sensor.hue_104_lux
   - sensor.hue_104_battery_level
 
-- type: entities
+- type: glance
   title: Hue 105
-  show_header_toggle: false
   entities:
   - binary_sensor.hue_105_motion
   - sensor.hue_105_temp
   - sensor.hue_105_lux
   - sensor.hue_105_battery_level
 
-- type: entities
+- type: glance
   title: Hue 201
-  show_header_toggle: false
   entities:
   - binary_sensor.hue_201_motion
   - sensor.hue_201_temp
   - sensor.hue_201_lux
   - sensor.hue_201_battery_level
 
-- type: entities
+- type: glance
   title: Hue 202
-  show_header_toggle: false
   entities:
-  - binary_sensor.hue_201_motion
-  - sensor.hue_201_temp
-  - sensor.hue_201_lux
-  - sensor.hue_201_battery_level
+  - binary_sensor.hue_202_motion
+  - sensor.hue_202_temp
+  - sensor.hue_202_lux
+  - sensor.hue_202_battery_level
 
-- type: entities
+- type: glance
   title: SmartThings 201
-  show_header_toggle: false
   entities:
   - binary_sensor.smartthings_201_openclose
   - sensor.smartthings_201_temp
   - binary_sensor.smartthings_201_vibration
+
+- type: glance
+  title: Ecobee Sensors
+  entities:
+  - binary_sensor.man_cave_occupancy
+  - binary_sensor.bedroom_occupancy
+  
+- type: glance
+  title: AI - Great Room
+  entities:
+  - binary_sensor.ai_great_room_person_occupancy
+  
+- type: glance
+  title: AI - Driveway
+  entities:
+  - entity: binary_sensor.ai_driveway_car_occupancy
+    name: Car Occupancy
+  - entity: binary_sensor.ai_driveway_car_motion
+    name: Car Motion
+  - entity: binary_sensor.ai_driveway_person_occupancy
+    name: Person
+
+- type: glance
+  title: AI - Garage
+  entities:
+  - entity: binary_sensor.ai_garage_car_occupancy
+    name: Car Occupancy
+  - entity: binary_sensor.ai_garage_car_motion
+    name: Car Motion
+  - entity: binary_sensor.ai_garage_person_occupancy
+    name: Person

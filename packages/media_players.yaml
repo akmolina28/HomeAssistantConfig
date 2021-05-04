@@ -1,7 +1,7 @@
 automation:
 - alias: Turn off Air Purifier when TV turns on
   trigger:
-  - entity_id: media_player.living_room_receiver
+  - entity_id: media_player.denon_avr_s640h
     from: 'off'
     platform: state
     to: 'on'
@@ -17,7 +17,7 @@ automation:
 
 - alias: Turn on ambient lights when TV turns on
   trigger:
-  - entity_id: media_player.living_room_receiver
+  - entity_id: media_player.denon_avr_s640h
     from: 'off'
     platform: state
     to: 'on'
@@ -31,7 +31,7 @@ automation:
 
 - alias: Turn off ambient lights when TV turns off
   trigger:
-  - entity_id: media_player.living_room_receiver
+  - entity_id: media_player.denon_avr_s640h
     to: 'off'
     platform: state
     from: 'on'
@@ -47,33 +47,8 @@ automation:
   - service: light.turn_off
     entity_id: light.flex_strip_105
 
-switch:
+sensor:
 - platform: template
-  switches:
-    living_room_tv_power:
-      value_template: "{{ is_state('media_player.living_room_tv', 'on') }}"
-      turn_on:
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.living_room_tv
-      turn_off:
-        service: media_player.turn_off
-        data:
-          entity_id: media_player.living_room_tv
-      icon_template: >-
-        {% if is_state('media_player.living_room_tv', 'on') %}
-          mdi:television-classic
-        {% else %}
-          mdi:television-classic-off
-        {% endif %}
-    living_room_receiver_power:
-      value_template: "{{ is_state('media_player.living_room_receiver', 'on') }}"
-      turn_on:
-        service: media_player.turn_on
-        data:
-          entity_id: media_player.living_room_receiver
-      turn_off:
-        service: media_player.turn_off
-        data:
-          entity_id: media_player.living_room_receiver
-      icon_template: '{{ "mdi:set-top-box" }}'
+  sensors:
+    living_room_tv_volume:
+      value_template: "{{ state_attr('media_player.living_room_tv', 'volume_level') * 100 }}"

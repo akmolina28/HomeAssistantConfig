@@ -8,8 +8,8 @@ cards:
   title: Wall Tablet
   icon: mdi:tablet-dashboard
   entities:
-  - sensor.lenovo_tablet_1001_kiosk_device_info
-  - light.lenovo_tablet_1001_backlight
+  - sensor.wall_tablet_kiosk_device_info
+  - light.wall_tablet_backlight
 
 - type: entities
   title: Kitchen Tablet
@@ -29,12 +29,5 @@ cards:
   title: Man-cave Tablet
   icon: mdi:tablet-dashboard
   entities:
-  - sensor.samsung_tablet_1002_kiosk_device_info
-  - light.samsung_tablet_1002_backlight
-
-- type: entities
-  title: Great Room Tablet
-  icon: mdi:tablet-dashboard
-  entities:
-  - sensor.fire_tablet_702_kiosk_device_info
-  - light.fire_tablet_702_backlight
+  - sensor.man_cave_tablet_kiosk_device_info
+  - light.man_cave_tablet_backlight

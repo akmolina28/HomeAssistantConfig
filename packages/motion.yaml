@@ -1,13 +1,3 @@
-input_number:
-  man_cave_light_timeout_seconds:
-    name: Man Cave Lights Timeout
-    min: 0
-    max: 86400
-  hue_201_motion_sensitivity:
-    name: Garage Motion Sensor Sensitivity
-    min: 0
-    max: 4
-
 group:
   indoor_motion_sensors:
     name: Indoor Motion Sensors

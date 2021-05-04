@@ -16,11 +16,24 @@
 #
 ###################################################################
 
-vacuum:
-- platform: xiaomi_miio
-  host: 192.168.1.99
+# vacuum:
+# - platform: xiaomi_miio
+#   host: 192.168.1.99
+#   token: !secret xiaomi_vacuum_token
+#   name: iSuck
+
+camera:
+- platform: xiaomi_cloud_map_extractor
+  host: !secret xiaomi_vacuum_host
   token: !secret xiaomi_vacuum_token
-  name: iSuck
+  username: !secret xiaomi_cloud_username
+  password: !secret xiaomi_cloud_password
+  name: iSuck Map
+  draw: ['all']
+  colors:
+    color_map_outside: [255, 255, 255, 1]
+  attributes:
+    - calibration_points    
 
 input_datetime:
   isuck_last_clean_time:
@@ -58,7 +71,6 @@ sensor:
         {% if (states("vacuum.isuck") != 'docked') %}
           not_due
         {% else %}
-        
           {% set now = as_timestamp(states("sensor.date_time_iso")) | float %}
           {% set then = as_timestamp(states("input_datetime.isuck_last_clean_time")) | float %}
           {% set hours_since_last_clean = ((now - then) / 3600) | round(0) %}
@@ -69,174 +81,7 @@ sensor:
           {% else %}
             overdue
           {% endif %}
-
         {% endif %}
-
-automation:
-- alias: iSuck Brush Boolean Turns On - Push Notification
-  trigger:
-  - entity_id: input_boolean.isuck_brush_dirty
-    platform: state
-    from: 'off'
-    to: 'on'
-  action:
-  - data:
-      title: iSuck Brush Dirty
-      message: iSuck brush is dirty. Clean it before next cleanup.
-      data:
-        url: /lovelace/vacuum
-        actions:
-        - action: complete_isuck_brush_dirty
-          title: Mark Complete
-        tag: isuck-brush-dirty
-    service: notify.mobile_app_galaxy_s10_mobile_app
-
-- alias: iSuck Brush Boolean Notification Complete Event - Turn Off Boolean
-  trigger:
-  - event_data:
-      action: complete_isuck_brush_dirty
-    event_type: html5_notification.clicked
-    platform: event
-  action:
-  - data:
-      entity_id: input_boolean.isuck_brush_dirty
-    service: input_boolean.turn_off
-
-- alias: iSuck Dust Bin Boolean Turns On - Push Notification
-  trigger:
-  - entity_id: input_boolean.isuck_dust_bin_full
-    platform: state
-    from: 'off'
-    to: 'on'
-  action:
-  - data:
-      title: iSuck Dust Bin Full
-      message: iSuck dust bin is full. Empty it before next cleanup.
-      data:
-        url: /lovelace/vacuum
-        actions:
-        - action: complete_isuck_dust_bin
-          title: Empty Dust Bin
-        tag: isuck-dust-bin-full
-    service: notify.mobile_app_galaxy_s10_mobile_app
-
-- alias: iSuck Dust Bin Boolean Notification Complete Event - Turn Off Boolean
-  trigger:
-  - event_data:
-      action: complete_isuck_dust_bin
-    event_type: html5_notification.clicked
-    platform: event
-  action:
-  - service: script.vacuum_go_to_trash_can
-
-- alias: iSuck Dust Bin Boolean Turns Off - Dismiss Notification
-  trigger:
-  - platform: state
-    entity_id: input_boolean.isuck_dust_bin_full
-    from: 'on'
-    to: 'off'
-  action:
-  - service: notify.html5_dismiss
-    data:
-      data:
-        tag: isuck-dust-bin-full
-
-- alias: Chore Reminder - Vacuum Cleaning Due Notification
-  trigger:
-  - platform: time
-    at: 08:00:00
-  - platform: time
-    at: '16:00:00'
-  condition:
-  - condition: template
-    value_template: '{{ states("sensor.vacuum_cleaning_due") != "not_due"}}'
-  - condition: state
-    entity_id: person.andrew
-    state: home
-  action:
-  - service: notify.html5_notifications
-    data_template:
-      title: iSuck Cleaning Due Today
-      message: The house is due for a cleaning today. The last cleaning was {{ states("sensor.vacuum_hours_since_last_clean") }} hours ago.
-      data:
-        url: /lovelace/vacuum
-        icon: /local/images/icons/roborock-icon.jpg
-        actions:
-        - action: start_isuck_cleaning
-          title: Start Cleaning
-        tag: isuck-cleaning-due
-
-- alias: Vacuum Cleaning Due Notification Complete Event - Start Cleaning
-  trigger:
-  - event_data:
-      action: start_isuck_cleaning
-    event_type: html5_notification.clicked
-    platform: event
-  condition:
-  - condition: state
-    entity_id: vacuum.isuck
-    state: docked
-  action:
-  - data:
-      entity_id: vacuum.isuck
-    service: vacuum.start
-
-- alias: Vacuum Cleaning Starts - Dismiss Notifications
-  trigger:
-  - entity_id: vacuum.isuck
-    platform: state
-    to: cleaning
-  action:
-  - data:
-      data:
-        tag: isuck-cleaning-due
-    service: notify.html5_dismiss
-
-- alias: iSuck Large Clean Complete
-  trigger:
-    platform: state
-    entity_id: vacuum.isuck
-    from: cleaning
-    to: returning
-  condition:
-  - condition: template
-    value_template: '{{ state_attr(''vacuum.isuck'', ''cleaned_area'') > 70 }}'
-  action:
-  - service: input_datetime.set_datetime
-    entity_id: input_datetime.isuck_last_clean_time
-    data_template:
-      time: '{{ (as_timestamp(state_attr("vacuum.isuck", "clean_start")) | timestamp_custom("%H:%M:%S", true)) }}'
-      date: '{{ (as_timestamp(state_attr("vacuum.isuck", "clean_start")) | timestamp_custom("%Y-%m-%d", true)) }}'
-  - service: input_boolean.turn_on
-    data:
-      entity_id: input_boolean.isuck_brush_dirty
-  - service: input_boolean.turn_off
-    data:
-      entity_id: input_boolean.isuck_cleaning_due
-
-- alias: iSuck Medium Clean Complete
-  trigger:
-    platform: state
-    entity_id: vacuum.isuck
-    from: cleaning
-    to: returning
-  condition:
-  - condition: template
-    value_template: '{{ state_attr(''vacuum.isuck'', ''cleaned_area'') > 10 }}'
-  action:
-  - service: input_boolean.turn_on
-    data:
-      entity_id: input_boolean.isuck_dust_bin_full
-
-- alias: Vacuum Cleaning Due - Set Boolean
-  trigger:
-    platform: state
-    entity_id: sensor.vacuum_cleaning_due
-    from: 'not_due'
-  action:
-    service: input_boolean.turn_on
-    data:
-      entity_id: input_boolean.isuck_cleaning_due
 
 script:
   vacuum_start_cleanup:

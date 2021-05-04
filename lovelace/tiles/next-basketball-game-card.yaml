@@ -1,0 +1,72 @@
+type: "custom:button-card"
+color_type: card
+entity: calendar.men_s_basketball_floridagators_com
+show_label: true
+name: Game Day
+icon: mdi:basketball
+tap_action:
+  action: more-info
+styles:
+  card:
+  - background-color: var(--paper-card-background-color)
+  - -webkit-box-shadow: 0px 0px 0px 0px
+  - box-shadow: 0px 0px 0px 0px
+  label:
+  - color: var(--primary-text-color)
+state:
+- operator: template
+  value: >
+    [[[
+      return states['binary_sensor.basketball_game_today'].state === 'on';
+    ]]]
+  styles:
+    icon:
+    - color: '#0021A5'
+    name:
+    - color: '#0021A5'
+    card:
+    - background-color: '#FA4616'
+  label: >
+    [[[
+      var d = states['calendar.men_s_basketball_floridagators_com'].attributes.start_time;
+      return d.substr(11, 5);
+    ]]]
+- operator: template
+  value: >
+    [[[
+      return states['binary_sensor.basketball_game_today'].state === 'off' && states['sensor.next_basketball_game'] > 0;
+    ]]]
+  styles:
+    icon:
+    - color: var(--disabled-text-color)
+    name:
+    - color: var(--disabled-text-color)
+  label: >
+    [[[
+      return "In " + states['sensor.next_basketball_game'].state + " day(s)";
+    ]]]
+- operator: template
+  value: >
+    [[[
+      return states['binary_sensor.basketball_game_today'].state === 'off' && states['sensor.next_basketball_game'].state < 0;
+    ]]]
+  styles:
+    icon:
+    - color: var(--disabled-text-color)
+    name:
+    - color: var(--disabled-text-color)
+  label: >
+    [[[
+      return "Next Game TBA"
+    ]]]
+- operator: template
+  value: >
+    [[[
+      return states['binary_sensor.basketball_game_today'].state === 'unavailable';
+    ]]]
+  styles:
+    icon:
+    - color: var(--status-color-warning)
+    name:
+    - color: var(--status-color-warning)
+  label: 'Unavailable'
