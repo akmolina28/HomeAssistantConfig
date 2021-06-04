@@ -21,7 +21,9 @@ lovelace:
     type: module
   - url: /local/simple-thermostat.js?v=0.35.0
     type: module
-  - url: /local/mini-graph-card-bundle.js?v=0.9.3
+  - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
+    type: module
+  - url: /local/community/uptime-card/uptime-card.js
     type: module
   - url: /local/community/mini-media-player/mini-media-player-bundle.js
     type: module
@@ -36,6 +38,8 @@ lovelace:
   - url: /local/alarm_control_panel-card.js?v=1.0.2
     type: js
   - url: /local/custom-header.js?v=123
+    type: module
+  - url: /local/boilerplate-card.js
     type: module
   dashboards:
     all-entities:
@@ -141,5 +145,26 @@ lovelace:
       filename: cameras.yaml
       title: Cameras
       icon: mdi:camera-burst
+      show_in_sidebar: false
+      require_admin: false
+    sub-alarm-panel:
+      mode: yaml
+      filename: alarm-panel.yaml
+      title: Alarm
+      icon:  mdi:shield-home
+      show_in_sidebar: false
+      require_admin: false
+    sub-status:
+      mode: yaml
+      filename: status.yaml
+      title: Status
+      icon:  mdi:heart-pulse
+      show_in_sidebar: false
+      require_admin: false
+    sub-mealplan:
+      mode: yaml
+      filename: mealplan.yaml
+      title: Meal Plan
+      icon:  mdi:silverware-fork-knife
       show_in_sidebar: false
       require_admin: false

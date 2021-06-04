@@ -1,0 +1,49 @@
+type: "custom:homekit-card"
+style: !include /config/lovelace/homekit/styles.yaml
+home: false
+title: Home
+useBrightness: true
+useTemperature: true
+titleColor: '#FFF'
+statePositionTop: false
+tileHoldAnimation: true
+entities:
+- title: Favorites
+  icon: mdi:star
+  entities:
+  - type: button
+    name: KP Lamp
+    icon: mdi:lamp
+    entity: light.kp_bedside
+    slider: true
+    double_tap_action:
+      action: popup
+  - type: button
+    entity: light.andrew_bedside
+    name: Andrew Lamp
+    icon: mdi:lamp
+    slider: true
+    double_tap_action:
+      action: popup
+  - type: button
+    entity: switch.master_bedroom_fan
+    name: Fan
+    icon: 'mdi:fan'
+    spin: true
+    tap_action:
+      action: call-service
+      service: switch.toggle
+      haptic: medium
+      service_data:
+        entity_id: switch.master_bedroom_fan
+  - type: button
+    entity: switch.mute_wall_tablet
+    name: Mute Chimes
+    tap_action:
+      action: call-service
+      service: switch.toggle
+      haptic: medium
+      service_data:
+        entity_id: switch.mute_wall_tablet
+  - !include /config/lovelace/homekit/tiles/automations.yaml
+  - !include /config/lovelace/homekit/tiles/security.yaml

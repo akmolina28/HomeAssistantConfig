@@ -1,0 +1,32 @@
+card: 'custom:button-card'
+conditionalClass: |
+  [[[ 
+    if (states['alarm_control_panel.home_alarm'].state == "disarmed")
+      return "success-bg";
+    return "alert-bg";
+  ]]]
+tap_action:
+  haptic: selection
+  action: navigate
+  navigation_path: /sub-security/0
+hold_action:
+  haptic: selection
+  action: navigate
+  navigation_path: /sub-security/0
+cardOptions:
+  name: Security
+  icon: 'mdi:shield-home'
+  size: 80%
+  show_name: true
+  show_state: false
+  show_label: false
+  styles:
+    card:
+      - '-webkit-box-shadow': none
+      - box-shadow: none
+      - background-color: 'rgba(255, 255, 255, 0.0)'
+    icon:
+      - color: 'rgb(255, 255, 255, 0.7)'
+    name:
+      - font-family: Arial
+      - color: 'rgb(255, 255, 255, 0.7)'

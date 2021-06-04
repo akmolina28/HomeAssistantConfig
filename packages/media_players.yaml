@@ -15,40 +15,11 @@ automation:
       entity_id: switch.ikea_outlet_2
     service: switch.turn_off
 
-- alias: Turn on ambient lights when TV turns on
-  trigger:
-  - entity_id: media_player.denon_avr_s640h
-    from: 'off'
-    platform: state
-    to: 'on'
-  - entity_id: media_player.living_room_tv
-    from: 'off'
-    platform: state
-    to: 'on'
-  action:
-  - service: light.turn_on
-    entity_id: light.flex_strip_105
-
-- alias: Turn off ambient lights when TV turns off
-  trigger:
-  - entity_id: media_player.denon_avr_s640h
-    to: 'off'
-    platform: state
-    from: 'on'
-    for:
-      minutes: 1
-  - entity_id: media_player.living_room_tv
-    to: 'off'
-    platform: state
-    from: 'on'
-    for:
-      minutes: 1
-  action:
-  - service: light.turn_off
-    entity_id: light.flex_strip_105
-
 sensor:
 - platform: template
   sensors:
     living_room_tv_volume:
-      value_template: "{{ state_attr('media_player.living_room_tv', 'volume_level') * 100 }}"
+      value_template: >
+        {% if states("media_player.living_room_tv") == 'on' %}
+          {{ state_attr('media_player.living_room_tv', 'volume_level') * 100 }}
+        {% endif %}

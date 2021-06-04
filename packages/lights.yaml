@@ -82,6 +82,16 @@ light:
   - light.flex_strip_110
   - light.flex_strip_105
 - platform: group
+  name: Great Room All Lights
+  entities:
+  - light.flex_strip_104
+  - light.flex_strip_108
+  - light.flex_strip_107
+  - light.flex_strip_109
+  - light.flex_strip_110
+  - light.flex_strip_105
+  - light.living_room_lamps_deconz
+- platform: group
   name: Kitchen Lights
   entities:
   - light.kitchen_bar_lights

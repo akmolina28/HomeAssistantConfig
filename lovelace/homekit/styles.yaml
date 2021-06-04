@@ -1,0 +1,85 @@
+|
+  :host {
+    --tile-background: rgba(255, 255, 255, 0.10);
+    --tile-border-radius: 12px;
+    --tile-width: 100px;
+    --tile-height: 100px;
+    --tile-on-background: rgba(255, 255, 255, 0.7);
+
+    --tile-name-text-color: rgba(255, 255, 255, 0.8);
+    --tile-on-name-text-color: rgba(0, 0, 0, 1);
+
+    --tile-state-text-color: rgba(255, 255, 255, 0.8);
+    --tile-on-state-text-color: rgba(0, 0, 0, 1);
+
+    --tile-state-changed-text-color: rgb(134, 134, 134);
+    --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
+
+    --tile-value-text-color: var(--secondary-text-color);
+
+
+    --tile-icon-color: rgba(255, 255, 255, 0.8);
+    --tile-on-icon-color: var(--primary-color) !important;
+    font-family: Arial;
+  }
+  .top-fav {
+    background-color: rgba(255, 255, 230,0.5) !important;
+  }
+  .button.no-padding.camera-iframe {
+    height: 358px!important;
+  }
+  homekit-button.red-icon .icon.on {
+    color: var(--status-color-alert);
+  }
+  .scene-button {
+    height: 65px !important;
+  }
+  .grad-amber {
+    background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(255,204,110,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-slate {
+    background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(30,30,30,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-focus {
+    background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(230,255,230,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-warm {
+    background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(255,220,200,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-sweet-tart {
+    background: linear-gradient(160deg, rgba(255,0,195,0.8) 0%, rgba(0,190,255,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-neon-rose {
+    background: linear-gradient(160deg, rgba(255,143,161,0.8) 0%, rgba(154,255,143,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-uranium-2 {
+    background: linear-gradient(160deg, rgba(210, 75, 255,0.8) 0%, rgba(230, 255, 58,0.8) 100%, rgba(51,51,51,0.8) 100%);
+  }
+  .grad-blue-flame {
+    background: linear-gradient(160deg, rgba(0, 0, 255,0.8) 0%, rgba(255, 128, 0,0.8) 50%, rgba(255,0,0,0.8) 100%);
+  }
+  .sub-menu {
+    background-color: var(--primary-color) !important;
+  }
+  .success-bg {
+    background-color: var(--status-color-success) !important;
+  }
+  .alert-bg {
+    background-color: rgba(230, 0, 0,0.7) !important;
+  }
+  .off-bg {
+    background-color: rgba(255, 255, 255, 0.10) ;
+  }
+  .hideState .state {
+    visibility:hidden !important;
+  }
+  homekit-button .icon.climate {
+    background-color: var(--primary-color) !important;
+  }
+  homekit-button .icon {
+    height: calc(var(--tile-icon-size, 30px) + 14px) !important;
+    width: calc(var(--tile-icon-size, 30px) + 14px) !important;
+  }
+  homekit-button.action-button .state {
+    display: none;
+  }

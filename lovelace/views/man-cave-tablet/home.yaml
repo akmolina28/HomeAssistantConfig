@@ -13,6 +13,9 @@ cards:
         entity: weather.openweathermap
         name: Pensacola
         show_forecast: false
+      # - type: custom:bi-cliplist
+        # name: 'Test'
+        # host: http://blueiris.local
     - type: custom:hui-vertical-stack-card
       cards:
       - type: grid

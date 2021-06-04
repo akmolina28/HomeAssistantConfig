@@ -3,5 +3,5 @@ path: doorbell-cameras
 panel: true
 cards:
 - type: iframe
-  url: !secret doorbell_480p_url
+  url: !secret doorbell_1080p_url
   aspect_ratio: '16:9'

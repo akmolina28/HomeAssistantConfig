@@ -5,6 +5,17 @@ input_number:
     max: 200000
 
 sensor:
+
+- platform: rest
+  name: Glances Uptime
+  resource: !secret rest_url_glances_uptime
+  value_template: '{{ value_json }}'
+
+- platform: rest
+  name: Glances C Total
+  resource: !secret rest_url_glances_c_total
+  value_template: '{{ ((value_json.size[0] | int) / 1074000000) | round(1) }}'
+
 - platform: systemmonitor
   resources:
   - type: disk_use_percent
@@ -26,6 +37,12 @@ sensor:
 
 - platform: template
   sensors:
+    diskstation_temp_celsius:
+      value_template: '{{ ((states("sensor.diskstation_temperature") | int - 32) * 5 / 9) | round(1) }}'
+    diskstation_drive_1_temp_celsius:
+      value_template: '{{ ((states("sensor.diskstation_drive_1_temperature") | int - 32) * 5 / 9) | round(1) }}'
+    diskstation_drive_2_temp_celsius:
+      value_template: '{{ ((states("sensor.diskstation_drive_2_temperature") | int - 32) * 5 / 9) | round(1) }}'
     proxmox_cpu_temp:
       value_template: '{{ states("input_number.cpu_temp") | multiply(0.001) | round(1) }}'
     disk_total_home:
@@ -44,9 +61,39 @@ sensor:
 
         {{ days | string + 'd ' + hours | string + 'h ' + minutes | string + 'm' }}
 
+    synology_uptime:
+      value_template: >
+        {% set current = as_timestamp(states("sensor.date_time_iso")) %}
+        {% set last_boot = as_timestamp(states("sensor.diskstation_last_boot")) %}
+        {% set span = (current - last_boot) / (60 * 60 * 24) %}
+        {% set days = span | round(0, 'floor') %}
+        {% set span = 24 * (span - days) %}
+        {% set hours = span | round(0, 'floor') %}
+        {% set span = 60 * (span - hours) %}
+        {% set minutes = span | round(0, 'floor') %}
+
+        {{ days | string + 'd ' + hours | string + 'h ' + minutes | string + 'm' }}
+
+
 homeassistant:
   customize:
     sensor.proxmox_cpu_temp:
+      templates:
+        unit_of_measurement: °C
+        device_class: temperature
+    sensor.glances_cpu_temp:
+      templates:
+        unit_of_measurement: °C
+        device_class: temperature
+    sensor.diskstation_drive_1_temp_celsius:
+      templates:
+        unit_of_measurement: °C
+        device_class: temperature
+    sensor.diskstation_drive_2_temp_celsius:
+      templates:
+        unit_of_measurement: °C
+        device_class: temperature
+    sensor.diskstation_temp_celsius:
       templates:
         unit_of_measurement: °C
         device_class: temperature

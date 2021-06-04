@@ -1,0 +1,57 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+custom_header:
+  exceptions:
+    - conditions:
+        user_agent: Android
+      config:
+        hide_header: true
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
+views:
+- icon: mdi:camera-burst
+  name: Meal Plan
+  path: mealplan
+  panel: true
+  cards:
+  - type: vertical-stack
+    cards:
+    - type: 'custom:button-card'
+      size: 25px
+      icon: 'mdi:close'
+      tap_action:
+        action: navigate
+        navigation_path: /
+      styles:
+        card:
+          - width: 40px
+          - height: 40px
+          - background-color: 'rgba(255,255,255,0)'
+          - box-shadow: none
+          - margin-bottom: '0px'
+        icon:
+          - margin-left: px
+    - type: markdown
+      content: '### Meal Plan'
+      card_mod:
+        style: |
+          ha-card {
+            background: rgba(0,0,0,0);
+            box-shadow: none;
+            padding: 0px;
+            margin-bottom: -35px;
+            top: -20px;
+            left: 5px;
+          }
+
+    - !include /config/lovelace/homekit/tiles/mealplan.yaml
+    - type: markdown
+      content: >-
+        ## [Edit Meal Plan](http://mealplanner.local/mealPlans)
+      style: |
+        ha-card { 
+          background: rgba(255, 255, 255, 0.1);
+          margin: 0 20px;
+          border-radius: 12px;
+        }

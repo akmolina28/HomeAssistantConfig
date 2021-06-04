@@ -5,10 +5,15 @@ custom_header:
         user_agent: Mobile
       config:
         hide_header: true
+    - conditions:
+        user_agent: Android
+      config:
+        hide_header: true
 views:
   - icon: mdi:mdi-home-automation
     name: Automations
     path: automations
+    panel: true
     badges: []
     cards:
     - type: vertical-stack
@@ -18,7 +23,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -29,50 +34,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true

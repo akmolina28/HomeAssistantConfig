@@ -26,6 +26,14 @@
   value_template: 'OK'
 
 - platform: rest
+  name: Wall Tablet Kiosk Settings
+  resource: !secret rest_url_wall_tablet_kiosk_settings
+  json_attributes:
+  - timeToScreensaverV2
+  - timeToScreenOffV2
+  value_template: 'OK'
+
+- platform: rest
   name: Samsung Tablet 1001 Kiosk Device Info
   resource: !secret rest_url_samsung_tablet_1001_kiosk_device_info
   json_attributes:
@@ -77,6 +85,8 @@
   name: Last Watch AI Alive
   resource: !secret last_watch_alive
   value_template: 'OK'
+  json_attributes:
+  - message
 
 - platform: template
   sensors:

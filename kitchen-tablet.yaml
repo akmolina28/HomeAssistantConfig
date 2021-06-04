@@ -1,10 +1,58 @@
-title: Home Assistant
-# custom_header:
-#   compact_mode: true
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+title: Kitchen Tablet
+custom_header:
+  exceptions:
+    - conditions:
+        user_agent: Android
+      config:
+        hide_header: true
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
 views:
-- !include /config/lovelace/views/kitchen-tablet/home.yaml
-- !include /config/lovelace/views/shared/rooms.yaml
-- !include /config/lovelace/views/shared/meal-plan.yaml
-- !include /config/lovelace/views/shared/climate.yaml
-- !include /config/lovelace/views/shared/system-monitor.yaml
-- !include /config/lovelace/views/shared/network.yaml
+- title: Home
+  panel: true
+  badges: []
+  cards:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - type: custom:hui-vertical-stack-card
+        cards:
+        - type: "custom:homekit-card"
+          style: !include /config/lovelace/homekit/styles.yaml
+          home: false
+          titleColor: '#FFF'
+          entities:
+          - title: Home Assistant
+            entities:
+            - !include /config/lovelace/homekit/tiles/weather.yaml
+      - type: markdown
+        content: '### Meal Plan'
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(0,0,0,0);
+              box-shadow: none;
+              padding: 0px;
+              margin-bottom: -35px;
+              top: -20px;
+              left: 5px;
+            }
+      - !include /config/lovelace/homekit/tiles/mealplan_today.yaml
+      - !include /config/lovelace/homekit/kitchen-tablet-favorites.yaml
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - !include /config/lovelace/homekit/dashboard.yaml
+# title: Home Assistant
+# # custom_header:
+# #   compact_mode: true
+# views:
+# - !include /config/lovelace/views/kitchen-tablet/home.yaml
+# - !include /config/lovelace/views/shared/rooms.yaml
+# - !include /config/lovelace/views/shared/meal-plan.yaml
+# - !include /config/lovelace/views/shared/climate.yaml
+# - !include /config/lovelace/views/shared/system-monitor.yaml
+# - !include /config/lovelace/views/shared/network.yaml

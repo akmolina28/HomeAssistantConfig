@@ -1,13 +1,44 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
 title: Home Assistant
 custom_header:
-  compact_mode: true
+  exceptions:
+    - conditions:
+        user_agent: Android
+      config:
+        hide_header: true
+    - conditions:
+        user_agent: Mobile
+      config:
+        hide_header: true
 views:
-- !include /config/lovelace/views/wall-tablet/home.yaml
-- !include /config/lovelace/views/shared/cameras.yaml
-- !include /config/lovelace/views/shared/doorbell-cameras.yaml
-- !include /config/lovelace/views/shared/rooms.yaml
-- !include /config/lovelace/views/shared/climate.yaml
-- !include /config/lovelace/views/shared/chores.yaml
-- !include /config/lovelace/views/shared/meal-plan.yaml
-- !include /config/lovelace/views/shared/system-monitor.yaml
-- !include /config/lovelace/views/shared/network.yaml
+- title: Home
+  panel: true
+  badges: []
+  cards:
+  - type: custom:hui-horizontal-stack-card
+    cards:
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - type: custom:hui-vertical-stack-card
+        cards:
+        - type: "custom:homekit-card"
+          style: !include /config/lovelace/homekit/styles.yaml
+          home: false
+          titleColor: '#FFF'
+          entities:
+          - title: Home Assistant
+            entities:
+            - !include /config/lovelace/homekit/tiles/weather.yaml
+      - !include /config/lovelace/homekit/wall-tablet-favorites.yaml
+    - type: custom:hui-vertical-stack-card
+      cards:
+      - !include /config/lovelace/homekit/dashboard.yaml
+# - !include /config/lovelace/views/wall-tablet/home.yaml
+# - !include /config/lovelace/views/shared/cameras.yaml
+# - !include /config/lovelace/views/shared/doorbell-cameras.yaml
+# - !include /config/lovelace/views/shared/rooms.yaml
+# - !include /config/lovelace/views/shared/climate.yaml
+# - !include /config/lovelace/views/shared/chores.yaml
+# - !include /config/lovelace/views/shared/meal-plan.yaml
+# - !include /config/lovelace/views/shared/system-monitor.yaml
+# - !include /config/lovelace/views/shared/network.yaml

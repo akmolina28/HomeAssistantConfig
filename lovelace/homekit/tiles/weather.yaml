@@ -1,0 +1,17 @@
+card: custom:hui-weather-forecast-card
+entity: sensor.always_off
+offStates:
+- "off"
+cardOptions:
+  entity: weather.openweathermap
+  name: Pensacola, FL
+noPadding: true
+wider: true
+widerSize: 5
+higher: true
+higherSize: 2
+cardStyle: |
+  ha-card {
+    background: rgb(0, 0, 0, 0.0);
+    box-shadow: none;
+  }

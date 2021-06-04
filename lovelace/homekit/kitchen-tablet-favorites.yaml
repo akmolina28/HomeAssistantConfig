@@ -1,0 +1,69 @@
+type: "custom:homekit-card"
+style: !include /config/lovelace/homekit/styles.yaml
+home: false
+title: Home
+useBrightness: true
+useTemperature: true
+titleColor: '#FFF'
+statePositionTop: false
+tileHoldAnimation: true
+entities:
+- title: Favorites
+  icon: mdi:star
+  entities:
+  - entity: light.kitchen_cabinet_lights
+    name: Cabinet Lights
+    icon: mdi:wall-sconce-flat-variant
+    tap_action:
+      haptic: selection
+      action: toggle
+      entity: light.kitchen_cabinet_lights
+  - entity: light.kitchen_bar_lights
+    name: Bar Lights
+    icon: mdi:wall-sconce-flat
+    tap_action:
+      haptic: selection
+      action: toggle
+      entity: light.kitchen_bar_lights
+  - entity: light.kitchen_table_lights
+    name: Table Lights
+    icon: mdi:wall-sconce-round
+    slider: true
+    tap_action:
+      haptic: selection
+      action: toggle
+      entity: light.kitchen_table_lights
+  - entity: light.kitchen_overhead_lights
+    name: Overhead Lights
+    icon: mdi:ceiling-light
+    tap_action:
+      haptic: selection
+      action: toggle
+      entity: light.kitchen_overhead_lights
+  - card: 'custom:button-card'
+    conditionalClass: |
+      [[[
+        return "top-fav";
+      ]]]
+    tap_action:
+      action: navigate
+      haptic: selection
+      navigation_path: /sub-cameras/0
+    hold_action:
+      action: navigate
+      haptic: selection
+      navigation_path: /sub-cameras/0
+    cardOptions:
+      name: Cameras
+      icon: 'mdi:video'
+      size: 80%
+      show_name: true
+      show_state: false
+      show_label: false
+      styles:
+        card:
+          - '-webkit-box-shadow': none
+          - box-shadow: none
+          - background-color: 'rgba(255, 255, 255, 0.0)'
+        icon:
+          - color: 'rgb(255, 255, 255, 0.7)'

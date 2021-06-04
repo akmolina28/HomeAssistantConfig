@@ -1,0 +1,40 @@
+type: custom:hui-vertical-stack-card
+cards:
+- type: conditional
+  conditions:
+  - entity: calendar.meal_planning
+    state: 'on'
+  card:
+    type: custom:calendar-card
+    title: Meal Plan (tap for recipe)
+    hidePastEvents: false
+    useSourceUrl: true
+    showMultiDay: true
+    hideTime: true
+    eventsLimit: 1
+    dateTopFormat: dddd
+    dateBottomFormat: MMMM Do
+    showProgressBar: true
+    hideHeader: true
+    numberOfDays: 1
+    entities:
+    - calendar.meal_planning
+    style: |
+      ha-card { 
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0 20px;
+        border-radius: 12px;
+      }
+- type: conditional
+  conditions:
+  - entity: calendar.meal_planning
+    state: 'off'
+  card:
+    type: markdown
+    content: 'No meals planned today'
+    style: |
+      ha-card { 
+        background: rgba(255, 255, 255, 0.1);
+        margin: 0 20px;
+        border-radius: 12px;
+      }

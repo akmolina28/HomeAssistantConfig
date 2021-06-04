@@ -1,0 +1,6 @@
+binary_sensor:
+- platform: template
+  sensors:
+    last_watch_ai_alive:
+      friendly_name: Last Watch AI Alive
+      value_template: '{{ state_attr("sensor.last_watch_ai_alive", "message") == "Alive." }}'

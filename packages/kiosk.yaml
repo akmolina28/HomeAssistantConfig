@@ -1,0 +1,36 @@
+switch:
+- platform: template
+  switches:
+    wall_tablet_screensaver:
+      value_template: '{{ state_attr("sensor.wall_tablet_kiosk_settings", "timeToScreensaverV2") | int > 0 }}'
+      turn_on:
+      - service: rest_command.wall_tablet_kiosk_command
+        data:
+          cmd: setStringSetting
+          key: timeToScreensaverV2
+          value: 120
+      - service: homeassistant.update_entity
+        target:
+          entity_id: sensor.wall_tablet_kiosk_settings
+      - service: rest_command.wall_tablet_kiosk_command
+        data:
+          cmd: setStringSetting
+          key: timeToScreenOffV2
+          value: 0
+      turn_off:
+      - service: rest_command.wall_tablet_kiosk_command
+        data:
+          cmd: setStringSetting
+          key: timeToScreensaverV2
+          value: 0
+      - service: homeassistant.update_entity
+        target:
+          entity_id: sensor.wall_tablet_kiosk_settings
+      - service: rest_command.wall_tablet_kiosk_command
+        data:
+          cmd: stopScreensaver
+      - service: rest_command.wall_tablet_kiosk_command
+        data:
+          cmd: setStringSetting
+          key: timeToScreenOffV2
+          value: 120

@@ -3,4 +3,4 @@ path: cameras
 panel: true
 cards:
 - type: iframe
-  url: https://kleypot.duckdns.org/
+  url: !secret driveway_1080p_url

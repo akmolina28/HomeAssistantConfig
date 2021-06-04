@@ -18,7 +18,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px

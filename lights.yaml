@@ -2,14 +2,14 @@ background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
 custom_header:
   exceptions:
     - conditions:
-        user_agent: Mobile
+        user_agent: Android
       config:
         hide_header: true
 views:
   - icon: mdi:silverware-fork-knife
     name: Kitchen
     path: kitchen
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -18,7 +18,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -29,50 +29,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true
@@ -115,7 +72,7 @@ views:
   - icon: mdi:sofa
     name: Great Room
     path: great-room
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -124,7 +81,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -135,50 +92,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true
@@ -236,6 +150,30 @@ views:
               haptic: selection
               action: toggle
               entity: light.living_room_lamps_deconz
+          - entity: light.flex_strip_105
+            name: TV Backlight
+            icon: mdi:television-ambient-light
+            slider: true
+            hide: >
+              [[[
+                return states['switch.ledge_fluxer'].state === 'on';
+              ]]]
+            tap_action:
+              haptic: selection
+              action: toggle
+              entity: light.flex_strip_105
+          - entity: light.flex_strip_105
+            name: TV Backlight
+            icon: mdi:television-ambient-light
+            slider: false
+            hide: >
+              [[[
+                return states['switch.ledge_fluxer'].state !== 'on';
+              ]]]
+            tap_action:
+              haptic: selection
+              action: toggle
+              entity: light.flex_strip_105
           - entity: switch.ledge_fluxer
             name: Flux
             icon: mdi:brightness-auto
@@ -349,7 +287,7 @@ views:
   - icon: mdi:guitar-acoustic
     name: Man Cave
     path: man-cave-2
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -358,7 +296,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -369,77 +307,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .scene-button {
-            height: 65px !important;
-          }
-          .grad-amber {
-            background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(255,204,110,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-slate {
-            background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(30,30,30,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-focus {
-            background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(230,255,230,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-warm {
-            background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(255,220,200,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-sweet-tart {
-            background: linear-gradient(160deg, rgba(255,0,195,0.8) 0%, rgba(0,190,255,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-neon-rose {
-            background: linear-gradient(160deg, rgba(255,143,161,0.8) 0%, rgba(154,255,143,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-uranium-2 {
-            background: linear-gradient(160deg, rgba(210, 75, 255,0.8) 0%, rgba(230, 255, 58,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-blue-flame {
-            background: linear-gradient(160deg, rgba(0, 0, 255,0.8) 0%, rgba(255, 128, 0,0.8) 50%, rgba(255,0,0,0.8) 100%);
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true
@@ -764,7 +632,7 @@ views:
   - icon: mdi:bed-king
     name: Bedroom
     path: bedroom
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -773,7 +641,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -784,50 +652,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true
@@ -871,7 +696,7 @@ views:
   - icon: mdi:bed-double
     name: Guest Room
     path: guest-room
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -880,7 +705,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -891,50 +716,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true
@@ -969,7 +751,7 @@ views:
   - icon: mdi:garage
     name: Garage
     path: garage
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -978,7 +760,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -989,50 +771,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            --tile-on-icon-color: var(--primary-color) !important;
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true
@@ -1068,7 +807,7 @@ views:
   - icon: mdi:tree
     name: Outdoor
     path: outdoor
-    badges: []
+    panel: true
     cards:
     - type: vertical-stack
       cards:
@@ -1077,7 +816,7 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
@@ -1088,58 +827,7 @@ views:
           icon:
             - margin-left: px
       - type: "custom:homekit-card"
-        style: |
-          :host {
-            --tile-background: rgba(255, 255, 255, 0.10);
-            --tile-border-radius: 12px;
-            --tile-width: 100px;
-            --tile-height: 100px;
-            --tile-on-background: rgba(255, 255, 255, 0.7);
-
-            --tile-name-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-name-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-text-color: rgba(255, 255, 255, 0.8);
-            --tile-on-state-text-color: rgba(0, 0, 0, 1);
-
-            --tile-state-changed-text-color: rgb(134, 134, 134);
-            --tile-unavailable-state-text-color: rgba(255, 255, 255, 1);
-
-            --tile-value-text-color: rgba(255, 0, 0, 1);
-
-
-            --tile-icon-color: rgba(255, 255, 255, 0.8);
-            /* #f7d959; rgba(255,204,110,1.0) */
-            font-family: Arial;
-          }
-          .top-fav {
-            background-color: rgba(255, 255, 230,0.5) !important;
-          }
-          .scene-button {
-            height: 65px !important;
-          }
-          .grad-amber {
-            background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(255,204,110,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .grad-slate {
-            background: linear-gradient(160deg, rgba(41,128,185,0.8) 0%, rgba(30,30,30,0.8) 100%, rgba(51,51,51,0.8) 100%);
-          }
-          .off-bg {
-            background-color: rgba(255, 255, 255, 0.10) ;
-          }
-          .hideState .state {
-            visibility:hidden !important;
-          }
-          homekit-button .icon.climate {
-            background-color: var(--primary-color) !important;
-          }
-          homekit-button .icon {
-            height: calc(var(--tile-icon-size, 30px) + 14px) !important;
-            width: calc(var(--tile-icon-size, 30px) + 14px) !important;
-          }
-          homekit-button.action-button .state {
-            display: none;
-          }
+        style: !include /config/lovelace/homekit/styles.yaml
         home: false
         title: Home
         useBrightness: true

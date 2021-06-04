@@ -1,0 +1,823 @@
+background: center / cover no-repeat fixed  url('/local/images/bg_long.png?v=1')
+custom_header:
+  exceptions:
+  - conditions:
+      user_agent: Android
+    config:
+      hide_header: true
+  - conditions:
+      user_agent: Mobile
+    config:
+      hide_header: true
+views:
+- icon: mdi:heart-pulse
+  name: System Status
+  path: status
+  cards:
+  - type: 'custom:button-card'
+    size: 25px
+    icon: 'mdi:close'
+    tap_action:
+      action: navigate
+      navigation_path: /
+    styles:
+      card:
+        - width: 40px
+        - height: 40px
+        - background-color: 'rgba(255,255,255,0)'
+        - box-shadow: none
+        - margin-bottom: 15px
+      icon:
+        - margin-left: px
+  - type: markdown
+    content: '### System Status'
+    card_mod:
+      style: |
+        ha-card {
+          background: rgba(0,0,0,0);
+          box-shadow: none;
+          padding: 0px;
+          margin-bottom: -12px;
+          left: 5px;
+        }
+        ha-markdown.no-header {
+          padding-top: 0px!important;
+        }
+  - type: 'custom:mod-card'
+    card_mod:
+      style: 
+        swipe-card:
+          $: |
+            .swiper-pagination-bullets {
+              top: -13px;
+            }
+            .swiper-pagination-bullet {
+              width: 10px;
+              height: 10px;
+              background-color: rgba(255,255,255,1.0) !important;
+              position: relative;
+              top: 15px;
+            }
+            .swiper-pagination-bullet-active {
+              background-color: var(--secondary-text-color) !important;
+            }
+    card:
+      type: 'custom:swipe-card'
+      start_card: 1
+      reset_after: 0
+      parameters:
+        spaceBetween: 8
+        autoHeight: true
+        pagination:
+          type: bullets
+      cards:
+      - type: entities
+        entities:
+        - type: section
+          label: ThinkCentre M900 Tiny -- Proxmox VE 6.1-3
+          style: |
+            ha-card { 
+              --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+            }
+        - type: "custom:hui-vertical-stack-card"
+          cards:
+          - type: "custom:hui-horizontal-stack-card"
+            cards:
+            - type: picture
+              title: Proxmox Box
+              image: /local/images/devices/thinkcentre-2.png
+              style: |
+                ha-card { 
+                  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                  --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                  --ha-card-box-shadow: 'none';
+                }
+            - type: 'custom:hui-vertical-stack-card'
+              cards:
+              - type: 'custom:button-card'
+                layout: icon_name_state2nd
+                show_icon: true
+                show_state: true
+                size: 100%
+                styles:
+                  grid:
+                  - grid-template-columns: 1fr 2fr
+                  icon:
+                  - padding: 0px 20px
+                  - height: 30px
+                  - width: 30px
+                  card:
+                  - --ha-card-background: "rgba(0, 0, 0, 0.0)"
+                  - --ha-card-box-shadow: 'none'
+                  state:
+                  - padding: 0px 20px
+                  - justify-self: start
+                  - font-family: Roboto, sans-serif
+                  - font-size: 15px
+                  name:
+                  - padding: 0px 20px
+                  - justify-self: start
+                  - color: var(--secondary-text-color)
+                entity: sensor.vm_uptime
+                name: Uptime
+                icon: mdi:clock-outline
+        - type: "custom:hui-horizontal-stack-card"
+          cards:
+          - type: "custom:config-template-card"
+            variables:
+            - states['sensor.ipv4_address_enp0s18'].state
+            entities:
+            - sensor.ipv4_address_enp0s18
+            card:
+              type: markdown
+              content: "${vars[0]}"
+              style: |
+                ha-card { 
+                  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                  --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                  --ha-card-box-shadow: 'none';
+                }
+                ha-markdown {
+                  # text-align: right!important;
+                  color: var(--primary-text-color);
+                  padding-top: 5px!important;
+                  padding-bottom: 0!important;
+                }
+          - type: "custom:config-template-card"
+            variables:
+            - states['sensor.current_version'].state
+            entities:
+            - sensor.current_version
+            card:
+              type: markdown
+              content: "${'homeassistant' + vars[0]}"
+              style: |
+                ha-card { 
+                  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                  --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                  --ha-card-box-shadow: 'none';
+                }
+                ha-markdown {
+                  padding-top: 5px!important;
+                  padding-bottom: 0!important;
+                  color: var(--primary-text-color);
+                }
+        - type: "custom:config-template-card"
+          variables:
+          - states['sensor.disk_use_home'].state
+          - states['sensor.disk_total_home'].state
+          entities:
+          - sensor.disk_use_home
+          - sensor.disk_total_home
+          card:
+            type: custom:bar-card
+            title: "${ 'VDisk (' + vars[0] + 'Gb/' + vars[1] + 'Gb)' }"
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.disk_use_percent_home
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 70
+              color: var(--primary-color)
+            - value: 90
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - type: custom:bar-card
+            title: VCPU
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.processor_use
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 70
+              color: var(--primary-color)
+            - value: 90
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+          - type: custom:bar-card
+            title: VRAM
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.memory_use_percent
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 50
+              color: var(--primary-color)
+            - value: 80
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+        - type: custom:mini-graph-card
+          height: 20
+          line_width: 2
+          font_size: 70
+          hours_to_show: 168
+          points_per_hour: 1
+          show:
+            extrema: true
+            fill: true
+            labels: false
+          entities: 
+          - sensor.proxmox_cpu_temp
+          name: Core Temperature
+          color_thresholds:
+          - value: 60
+            color: var(--primary-color)
+          - value: 80
+            color: var(--status-color-warning)
+          - value: 120
+            color: var(--status-color-alert)
+          style: |
+            ha-card { 
+              --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+            }
+        state_color: false
+        card_mod:
+          style: |
+            ha-card {
+              width: 92%;
+              margin: auto;
+              border-radius: 12px;
+              background: rgba(255,255,255,0.1);
+              color: white;
+              --paper-item-icon-color: white;
+              margin-bottom: 15px;
+            }
+      - type: entities
+        entities:
+        - type: section
+          label: Synology DS213
+          style: |
+            ha-card { 
+              --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+            }
+        - type: "custom:hui-vertical-stack-card"
+          cards:
+          - type: "custom:hui-horizontal-stack-card"
+            cards:
+            - type: picture
+              title: Synology DS213
+              image: /local/images/devices/ds123.png
+              style: |
+                ha-card { 
+                  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                  --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                  --ha-card-box-shadow: 'none';
+                }
+            - type: 'custom:hui-vertical-stack-card'
+              cards:
+              - type: 'custom:button-card'
+                layout: icon_name_state2nd
+                show_icon: true
+                show_state: true
+                size: 100%
+                styles:
+                  grid:
+                  - grid-template-columns: 1fr 2fr
+                  icon:
+                  - padding: 0px 20px
+                  - height: 30px
+                  - width: 30px
+                  card:
+                  - --ha-card-background: "rgba(0, 0, 0, 0.0)"
+                  - --ha-card-box-shadow: 'none'
+                  state:
+                  - padding: 0px 20px
+                  - justify-self: start
+                  - font-family: Roboto, sans-serif
+                  - font-size: 15px
+                  name:
+                  - padding: 0px 20px
+                  - justify-self: start
+                  - color: var(--secondary-text-color)
+                entity: sensor.synology_uptime
+                name: Uptime
+                icon: mdi:clock-outline
+        - type: "custom:config-template-card"
+          variables:
+          - states['sensor.diskstation_volume_1_used_space'].state
+          - states['sensor.diskstation_volume_1_total_size'].state
+          entities:
+          - sensor.diskstation_volume_1_used_space
+          - sensor.diskstation_volume_1_total_size
+          card:
+            type: custom:bar-card
+            title: "${ 'Disk (' + vars[0] + 'TB/' + vars[1] + 'TB)' }"
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.diskstation_volume_1_volume_used
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 70
+              color: var(--primary-color)
+            - value: 90
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - type: custom:bar-card
+            title: CPU
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.diskstation_cpu_load_average_1_min
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 70
+              color: var(--primary-color)
+            - value: 90
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+          - type: custom:bar-card
+            title: RAM
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.diskstation_memory_usage_real
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 50
+              color: var(--primary-color)
+            - value: 80
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+        - type: custom:mini-graph-card
+          height: 20
+          line_width: 2
+          font_size: 70
+          hours_to_show: 168
+          points_per_hour: 1
+          show:
+            # extrema: true
+            fill: true
+          entities: 
+          - entity: sensor.diskstation_temp_celsius
+            name: Core Temp
+          - entity: sensor.diskstation_drive_1_temp_celsius
+            name: Drive 1 Temp
+          - entity: sensor.diskstation_drive_2_temp_celsius
+            name: Drive 2 Temp
+          name: Temperatures
+          style: |
+            ha-card { 
+              --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+            }
+        state_color: false
+        card_mod:
+          style: |
+            ha-card {
+              width: 92%;
+              margin: auto;
+              border-radius: 12px;
+              background: rgba(255,255,255,0.1);
+              color: white;
+              --paper-item-icon-color: white;
+              margin-bottom: 15px;
+            }
+      - type: entities
+        entities:
+        - type: section
+          label: Windows Server -- Blue Iris
+          style: |
+            ha-card { 
+              --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+            }
+        - type: "custom:hui-vertical-stack-card"
+          cards:
+          - type: "custom:hui-horizontal-stack-card"
+            cards:
+            - type: picture
+              title: Windows Server -- Blue Iris
+              image: /local/images/devices/windows-server.png
+              style: |
+                ha-card { 
+                  --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                  --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                  --ha-card-box-shadow: 'none';
+                }
+            - type: 'custom:hui-vertical-stack-card'
+              cards:
+              - type: 'custom:button-card'
+                layout: icon_name_state2nd
+                show_icon: true
+                show_state: true
+                size: 100%
+                styles:
+                  grid:
+                  - grid-template-columns: 1fr 2fr
+                  icon:
+                  - padding: 0px 20px
+                  - height: 30px
+                  - width: 30px
+                  card:
+                  - --ha-card-background: "rgba(0, 0, 0, 0.0)"
+                  - --ha-card-box-shadow: 'none'
+                  state:
+                  - padding: 0px 20px
+                  - justify-self: start
+                  - font-family: Roboto, sans-serif
+                  - font-size: 15px
+                  name:
+                  - padding: 0px 20px
+                  - justify-self: start
+                  - color: var(--secondary-text-color)
+                entity: sensor.glances_uptime
+                name: Uptime
+                icon: mdi:clock-outline
+        - type: "custom:config-template-card"
+          variables:
+          - states['sensor.glances_c_used'].state
+          - states['sensor.glances_c_total'].state
+          entities:
+          - sensor.glances_c_used
+          - sensor.glances_c_total
+          card:
+            type: custom:bar-card
+            title: "${ 'Disk (' + vars[0] + 'GiB/' + vars[1] + 'GiB)' }"
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.glances_c_used_percent
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 70
+              color: var(--primary-color)
+            - value: 90
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+        - type: custom:hui-horizontal-stack-card
+          cards:
+          - type: custom:bar-card
+            title: CPU
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.glances_cpu_used
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 70
+              color: var(--primary-color)
+            - value: 90
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+          - type: custom:bar-card
+            title: RAM
+            title_position: inside
+            icon_position: inside
+            align: split
+            columns: 1
+            entity: sensor.glances_ram_used_percent
+            animation: 'off'
+            indicator: right
+            unit_of_measurement: '%'
+            min: 0
+            max: 100
+            severity:
+            - value: 50
+              color: var(--primary-color)
+            - value: 80
+              color: var(--status-color-warning)
+            - value: 100
+              color: var(--status-color-alert)
+            style: |
+              ha-card { 
+                --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+                --ha-card-background: "rgba(0, 0, 0, 0.0)";
+                --ha-card-box-shadow: 'none';
+              }
+        - type: custom:mini-graph-card
+          height: 20
+          line_width: 2
+          font_size: 70
+          hours_to_show: 168
+          points_per_hour: 1
+          unit: °C
+          show:
+            extrema: true
+            fill: true
+          entities: 
+          - sensor.glances_cpu_temp
+          name: Temperatures
+          style: |
+            ha-card { 
+              --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+            }
+        state_color: false
+        card_mod:
+          style: |
+            ha-card {
+              width: 92%;
+              margin: auto;
+              border-radius: 12px;
+              background: rgba(255,255,255,0.1);
+              color: white;
+              --paper-item-icon-color: white;
+              margin-bottom: 15px;
+            }
+      
+  - type: markdown
+    content: '### Internet Status'
+    card_mod:
+      style: |
+        ha-card {
+          background: rgba(0,0,0,0);
+          box-shadow: none;
+          padding: 0px;
+          margin-bottom: -12px;
+          left: 5px;
+        }
+  - type: entities
+    entities:
+    - type: 'custom:uptime-card'
+      entity: binary_sensor.google
+      name: Internet
+      icon: mdi:earth
+      ko_icon: mdi:earth-off
+      icon_adaptive_color: true
+      status_adaptive_color: true
+      color:
+        title: var(--primary-text-color)
+      color_thresholds:
+      - value: 70
+        color: var(--status-color-alert)
+      - value: 99
+        color: var(--status-color-warning)
+      - value: 100
+        color: var(--status-color-success)
+      alias:
+        ok: Connected
+        ko: Disconnected
+      style: |
+        ha-card { 
+          --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+          --ha-card-background: "rgba(0, 0, 0, 0.0)";
+          --ha-card-box-shadow: 'none';
+        }
+    - type: 'custom:uptime-card'
+      entity: binary_sensor.google
+      name: Pi-hole Ad Blocker
+      icon: mdi:pi-hole
+      ko_icon: mdi:pi-hole
+      icon_adaptive_color: true
+      status_adaptive_color: true
+      color:
+        title: var(--primary-text-color)
+      color_thresholds:
+      - value: 70
+        color: var(--status-color-alert)
+      - value: 99
+        color: var(--status-color-warning)
+      - value: 100
+        color: var(--status-color-success)
+      alias:
+        ok: Connected
+        ko: Disconnected
+      style: |
+        ha-card { 
+          --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+          --ha-card-background: "rgba(0, 0, 0, 0.0)";
+          --ha-card-box-shadow: 'none';
+        }
+    state_color: false
+    card_mod:
+      style: |
+        ha-card {
+          width: 92%;
+          margin: auto;
+          border-radius: 12px;
+          background: rgba(255,255,255,0.1);
+          color: white;
+          --paper-item-icon-color: white;
+          margin-bottom: 15px;
+        }
+  - type: markdown
+    content: ' '
+    card_mod:
+      style: |
+        ha-card {
+          position: absolute;
+          left: -1000px;
+        }
+  - type: markdown
+    content: ' '
+    card_mod:
+      style: |
+        ha-card {
+          position: absolute;
+          left: -1000px;
+        }
+  - type: custom:hui-vertical-stack-card
+    cards:
+    - type: markdown
+      content: '### Local Services'
+      card_mod:
+        style: |
+          ha-card {
+            background: rgba(0,0,0,0);
+            box-shadow: none;
+            padding: 0px;
+            margin-bottom: -12px;
+            left: 5px;
+          }
+    - type: entities
+      entities:
+      - type: 'custom:uptime-card'
+        entity: binary_sensor.last_watch_ai_alive
+        name: Last Watch AI
+        icon: mdi:api
+        ko_icon: mdi:api-off
+        icon_adaptive_color: true
+        status_adaptive_color: true
+        color:
+          title: var(--primary-text-color)
+        color_thresholds:
+        - value: 70
+          color: var(--status-color-alert)
+        - value: 99
+          color: var(--status-color-warning)
+        - value: 100
+          color: var(--status-color-success)
+        alias:
+          ok: Connected
+          ko: Disconnected
+        style: |
+          ha-card { 
+            --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+          }
+      - type: 'custom:uptime-card'
+        entity: binary_sensor.diskstation
+        name: Synology Diskstation
+        icon: mdi:server
+        ko_icon: mdi:server-off
+        icon_adaptive_color: true
+        status_adaptive_color: true
+        color:
+          title: var(--primary-text-color)
+        color_thresholds:
+        - value: 70
+          color: var(--status-color-alert)
+        - value: 99
+          color: var(--status-color-warning)
+        - value: 100
+          color: var(--status-color-success)
+        alias:
+          ok: Connected
+          ko: Disconnected
+        style: |
+          ha-card { 
+            --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+          }
+      - type: 'custom:uptime-card'
+        entity: binary_sensor.windows_server
+        name: Blue Iris Server
+        icon: mdi:server
+        ko_icon: mdi:server-off
+        icon_adaptive_color: true
+        status_adaptive_color: true
+        color:
+          title: var(--primary-text-color)
+        color_thresholds:
+        - value: 70
+          color: var(--status-color-alert)
+        - value: 99
+          color: var(--status-color-warning)
+        - value: 100
+          color: var(--status-color-success)
+        alias:
+          ok: Connected
+          ko: Disconnected
+        style: |
+          ha-card { 
+            --paper-card-background-color: 'rgba(0, 0, 0, 0.0)';
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+          }
+      state_color: false
+      card_mod:
+        style: |
+          ha-card {
+            width: 92%;
+            margin: auto;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            --paper-item-icon-color: white;
+            margin-bottom: 15px;
+          }

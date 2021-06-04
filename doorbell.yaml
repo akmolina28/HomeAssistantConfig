@@ -5,10 +5,15 @@ custom_header:
         user_agent: Mobile
       config:
         hide_header: true
+    - conditions:
+        user_agent: Android
+      config:
+        hide_header: true
 views:
   - icon: mdi:doorbell-video
     name: Doorbell
     path: doorbell
+    panel: true
     badges: []
     cards:
     - type: vertical-stack
@@ -18,53 +23,92 @@ views:
         icon: 'mdi:close'
         tap_action:
           action: navigate
-          navigation_path: /mobile-dashboard/0
+          navigation_path: /
         styles:
           card:
             - width: 40px
             - height: 40px
             - background-color: 'rgba(255,255,255,0)'
             - box-shadow: none
-            - margin-bottom: '-25px'
           icon:
             - margin-left: px
       - type: markdown
-        content: Latest Doorbell Alert
-        card_mod:
-          style: |
-            ha-card {
-              background: rgba(255,255,255,0) !important;
-              box-shadow: none;
-              margin-bottom: 0;
-              font-family: Arial;
-              font-size: 16px;
-              font-weight: bold;
-            }
-            ha-markdown {
-              margin-top: 30px;
-              padding: 0px!important;
-            }
+        content: '### Doorbell Live View'
+        style: |
+          ha-card {
+            margin-bottom: -7px;
+            background: rgba(255, 255, 255, 0.0);
+            border-radius: 0px;
+            box-shadow: none;
+            color: white; 
+            font-family: Arial;
+          }
+      - type: iframe
+        url: !secret doorbell_480p_url
+        aspect_ratio: '16:9'
+          
+
+      - type: markdown
+        content: '### Latest Motion Trigger'
+        style: |
+          ha-card {
+            margin-bottom: -7px;
+            background: rgba(255, 255, 255, 0.0);
+            border-radius: 0px;
+            box-shadow: none;
+            color: white; 
+            font-family: Arial;
+          }
       - type: picture-entity
         entity: camera.doorbell_person_alert_latest
         camera_view: live
         show_name: false
         show_state: false
+          
+
       - type: markdown
-        content: Doorbell Live View
-        card_mod:
-          style: |
-            ha-card {
-              background: rgba(255,255,255,0) !important;
-              box-shadow: none;
-              margin-bottom: 0;
-              font-family: Arial;
-              font-size: 16px;
-              font-weight: bold;
-            }
-            ha-markdown {
-              margin-top: 20px;
-              padding: 0px!important;
-            }
+        content: '### Latest Doorbell Press'
+        style: |
+          ha-card {
+            margin-bottom: -7px;
+            background: rgba(255, 255, 255, 0.0);
+            border-radius: 0px;
+            box-shadow: none;
+            color: white; 
+            font-family: Arial;
+          }
+      - type: picture-entity
+        entity: camera.doorbell_press_alert_latest
+        camera_view: live
+        show_name: false
+        show_state: false
+  - icon: mdi:doorbell-video
+    name: Doorbell
+    path: doorbell
+    panel: true
+    badges: []
+    cards:
+    - type: vertical-stack
+      cards:
+      - type: 'custom:button-card'
+        size: 25px
+        icon: 'mdi:close'
+        tap_action:
+          action: navigate
+          navigation_path: /
+        styles:
+          card:
+            - width: 40px
+            - height: 40px
+            - background-color: 'rgba(255,255,255,0)'
+            - box-shadow: none
+          icon:
+            - margin-left: px
       - type: iframe
         url: !secret doorbell_480p_url
         aspect_ratio: '16:9'
+        card_mod:
+          style: |
+            ha-card {
+              margin: 0 20px;
+            }

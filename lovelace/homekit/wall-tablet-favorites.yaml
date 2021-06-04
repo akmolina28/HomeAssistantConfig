@@ -1,0 +1,73 @@
+type: "custom:homekit-card"
+style: !include /config/lovelace/homekit/styles.yaml
+home: false
+title: Home
+useBrightness: true
+useTemperature: true
+titleColor: '#FFF'
+statePositionTop: false
+tileHoldAnimation: true
+entities:
+- title: Favorites
+  icon: mdi:star
+  entities:
+  - !include /config/lovelace/homekit/tiles/security.yaml
+  - !include /config/lovelace/homekit/tiles/automations.yaml
+  - card: 'custom:button-card'
+    conditionalClass: |
+      [[[
+        return "top-fav";
+      ]]]
+    tap_action:
+      action: navigate
+      haptic: selection
+      navigation_path: /sub-cameras/0
+    hold_action:
+      action: navigate
+      haptic: selection
+      navigation_path: /sub-cameras/0
+    cardOptions:
+      name: Cameras
+      icon: 'mdi:video'
+      size: 80%
+      show_name: true
+      show_state: false
+      show_label: false
+      styles:
+        card:
+          - '-webkit-box-shadow': none
+          - box-shadow: none
+          - background-color: 'rgba(255, 255, 255, 0.0)'
+        icon:
+          - color: 'rgb(255, 255, 255, 0.7)'
+  - type: button
+    entity: switch.mute_wall_tablet
+    conditionalClass: |
+      [[[
+        if (entity.state === "on") return "top-fav red-icon";
+        else return "top-fav";
+      ]]]
+    icon: mdi:volume-mute
+    offIcon: mdi:volume-high
+    name: Mute Sounds
+    tap_action:
+      action: call-service
+      service: switch.toggle
+      haptic: medium
+      service_data:
+        entity_id: switch.mute_wall_tablet
+  - type: button
+    conditionalClass: |
+      [[[
+        return "top-fav";
+      ]]]
+    entity: switch.wall_tablet_screensaver
+    icon: mdi:image
+    offIcon: mdi:image-off
+    name: Screen Saver
+    tap_action:
+      action: call-service
+      service: switch.toggle
+      haptic: medium
+      service_data:
+        entity_id: switch.wall_tablet_screensaver
